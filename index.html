@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="hu" />
+       	<meta name="author" content="Molnár László" />
+       	<meta name="keywords" content="Origami, 3D teaorigami" />
+
+	<title>Belépés</title>
+	<style type="text/css">
+	#H23 {	text-align: center}
+
+	</style>
+	
+<SCRIPT LANGUAGE="JavaScript">
+var theText = "Üdv, itt beléphetsz Origamis oldalamra";  // kiírandó szöveg
+
+function nextSize(i,incMethod,textLength)
+{
+if (incMethod == 1) return (36*Math.abs( Math.sin(i/(textLength/3.14))) );  // 36: betüméret
+if (incMethod == 2) return (255*Math.abs( Math.cos(i/(textLength/3.14))));
+}
+
+function sizeCycle(text,method,dis)
+{
+output = "";
+for (i = 0; i < text.length; i++)
+{
+size = parseInt(nextSize(i +dis,method,text.length)+5);
+output += "<font style='font-size: "+ size +"pt; color: yellow '>" +text.substring(i,i+1)+ "</font>";
+}
+theDiv.innerHTML = output;
+}
+
+function doWave(n) 
+{ 
+sizeCycle(theText,1,n);
+if (n > theText.length) {n=0}
+setTimeout("doWave(" + (n+1) + ")", 60);  // sebesség
+}
+// eddig -->
+</SCRIPT>
+
+
+<head>
+
+</head>
+
+<body onload="doWave(0)"  background="fire.jpg">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div ID="theDiv" align="center"></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div align="center">
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+ WIDTH="0" HEIGHT="0" id="enter_h_e_d" ALIGN="">
+ <PARAM NAME=movie VALUE="enter_h_e_d.swf"> <PARAM NAME=quality VALUE=high> <PARAM NAME=bgcolor VALUE=#669966> <EMBED src="enter_h_e_d.swf" quality=high bgcolor=#669966  WIDTH="0" HEIGHT="0" NAME="enter_h_e_d" ALIGN=""
+ TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+</OBJECT>
+</div>
+
+<div align="center">
+<map name="belep">
+<area alt="" coords="10,13,137,39" href="origami.htm">
+<area alt="" coords="10,48,137,76" href="origami_e.htm">
+<area alt="" coords="10,84,137,113" href="origami_d.htm">
+</map>
+<img src="pictures/belepes.jpg" width="148" height="123" border="0" usemap="#belep">
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3 id="H23"><font color="#0000FF">Molnár László - 2004.03.03-tól</font></h3>
+</body>
+</html>
