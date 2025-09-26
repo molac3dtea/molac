@@ -1,72 +1,151 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-<meta charset="UTF-8">
-	<meta http-equiv="Content-Language" content="hu" />
-       	<meta name="author" content="Molnár László" />
-       	<meta name="keywords" content="Origami, 3D teaorigami" />
+  <meta charset="UTF-8">
+  <title>Origami Nyitóoldal</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body {
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      overflow: hidden;
+      background-color: #f6f6f6;
+    }
+    .background-origami {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .wrapper {
+      position: absolute;
+      opacity: 0.5;
+      will-change: transform, width;
+    }
+    .wrapper img {
+      display: block;
+      width: 100%;
+      animation: spin linear infinite;
+    }
 
-	<title>Belépés</title>
-	<style type="text/css">
-	#H23 {	text-align: center}
+    /* Forgás */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
 
-	</style>
-	
-<SCRIPT LANGUAGE="JavaScript">
-var theText = "Üdv, itt beléphetsz Origamis oldalamra";  // kiírandó szöveg
-
-function nextSize(i,incMethod,textLength)
-{
-if (incMethod == 1) return (36*Math.abs( Math.sin(i/(textLength/3.14))) );  // 36: betüméret
-if (incMethod == 2) return (255*Math.abs( Math.cos(i/(textLength/3.14))));
-}
-
-function sizeCycle(text,method,dis)
-{
-output = "";
-for (i = 0; i < text.length; i++)
-{
-size = parseInt(nextSize(i +dis,method,text.length)+5);
-output += "<font style='font-size: "+ size +"pt; color: yellow '>" +text.substring(i,i+1)+ "</font>";
-}
-theDiv.innerHTML = output;
-}
-
-function doWave(n) 
-{ 
-sizeCycle(theText,1,n);
-if (n > theText.length) {n=0}
-setTimeout("doWave(" + (n+1) + ")", 60);  // sebesség
-}
-// eddig -->
-</SCRIPT>
-
-
-<head>
-<meta charset="UTF-8">
+    .welcome-box {
+      text-align: center;
+      background: white;
+      padding: 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .btn {
+      min-width: 150px;
+    }
+  </style>
 </head>
+<body>
+  <div class="background-origami"></div>
 
-<body onload="doWave(0)"  background="fire.jpg">
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div ID="theDiv" align="center"></div>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+  <div class="welcome-box" id="welcome-box">
+    <h1 class="mb-4">Üdvözöllek az Origami oldalamon!</h1>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="hu.html" class="btn btn-primary">Belépés (Magyar)</a>
+      <a href="en.html" class="btn btn-secondary">Enter (English)</a>
+      <a href="de.html" class="btn btn-info">Eintritt (Deutsch)</a>
+    </div>
+  </div>
 
-<div align="center">
-<map name="belep">
-<area alt="" coords="10,13,137,39" href="origami.htm">
-<area alt="" coords="10,48,137,76" href="origami_e.htm">
-<area alt="" coords="10,84,137,113" href="origami_d.htm">
-</map>
-<img src="pictures/belepes.jpg" width="148" height="123" border="0" usemap="#belep">
-</div>
+  <script>
+    const container = document.querySelector('.background-origami');
+    const box = document.getElementById('welcome-box');
+    const boxBottom = box.offsetTop + box.offsetHeight; // menü alja
+    const steps = [
+      "origami_step_01.png",
+	  "origami_step_02.png",
+      "origami_step_03.png",
+	  "origami_step_04.png",
+      "origami_step_05.png",
+	  "origami_step_06.png",
+      "origami_step_07.png",
+	  "origami_step_08.png",
+      "origami_step_09.png",
+	  "origami_step_10.png",
+      "origami_step_11.png",
+	  "origami_step_12.png",
+	  "origami_step_13.png",
+	  "origami_step_14.png",
+	  "origami_step_15.png"
+    ];
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h3 id="H23"><font color="#0000FF">Molnár László - 2004.03.03-tól</font></h3>
+    const screenW = window.innerWidth;
+    const screenH = window.innerHeight;
+    const margin = 50;
+
+    // minden elemhez eltároljuk a mozgási vektort és méretváltozást
+    const floaters = [];
+
+    steps.forEach(src => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "wrapper";
+
+      const img = document.createElement("img");
+      img.src = "PICTURES/BACKGROUND/" + src;
+
+      const baseSize = 120 + Math.random() * 80; // 120–200 px
+      wrapper.style.width = baseSize + "px";
+
+      const x = margin + Math.random() * (screenW - baseSize - margin*2);
+      const y = boxBottom + Math.random() * (screenH - boxBottom - baseSize - margin);
+      wrapper.style.left = x + "px";
+      wrapper.style.top  = y + "px";
+
+      // Forgás sebesség
+      const spinDur = 20 + Math.random()*40;
+      img.style.animationDuration = `${spinDur}s`;
+
+      wrapper.appendChild(img);
+      container.appendChild(wrapper);
+
+      floaters.push({
+        el: wrapper,
+        x: x,
+        y: y,
+        size: baseSize,
+        dx: (Math.random() - 0.5) * 0.8, // vízszintes sebesség
+        dy: (Math.random() - 0.5) * 0.8, // függőleges sebesség
+        dsize: (Math.random() - 0.5) * 0.9 // méret lassú változása
+      });
+    });
+
+    function animate() {
+      floaters.forEach(f => {
+        f.x += f.dx;
+        f.y += f.dy;
+        f.size += f.dsize;
+
+        // Ha túl kicsi/nagy a méret → irányváltás
+        if (f.size < 100 || f.size > 220) f.dsize *= -1;
+
+        // Ha elérné a képernyő szélét → pattanj vissza
+        if (f.x < margin || f.x > screenW - f.size - margin) f.dx *= -1;
+        if (f.y < boxBottom || f.y > screenH - f.size - margin) f.dy *= -1;
+
+        f.el.style.left = f.x + "px";
+        f.el.style.top  = f.y + "px";
+        f.el.style.width = f.size + "px";
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
