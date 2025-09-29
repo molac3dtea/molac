@@ -11,8 +11,36 @@
       margin: 0;
       font-family: sans-serif;
       overflow: hidden;
-      background-color: #f6f6f6;
+	  background-color: #f6f6f6;	
+	/* Háttérkép beállítása 
+      background: url("pictures/background/windmill2.jpg") no-repeat center center fixed;
+      background-size: cover;		*/
     }
+	
+	/* Háttérkép halványítva */
+	body::before {
+	  content: "";
+	  position: fixed;
+	  inset: 0;
+	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+	  background-size: cover;
+	  opacity: 0.4; /* halványítás */
+	  z-index: -3;
+	}
+
+	/* Színátmenetes overlay */
+	body::after {
+	  content: "";
+	  position: fixed;
+	  inset: 0;
+	  background: linear-gradient(
+		to bottom,
+		rgba(255,255,255,0.6) 0%,   /* felül világosabb */
+		rgba(255,255,255,0.3) 40%,  /* középen enyhe */
+		rgba(255,255,255,0.6) 100%  /* alul megint világosabb */
+	  );
+	  z-index: -2;
+	}
     .background-origami {
       position: absolute;
       inset: 0;
