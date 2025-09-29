@@ -21,7 +21,7 @@
     }
     .wrapper {
       position: absolute;
-      opacity: 0.5;
+      opacity: 0.08;
       will-change: transform, width;
     }
     .wrapper img {
@@ -54,7 +54,8 @@
   <div class="background-origami"></div>
 
   <div class="welcome-box" id="welcome-box">
-    <h1 class="mb-4">Üdvözöllek az Origami oldalamon!</h1>
+    <h1 class="mb-4">Üdvözlünk az Origami oldalon!</h1>
+    <p class="lead mb-4">Válaszd ki a kívánt nyelvet a belépéshez:</p>
     <div class="d-flex justify-content-center gap-3">
       <a href="origami.htm" class="btn btn-primary">Belépés (Magyar)</a>
       <a href="origami_e.htm" class="btn btn-secondary">Enter (English)</a>
@@ -65,32 +66,30 @@
   <script>
     const container = document.querySelector('.background-origami');
     const box = document.getElementById('welcome-box');
-    const boxBottom = box.offsetTop + box.offsetHeight; // menü alja
-    const steps = [
-      "origami_step_01.png",
-	  "origami_step_02.png",
-      "origami_step_03.png",
-	  "origami_step_04.png",
-      "origami_step_05.png",
-	  "origami_step_06.png",
-      "origami_step_07.png",
-	  "origami_step_08.png",
-      "origami_step_09.png",
-	  "origami_step_10.png",
-      "origami_step_11.png",
-	  "origami_step_12.png",
-	  "origami_step_13.png",
-	  "origami_step_14.png",
-	  "origami_step_15.png"
-    ];
-
-    const screenW = window.innerWidth;
-    const screenH = window.innerHeight;
+    let screenW = window.innerWidth;
+    let screenH = window.innerHeight;
+    let boxBottom = box.offsetTop + box.offsetHeight;
     const margin = 50;
 
-    // minden elemhez eltároljuk a mozgási vektort és méretváltozást
+    const steps = [
+      "origami_step_1_1.png","origami_step_1_2.png",
+      "origami_step_2_1.png","origami_step_2_2.png",
+      "origami_step_3_1.png","origami_step_3_2.png",
+      "origami_step_4_1.png","origami_step_4_2.png",
+      "origami_step_5_1.png","origami_step_5_2.png",
+      "origami_step_6_1.png","origami_step_6_2.png"
+    ];
+
     const floaters = [];
 
+    function randomPos(imgW, imgH) {
+      return {
+        x: margin + Math.random() * (screenW - imgW - margin*2),
+        y: boxBottom + Math.random() * (screenH - boxBottom - imgH - margin)
+      };
+    }
+
+    // Létrehozzuk a darabokat
     steps.forEach(src => {
       const wrapper = document.createElement("div");
       wrapper.className = "wrapper";
@@ -101,8 +100,7 @@
       const baseSize = 120 + Math.random() * 80; // 120–200 px
       wrapper.style.width = baseSize + "px";
 
-      const x = margin + Math.random() * (screenW - baseSize - margin*2);
-      const y = boxBottom + Math.random() * (screenH - boxBottom - baseSize - margin);
+      const {x, y} = randomPos(baseSize, baseSize);
       wrapper.style.left = x + "px";
       wrapper.style.top  = y + "px";
 
@@ -118,22 +116,23 @@
         x: x,
         y: y,
         size: baseSize,
-        dx: (Math.random() - 0.5) * 0.8, // vízszintes sebesség
-        dy: (Math.random() - 0.5) * 0.8, // függőleges sebesség
-        dsize: (Math.random() - 0.5) * 0.9 // méret lassú változása
+        dx: (Math.random() - 0.5) * 0.8,   // gyorsabb sodródás
+        dy: (Math.random() - 0.5) * 0.8,
+        dsize: (Math.random() - 0.5) * 0.1 // intenzívebb méretváltozás
       });
     });
 
+    // Folyamatos sodródás
     function animate() {
       floaters.forEach(f => {
         f.x += f.dx;
         f.y += f.dy;
         f.size += f.dsize;
 
-        // Ha túl kicsi/nagy a méret → irányváltás
+        // Méret határok
         if (f.size < 100 || f.size > 220) f.dsize *= -1;
 
-        // Ha elérné a képernyő szélét → pattanj vissza
+        // Falról visszapattanás
         if (f.x < margin || f.x > screenW - f.size - margin) f.dx *= -1;
         if (f.y < boxBottom || f.y > screenH - f.size - margin) f.dy *= -1;
 
@@ -144,8 +143,26 @@
 
       requestAnimationFrame(animate);
     }
-
     animate();
+
+    // Újrapozícionálás ablakméret változáskor
+    window.addEventListener('resize', () => {
+      screenW = window.innerWidth;
+      screenH = window.innerHeight;
+      boxBottom = box.offsetTop + box.offsetHeight;
+
+      floaters.forEach(f => {
+        const newSize = 120 + Math.random() * 80;
+        const {x, y} = randomPos(newSize, newSize);
+        f.size = newSize;
+        f.x = x;
+        f.y = y;
+
+        f.el.style.width = f.size + "px";
+        f.el.style.left = f.x + "px";
+        f.el.style.top  = f.y + "px";
+      });
+    });
   </script>
 </body>
 </html>
