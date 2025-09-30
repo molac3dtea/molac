@@ -17,42 +17,55 @@
       background-size: cover;		*/
     }
 	
-	/* Háttérkép a fehér doboz aljától indul, halványítva */
+  /* FŐ háttérkép – mindig teljes magasságban látszik (contain) */
 	body::before {
-	  content: "";
-	  position: fixed;
-	  top: var(--box-bottom, 0px);
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
-	  background-size: contain;
-	  background-position: center top;
-	  background-color: #f6f6f6;
-	  opacity: 0.6;
-	  z-index: -3;
+	content: "";
+	position: fixed;
+	top: var(--box-bottom);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url("pictures/background/windmill2.jpg") no-repeat center top;
+	background-size: contain;      /* a kép teljes magasságban látszik */
+	background-color: #f6f6f6;
+	opacity: 0.6;
+	z-index: -4; /* legmélyebb */
+	pointer-events: none;
 	}
 
+	/* BAL és JOBB elmosott sávok (két külön DIV) */
 	.bg-blur-left,
 	.bg-blur-right {
-	  position: fixed;
-	  top: var(--box-bottom, 0px);
-	  bottom: 0;
-	  width: 20%; /* mennyire nyúljon be középre */
-	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
-	  background-size: cover;
-	  filter: blur(40px);
-	  opacity: 0.8;
-	  z-index: -2;
-	  pointer-events: none;
+	position: fixed;
+	top: var(--box-bottom);
+	bottom: 0;
+	width: min(25%, 420px);           /* rugalmas, max 420px */
+	overflow: hidden;
+	z-index: -3;                      /* a fő kép felett, origami alatt */
+	pointer-events: none;
 	}
 
+	/* a háttérképből vett "másolat", a blur-t itt adjuk */
 	.bg-blur-left {
-	  left: 0;
+	left: 0;
+	background: url("pictures/background/windmill2.jpg") no-repeat left center;
+	background-size: cover;          /* kitölti a sávot */
+	transform: scaleX(1.03) scaleY(1.03); /* enyhe skálázás, hogy a blur szélek ne látszódjanak */
+	filter: blur(30px);
+	-webkit-filter: blur(30px);      /* safari */
+	opacity: 0.95;
+	will-change: filter, transform;
 	}
 
 	.bg-blur-right {
-	  right: 0;
+	right: 0;
+	background: url("pictures/background/windmill2.jpg") no-repeat right center;
+	background-size: cover;
+	transform: scaleX(1.03) scaleY(1.03);
+	filter: blur(30px);
+	-webkit-filter: blur(30px);
+	opacity: 0.95;
+	will-change: filter, transform;
 	}
 
     .background-origami {
