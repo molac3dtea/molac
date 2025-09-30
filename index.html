@@ -33,26 +33,6 @@
 	  z-index: -3;
 	}
 
-	/* Bal és jobb szélek erős elhalványítása */
-	body::after {
-	  content: "";
-	  position: fixed;
-	  inset: 0;
-	  background: linear-gradient(
-		to right,
-		rgba(246,246,246,1) 0%,     /* teljesen beleolvad a háttérbe */
-		rgba(246,246,246,0.95) 10%, /* nagyon erős halványítás */
-		rgba(246,246,246,0.7) 20%,  /* középfelé enyhül */
-		rgba(246,246,246,0) 40%,    /* közép felé teljesen eltűnik */
-		rgba(246,246,246,0) 60%,    /* középen tiszta */
-		rgba(246,246,246,0.7) 80%,  /* jobb oldalon újra halványodik */
-		rgba(246,246,246,0.95) 90%, /* nagyon erős */
-		rgba(246,246,246,1) 100%    /* teljesen beleolvad a háttérbe */
-	  );
-	  z-index: -2;
-	  pointer-events: none;
-	}
-
 	.bg-blur-left,
 	.bg-blur-right {
 	  position: fixed;
