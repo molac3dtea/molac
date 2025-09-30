@@ -17,10 +17,11 @@
       background-size: cover;		*/
     }
 	
+	/* Háttérkép halványítva, a fehér doboz aljától indul */
 	body::before {
 	  content: "";
 	  position: fixed;
-	  top: var(--box-bottom, 0px); /* dinamikusan a doboz aljától */
+	  top: var(--box-bottom, 0px); /* dinamikus kezdőpont */
 	  left: 0;
 	  right: 0;
 	  bottom: 0;
@@ -32,19 +33,24 @@
 	  z-index: -3;
 	}
 
-	/* szélek elmosása (maszkolás illúziója) */
+	/* Bal és jobb szélek erősebb elmosása */
 	body::after {
 	  content: "";
 	  position: fixed;
 	  inset: 0;
-	  background: radial-gradient(
-		circle at center,
-		rgba(255,255,255,0) 70%,
-		rgba(255,255,255,1) 100%
+	  background: linear-gradient(
+		to right,
+		rgba(246,246,246,1) 0%,      /* teljesen fedett bal szélen */
+		rgba(246,246,246,0.8) 10%,   /* erős halványítás */
+		rgba(246,246,246,0) 25%,     /* középfelé fokozatosan eltűnik */
+		rgba(246,246,246,0) 75%,     /* közép tiszta */
+		rgba(246,246,246,0.8) 90%,   /* jobb szélen fokozatosan vissza */
+		rgba(246,246,246,1) 100%     /* teljesen fedett jobb szélen */
 	  );
 	  z-index: -2;
 	  pointer-events: none;
 	}
+
 
     .background-origami {
       position: absolute;
