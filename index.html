@@ -33,6 +33,40 @@
 	pointer-events: none;
 	}
 
+	/* BAL és JOBB elmosott sávok (két külön DIV) */
+	.bg-blur-left,
+	.bg-blur-right {
+	position: fixed;
+	top: var(--box-bottom);
+	bottom: 0;
+	width: min(25%, 420px);           /* rugalmas, max 420px */
+	overflow: hidden;
+	z-index: -3;                      /* a fő kép felett, origami alatt */
+	pointer-events: none;
+	}
+
+	/* a háttérképből vett "másolat", a blur-t itt adjuk */
+	.bg-blur-left {
+	left: 0;
+	background: url("pictures/background/windmill2.jpg") no-repeat left center;
+	background-size: cover;          /* kitölti a sávot */
+	transform: scaleX(1.03) scaleY(1.03); /* enyhe skálázás, hogy a blur szélek ne látszódjanak */
+	filter: blur(30px);
+	-webkit-filter: blur(30px);      /* safari */
+	opacity: 0.95;
+	will-change: filter, transform;
+	}
+
+	.bg-blur-right {
+	right: 0;
+	background: url("pictures/background/windmill2.jpg") no-repeat right center;
+	background-size: cover;
+	transform: scaleX(1.03) scaleY(1.03);
+	filter: blur(30px);
+	-webkit-filter: blur(30px);
+	opacity: 0.95;
+	will-change: filter, transform;
+	}
 
     .background-origami {
       position: absolute;
