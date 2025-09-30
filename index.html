@@ -53,6 +53,28 @@
 	  pointer-events: none;
 	}
 
+	.bg-blur-left,
+	.bg-blur-right {
+	  position: fixed;
+	  top: var(--box-bottom, 0px);
+	  bottom: 0;
+	  width: 20%; /* mennyire nyúljon be középre */
+	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+	  background-size: cover;
+	  filter: blur(40px);
+	  opacity: 0.8;
+	  z-index: -2;
+	  pointer-events: none;
+	}
+
+	.bg-blur-left {
+	  left: 0;
+	}
+
+	.bg-blur-right {
+	  right: 0;
+	}
+
     .background-origami {
       position: absolute;
       inset: 0;
