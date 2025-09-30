@@ -12,33 +12,40 @@
       font-family: sans-serif;
       overflow: hidden;
 	  background-color: #f6f6f6;	
+	/* Háttérkép beállítása 
+      background: url("pictures/background/windmill2.jpg") no-repeat center center fixed;
+      background-size: cover;		*/
     }
 	
-	/* Háttérkép halványítva */
 	body::before {
 	  content: "";
 	  position: fixed;
-	  inset: 0;
+	  top: var(--box-bottom, 0px); /* dinamikusan a doboz aljától */
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
 	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
 	  background-size: contain;
+	  background-position: center top;
 	  background-color: #f6f6f6;
-	  opacity: 0.4; /* halványítás */
+	  opacity: 0.6;
 	  z-index: -3;
 	}
 
-	/* Színátmenetes overlay */
+	/* szélek elmosása (maszkolás illúziója) */
 	body::after {
 	  content: "";
 	  position: fixed;
 	  inset: 0;
-	  background: linear-gradient(
-		to bottom,
-		rgba(255,255,255,0.6) 0%,   /* felül világosabb */
-		rgba(255,255,255,0.3) 40%,  /* középen enyhe */
-		rgba(255,255,255,0.6) 100%  /* alul megint világosabb */
+	  background: radial-gradient(
+		circle at center,
+		rgba(255,255,255,0) 70%,
+		rgba(255,255,255,1) 100%
 	  );
 	  z-index: -2;
+	  pointer-events: none;
 	}
+
     .background-origami {
       position: absolute;
       inset: 0;
@@ -198,7 +205,17 @@
         f.el.style.top  = f.y + "px";
       });
     });
+	
+	function updateBoxBottom() {
+	  const box = document.getElementById('welcome-box');
+	  const boxBottom = box.offsetTop + box.offsetHeight;
+	  document.body.style.setProperty('--box-bottom', boxBottom + "px");
+	}
+
+	// induláskor és resize esetén hívjuk meg
+	updateBoxBottom();
+	window.addEventListener('resize', updateBoxBottom);
+
   </script>
 </body>
-
 </html>
