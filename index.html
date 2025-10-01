@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Origami Nyitóoldal</title>
+  <meta charset="utf-8" />
+  <title>Origami - blur demo</title>
   <link rel="stylesheet" href="bootstrap.css">
   <style>
     body {
-      position: relative;
-      min-height: 100vh;
-      margin: 0;
+      margin:0;
       font-family: sans-serif;
+      min-height:100vh;
       overflow: hidden;
-	  background-color: #f6f6f6;	
-	/* Háttérkép beállítása 
-      background: url("pictures/background/windmill2.jpg") no-repeat center center fixed;
-      background-size: cover;		*/
+      background-color: #f6f6f6;
+      position: relative;
     }
-	
-  /* FŐ háttérkép – mindig teljes magasságban látszik (contain) */
-	body::before {
-	content: "";
-	position: fixed;
-	top: var(--box-bottom);
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: url("pictures/background/windmill2.jpg") no-repeat center top;
-	background-size: contain;      /* a kép teljes magasságban látszik */
-	background-color: #f6f6f6;
-	opacity: 0.6;
-	z-index: -4; /* legmélyebb */
-	pointer-events: none;
-	}
 
-	/* BAL és JOBB elmosott sávok (két külön DIV) */
-	.bg-blur-left,
-	.bg-blur-right {
-	position: fixed;
-	top: var(--box-bottom);
-	bottom: 0;
-	width: min(25%, 420px);           /* rugalmas, max 420px */
-	overflow: hidden;
-	z-index: -3;                      /* a fő kép felett, origami alatt */
-	pointer-events: none;
-	}
+    /* Fő háttér (éles) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("pictures/background/windmill2.jpg") no-repeat center center;
+      background-size: cover;  /* Az egész ablakot kitölti */
+      z-index: -3; /* háttér kép */
+    }
 
-	/* a háttérképből vett "másolat", a blur-t itt adjuk */
-	.bg-blur-left {
-	left: 0;
-	background: url("pictures/background/windmill2.jpg") no-repeat left center;
-	background-size: cover;          /* kitölti a sávot */
-	transform: scaleX(1.03) scaleY(1.03); /* enyhe skálázás, hogy a blur szélek ne látszódjanak */
-	filter: blur(30px);
-	-webkit-filter: blur(30px);      /* safari */
-	opacity: 0.95;
-	will-change: filter, transform;
-	}
+    /* Elmosott, kinyújtott háttér a szélekre */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("pictures/background/windmill2.jpg") no-repeat center center;
+      background-size: cover;
+      filter: blur(30px);
+      opacity: 0.7;
+      z-index: -2; /* az éles háttér és origami előtt */
+    }
 
-	.bg-blur-right {
-	right: 0;
-	background: url("pictures/background/windmill2.jpg") no-repeat right center;
-	background-size: cover;
-	transform: scaleX(1.03) scaleY(1.03);
-	filter: blur(30px);
-	-webkit-filter: blur(30px);
-	opacity: 0.95;
-	will-change: filter, transform;
-	}
+    /* A bal és jobb szélek jobban elmosódnak */
+    .bg-blur-left,
+    .bg-blur-right {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
 
+    .bg-blur-left {
+      left: 0;
+      width: 15%; /* bal szélen */
+      background: url("pictures/background/windmill2.jpg") no-repeat center center;
+      background-size: cover;
+      filter: blur(30px);
+      opacity: 0.7;
+    }
+
+    .bg-blur-right {
+      right: 0;
+      width: 15%; /* jobb szélen */
+      background: url("pictures/background/windmill2.jpg") no-repeat center center;
+      background-size: cover;
+      filter: blur(30px);
+      opacity: 0.7;
+    }
+
+    /* Origami mozgó réteg */
     .background-origami {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: -1; /* a blur előtt */
       overflow: hidden;
     }
+
     .wrapper {
-      position: absolute;
-      opacity: 0.58;
+      position:absolute;
+      opacity:0.08;
       will-change: transform, width;
     }
+
     .wrapper img {
-      display: block;
-      width: 100%;
+      display:block;
+      width:100%;
       animation: spin linear infinite;
     }
 
-    /* Forgás */
     @keyframes spin {
       from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
 
     .welcome-box {
-      text-align: center;
+      text-align:center;
       background: white;
       padding: 3rem;
       border-radius: 1rem;
@@ -100,28 +104,39 @@
       position: relative;
       z-index: 1;
     }
-    .btn {
-      min-width: 150px;
-    }
+
   </style>
 </head>
 <body>
+
+  <!-- Elmosott szélek div-ek -->
   <div class="bg-blur-left"></div>
   <div class="bg-blur-right"></div>
-  
+
   <div class="background-origami"></div>
 
   <div class="welcome-box" id="welcome-box">
     <h1 class="mb-4">Üdvözlünk az Origami oldalon!</h1>
     <p class="lead mb-4">Válaszd ki a kívánt nyelvet a belépéshez:</p>
     <div class="d-flex justify-content-center gap-3">
-      <a href="origami.htm" class="btn btn-primary">Belépés (Magyar)</a>
-      <a href="origami_e.htm" class="btn btn-secondary">Enter (English)</a>
-      <a href="origami_d.htm" class="btn btn-info">Eintritt (Deutsch)</a>
+      <a href="hu.html" class="btn btn-primary">Belépés (Magyar)</a>
+      <a href="en.html" class="btn btn-secondary">Enter (English)</a>
+      <a href="de.html" class="btn btn-info">Eintritt (Deutsch)</a>
     </div>
   </div>
 
   <script>
+    // Dinamikus box-alja pozíció frissítése a resize eseménynél
+    function updateBoxBottom() {
+      const box = document.getElementById('welcome-box');
+      const bottom = box.offsetTop + box.offsetHeight;
+      document.documentElement.style.setProperty('--box-bottom', bottom + 'px');
+    }
+
+    updateBoxBottom();
+    window.addEventListener('resize', updateBoxBottom);
+
+    // Külön origami mozgás kód
     const container = document.querySelector('.background-origami');
     const box = document.getElementById('welcome-box');
     let screenW = window.innerWidth;
@@ -130,21 +145,12 @@
     const margin = 50;
 
     const steps = [
-      "origami_step_01.png",
-      "origami_step_02.png",
-      "origami_step_03.png",
-      "origami_step_04.png",
-      "origami_step_05.png",
-      "origami_step_06.png",
-      "origami_step_07.png",
-      "origami_step_08.png",
-      "origami_step_09.png",
-      "origami_step_10.png",
-      "origami_step_11.png",
-      "origami_step_12.png",
-      "origami_step_13.png",
-      "origami_step_14.png",
-      "origami_step_15.png"
+      "origami_step_1_1.png", "origami_step_1_2.png",
+      "origami_step_2_1.png", "origami_step_2_2.png",
+      "origami_step_3_1.png", "origami_step_3_2.png",
+      "origami_step_4_1.png", "origami_step_4_2.png",
+      "origami_step_5_1.png", "origami_step_5_2.png",
+      "origami_step_6_1.png", "origami_step_6_2.png"
     ];
 
     const floaters = [];
@@ -156,22 +162,20 @@
       };
     }
 
-    // Létrehozzuk a darabokat
     steps.forEach(src => {
       const wrapper = document.createElement("div");
       wrapper.className = "wrapper";
 
       const img = document.createElement("img");
-      img.src = "pictures/background/" + src;
+      img.src = "PICTURES/BACKGROUND/" + src;
 
-      const baseSize = 120 + Math.random() * 80; // 120–200 px
+      const baseSize = 120 + Math.random() * 80;
       wrapper.style.width = baseSize + "px";
 
       const {x, y} = randomPos(baseSize, baseSize);
       wrapper.style.left = x + "px";
       wrapper.style.top  = y + "px";
 
-      // Forgás sebesség
       const spinDur = 20 + Math.random()*40;
       img.style.animationDuration = `${spinDur}s`;
 
@@ -180,67 +184,40 @@
 
       floaters.push({
         el: wrapper,
-        x: x,
-        y: y,
-        size: baseSize,
-        dx: (Math.random() - 0.5) * 1.2,   // gyorsabb sodródás
-        dy: (Math.random() - 0.5) * 1.2,
-        dsize: (Math.random() - 0.5) * 0.6 // intenzívebb méretváltozás
+        x: x, y: y, size: baseSize,
+        dx: (Math.random() - 0.5) * 0.9,
+        dy: (Math.random() - 0.5) * 0.9,
+        dsize: (Math.random() - 0.5) * 0.12
       });
     });
 
-    // Folyamatos sodródás
     function animate() {
       floaters.forEach(f => {
-        f.x += f.dx;
-        f.y += f.dy;
-        f.size += f.dsize;
-
-        // Méret határok
-        if (f.size < 100 || f.size > 220) f.dsize *= -1;
-
-        // Falról visszapattanás
+        f.x += f.dx; f.y += f.dy; f.size += f.dsize;
+        if (f.size < 100 || f.size > 260) f.dsize *= -1;
         if (f.x < margin || f.x > screenW - f.size - margin) f.dx *= -1;
         if (f.y < boxBottom || f.y > screenH - f.size - margin) f.dy *= -1;
-
         f.el.style.left = f.x + "px";
         f.el.style.top  = f.y + "px";
         f.el.style.width = f.size + "px";
       });
-
       requestAnimationFrame(animate);
     }
     animate();
 
-    // Újrapozícionálás ablakméret változáskor
     window.addEventListener('resize', () => {
-      screenW = window.innerWidth;
-      screenH = window.innerHeight;
+      screenW = window.innerWidth; screenH = window.innerHeight;
       boxBottom = box.offsetTop + box.offsetHeight;
-
       floaters.forEach(f => {
         const newSize = 120 + Math.random() * 80;
         const {x, y} = randomPos(newSize, newSize);
-        f.size = newSize;
-        f.x = x;
-        f.y = y;
-
+        f.size = newSize; f.x = x; f.y = y;
         f.el.style.width = f.size + "px";
         f.el.style.left = f.x + "px";
         f.el.style.top  = f.y + "px";
       });
+      updateBoxBottom(); // frissítjük a CSS változót is
     });
-	
-	function updateBoxBottom() {
-	  const box = document.getElementById('welcome-box');
-	  const boxBottom = box.offsetTop + box.offsetHeight;
-	  document.body.style.setProperty('--box-bottom', boxBottom + "px");
-	}
-
-	// induláskor és resize esetén hívjuk meg
-	updateBoxBottom();
-	window.addEventListener('resize', updateBoxBottom);
-
   </script>
 </body>
 </html>
