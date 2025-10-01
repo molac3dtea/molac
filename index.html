@@ -14,61 +14,49 @@
       position: relative;
     }
 
-    /* Fő háttér (éles) */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;  /* Az egész ablakot kitölti */
-      z-index: -3; /* háttér kép */
-    }
+	/* Fő éles kép */
+	body::before {
+	  content: "";
+	  position: fixed;
+	  top: var(--box-bottom, 0px);
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+	  background-size: contain;
+	  background-color: #f6f6f6;
+	  opacity: 0.8;
+	  z-index: -3;
+	}
 
-    /* Elmosott, kinyújtott háttér a szélekre */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-      z-index: -2; /* az éles háttér és origami előtt */
-    }
+	/* Blur overlayek */
+	.bg-blur-left,
+	.bg-blur-right {
+	  position: fixed;
+	  top: var(--box-bottom, 0px);
+	  bottom: 0;
+	  width: 20%; /* szélesség: a kép mellett mennyit töltsön ki */
+	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+	  background-size: cover;
+	  filter: blur(40px);
+	  opacity: 0.8;
+	  z-index: -2;
+	  pointer-events: none;
+	}
 
-    /* A bal és jobb szélek jobban elmosódnak */
-    .bg-blur-left,
-    .bg-blur-right {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      z-index: -2;
-      pointer-events: none;
-    }
+	/* FIGYELEM: felcserélve! */
+	.bg-blur-left {
+	  right: 50%;                /* a középponthoz igazítva */
+	  transform: translateX(-100%); 
+	  background-position: right center; /* a kép jobb széle jelenjen meg bal oldalon */
+	}
 
-    .bg-blur-left {
-      left: 0;
-      width: 15%; /* bal szélen */
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-    }
+	.bg-blur-right {
+	  left: 50%;                 /* középhez igazítva */
+	  transform: translateX(100%);
+	  background-position: left center; /* a kép bal széle jelenjen meg jobb oldalon */
+	}
 
-    .bg-blur-right {
-      right: 0;
-      width: 15%; /* jobb szélen */
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-    }
 
     /* Origami mozgó réteg */
     .background-origami {
