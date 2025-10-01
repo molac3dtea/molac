@@ -23,8 +23,19 @@ body::before {
   background: url("pictures/background/windmill2.jpg") no-repeat center center;
   background-size: contain;
   background-color: #f6f6f6;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: -3;
+
+  /* Maszk: bal/jobb szélek fokozatosan átlátszók lesznek */
+  -webkit-mask-image: linear-gradient(to right,
+    transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+
+  mask-image: linear-gradient(to right,
+    transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
 }
 
 /* Blur sávok alapbeállítás */
