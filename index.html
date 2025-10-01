@@ -1,115 +1,98 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="utf-8" />
-  <title>Origami - blur demo</title>
-  <link rel="stylesheet" href="bootstrap.css">
-  <style>
-    body {
-      margin:0;
-      font-family: sans-serif;
-      min-height:100vh;
-      overflow: hidden;
-      background-color: #f6f6f6;
-      position: relative;
-    }
+<meta charset="utf-8" />
+<title>Origami - blur demo</title>
+<link rel="stylesheet" href="bootstrap.css">
+<style>
+  :root { --box-bottom: 0px; }
 
-    /* Fő háttér (éles) */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;  /* Az egész ablakot kitölti */
-      z-index: -3; /* háttér kép */
-    }
+  body {
+    margin:0;
+    min-height:100vh;
+    font-family: sans-serif;
+    overflow: hidden;
+    background-color: #f6f6f6;
+  }
 
-    /* Elmosott, kinyújtott háttér a szélekre */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-      z-index: -2; /* az éles háttér és origami előtt */
-    }
+  /* FŐ háttérkép – mindig teljes magasságban látszik (contain) */
+  body::before {
+    content: "";
+    position: fixed;
+    top: var(--box-bottom);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("pictures/background/windmill2.jpg") no-repeat center top;
+    background-size: contain;      /* a kép teljes magasságban látszik */
+    background-color: #f6f6f6;
+    opacity: 0.6;
+    z-index: -4; /* legmélyebb */
+    pointer-events: none;
+  }
 
-    /* A bal és jobb szélek jobban elmosódnak */
-    .bg-blur-left,
-    .bg-blur-right {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      z-index: -2;
-      pointer-events: none;
-    }
+  /* BAL és JOBB elmosott sávok (két külön DIV) */
+  .bg-blur-left,
+  .bg-blur-right {
+    position: fixed;
+    top: var(--box-bottom);
+    bottom: 0;
+    width: min(25%, 420px);           /* rugalmas, max 420px */
+    overflow: hidden;
+    z-index: -3;                      /* a fő kép felett, origami alatt */
+    pointer-events: none;
+  }
 
-    .bg-blur-left {
-      left: 0;
-      width: 15%; /* bal szélen */
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-    }
+  /* a háttérképből vett "másolat", a blur-t itt adjuk */
+  .bg-blur-left {
+    left: 0;
+    background: url("pictures/background/windmill2.jpg") no-repeat left center;
+    background-size: cover;          /* kitölti a sávot */
+    transform: scaleX(1.03) scaleY(1.03); /* enyhe skálázás, hogy a blur szélek ne látszódjanak */
+    filter: blur(30px);
+    -webkit-filter: blur(30px);      /* safari */
+    opacity: 0.95;
+    will-change: filter, transform;
+  }
 
-    .bg-blur-right {
-      right: 0;
-      width: 15%; /* jobb szélen */
-      background: url("pictures/background/windmill2.jpg") no-repeat center center;
-      background-size: cover;
-      filter: blur(30px);
-      opacity: 0.7;
-    }
+  .bg-blur-right {
+    right: 0;
+    background: url("pictures/background/windmill2.jpg") no-repeat right center;
+    background-size: cover;
+    transform: scaleX(1.03) scaleY(1.03);
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+    opacity: 0.95;
+    will-change: filter, transform;
+  }
 
-    /* Origami mozgó réteg */
-    .background-origami {
-      position: absolute;
-      inset: 0;
-      z-index: -1; /* a blur előtt */
-      overflow: hidden;
-    }
+  /* A réteg, amely fölött mozognak a darabok — origami marad korábban -1 helyett -2 */
+  .background-origami {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+  }
 
-    .wrapper {
-      position:absolute;
-      opacity:0.08;
-      will-change: transform, width;
-    }
+  .wrapper { position:absolute; opacity:0.08; will-change: transform, width; }
+  .wrapper img { display:block; width:100%; animation: spin linear infinite; }
 
-    .wrapper img {
-      display:block;
-      width:100%;
-      animation: spin linear infinite;
-    }
+  @keyframes spin { from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+  .welcome-box{
+    text-align:center;
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1; /* legfelül */
+  }
 
-    .welcome-box {
-      text-align:center;
-      background: white;
-      padding: 3rem;
-      border-radius: 1rem;
-      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1;
-    }
-
-  </style>
+</style>
 </head>
 <body>
-
-  <!-- Elmosott szélek div-ek -->
+  <!-- BLUR sávok (két külön elem a body-ban) -->
   <div class="bg-blur-left"></div>
   <div class="bg-blur-right"></div>
 
@@ -126,17 +109,16 @@
   </div>
 
   <script>
-    // Dinamikus box-alja pozíció frissítése a resize eseménynél
+    /* frissítjük a --box-bottom CSS változót, hogy a background és a blur sávok helyesen kezdődjenek */
     function updateBoxBottom() {
       const box = document.getElementById('welcome-box');
       const bottom = box.offsetTop + box.offsetHeight;
       document.documentElement.style.setProperty('--box-bottom', bottom + 'px');
     }
-
     updateBoxBottom();
     window.addEventListener('resize', updateBoxBottom);
 
-    // Külön origami mozgás kód
+    /* --- alább a korábbi origami mozgás kódod lehet --- */
     const container = document.querySelector('.background-origami');
     const box = document.getElementById('welcome-box');
     let screenW = window.innerWidth;
@@ -145,12 +127,12 @@
     const margin = 50;
 
     const steps = [
-      "origami_step_1_1.png", "origami_step_1_2.png",
-      "origami_step_2_1.png", "origami_step_2_2.png",
-      "origami_step_3_1.png", "origami_step_3_2.png",
-      "origami_step_4_1.png", "origami_step_4_2.png",
-      "origami_step_5_1.png", "origami_step_5_2.png",
-      "origami_step_6_1.png", "origami_step_6_2.png"
+      "origami_step_1_1.png","origami_step_1_2.png",
+      "origami_step_2_1.png","origami_step_2_2.png",
+      "origami_step_3_1.png","origami_step_3_2.png",
+      "origami_step_4_1.png","origami_step_4_2.png",
+      "origami_step_5_1.png","origami_step_5_2.png",
+      "origami_step_6_1.png","origami_step_6_2.png"
     ];
 
     const floaters = [];
