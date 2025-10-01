@@ -14,48 +14,43 @@
       position: relative;
     }
 
-	/* Fő éles kép */
-	body::before {
-	  content: "";
-	  position: fixed;
-	  top: var(--box-bottom, 0px);
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
-	  background-size: contain;
-	  background-color: #f6f6f6;
-	  opacity: 0.8;
-	  z-index: -3;
-	}
+/* Éles kép középen, mindig teljes magasságban */
+body::before {
+  content: "";
+  position: fixed;
+  top: var(--box-bottom, 0px);
+  left: 0; right: 0; bottom: 0;
+  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+  background-size: contain;
+  background-color: #f6f6f6;
+  opacity: 0.8;
+  z-index: -3;
+}
 
-	/* Blur overlayek */
-	.bg-blur-left,
-	.bg-blur-right {
-	  position: fixed;
-	  top: var(--box-bottom, 0px);
-	  bottom: 0;
-	  width: 20%; /* szélesség: a kép mellett mennyit töltsön ki */
-	  background: url("pictures/background/windmill2.jpg") no-repeat center center;
-	  background-size: cover;
-	  filter: blur(40px);
-	  opacity: 0.8;
-	  z-index: -2;
-	  pointer-events: none;
-	}
+/* Blur sávok alapbeállítás */
+.bg-blur-left,
+.bg-blur-right {
+  position: fixed;
+  top: var(--box-bottom, 0px);
+  bottom: 0;
+  background: url("pictures/background/windmill2.jpg") no-repeat center center;
+  background-size: cover;
+  filter: blur(40px);
+  opacity: 0.8;
+  z-index: -2;
+  pointer-events: none;
+}
 
-	/* FIGYELEM: felcserélve! */
-	.bg-blur-left {
-	  right: 50%;                /* a középponthoz igazítva */
-	  transform: translateX(-100%); 
-	  background-position: right center; /* a kép jobb széle jelenjen meg bal oldalon */
-	}
+/* külön igazítás */
+.bg-blur-left {
+  left: 0;
+  background-position: right center; /* a kép jobb szélét nyújtja balra */
+}
+.bg-blur-right {
+  right: 0;
+  background-position: left center;  /* a kép bal szélét nyújtja jobbra */
+}
 
-	.bg-blur-right {
-	  left: 50%;                 /* középhez igazítva */
-	  transform: translateX(100%);
-	  background-position: left center; /* a kép bal széle jelenjen meg jobb oldalon */
-	}
 
 
     /* Origami mozgó réteg */
@@ -206,6 +201,25 @@
       });
       updateBoxBottom(); // frissítjük a CSS változót is
     });
+	
+function calcBlurWidths() {
+  const img = new Image();
+  img.src = "pictures/background/windmill2.jpg";
+  img.onload = () => {
+    const aspect = img.width / img.height;
+    const screenW = window.innerWidth;
+    const screenH = window.innerHeight;
+    const imgWidth = screenH * aspect;   // contain: teljes magasság, szélesség ehhez
+    const side = Math.max(0, (screenW - imgWidth) / 2);
+
+    document.querySelector('.bg-blur-left').style.width = side + "px";
+    document.querySelector('.bg-blur-right').style.width = side + "px";
+  };
+}
+
+calcBlurWidths();
+window.addEventListener('resize', calcBlurWidths);
+	
   </script>
 </body>
 </html>
