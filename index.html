@@ -17,63 +17,63 @@
       background-size: cover;		*/
     }
 	
-body::before {
-	content: "";
-	position: fixed;
-	top: var(--box-bottom);
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: 
-		/* Homályosított háttér */
-		linear-gradient(90deg, 
-			rgba(246, 246, 246, 0.1) 0%, 
-			rgba(246, 246, 246, 0.05) 20%,
-			rgba(246, 246, 246, 0) 40%,
-			rgba(246, 246, 246, 0) 60%,
-			rgba(246, 246, 246, 0.05) 80%,
-			rgba(246, 246, 246, 0.1) 100%),
-		/* Középső kép */
-		url("pictures/background/windmill2plus_.jpg") no-repeat center center;
-	
-	background-size: 
-		auto,    /* Gradient automatikus */
-		cover;   /* Kép kitölti a területet */
-	
-	background-color: #f6f6f6;
-	opacity: 0.1;
-	z-index: -4;
-	pointer-events: none;
-	
-	/* Homályosítás a teljes háttérre */
-	filter: blur(15px);
-}
+	body::before {
+		content: "";
+		position: fixed;
+		top: var(--box-bottom);
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: 
+			/* Homályosított háttér */
+			linear-gradient(90deg, 
+				rgba(246, 246, 246, 0.1) 0%, 
+				rgba(246, 246, 246, 0.05) 20%,
+				rgba(246, 246, 246, 0) 40%,
+				rgba(246, 246, 246, 0) 60%,
+				rgba(246, 246, 246, 0.05) 80%,
+				rgba(246, 246, 246, 0.1) 100%),
+			/* Középső kép */
+			url("pictures/background/windmill2plus_.jpg") no-repeat center center;
+		
+		background-size: 
+			auto,    /* Gradient automatikus */
+			cover;   /* Kép kitölti a területet */
+		
+		background-color: #f6f6f6;
+		opacity: 0.1;
+		z-index: -4;
+		pointer-events: none;
+		
+		/* Homályosítás a teljes háttérre */
+		filter: blur(15px);
+	}
 
-body::after {
-	content: "";
-	position: fixed;
-	top: var(--box-bottom);
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: url("pictures/background/windmill2plus_.jpg") no-repeat center center;
-	background-size: cover;
-	opacity: 0.1;
-	z-index: -3;
-	pointer-events: none;
-	
-	/* Masking - csak a középső 60%-ot jelenítjük meg élesen */
-	mask: linear-gradient(90deg, 
-		transparent 0%,
-		black 20%,
-		black 80%,
-		transparent 100%);
-	-webkit-mask: linear-gradient(90deg, 
-		transparent 0%,
-		black 20%,
-		black 80%,
-		transparent 100%);
-}
+	body::after {
+		content: "";
+		position: fixed;
+		top: var(--box-bottom);
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url("pictures/background/windmill2plus_.jpg") no-repeat center center;
+		background-size: cover;
+		opacity: 0.1;
+		z-index: -3;
+		pointer-events: none;
+		
+		/* Masking - csak a középső 60%-ot jelenítjük meg élesen */
+		mask: linear-gradient(90deg, 
+			transparent 0%,
+			black 20%,
+			black 80%,
+			transparent 100%);
+		-webkit-mask: linear-gradient(90deg, 
+			transparent 0%,
+			black 20%,
+			black 80%,
+			transparent 100%);
+	}
     .background-origami {
       position: absolute;
       inset: 0;
@@ -118,7 +118,7 @@ body::after {
   <div class="background-origami"></div>
 
   <div class="welcome-box" id="welcome-box">
-    <h1 class="mb-4">Üdvözlünk az Origami oldalon!</h1>
+    <h1 class="mb-4">Üdvözöllek az Origamis oldalamon!</h1>
     <p class="lead mb-4">Válaszd ki a kívánt nyelvet a belépéshez:</p>
     <div class="d-flex justify-content-center gap-3">
       <a href="origami.htm" class="btn btn-primary">Belépés (Magyar)</a>
