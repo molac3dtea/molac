@@ -2,20 +2,337 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Origami - Moln�r L�szl�</title>
+  <title>Origami – Kategóriák</title>
+  <link rel="stylesheet" href="bootstrap.css">
+
   <style>
-    body, html {
+    body {
+      position: relative;
+      min-height: 100vh;
       margin: 0;
-      height: 100%;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      background-color: #f6f6f6;
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+
+    /* ===== HÁTTÉR – UGYANAZ A LOGIKA, MINT AZ INDEX.HTML-BEN ===== */
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(246,246,246,0.1) 0%,
+          rgba(246,246,246,0.05) 20%,
+          rgba(246,246,246,0) 40%,
+          rgba(246,246,246,0) 60%,
+          rgba(246,246,246,0.05) 80%,
+          rgba(246,246,246,0.1) 100%),
+        url("pictures/background/windmill2plus_.jpg") no-repeat center center;
+      background-size: auto, cover;
+      filter: blur(15px);
+      opacity: 0.12;
+      z-index: -4;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("pictures/background/windmill2plus_.jpg") no-repeat center center;
+      background-size: cover;
+      opacity: 0.12;
+      z-index: -3;
+      pointer-events: none;
+
+      mask: linear-gradient(90deg,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%);
+      -webkit-mask: linear-gradient(90deg,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%);
+    }
+
+    /* ===== OLDALTARTALOM ===== */
+
+    .page-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+	.page-title {
+	  text-align: center;
+	  font-size: 2.6rem;
+	  font-weight: 600;
+	  margin-bottom: 3rem;
+
+	  /* Világosabb kék árnyalat */
+	  color: #0055aa; 
+
+	  /* Több rétegű árnyék a mélyebb hatásért */
+	  text-shadow: 
+		2px 2px 4px rgba(0, 0, 0, 0.2), 
+		4px 4px 10px rgba(0, 0, 0, 0.15),
+		0px 0px 15px rgba(255, 255, 255, 0.2); /* Egy kis belső ragyogás a széleknek */
+	}
+
+	.back-button {
+	  position: fixed;
+	  top: 20px;
+	  right: 20px;
+	  
+	  /* Csökkentett padding és betűméret a 70%-os mérethez */
+	  padding: 5px 12px;
+	  font-size: 0.75rem; 
+	  
+	  background-color: #003366;
+	  color: white !important;
+	  text-decoration: none;
+	  font-weight: bold;
+	  border-radius: 50px;
+	  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+	  transition: all 0.3s ease;
+	  z-index: 100;
+	  display: flex;
+	  align-items: center;
+	}
+
+	.arrow {
+	  margin-right: 5px; /* Kisebb távolság a nyíl és a szöveg között */
+	  font-size: 0.9rem;
+	  line-height: 0;
+	}
+
+	.back-button:hover {
+	  background-color: #0055aa;
+	  transform: translateX(-3px); /* Kisebb mozdulat a kisebb gombhoz */
+	}
+
+
+    /* ===== KATEGÓRIA GOMBOK ===== */
+
+	.category-grid {
+	  display: grid;
+	  grid-template-columns: repeat(4, 1fr);
+	  
+	  /* Első érték a sorok közötti (kisebb), második az oszlopok közötti (marad 1.8) */
+	  gap: 0.8rem 1.8rem; 
+	  
+	  /* A szöveg közelsége miatt csökkentjük az alsó margót (eredetileg 4rem volt) */
+	  margin-bottom: 1.5rem; 
+
+	  width: 60%;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+
+	.category-card {
+	  position: relative;
+	  height: 120px;
+	  overflow: hidden;
+	  border-radius: 1rem;
+
+	  background-color: #000;   /* ← EZ A DÖNTŐ */
+	  isolation: isolate;       /* ← blur ellen */
+
+	  box-shadow: 0 0.4rem 0.9rem rgba(0,0,0,0.12);
+	  cursor: pointer;
+	  transition: 
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	}
+
+
+	/* enyhe "kiemelkedés" hoverkor */
+	.category-card:hover {
+	  transform: translateY(-4px);
+	  box-shadow: 0 0.8rem 1.6rem rgba(0,0,0,0.2);
+	}
+
+	/* ===== KÉP ===== */
+	.card-image {
+	  position: absolute;
+	  inset: 0;
+	  background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
+
+	  transition: transform 0.6s ease;
+	}
+
+	/* kép finom zoom hoverkor */
+	.category-card:hover .card-image {
+	  transform: scale(1.08);
+	}
+
+	/* ===== ALSÓ FINOM SÖTÉTÍTÉS ===== */
+	.category-card::after {
+	  content: "";
+	  position: absolute;
+	  inset: 0;
+	  background: linear-gradient(
+		to top,
+		rgba(0,0,0,0.35),
+		rgba(0,0,0,0.05),
+		rgba(0,0,0,0)
+	  );
+	  pointer-events: none;
+	  transition: opacity 0.4s ease;
+	}
+
+	/* ===== FELIRAT ===== */
+	.category-label {
+	  position: absolute;
+	  left: 0;
+	  right: 0;
+	  bottom: 0%;
+
+	  padding: 0.4rem 0.6rem;
+	  text-align: center;
+
+	  font-size: 0.85rem;
+	  font-weight: 600;
+	  letter-spacing: 0.06em;
+	  color: #fff;
+
+	  background: rgba(0,0,0,0.45);
+	  backdrop-filter: blur(2px);
+
+	  transform: translateY(8px);
+	  opacity: 0.9;
+
+	  transition:
+		transform 0.4s ease,
+		opacity 0.4s ease,
+		background 0.4s ease;
+	}
+
+	/* felirat felcsúszik hoverkor */
+	.category-card:hover .category-label {
+	  transform: translateY(0);
+	  opacity: 1;
+	  background: rgba(0,0,0,0.6);
+	}
+
+    /* ===== BEMUTATKOZÓ SZÖVEG ===== */
+
+    .intro-text {
+      background: rgba(255,255,255,0.85);
+      padding: 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      line-height: 1.65;
+      font-size: 1.05rem;
+	  font-weight: bold;
+	  margin-top: 0;
     }
   </style>
 </head>
+
 <body>
-  <iframe src="hobbi.htm"></iframe>
+
+  <div class="page-container">
+
+	<a href="index.html" class="back-button">
+	  <span class="arrow">←</span> Vissza
+	</a>
+
+    <div class="page-title">
+      Üdvözöllek az Origamis oldalamon!
+    </div>
+
+    <!-- ===== 3x3 KATEGÓRIA GOMBOK ===== -->
+    <div class="category-grid">
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/allatok.jpg')"></div>
+        <div class="category-label">ÁLLATOK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/novenyek.jpg')"></div>
+        <div class="category-label">NÖVÉNYEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/teazas.jpg')"></div>
+        <div class="category-label">TEÁZÁS</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/epitmenyek.jpg')"></div>
+        <div class="category-label">ÉPÍTMÉNYEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/jarmuvek.jpg')"></div>
+        <div class="category-label">JÁRMŰVEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/egyebek.jpg')"></div>
+        <div class="category-label">EGYEBEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/hagyomany.jpg')"></div>
+        <div class="category-label">HAGYOMÁNYOS MODELLEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/gyurt.jpg')"></div>
+        <div class="category-label">GYŰRT MODELLEK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/famunkak.jpg')"></div>
+        <div class="category-label">FAMUNKÁK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/hajtogat.jpg')"></div>
+        <div class="category-label">HAJTOGATÁS LEÍRÁSOK</div>
+      </div>
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/kiallitas.jpg')"></div>
+        <div class="category-label">KIÁLLÍTÁSOK, MÉDIA</div>
+      </div>	  
+
+      <div class="category-card">
+        <div class="card-image" style="background-image:url('pictures/categories/rendeles.jpg')"></div>
+        <div class="category-label">RENDELÉS</div>
+      </div>	  
+
+    </div>
+
+    <!-- ===== BEMUTATKOZÓ SZÖVEG ===== -->
+    <div class="intro-text">
+
+		Ezt a moduláris origami technikát az Origami c. újságból tanultam 2001-ben.<br>
+		GHIAN-ZHI névre hallgat kínaiul, jelentése: EZER PAPÍR. Láttam már BLOCK-FOLDING néven is emlegetni.<br>
+		A történet szerint börtönben kötött ki az Arany Kalandor 200 kínai hajótöröttje, akik 1993-ban futottak zátonyra USA partjainál.<br>
+		Az egyikük ráérő idejében színes újságokat és egyéb hulladékokat tépett egyforma féltenyérnyi darabokra és hajtogatott egyforma, háromszög alakú elemeket belőlük. Ezekből az egyszerű elemekből rakott össze bonyolult formákat. Majd megtanította a többi elitéltet is a hajtogatásra, így gyorsan gyarapodtak az alkotórészecskék. Innen kerültek a papírszobrok (vázák, edények, állatok) múzeumokba és galériákba.<br>
+		A minta emlékeztet a kínai temetési szertartásokon használt áldozati papírpénzek hajtogatására.<br>
+		Az első alapanyagaim színes fénymásoló- és újságpapírok voltak. 2002-ben kezdtem a teástasakokat használni.<br>
+		A papírfigurák saját ötletek alapján készülnek otthon, szabadidőmben. A sík felületek kialakításához egyedi téglákat készítettem az alapelemekből.<br>
+		2006-ban és 2009-ben a Képző és Iparművészeti Lektorátus zsűrizte virágaimat, vázáimat és a teázás kellékeit.<br>
+
+    </div>
+
+  </div>
+
 </body>
 </html>
