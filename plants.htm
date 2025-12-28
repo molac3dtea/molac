@@ -14,8 +14,8 @@
 	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
     table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
-    th { background: #003366; color: white; padding: 12px; border-radius: 8px; }
-    td { padding: 15px; text-align: center; font-weight: bold; }
+    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; font-size: 1.5rem !important; }	
     img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
     img:hover { transform: scale(1.01); }
 
@@ -35,6 +35,21 @@
     .next { right: -60px; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
 	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.1rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
 	
   </style>
 </head>

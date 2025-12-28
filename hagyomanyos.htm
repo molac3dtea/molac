@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Origami – Minden egyéb</title>
+  <title>Origami – Hagyományos</title>
   <link rel="stylesheet" href="bootstrap.css">
   <style>
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
@@ -35,6 +35,21 @@
     .next { right: -60px; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
 	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.1rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
 	
   </style>
 </head>
@@ -58,12 +73,12 @@
   <div class="page-container">
 
     <table>
-      <caption>Traktor</caption>
+      <caption>Hagyományos origami modellek</caption>
       <tr>
-        <td rowspan="4">A saját<br>Rubik kockám</td>
-        <td><img src="pictures/others/rubik01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
-		<td><img src="pictures/others/rubik02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
-		<td><img src="pictures/others/rubik03.jpg" class="gallery-img" onclick="openGallery(2)"></td>
+        <td>Dinoszauruszok</td>
+        <td><img src="pictures/hagyomanyos/dino1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
+		<td><img src="pictures/hagyomanyos/dino2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
+		<td><img src="pictures/hagyomanyos/dinomadar.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
         <td><img src="pictures/others/rubik04.jpg" class="gallery-img" onclick="openGallery(3)"></td>
