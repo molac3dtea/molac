@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Origami – Minden egyéb</title>
+  <title>Origami – Egyebek</title>
   <link rel="stylesheet" href="bootstrap.css">
   <style>
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
@@ -14,8 +14,8 @@
 	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
     table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
-    th { background: #003366; color: white; padding: 12px; border-radius: 8px; }
-    td { padding: 15px; text-align: center; font-weight: bold; }
+    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; font-size: 1.5rem !important; }	
     img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
     img:hover { transform: scale(1.01); }
 
@@ -35,6 +35,21 @@
     .next { right: -60px; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
 	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.3rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
 	
   </style>
 </head>
@@ -58,9 +73,8 @@
   <div class="page-container">
 
     <table>
-      <caption>Traktor</caption>
+      <caption>Az én Rubik kockám</caption>
       <tr>
-        <td rowspan="4">A saját<br>Rubik kockám</td>
         <td><img src="pictures/others/rubik01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/others/rubik02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
 		<td><img src="pictures/others/rubik03.jpg" class="gallery-img" onclick="openGallery(2)"></td>
@@ -82,23 +96,22 @@
 	</table>
 	
     <table>
-      <caption>Motor</caption>
+      <caption>Unicumos üvegek</caption>
       <tr>
-        <td rowspan="2">2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz</td>
-        <td><img src="pictures/vehicles/motor1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
-		<td><img src="pictures/vehicles/motor2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+        <td>450 kisméretű elemből áll</td>
+        <td><img src="pictures/others/unicum.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
       <tr>
-        <td><img src="pictures/vehicles/motor3.jpg" class="gallery-img" onclick="openGallery(9)"></td>
-		<td><img src="pictures/vehicles/motor4.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+		<td>Az újabb üveg már<br>650 elemből áll</td>
+        <td><img src="pictures/others/unicum2.jpg" class="gallery-img" onclick="openGallery(13)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption>Babakocsi</caption>
+      <caption>EU zászló</caption>
       <tr>
-        <td>Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán</td>
-        <td><img src="pictures/vehicles/babakocsi.jpg" class="gallery-img" onclick="openGallery(11)"></td>
+        <td>2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével</td>
+        <td><img src="pictures/others/euflag.jpg" class="gallery-img" onclick="openGallery(14)"></td>
       </tr>	  
 	</table>	
 	
