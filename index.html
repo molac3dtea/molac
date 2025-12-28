@@ -97,15 +97,72 @@
       to   { transform: rotate(360deg); }
     }
 
+/* WELCOME BOX FRISSÍTÉSE */
     .welcome-box {
       text-align: center;
-      background: white;
-      padding: 3rem;
-      border-radius: 1rem;
-      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.95); /* Enyhén áttetsző fehér */
+      padding: 1.5rem 3rem; 
+      border-radius: 1.5rem;
+      box-shadow: 0 1rem 3rem rgba(0,0,0,0.15);
       position: relative;
       z-index: 1;
+      border: 1px solid rgba(0,0,0,0.05);
     }
+
+    .welcome-box h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #003366; /* Mélykék */
+      margin-bottom: 0.8rem !important;
+      letter-spacing: -1px;
+    }
+
+    .welcome-box p.lead {
+      font-size: 1.5rem;
+      color: #555;
+      margin-bottom: 2rem !important;
+    }
+
+    /* EGYEDI GOMBOK */
+    .btn-custom {
+      min-width: 200px;
+      font-size: 1.2rem;
+      padding: 1rem 1.5rem;
+      font-weight: 700;
+      border-radius: 50px; /* Lekerekített "pill" forma */
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    /* Magyar gomb - Mélykék/Arany */
+    .btn-magyar {
+      background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+      color: white !important;
+      box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
+    }
+
+    /* Angol gomb - Sötétszürke/Ezüst */
+    .btn-english {
+      background: linear-gradient(135deg, #444 0%, #777 100%);
+      color: white !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Német gomb - Aranybarna/Okker */
+    .btn-deutsch {
+      background: linear-gradient(135deg, #8a6d3b 0%, #c5a059 100%);
+      color: white !important;
+      box-shadow: 0 4px 15px rgba(138, 109, 59, 0.3);
+    }
+
+    .btn-custom:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      filter: brightness(1.1);
+    }
+	
     .btn {
       min-width: 150px;
     }
@@ -121,10 +178,10 @@
     <h1 class="mb-4">Üdvözöllek az Origamis oldalamon!</h1>
     <p class="lead mb-4">Válaszd ki a kívánt nyelvet a belépéshez:</p>
     <div class="d-flex justify-content-center gap-3">
-      <a href="origami.htm" class="btn btn-primary">Belépés (Magyar)</a>
-      <a href="origami_e.htm" class="btn btn-secondary">Enter (English)</a>
-      <a href="origami_d.htm" class="btn btn-info">Eintritt (Deutsch)</a>
-    </div>
+	  <a href="origami.htm" class="btn-custom btn-magyar">Belépés (Magyar)</a>
+      <a href="origami_e.htm" class="btn-custom btn-english">Enter (English)</a>
+      <a href="origami_d.htm" class="btn-custom btn-deutsch">Eintritt (Deutsch)</a>    
+	</div>
   </div>
 
   <script>
