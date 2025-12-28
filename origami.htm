@@ -2,6 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Origami – Kategóriák</title>
   <link rel="stylesheet" href="bootstrap.css">
 
@@ -238,6 +239,34 @@
 	  font-weight: bold;
 	  margin-top: 0;
     }
+	
+/* ===== MOBILBARÁT BEÁLLÍTÁSOK ===== */
+	@media (max-width: 768px) {
+	  /* A rácsot szélesebbre vesszük, hogy ne legyen sok üres hely a szélén */
+	  .category-grid {
+		width: 90% !important; 
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+		gap: 1.5rem !important;
+	  }
+
+	  /* A kártyák magasságát kicsit csökkentjük, hogy több férjen el a képernyőn */
+	  .category-card {
+		height: 180px !important;
+	  }
+
+	  /* A főcím méretét is igazítjuk */
+	  h1 {
+		font-size: 2rem !important;
+		margin-top: 2rem !important;
+	  }
+
+	  /* A feliratok mérete mobilon */
+	  .category-label {
+		font-size: 1rem !important;
+		padding: 0.6rem !important;
+	  }
+	}
+	
   </style>
 </head>
 
@@ -255,66 +284,89 @@
 
     <!-- ===== 3x3 KATEGÓRIA GOMBOK ===== -->
     <div class="category-grid">
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/allatok.jpg')"></div>
-        <div class="category-label">ÁLLATOK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/novenyek.jpg')"></div>
-        <div class="category-label">NÖVÉNYEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/teazas.jpg')"></div>
-        <div class="category-label">TEÁZÁS</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/epitmenyek.jpg')"></div>
-        <div class="category-label">ÉPÍTMÉNYEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/jarmuvek.jpg')"></div>
-        <div class="category-label">JÁRMŰVEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/egyebek.jpg')"></div>
-        <div class="category-label">EGYEBEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/hagyomany.jpg')"></div>
-        <div class="category-label">HAGYOMÁNYOS MODELLEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/gyurt.jpg')"></div>
-        <div class="category-label">GYŰRT MODELLEK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/famunkak.jpg')"></div>
-        <div class="category-label">FAMUNKÁK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/hajtogat.jpg')"></div>
-        <div class="category-label">HAJTOGATÁS LEÍRÁSOK</div>
-      </div>
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/kiallitas.jpg')"></div>
-        <div class="category-label">KIÁLLÍTÁSOK, MÉDIA</div>
-      </div>	  
-
-      <div class="category-card">
-        <div class="card-image" style="background-image:url('pictures/categories/rendeles.jpg')"></div>
-        <div class="category-label">RENDELÉS</div>
-      </div>	  
+		<a href="animals.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/allatok.jpg')"></div>
+				<div class="category-label">ÁLLATOK</div>
+			</div>
+		</a>
+		
+		<a href="plants.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/novenyek.jpg')"></div>
+				<div class="category-label">NÖVÉNYEK</div>
+			</div>
+		</a>
+		
+		<a href="teazas.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/teazas.jpg')"></div>
+				<div class="category-label">TEÁZÁS</div>
+			</div>
+		</a>
+		
+		<a href="buildings.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/epitmenyek.jpg')"></div>
+				<div class="category-label">ÉPÍTMÉNYEK</div>
+			</div>
+		</a>
+		
+		<a href="vehicles.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/jarmuvek.jpg')"></div>
+				<div class="category-label">JÁRMŰVEK</div>
+			</div>
+		</a>
+		
+		<a href="others.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/egyebek.jpg')"></div>
+				<div class="category-label">EGYEBEK</div>
+			</div>
+		</a>
+		
+		<a href="hagyomanyos.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/hagyomany.jpg')"></div>
+				<div class="category-label">HAGYOMÁNYOS MODELLEK</div>
+			</div>
+		</a>
+		
+		<a href="gyurt.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/gyurt.jpg')"></div>
+				<div class="category-label">GYŰRT MODELLEK</div>
+			</div>
+		</a>
+		
+		<a href="famunka.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/famunkak.jpg')"></div>
+				<div class="category-label">FAMUNKÁK</div>
+			</div>
+		</a>
+		
+		<a href="diagrams.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/hajtogat.jpg')"></div>
+				<div class="category-label">HAJTOGATÁS LEÍRÁSOK</div>
+			</div>
+		</a>
+		
+		<a href="exhibition.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/kiallitas.jpg')"></div>
+				<div class="category-label">KIÁLLÍTÁSOK, MÉDIA</div>
+			</div>	  
+		</a>
+		
+		<a href="orders.htm" style="text-decoration: none; color: inherit;">
+			<div class="category-card">
+				<div class="card-image" style="background-image:url('pictures/categories/rendeles.jpg')"></div>
+				<div class="category-label">RENDELÉS</div>
+			</div>	  
+		</a>
 
     </div>
 
@@ -324,7 +376,7 @@
 		Ezt a moduláris origami technikát az Origami c. újságból tanultam 2001-ben.<br>
 		GHIAN-ZHI névre hallgat kínaiul, jelentése: EZER PAPÍR. Láttam már BLOCK-FOLDING néven is emlegetni.<br>
 		A történet szerint börtönben kötött ki az Arany Kalandor 200 kínai hajótöröttje, akik 1993-ban futottak zátonyra USA partjainál.<br>
-		Az egyikük ráérő idejében színes újságokat és egyéb hulladékokat tépett egyforma féltenyérnyi darabokra és hajtogatott egyforma, háromszög alakú elemeket belőlük. Ezekből az egyszerű elemekből rakott össze bonyolult formákat. Majd megtanította a többi elitéltet is a hajtogatásra, így gyorsan gyarapodtak az alkotórészecskék. Innen kerültek a papírszobrok (vázák, edények, állatok) múzeumokba és galériákba.<br>
+		Az egyikük ráérő idejében színes újságokat és egyéb hulladékokat tépett egyforma féltenyérnyi darabokra és hajtogatott egyforma, háromszög alakú elemeket belőlük. Ezekből az egyszerű elemekből rakott össze bonyolult formákat. Majd megtanította a többi elítéltet is a hajtogatásra, így gyorsan gyarapodtak az alkotórészecskék. Innen kerültek a papírszobrok (vázák, edények, állatok) múzeumokba és galériákba.<br>
 		A minta emlékeztet a kínai temetési szertartásokon használt áldozati papírpénzek hajtogatására.<br>
 		Az első alapanyagaim színes fénymásoló- és újságpapírok voltak. 2002-ben kezdtem a teástasakokat használni.<br>
 		A papírfigurák saját ötletek alapján készülnek otthon, szabadidőmben. A sík felületek kialakításához egyedi téglákat készítettem az alapelemekből.<br>

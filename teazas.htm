@@ -1,68 +1,226 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-	<title>Te�z�s kell�kei</title>
+  <meta charset="UTF-8">
+  <title>Origami – Teázás</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
+    .back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
+    caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
+    th { background: #003366; color: white; padding: 12px; border-radius: 8px; }
+    td { padding: 15px; text-align: center; font-weight: bold; }
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 300px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+	
+  </style>
 </head>
+<body>
 
-<body bgcolor="#FFFFCA">
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Te�skanna �s t�rsai</CAPTION>
-<tr>
-    <td><div align="center">Ez volt az 1. te�skann�m <br>900 db tasak kellett hozz�...</div></td>
-    <td><div align="center"><a href="pictures/tea&co/teapot.jpg" target="mainFrame"><img src="pictures/tea&co/_teapot.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">Ez a cs�sze <br>Herb�ri�s kamill�s <br>tasakokb�l k�sz�lt...</div></td>
-	<td><div align="center"><a href="pictures/tea&co/herbcsesze.jpg" target="mainFrame"><img src="pictures/tea&co/_herbcsesze.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">Ez meg Liptonb�l...</div></td>
-    <td><div align="center"><a href="pictures/tea&co/liptoncsesze.jpg" target="mainFrame"><img src="pictures/tea&co/_liptoncsesze.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">Ez pedig TESCO-sb�l...</div></td>
-    <td><div align="center"><a href="pictures/tea&co/tescocsesze.jpg" target="mainFrame"><img src="pictures/tea&co/_tescocsesze.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<tr>
-    <td><div align="center"><a href="pictures/tea&co/teaset1.jpg" target="mainFrame"><img src="pictures/tea&co/_teaset1.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/tea&co/teaset2.jpg" target="mainFrame"><img src="pictures/tea&co/_teaset2.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/tea&co/cseszek.jpg" target="mainFrame"><img src="pictures/tea&co/_cseszek.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Ez a kanna m�r a PICKWICKn�l lakik</CAPTION>
-<tr>
-    <td><div align="center"><a href="pictures/tea&co/pickwickteapot.jpg" target="mainFrame"><img src="pictures/tea&co/_pickwickteapot.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/tea&co/pickwickteapot2.jpg" target="mainFrame"><img src="pictures/tea&co/_pickwickteapot2.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>2004-es �v term�se ...</CAPTION>
-<tr>
-	<td><div align="center">Egy cukork�s k�n�l� t�lka ...</div></td>
-    <td><div align="center"><a href="pictures/tea&co/kinalo.jpg" target="mainFrame"><img src="pictures/tea&co/_kinalo.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">... �s egy �jabb te�skanna</div></td>
-    <td><div align="center"><a href="pictures/tea&co/tea041222.jpg" target="mainFrame"><img src="pictures/tea&co/_tea041222.jpg" alt="" width="120" height="90" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<a name="ts3" id="ts3"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>2007-es �v term�se ...</CAPTION>
-<tr>
-	<td><div align="center">Egy �jabb te�skanna<br>egy fi� �s<br>egy l�ny<br>b�gr�vel...</div></td>
-    <td><div align="center"><a href="pictures/tea&co/teaset3.jpg" target="mainFrame"><img src="pictures/tea&co/_teaset3.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
+  <a href="origami.htm" class="back-button">← Vissza</a>
 
+  <div id="lightbox" class="lightbox" onclick="closeImage()">
+    <div class="lightbox-close">✕ Bezárás</div>
+    <div id="lb-title" class="lightbox-header"></div>
+    
+    <div class="lightbox-img-container" onclick="event.stopPropagation()">
+      <span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
+      <img id="lightbox-img" src="">
+      <span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
+    </div>
+
+    <div id="lb-desc" class="lightbox-footer"></div>
+  </div>
+
+  <div class="page-container">
+    <table>
+      <caption>Teáskanna és társai</caption>
+      <tr>
+        <td>Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá</td>
+        <td><img src="pictures/tea&co/teapot.jpg" class="gallery-img" onclick="openGallery(0)"></td>
+      </tr>
+      <tr>
+        <td>Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült</td>
+        <td><img src="pictures/tea&co/herbcsesze.jpg" class="gallery-img" onclick="openGallery(1)"></td>
+      </tr>
+      <tr>
+        <td>Ez meg Liptonból</td>
+        <td><img src="pictures/tea&co/liptoncsesze.jpg" class="gallery-img" onclick="openGallery(2)"></td>
+      </tr>    
+      <tr>
+        <td>Ez pedig TESCO-sból</td>
+        <td><img src="pictures/tea&co/tescocsesze.jpg" class="gallery-img" onclick="openGallery(3)"></td>
+      </tr>    	  
+      <tr>
+        <td rowspan="3">Csészék és kanna<br>együtt</td>
+        <td><img src="pictures/tea&co/teaset1.jpg" class="gallery-img" onclick="openGallery(4)"></td>
+      </tr>
+      <tr>
+        <td><img src="pictures/tea&co/teaset2.jpg" class="gallery-img" onclick="openGallery(5)"></td>
+      </tr>
+      <tr>
+        <td><img src="pictures/tea&co/cseszek.jpg" class="gallery-img" onclick="openGallery(6)"></td>
+      </tr>
+      <tr>
+        <td rowspan="2">Ez a kanna már a<br>Pickwicknél lakik</td>
+        <td><img src="pictures/tea&co/pickwickteapot.jpg" class="gallery-img" onclick="openGallery(7)"></td>
+      </tr>
+      <tr>
+        <td><img src="pictures/tea&co/pickwickteapot2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+      </tr>
+	</table>
+
+	<table>
+      <caption>2004-es év termése</caption>
+      <tr>
+        <td>Egy cukorkás kínáló tálka</td>
+        <td><img src="pictures/tea&co/kinalo.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+      </tr>
+      <tr>
+        <td>Egy újabb teáskanna</td>
+        <td><img src="pictures/tea&co/tea041222.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+      </tr>
+	</table>
+	
+	<table>
+      <caption>2007-es év termése</caption>
+      <tr>
+        <td>Egy teáskanna<br>egy fiú és egy lány<br>bögrével</td>
+        <td><img src="pictures/tea&co/teaset3.jpg" class="gallery-img" onclick="openGallery(11)"></td>
+      </tr>
+	</table>
+	
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const galleryData = [];
+
+    // Adatok begyűjtése az oldal betöltésekor
+	window.onload = function() {
+	  const imgElements = document.querySelectorAll('.gallery-img');
+	  imgElements.forEach((img) => {
+		const table = img.closest('table');
+		const caption = table ? table.querySelector('caption').innerText : "";
+		
+		const row = img.closest('tr');
+		let desc = "";
+		
+		if (row) {
+		  // Megkeressük az adott sor első celláját
+		  let descCell = row.querySelector('td');
+		  
+		  // Ha a cellában van kép, akkor ez nem a leírás cellája (hanem egy rowspan-es sor alja)
+		  // Ekkor megkeressük a felette lévő sorokban a rowspan-es cellát
+		  if (descCell && descCell.querySelector('img')) {
+			  let prevRow = row.previousElementSibling;
+			  while (prevRow) {
+				  let potentialDesc = prevRow.querySelector('td[rowspan]');
+				  if (potentialDesc) {
+					  descCell = potentialDesc;
+					  break;
+				  }
+				  prevRow = prevRow.previousElementSibling;
+			  }
+		  }
+		  
+		  if (descCell) {
+			desc = descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+			// HTML tisztítás (opcionális, ha csak szöveg kell)
+			let tempDiv = document.createElement("div");
+			tempDiv.innerHTML = desc;
+			desc = tempDiv.textContent || tempDiv.innerText || "";
+		  }
+		}
+
+		galleryData.push({
+		  bigSrc: img.src.replace('_', ''),
+		  title: caption,
+		  description: desc
+		});
+	  });
+	};
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+	window.addEventListener('keydown', function (e) {
+	  const lightbox = document.getElementById('lightbox');
+	  const backBtn = document.querySelector('.back-button');
+	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+	  if (e.key === "Escape") {
+		// 1. Animáció elindítása
+		if (backBtn) {
+		  backBtn.classList.add('back-button-active');
+		}
+
+		if (isLightboxOpen) {
+		  // 2. Ha nyitva van a galéria, csak azt zárjuk be
+		  setTimeout(() => {
+			if (backBtn) backBtn.classList.remove('back-button-active');
+			closeImage();
+		  }, 200);
+		} else {
+		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
+		  setTimeout(() => {
+			window.location.href = "origami.htm";
+		  }, 200);
+		}
+	  }
+	  
+	  // Nyilakkal való léptetés (csak ha nyitva a lightbox)
+	  if (isLightboxOpen) {
+		if (e.key === "ArrowRight") changeImage(1);
+		if (e.key === "ArrowLeft") changeImage(-1);
+	  }
+	});
+	
+  </script>
 </body>
 </html>

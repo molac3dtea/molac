@@ -1,111 +1,250 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-	<title>Untitled</title>
+  <meta charset="UTF-8">
+  <title>Origami ‚Äì √Ållatok</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
+	.back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
+    caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
+    td { padding: 15px; text-align: center; font-weight: bold; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; }	
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+
+  </style>
 </head>
+<body>
 
-<body bgcolor="#FFFFCA">
+  <a href="origami.htm" class="back-button">‚Üê Vissza</a>
 
-<a name="stego" id="stego"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Stegosaurus</CAPTION>
-<TR> <TH COLSPAN=3>Ez a dÌnÛ tˆbb mint 6 Èv Ûta kÈsz¸l Ès 17500 darabbÛl ·ll</TH> </TR>
-<tr>
-    <td><div align="center">Ezek a kÈpek<br>2005-ben<br>kÈsz¸ltek ...</div></td>
-    <td><div align="center"><a href="pictures/animals/stego01.jpg" target="mainFrame"><img src="pictures/animals/_stego01.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego02.jpg" target="mainFrame"><img src="pictures/animals/_stego02.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">... itt mÈg<br>nincs l·ba<br>a dÌnÛnak ...</div></td>
-    <td><div align="center"><a href="pictures/animals/stego03.jpg" target="mainFrame"><img src="pictures/animals/_stego03.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego04.jpg" target="mainFrame"><img src="pictures/animals/_stego04.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<tr>
-    <td><div align="center">KÈsz¸lnek<br>a l·bak ...</div></td>
-    <td><div align="center"><a href="pictures/animals/stego05.jpg" target="mainFrame"><img src="pictures/animals/_stego05.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego06.jpg" target="mainFrame"><img src="pictures/animals/_stego06.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego07.jpg" target="mainFrame"><img src="pictures/animals/_stego07.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">2010 augusztus<br>elkÈsz¸lt a dÌnÛ!<br>PÈcsen volt<br>l·thatÛ elıszˆr</div></td>
-    <td><div align="center"><a href="pictures/animals/stego08.jpg" target="mainFrame"><img src="pictures/animals/_stego08.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego09.jpg" target="mainFrame"><img src="pictures/animals/_stego09.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/stego10.jpg" target="mainFrame"><img src="pictures/animals/_stego10.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
+  <div id="lightbox" class="lightbox" onclick="closeImage()">
+    <div class="lightbox-close">‚úï Bez√°r√°s</div>
+    <div id="lb-title" class="lightbox-header"></div>
+    
+    <div class="lightbox-img-container" onclick="event.stopPropagation()">
+      <span class="nav-arrow prev" onclick="changeImage(-1, event)">‚ùÆ</span>
+      <img id="lightbox-img" src="">
+      <span class="nav-arrow next" onclick="changeImage(1, event)">‚ùØ</span>
+    </div>
 
-<a name="tarantula" id="tarantula"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Mad·rpÛk</CAPTION>
-<tr>
-    <td><div align="center">Terr·rium leg˙jabb lakÛja<br>egy 25 cm-es mad·rpÛk<br>550 kicsi darabbÛl ·ll</div></td>
-    <td><div align="center"><a href="pictures/animals/pok.jpg" target="mainFrame"><img src="pictures/animals/_pok.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
+    <div id="lb-desc" class="lightbox-footer"></div>
+  </div>
 
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Baromfiudvar lakÛi</CAPTION>
-<tr>
-    <td><div align="center">A ty˙kanyÛhoz kb. 1700 db <br>Pickwick tasak kellett ...</div></td>
-    <td><div align="center"><a href="pictures/animals/tyuk1.jpg" target="mainFrame"><img src="pictures/animals/_tyuk1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/tyuk2.jpg" target="mainFrame"><img src="pictures/animals/_tyuk2.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">a csibÈkhez <br>darabonkÈnt 3-400 ...</div></td>
-    <td><div align="center"><a href="pictures/animals/csibe.jpg" target="mainFrame"><img src="pictures/animals/_csibe.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/kiskakas.jpg" target="mainFrame"><img src="pictures/animals/_kiskakas.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">Egy¸tt a csal·d...</div></td>
-    <td><div align="center"><a href="pictures/animals/bfiudvar.jpg" target="mainFrame"><img src="pictures/animals/_bfiudvar.jpg" alt="" border="0" align="middle"></a></div></td>
-	<td><div align="center"><a href="pictures/animals/tyuk_tojas.jpg" target="mainFrame"><img src="pictures/animals/_tyuk_tojas.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<a name="bfly" id="bfly"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>PillangÛ</CAPTION>
-<tr>
-    <td><div align="center">Kˆzel fÈl Èvig kÈsz¸lt<br>1800 darabbÛl...</div></td>
-    <td><div align="center"><a href="pictures/animals/butterfly.jpg" target="mainFrame"><img src="pictures/animals/_butterfly.jpg" alt="" border="0" align="middle"></a></div></td></tr>
-</tr>
-</table>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<tr>
-    <td><div align="center">Ezek a kicsik<br>meg 400 darabbÛl...</div></td>
-    <td><div align="center"><a href="pictures/animals/bfly3.jpg" target="mainFrame"><img src="pictures/animals/_bfly3.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/bfly1.jpg" target="mainFrame"><img src="pictures/animals/_bfly1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/bfly2.jpg" target="mainFrame"><img src="pictures/animals/_bfly2.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION>Terr·rium lakÛi</CAPTION>
-<tr>
-    <td><div align="center">1600 db zˆldtea tasakja <br>alkotja ezt a 70 centis<br> bÈbikrokodilt...</div></td>
-    <td><div align="center"><a href="pictures/animals/crokodil.jpg" target="mainFrame"><img src="pictures/animals/_crokodil.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">NÈh·ny szÌnes ˙js·g <br>szÈtdarabolva <br>2500 kis darabra <br>Ès kÈsz a dÌnÛ...</div></td>
-    <td><div align="center"><a href="pictures/animals/dyno.jpg" target="mainFrame"><img src="pictures/animals/_dyno.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center">SzintÈn zˆldtea: <br>300 darabos <br>levelibÈka...</div></td>
-    <td><div align="center"><a href="pictures/animals/frog.jpg" target="mainFrame"><img src="pictures/animals/_frog.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<tr>
-	<td><div align="center"><a href="pictures/animals/dyno&crokodil.jpg" target="mainFrame"><img src="pictures/animals/_dyno&crokodil.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/chicken&crokodil.jpg" target="mainFrame"><img src="pictures/animals/_chicken&crokodil.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/animals/terrarium.jpg" target="mainFrame"><img src="pictures/animals/_terrarium.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
+  <div class="page-container">
+    <table>
+      <caption>Stegosaurus</caption>
+      <tr><th colspan="3">Ez a d√≠n√≥ t√∂bb mint 6 √©vig k√©sz√ºlt √©s 18000 darabb√≥l √°ll</th></tr>
+      <tr>
+        <td>Ezek a k√©pek<br>2005-ben k√©sz√ºltek</td>
+        <td><img src="pictures/animals/stego01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
+        <td><img src="pictures/animals/stego02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
+      </tr>
+      <tr>
+        <td>Itt m√©g nincs<br>l√°ba a d√≠n√≥nak</td>
+        <td><img src="pictures/animals/stego03.jpg" class="gallery-img" onclick="openGallery(2)"></td>
+        <td><img src="pictures/animals/stego04.jpg" class="gallery-img" onclick="openGallery(3)"></td>
+      </tr>
+      <tr>
+        <td>K√©sz√ºlnek a l√°bak</td>
+        <td><img src="pictures/animals/stego06.jpg" class="gallery-img" onclick="openGallery(4)"></td>
+		<td><img src="pictures/animals/stego07.jpg" class="gallery-img" onclick="openGallery(5)"></td>
+      </tr>    
+      <tr>
+        <td>2010 augusztus<br>elk√©sz√ºlt a d√≠n√≥!<br>P√©csen volt<br>l√°that√≥ el≈ësz√∂r</td>
+        <td><img src="pictures/animals/stego09.jpg" class="gallery-img" onclick="openGallery(6)"></td>
+		<td><img src="pictures/animals/stego10.jpg" class="gallery-img" onclick="openGallery(7)"></td>
+      </tr>    	  
+	
+	</table>
 
+    <table>
+      <caption>Mad√°rp√≥k</caption>
+      <tr>
+        <td>Terr√°rium √∫jabb lak√≥ja egy<br>25 cm-es mad√°rp√≥k</td>
+        <td><img src="pictures/animals/pok.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+      </tr>
+    </table>
+	
+    <table>
+      <caption>Baromfiudvar lak√≥i</caption>
+      <tr>
+        <td>A ty√∫kany√≥hoz kb. 1700 db<br>Pickwick tasak kellett</td>
+        <td><img src="pictures/animals/tyuk2.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+        <td><img src="pictures/animals/tyuk2.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+      </tr>
+      <tr>
+        <td>A csib√©khez<br>darabonk√©nt 3-400 db</td>
+        <td><img src="pictures/animals/csibe.jpg" class="gallery-img" onclick="openGallery(11)"></td>
+        <td><img src="pictures/animals/kiskakas.jpg" class="gallery-img" onclick="openGallery(12)"></td>
+      </tr>
+      <tr>
+        <td>Egy√ºtt a csal√°d</td>
+        <td><img src="pictures/animals/bfiudvar.jpg" class="gallery-img" onclick="openGallery(13)"></td>
+		<td><img src="pictures/animals/tyuktojas.jpg" class="gallery-img" onclick="openGallery(14)"></td>
+      </tr>    
+	</table>
+	
+	<table>
+      <caption>Nagy pillang√≥</caption>
+      <tr>
+        <td>K√∂zel f√©l √©vig k√©sz√ºlt<br>1800 darabb√≥l</td>
+        <td><img src="pictures/animals/butterfly.jpg" class="gallery-img" onclick="openGallery(15)"></td>
+      </tr>
+    </table>
+
+    <table>
+      <caption>Kicsi pillang√≥k</caption>
+      <tr>
+        <td>Ezek a kicsik<br>400 darabb√≥l √°llnak</td>
+        <td><img src="pictures/animals/bfly3.jpg" class="gallery-img" onclick="openGallery(16)"></td>
+        <td><img src="pictures/animals/bfly1.jpg" class="gallery-img" onclick="openGallery(17)"></td>
+		<td><img src="pictures/animals/bfly2.jpg" class="gallery-img" onclick="openGallery(18)"></td>
+      </tr>
+	</table>	
+	
+	<table>
+      <caption>Terr√°rium lak√≥i</caption>
+      <tr>
+        <td>1600 db z√∂ldtea tasakja<br>alkotja ezt a 70 centis<br>b√©bikrokodilt</td>
+        <td><img src="pictures/animals/crokodil.jpg" class="gallery-img" onclick="openGallery(19)"></td>
+        <td><img src="pictures/animals/chicken&crokodil.jpg" class="gallery-img" onclick="openGallery(20)"></td>
+      </tr>
+      <tr>
+        <td>N√©h√°ny sz√≠nes √∫js√°g<br>sz√©tdarabolva<br>2500 kis darabra<br>√©s k√©sz a d√≠n√≥<br>(h√°zi-s√°rk√°ny:)</td>
+        <td><img src="pictures/animals/dyno.jpg" class="gallery-img" onclick="openGallery(21)"></td>
+        <td><img src="pictures/animals/dyno&crokodil.jpg" class="gallery-img" onclick="openGallery(22)"></td>
+      </tr>
+      <tr>
+        <td>Szint√©n z√∂ldtea:<br>300 darabos<br>levelib√©ka</td>
+        <td><img src="pictures/animals/frog.jpg" class="gallery-img" onclick="openGallery(23)"></td>
+		<td><img src="pictures/animals/terrarium.jpg" class="gallery-img" onclick="openGallery(24)"></td>
+      </tr>    
+	</table>
+	
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const galleryData = [];
+
+    // Adatok begy≈±jt√©se az oldal bet√∂lt√©sekor
+    window.onload = function() {
+		const imgElements = document.querySelectorAll('.gallery-img');
+		imgElements.forEach((img) => {
+		  const table = img.closest('table');
+		  const caption = table ? table.querySelector('caption').innerText : "";
+		  
+		  const row = img.closest('tr');
+		  let desc = "";
+		  
+		  if (row) {
+			// Megszerezz√ºk az els≈ë cella tartalm√°t HTML-k√©nt
+			desc = row.querySelector('td').innerHTML;
+			
+			// 1. Kicser√©lj√ºk az √∂sszes <br> vagy <br/> taget sz√≥k√∂zre
+			desc = desc.replace(/<br\s*\/?>/gi, ' ');
+			
+			// 2. Elt√°vol√≠tjuk az esetleges egy√©b HTML tageket, ha maradtak
+			let tempDiv = document.createElement("div");
+			tempDiv.innerHTML = desc;
+			desc = tempDiv.textContent || tempDiv.innerText || "";
+			
+			// 3. A t√©nyleges sort√∂r√©seket (whitespace) is sz√≥k√∂zre cser√©lj√ºk, 
+			// √©s a dupla sz√≥k√∂z√∂ket egyetlen sz√≥k√∂zre reduk√°ljuk
+			desc = desc.replace(/\s+/g, ' ').trim();
+		  }
+
+		  galleryData.push({
+			bigSrc: img.src.replace('_', ''),
+			title: caption,
+			description: desc
+		  });
+		});
+    };
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+	window.addEventListener('keydown', function (e) {
+	  const lightbox = document.getElementById('lightbox');
+	  const backBtn = document.querySelector('.back-button');
+	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+	  if (e.key === "Escape") {
+		// 1. Anim√°ci√≥ elind√≠t√°sa
+		if (backBtn) {
+		  backBtn.classList.add('back-button-active');
+		}
+
+		if (isLightboxOpen) {
+		  // 2. Ha nyitva van a gal√©ria, csak azt z√°rjuk be
+		  setTimeout(() => {
+			if (backBtn) backBtn.classList.remove('back-button-active');
+			closeImage();
+		  }, 200);
+		} else {
+		  // 3. Ha NINCS nyitva gal√©ria, akkor visszal√©p√ºnk a f≈ëoldalra
+		  setTimeout(() => {
+			window.location.href = "origami.htm";
+		  }, 200);
+		}
+	  }
+	  
+	  // Nyilakkal val√≥ l√©ptet√©s (csak ha nyitva a lightbox)
+	  if (isLightboxOpen) {
+		if (e.key === "ArrowRight") changeImage(1);
+		if (e.key === "ArrowLeft") changeImage(-1);
+	  }
+	});
+	
+  </script>
 </body>
 </html>

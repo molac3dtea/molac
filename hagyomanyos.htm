@@ -1,95 +1,215 @@
-<html>
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-	<title>Csal·di hobbi</title>
+  <meta charset="UTF-8">
+  <title>Origami ‚Äì Minden egy√©b</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
+    .back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
+    caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
+    th { background: #003366; color: white; padding: 12px; border-radius: 8px; }
+    td { padding: 15px; text-align: center; font-weight: bold; }
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+	
+  </style>
 </head>
+<body>
 
-<body bgcolor="#FFFF99">
-<a name="hagyo" id="hagyo"></a>
-<table align="center" width="150" height="150" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION><strong>Hagyom·nyos origami modellek ...</strong></CAPTION>
-<tr>
-	<td><div align="center">Dinoszauruszok ...</div></td>
-    <td><div align="center"><a href="pictures/origami/dino1.jpg" target="mainFrame"><img src="pictures/origami/_dino1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/dino2.jpg" target="mainFrame"><img src="pictures/origami/_dino2.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/dinomadar.jpg" target="mainFrame"><img src="pictures/origami/_dinomadar.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-	<td><div align="center">Miniat˚r dinoszaurusz ...</div></td>
-    <td><div align="center"><a href="pictures/origami/dino3.jpg" target="mainFrame"><img src="pictures/origami/_dino3.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<tr>
-	<td><div align="center"> ... ez egy kabÛca ...</div></td>
-    <td><div align="center"><a href="pictures/origami/kaboca.jpg" target="mainFrame"><img src="pictures/origami/_kaboca.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-	<td><div align="center"> ... ez itt 2 WC ...</div></td>
-    <td><div align="center"><a href="pictures/origami/wck.jpg" target="mainFrame"><img src="pictures/origami/_wck.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<a name="modu" id="modu"></a>
-<table align="center" width="150" height="150" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION><strong>Modul·ris origami modellek ...</strong></CAPTION>
-<tr>
-	<td><div align="center">Igen rugalmas gˆmb 60 db te·spapÌrbÛl ...</div></td>
-    <td><div align="center"><a href="pictures/origami/flexiball1.jpg" target="mainFrame"><img src="pictures/origami/_flexiball1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/flexiball2.jpg" target="mainFrame"><img src="pictures/origami/_flexiball2.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/flexiball3.jpg" target="mainFrame"><img src="pictures/origami/_flexiball3.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-	<td><div align="center">2008 nyar·n a XIX. Origami Tal·lkozÛn tanultam ...</div></td>
-    <td><div align="center"><a href="pictures/origami/labda1.jpg" target="mainFrame"><img src="pictures/origami/_labda1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/labda2.jpg" target="mainFrame"><img src="pictures/origami/_labda2.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<a name="kock" id="kock"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION><strong>Kock·k csÌkbÛl ...</strong></CAPTION>
-<tr>
-	<td><div align="center">8 kocka 1 csÌkbÛl,<br>amikbıl k¸lˆnfÈle<br>alakzatok hajtogathatÛk ...</div></td>
-    <td><div align="center"><a href="pictures/origami/8kocka1.jpg" target="mainFrame"><img src="pictures/origami/_8kocka1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/8kocka2.jpg" target="mainFrame"><img src="pictures/origami/_8kocka2.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/8kocka3.jpg" target="mainFrame"><img src="pictures/origami/_8kocka3.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/8kocka4.jpg" target="mainFrame"><img src="pictures/origami/_8kocka4	.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-	<td rowspan="2"><div align="center">16 kocka 1 csÌkbÛl,<br>itt az alakzatok<br>mÈg v·ltozatosabbak ...</div></td>
-    <td><div align="center"><a href="pictures/origami/16kocka1.jpg" target="mainFrame"><img src="pictures/origami/_16kocka1.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/16kocka2.jpg" target="mainFrame"><img src="pictures/origami/_16kocka2.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/16kocka3.jpg" target="mainFrame"><img src="pictures/origami/_16kocka3.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-    <td><div align="center"><a href="pictures/origami/16kocka4.jpg" target="mainFrame"><img src="pictures/origami/_16kocka4.jpg" alt="" border="0" align="middle"></a></div></td>
-    <td><div align="center"><a href="pictures/origami/16kocka5.jpg" target="mainFrame"><img src="pictures/origami/_16kocka5.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr></table>
-<p></p>
-<a name="ruha" id="ruha"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION><strong>Origami-ruha</strong></CAPTION>
-<tr>
-	<td><div align="center">Farsangi jelmeznek kÈsz¸lt,<br>tˆbbfÈle technik·t felhaszn·lva ...</div></td>
-    <td><div align="center"><a href="pictures/lanyok/2009_02_1.jpg" target="mainFrame"><img src="pictures/lanyok/_2009_02_1.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-<tr>
-	<td><div align="center">A kalap 2008 nyar·n kÈsz¸lt<br>Budapesten az Origami Tal·lkozÛn ...</div></td>
-    <td><div align="center"><a href="pictures/lanyok/2009_03_1.jpg" target="mainFrame"><img src="pictures/lanyok/_2009_03_1.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
-<p></p>
-<p></p>
-<a name="csomag" id="csomag"></a>
-<table align="center" cellspacing="2" cellpadding="2" border="2" frame="box">
-<CAPTION><strong>N·szaj·ndÈk-csomagol·s</strong></CAPTION>
-<tr>
-	<td><div align="center">MegprÛb·ltam<br>becsomagolni<br>egy n·szaj·ndÈkot ...</div></td>
-    <td><div align="center"><a href="pictures/origami/csomag.jpg" target="mainFrame"><img src="pictures/origami/_csomag.jpg" alt="" border="0" align="middle"></a></div></td>
-</tr>
-</table>
+  <a href="origami.htm" class="back-button">‚Üê Vissza</a>
 
+  <div id="lightbox" class="lightbox" onclick="closeImage()">
+    <div class="lightbox-close">‚úï Bez√°r√°s</div>
+    <div id="lb-title" class="lightbox-header"></div>
+    
+    <div class="lightbox-img-container" onclick="event.stopPropagation()">
+      <span class="nav-arrow prev" onclick="changeImage(-1, event)">‚ùÆ</span>
+      <img id="lightbox-img" src="">
+      <span class="nav-arrow next" onclick="changeImage(1, event)">‚ùØ</span>
+    </div>
+
+    <div id="lb-desc" class="lightbox-footer"></div>
+  </div>
+
+  <div class="page-container">
+
+    <table>
+      <caption>Traktor</caption>
+      <tr>
+        <td rowspan="4">A saj√°t<br>Rubik kock√°m</td>
+        <td><img src="pictures/others/rubik01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
+		<td><img src="pictures/others/rubik02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
+		<td><img src="pictures/others/rubik03.jpg" class="gallery-img" onclick="openGallery(2)"></td>
+      </tr>	  
+      <tr>
+        <td><img src="pictures/others/rubik04.jpg" class="gallery-img" onclick="openGallery(3)"></td>
+		<td><img src="pictures/others/rubik05.jpg" class="gallery-img" onclick="openGallery(4)"></td>
+		<td><img src="pictures/others/rubik06.jpg" class="gallery-img" onclick="openGallery(5)"></td>
+      </tr>	  
+      <tr>
+        <td><img src="pictures/others/rubik07.jpg" class="gallery-img" onclick="openGallery(6)"></td>
+		<td><img src="pictures/others/rubik09.jpg" class="gallery-img" onclick="openGallery(7)"></td>
+		<td><img src="pictures/others/rubik10.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+      </tr>	  
+      <tr>
+        <td><img src="pictures/others/rubik11.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+		<td><img src="pictures/others/rubik12.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+      </tr>	  
+	</table>
+	
+    <table>
+      <caption>Motor</caption>
+      <tr>
+        <td rowspan="2">2008. nyar√°n k√©sz√ºlt,<br>t√∂bb mint 100 munka√≥ra<br>kellett az √∂ssze√°ll√≠tot√°shoz</td>
+        <td><img src="pictures/vehicles/motor1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
+		<td><img src="pictures/vehicles/motor2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+      </tr>	  
+      <tr>
+        <td><img src="pictures/vehicles/motor3.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+		<td><img src="pictures/vehicles/motor4.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+      </tr>	  
+	</table>
+
+    <table>
+      <caption>Babakocsi</caption>
+      <tr>
+        <td>Ez a babakocsi<br>legal√°bb 500 darabb√≥l<br>k√©sz√ºlt 2007 nyar√°n</td>
+        <td><img src="pictures/vehicles/babakocsi.jpg" class="gallery-img" onclick="openGallery(11)"></td>
+      </tr>	  
+	</table>	
+	
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const galleryData = [];
+
+    // Adatok begy≈±jt√©se az oldal bet√∂lt√©sekor
+	window.onload = function() {
+	  const imgElements = document.querySelectorAll('.gallery-img');
+	  imgElements.forEach((img) => {
+		const table = img.closest('table');
+		const caption = table ? table.querySelector('caption').innerText : "";
+		
+		const row = img.closest('tr');
+		let desc = "";
+		
+		if (row) {
+		  // Megkeress√ºk az adott sor els≈ë cell√°j√°t
+		  let descCell = row.querySelector('td');
+		  
+		  // Ha a cell√°ban van k√©p, akkor ez nem a le√≠r√°s cell√°ja (hanem egy rowspan-es sor alja)
+		  // Ekkor megkeress√ºk a felette l√©v≈ë sorokban a rowspan-es cell√°t
+		  if (descCell && descCell.querySelector('img')) {
+			  let prevRow = row.previousElementSibling;
+			  while (prevRow) {
+				  let potentialDesc = prevRow.querySelector('td[rowspan]');
+				  if (potentialDesc) {
+					  descCell = potentialDesc;
+					  break;
+				  }
+				  prevRow = prevRow.previousElementSibling;
+			  }
+		  }
+		  
+		  if (descCell) {
+			desc = descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+			// HTML tiszt√≠t√°s (opcion√°lis, ha csak sz√∂veg kell)
+			let tempDiv = document.createElement("div");
+			tempDiv.innerHTML = desc;
+			desc = tempDiv.textContent || tempDiv.innerText || "";
+		  }
+		}
+
+		galleryData.push({
+		  bigSrc: img.src.replace('_', ''),
+		  title: caption,
+		  description: desc
+		});
+	  });
+	};
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+	window.addEventListener('keydown', function (e) {
+	  const lightbox = document.getElementById('lightbox');
+	  const backBtn = document.querySelector('.back-button');
+	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+	  if (e.key === "Escape") {
+		// 1. Anim√°ci√≥ elind√≠t√°sa
+		if (backBtn) {
+		  backBtn.classList.add('back-button-active');
+		}
+
+		if (isLightboxOpen) {
+		  // 2. Ha nyitva van a gal√©ria, csak azt z√°rjuk be
+		  setTimeout(() => {
+			if (backBtn) backBtn.classList.remove('back-button-active');
+			closeImage();
+		  }, 200);
+		} else {
+		  // 3. Ha NINCS nyitva gal√©ria, akkor visszal√©p√ºnk a f≈ëoldalra
+		  setTimeout(() => {
+			window.location.href = "origami.htm";
+		  }, 200);
+		}
+	  }
+	  
+	  // Nyilakkal val√≥ l√©ptet√©s (csak ha nyitva a lightbox)
+	  if (isLightboxOpen) {
+		if (e.key === "ArrowRight") changeImage(1);
+		if (e.key === "ArrowLeft") changeImage(-1);
+	  }
+	});
+	
+  </script>
 </body>
 </html>
