@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Origami – Egy elem</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+	.back-button {
+	  position: fixed;
+	  top: 20px;
+	  right: 20px;
+	  
+	  /* Csökkentett padding és betűméret a 70%-os mérethez */
+	  padding: 5px 12px;
+	  font-size: 0.75rem; 
+	  
+	  background-color: #003366;
+	  color: white !important;
+	  text-decoration: none;
+	  font-weight: bold;
+	  border-radius: 50px;
+	  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+	  transition: all 0.3s ease;
+	  z-index: 100;
+	  display: flex;
+	  align-items: center;
+	}
+	
+    .back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 10px !important; width: 70%; border-collapse: separate; border-spacing: 10px; }
+    caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
+    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; font-size: 1.5rem !important; }	
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 300px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+	
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.3rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
+
+	.outer-table {
+        width: auto !important;
+        margin: 0 auto;
+        border-collapse: collapse;
+        background: transparent !important;
+    }
+
+    /* A belső "kártyák" stílusa */
+    .step-card {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 350px; /* Fix szélesség, hogy ne "táncoljanak" a kártyák */
+    }
+
+    /* Az üres cellák szélességét minimalizáljuk */
+    .empty-spacer {
+        width: 20px; /* Csak egy kis rés a lépcsők között */
+    }
+
+    .step-text {
+        padding: 15px;
+        width: 60%;
+        font-size: 1.1rem !important;
+    }
+	
+  </style>
+  
+<html>
+
+<body>
+    <a href="diagrams.htm" class="back-button">← Vissza</a>
+    
+    <table class="outer-table">
+        <caption>Lássunk hozzá egy elem hajtogatásához</caption>
+        
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">Oldalarány kb: 16:10<br>Ilyen kb. egy teastasak<br>színes oldala is</td>
+                        <td><img src="pictures/diagrams/01.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">1.<br>A rövidebb oldalt<br>felezzük meg</td>
+                        <td><img src="pictures/diagrams/02.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+		
+        <tr>
+            <td class="empty-spacer"></td> 
+			<td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">2.<br>Hajtsuk le<br>a fölső felét</td>
+                        <td><img src="pictures/diagrams/03.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">4.<br>Majd hajtsuk a mostmár<br>dupla lapú bal felét<br>a jobb felére</td>
+                        <td><img src="pictures/diagrams/05.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">3.<br>Most a hosszabb oldalt<br>felezzük meg</td>
+                        <td><img src="pictures/diagrams/04.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+		
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">5.<br>A fölső (dupla) lapot<br>hajtsuk ki függőlegesig</td>
+                        <td><img src="pictures/diagrams/06.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="empty-spacer"></td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">6.<br>Fordítsuk át a lapot<br>függőleges tengely mentén</td>
+                        <td><img src="pictures/diagrams/07.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">7.<br>Ezután ismét<br>egy dupla lapnak<br>kell fölül lenni,<br>amit le kell hajtani,<br>úgy mint ahogy a<br>másik oldalon volt</td>
+                        <td><img src="pictures/diagrams/08.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+
+        <tr>
+            <td class="empty-spacer"></td> 
+			<td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">8.<br>Egy repülőgépre hasonlító formát kapunk.<br> Ezt kell nyitni</td>
+                        <td><img src="pictures/diagrams/09.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">10.<br>Az alsó kis téglalapokat<br> átlóik mentén hajtsuk rá<br> a nagy háromszögre</td>
+                        <td><img src="pictures/diagrams/11.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">9.<br>Kisházikót kell látnunk,<br>felső részén legyen egy nagy 3szög,<br>alján két kis téglalap</td>
+                        <td><img src="pictures/diagrams/10.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">11.<br>Így kapunk lent két kis háromszöget</td>
+                        <td><img src="pictures/diagrams/12.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="empty-spacer"></td>
+        </tr>
+		
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">12.<br>Ezeket hajtsunk rá<br> a nagy háromszögre</td>
+                        <td><img src="pictures/diagrams/13.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">13.<br>Ha elég pontosan dolgoztunk,<br> akkor egy nagy háromszötet kell látnunk</td>
+                        <td><img src="pictures/diagrams/14.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+		</tr>
+		
+        <tr>
+            <td class="empty-spacer"></td> 
+			<td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">14.<br>Ezt kell összehajtani<br>a magasságvonala mentén,<br>és KÉSZ 1 ELEM </td>
+                        <td><img src="pictures/diagrams/15.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+

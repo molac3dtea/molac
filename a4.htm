@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Origami – A4</title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
+    body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+	.back-button {
+	  position: fixed;
+	  top: 20px;
+	  right: 20px;
+	  
+	  /* Csökkentett padding és betűméret a 70%-os mérethez */
+	  padding: 5px 12px;
+	  font-size: 0.75rem; 
+	  
+	  background-color: #003366;
+	  color: white !important;
+	  text-decoration: none;
+	  font-weight: bold;
+	  border-radius: 50px;
+	  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+	  transition: all 0.3s ease;
+	  z-index: 100;
+	  display: flex;
+	  align-items: center;
+	}
+	
+    .back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 10px !important; width: 70%; border-collapse: separate; border-spacing: 10px; }
+    caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
+    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; font-size: 1.5rem !important; }	
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 300px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+	
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.3rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
+
+	.outer-table {
+        width: auto !important;
+        margin: 0 auto;
+        border-collapse: collapse;
+        background: transparent !important;
+    }
+
+    /* A belső "kártyák" stílusa */
+    .step-card {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 350px; /* Fix szélesség, hogy ne "táncoljanak" a kártyák */
+    }
+
+    /* Az üres cellák szélességét minimalizáljuk */
+    .empty-spacer {
+        width: 20px; /* Csak egy kis rés a lépcsők között */
+    }
+
+    .step-text {
+        padding: 15px;
+        width: 60%;
+        font-size: 1.1rem !important;
+    }
+	
+  </style>
+  
+<html>
+
+<body>
+    <a href="diagrams.htm" class="back-button">← Vissza</a>
+    
+    <table class="outer-table">
+        <caption>Kezdjük el a hajtogatást egy A4-es lappal</caption>
+        
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">1.<br>Vágjunk le az aljából <br>kb. 4-5 cm-nyit.</td>
+                        <td><img src="pictures/diagrams/a4_1.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="empty-spacer"></td> </tr>
+
+        <tr>
+            <td class="empty-spacer"></td> <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">2.<br>Hosszában tépjük <br>vagy vágjuk félbe.</td>
+                        <td><img src="pictures/diagrams/a4_2.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">3.<br>Most keresztbe <br>vágjuk vagy tépjük félbe.</td>
+                        <td><img src="pictures/diagrams/a4_4.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="empty-spacer"></td>
+        </tr>
+
+        <tr>
+            <td class="empty-spacer"></td>
+            <td>
+                <table class="step-card">
+                    <tr>
+                        <td class="step-text">4.<br>Majd mind a 4 darabot <br>ismét keresztbe.</td>
+                        <td><img src="pictures/diagrams/a4_8.jpg" class="gallery-img" style="width: 80px;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
