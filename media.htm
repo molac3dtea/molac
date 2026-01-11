@@ -3,9 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Origami – Média</title>
+  <title>Média megjelenések | 3D-teaorigami Galéria | molac</title>
+
+  
   <link rel="stylesheet" href="bootstrap.css">
   <style>
+  
+	/* Tároló a videó borítónak */
+	.video-wrapper {
+	  position: relative;
+	  display: inline-block;
+	  cursor: pointer;
+	}
+
+	/* A Play gomb ikonja (háromszög) */
+	.video-wrapper::after {
+	  content: '';
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  width: 0;
+	  height: 0;
+	  border-top: 15px solid transparent;
+	  border-bottom: 15px solid transparent;
+	  border-left: 25px solid white; /* A háromszög alakja */
+	  filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+	  transition: all 0.3s ease;
+	  pointer-events: none; /* Átkattintást engedi */
+	}
+
+	/* Sötétítő réteg a háttérben */
+	.video-wrapper::before {
+	  content: '';
+	  position: absolute;
+	  inset: 0;
+	  background: rgba(0, 0, 0, 0.2);
+	  border-radius: 8px;
+	  transition: all 0.3s ease;
+	}
+
+	/* Interakció: hover esetén világosodik a gomb */
+	.video-wrapper:hover::after {
+	  transform: translate(-50%, -50%) scale(1.2);
+	  border-left-color: #C4302B; /* #ffff00;  Sárgára vált */
+	}
+
+	.video-wrapper:hover::before {
+	  background: rgba(0, 0, 0, 0.4);
+	}  
+  
   	/* Navigációs gombok tárolója a táblázat felett */
     .nav-button-container {
       display: flex;
@@ -130,7 +177,7 @@
 		
 		<table>
 			<caption style="display:none;">Média megjelenések</caption>
-			<tr class="separator-row">
+  			<tr class="separator-row">		
 				<td colspan="2">2019.03.14. – Duna TV-n Fábry Sándor a műsorába hívott.<br>(Google Drive videó – 1.06 GB MKV)</td>
 				<td>
 					<a href="https://drive.google.com/file/d/1Hpz_3keP8_MQ_GvBEt8leerC_YpJzmxc/preview" class="gallery-item">
@@ -159,6 +206,30 @@
 				<td colspan="2">2012 nyarán a munkahelyem<br>nemzetközi kiadványában<br>ismerhettek meg a kollégák.</td>
 				<td><img src="pictures/media/VBInHouse.jpg" class="gallery-item gallery-img"></td>
 			</tr>
+
+			<tr class="separator-row">
+				<td colspan="2">2010 decemberében a nemzetközi médiában<br>is híre ment a 18000 darabból készült dínómnak.</td>
+				<td><img src="pictures/media/2010DinoInGermany.jpg" class="gallery-item gallery-img"></td>
+			</tr>
+			<tr>
+				<td colspan="2">A Német Sajtóügynökséget (dpa) is megkerestem<br>
+								és levélben igazolták vissza<br>
+								a levél forrását: dpa / EPA / MTI<br>
+								valamint a fotóst: Kelemen Zoltan Gergely (EPA/MTI)</td>
+				<td><img src="pictures/media/ChristophGrillMail.jpg" class="gallery-item gallery-img"></td>
+			</tr>
+			<tr>
+				<td>A <strong>dpa</strong> hálózatán<br>keresztül az alábbi<br>külföldi lapokban<br>és hírportálokon<br>is megjelent a dínó:</td>
+				<td colspan="2"><strong>Süddeutsche Zeitung</strong> (német hírmagazin online felülete)<br>
+								<strong>Focus Online</strong> (német hírmagazin online felülete)<br>
+								<strong>n-tv.de</strong> német hírcsatorna honlapja<br>
+								<strong>Kleine Zeitung</strong> (Ausztria)<br>
+								<strong>European Pressphoto Agency (EPA)</strong> archívuma<br>
+								<strong>MSN News</strong> / <strong>Yahoo News</strong><br>
+								<strong>La Repubblica</strong> (Olaszország)
+								<br><strong>El Mundo</strong> (Spanyolország)</td>
+			</tr>
+			
 			<tr class="separator-row">
 				<td colspan="2">2007-ben a Délmagyarország<br>mutatta be építészetemet.</td>
 				<td><img src="pictures/media/20071108DM.jpg" class="gallery-item gallery-img"></td>
@@ -173,18 +244,16 @@
 				<td><img src="pictures/media/20071029csmh.jpg" class="gallery-item gallery-img"></td>
 			</tr>
 			<tr class="separator-row">
-				<td colspan="2">2007-ben a Népszabdságban<br>jelent meg a sütőtök-hintóm.</td>
+				<td colspan="2">2007-ben a Népszabadságban<br>jelent meg a sütőtök-hintóm.</td>
 				<td><img src="pictures/media/20070329nsz.jpg" class="gallery-item gallery-img"></td>
 			</tr>
 			<tr class="separator-row">
 				<td colspan="2">A Békési Újságban<br>2006-ban jelentem meg.</td>
 				<td><img src="pictures/media/20061107bu.jpg" class="gallery-item gallery-img"></td>
 			</tr>
-
 		</table>
-    
 	</div>
-
+	    
   <script>
     let currentIndex = 0;
     const galleryData = [];
