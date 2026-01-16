@@ -130,6 +130,20 @@
       border-radius: 0 !important;             /* A vonalnál ne legyen kerekítés */
     }
 
+	/* Folytonos elválasztó vonal */
+	.separator-solid td {
+	  border-top: 2px solid #0055aa !important; 
+	  padding-top: 25px !important;            
+	  border-radius: 0 !important;             
+	}
+
+	/* Pontozott elválasztó vonal */
+	.separator-dotted td {
+	  border-top: 2px dotted #0055aa !important; 
+	  padding-top: 25px !important;            
+	  border-radius: 0 !important;             
+	}	
+
     /* LIGHTBOX */
     .lightbox {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -219,23 +233,29 @@
 				<td colspan="2">2010 decemberében a nemzetközi médiában<br>is híre ment a 18000 darabból készült dínómnak.</td>
 				<td><img src="pictures/media/2010DinoInGermany.jpg" class="gallery-item gallery-img"></td>
 			</tr>
-			<tr>
+			<tr class="separator-dotted">
 				<td colspan="2">A Német Sajtóügynökséget (dpa) is megkerestem<br>
 								és levélben igazolták vissza<br>
 								a levél forrását: dpa / EPA / MTI<br>
 								valamint a fotóst: Kelemen Zoltan Gergely (EPA/MTI)</td>
-				<td><img src="pictures/media/ChristophGrillMail.jpg" class="gallery-item gallery-img"></td>
+				<td><img src="pictures/media/dpa-ChristophGrillMail.jpg" class="gallery-item gallery-img"></td>
 			</tr>
-			<tr>
-				<td>A <strong>dpa</strong> hálózatán<br>keresztül az alábbi<br>külföldi lapokban<br>és hírportálokon<br>is megjelent a dínó:</td>
-				<td colspan="2"><strong>Süddeutsche Zeitung</strong> (német hírmagazin online felülete)<br>
-								<strong>Focus Online</strong> (német hírmagazin online felülete)<br>
-								<strong>n-tv.de</strong> német hírcsatorna honlapja<br>
-								<strong>Kleine Zeitung</strong> (Ausztria)<br>
-								<strong>European Pressphoto Agency (EPA)</strong> archívuma<br>
+			<tr class="separator-dotted">
+				<td colspan="3">A <strong>dpa</strong> hálózatán keresztül az alábbi<br>külföldi lapokban/portálokon is megjelent a dínó:</td>
+			</tr class="separator-dotted">
+				<td><strong>Leipziger Volkszeitung</strong><br>nagy múltú,<br>patinás német napilap</td>
+				<td><img src="pictures/media/LVZ-KatrinSittnerMail.jpg" class="gallery-item gallery-img"></td>
+				<td><a href="pictures/media/LVK-20101210.pdf" class="gallery-item"><img src="pictures/media/LVK-20101210.jpg" class="pdf-thumb"></a></td>
+			<tr class="separator-dotted">
+				<td colspan="3"> <strong>European Pressphoto Agency (EPA)</strong> archívuma</td>
+/*							<br><strong>Focus Online</strong> (német hírmagazin online felülete)
+							<br><strong>n-tv.de</strong> német hírcsatorna honlapja
+							<br><strong>Kleine Zeitung</strong> (Ausztria)
 								<strong>MSN News</strong> / <strong>Yahoo News</strong><br>
 								<strong>La Repubblica</strong> (Olaszország)
-								<br><strong>El Mundo</strong> (Spanyolország)</td>
+								<br><strong>El Mundo</strong> (Spanyolország)			*/
+						
+								
 			</tr>
 			
 			<tr class="separator-row">
