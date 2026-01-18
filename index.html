@@ -2,19 +2,11 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>molac | 3D-teaorigami - Molnár László hivatalos oldala</title>
-  
-  <meta name="description" content="Molnár László (molac) hivatalos oldala. Fedezze fel a 3D-teaorigami világát: papír-szobrok akár több ezer teástasakból. Tekintse meg a 18 000 teástasakból készült Stegosaurust és más egyedi alkotásokat.">
-  <meta name="keywords" content="molac, 3D-teaorigami, Molnár László, teástasak origami, teafilter origami, teástasak hajtogatás, 1000 papír, block folding, GHIAN-ZHI, művészet, kreatív újrahasznosítás">
+  <title>molac | 3D-teaorigami - Molnár László</title>
+  <meta name="description" content="Molnár László (molac) hivatalos oldala. 3D-teaorigami alkotások.">
 
-  <meta property="og:site_name" content="molac 3D-teaorigami">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="molac | 3D-teaorigami - Molnár László hivatalos oldala">
-  <meta property="og:description" content="Molnár László (molac) hivatalos oldala. Fedezze fel a 3D-teaorigami világát: papír-szobrok akár több ezer teástasakból.">
-  <meta property="og:image" content="https://molac.hu/pictures/animals/stego08.jpg">
-  <meta property="og:url" content="https://molac.hu/index.html">
-  
   <link rel="stylesheet" href="bootstrap.css">
+
   <style>
     body {
       position: relative;
@@ -22,299 +14,276 @@
       margin: 0;
       font-family: sans-serif;
       overflow: hidden;
-	  background-color: #f6f6f6;	
-	/* Háttérkép beállítása 
-      background: url("pictures/background/windmill2plus_.jpg") no-repeat center center fixed;
-      background-size: cover;		*/
+      background-color: #f6f6f6;
     }
-	
-	body::before {
-		content: "";
-		position: fixed;
-		top: var(--box-bottom);
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: 
-			/* Homályosított háttér */
-			linear-gradient(90deg, 
-				rgba(246, 246, 246, 0.1) 0%, 
-				rgba(246, 246, 246, 0.05) 20%,
-				rgba(246, 246, 246, 0) 40%,
-				rgba(246, 246, 246, 0) 60%,
-				rgba(246, 246, 246, 0.05) 80%,
-				rgba(246, 246, 246, 0.1) 100%),
-			/* Középső kép */
-			url("pictures/background/windmill2plus_.jpg") no-repeat center center;
-		
-		background-size: 
-			auto,    /* Gradient automatikus */
-			cover;   /* Kép kitölti a területet */
-		
-		background-color: #f6f6f6;
-		opacity: 0.1;
-		z-index: -4;
-		pointer-events: none;
-		
-		/* Homályosítás a teljes háttérre */
-		filter: blur(15px);
-	}
 
-	body::after {
-		content: "";
-		position: fixed;
-		top: var(--box-bottom);
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: url("pictures/background/windmill2plus_.jpg") no-repeat center center;
-		background-size: cover;
-		opacity: 0.1;
-		z-index: -3;
-		pointer-events: none;
-		
-		/* Masking - csak a középső 60%-ot jelenítjük meg élesen */
-		mask: linear-gradient(90deg, 
-			transparent 0%,
-			black 20%,
-			black 80%,
-			transparent 100%);
-		-webkit-mask: linear-gradient(90deg, 
-			transparent 0%,
-			black 20%,
-			black 80%,
-			transparent 100%);
-	}
+    /* ===== HÁTTÉR ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("pictures/background/windmill2plus_.jpg") center/cover no-repeat;
+      opacity: 0.15;
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(90deg, #f6f6f6 0%, transparent 20%, transparent 80%, #f6f6f6 100%);
+      z-index: -2;
+    }
+
+    /* ===== WELCOME BOX (Keskenyebb és dinamikus) ===== */
+    .welcome-box {
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(255, 255, 255, .95);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 0.5rem 2rem rgba(0,0,0,.15);
+      width: 320px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      border: 1px solid rgba(0,51,102,0.1);
+      border-top: none;
+    }
+
+    .welcome-box h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #003366;
+      margin-bottom: 0.1rem;
+    }
+
+    .welcome-box p.instruction {
+      color: #555;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== HENGER KERET ===== */
+    .wheel-frame {
+      position: relative;
+      height: 200px;
+      width: 260px;
+      margin: 5px auto;
+      perspective: 1000px;
+      overflow: hidden;
+      background: rgba(0, 51, 102, 0.05);
+      border-radius: 1rem;
+      border: 1px solid rgba(0, 51, 102, 0.15);
+      mask-image: linear-gradient(to bottom, transparent, black 45%, black 55%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 45%, black 55%, transparent);
+    }
+
+    .wheel-list {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      margin-top: 80px; 
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .lang-item {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none !important;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #003366;
+      backface-visibility: hidden;
+      transition: all 0.3s;
+      opacity: 0.35;
+    }
+
+    /* AKTÍV NYELV: SÖTÉTKÉK */
+    .lang-item.active {
+      opacity: 1;
+      color: #002244; 
+      transform: scale(1.15) !important;
+      text-shadow: 0 0 2px rgba(255,255,255,0.8);
+    }
+
+    /* ===== ORIGAMI HÁTTÉR ===== */
     .background-origami {
       position: absolute;
       inset: 0;
       z-index: -1;
       overflow: hidden;
     }
+
     .wrapper {
       position: absolute;
-      opacity: 0.58;
-      will-change: transform, width;
+      opacity: .55;
+      will-change: transform;
     }
+
     .wrapper img {
-      display: block;
       width: 100%;
+      display: block;
       animation: spin linear infinite;
     }
 
-    /* Forgás */
     @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-/* WELCOME BOX FRISSÍTÉSE */
-    .welcome-box {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.95); /* Enyhén áttetsző fehér */
-      padding: 1.5rem 3rem; 
-      border-radius: 1.5rem;
-      box-shadow: 0 1rem 3rem rgba(0,0,0,0.15);
-      position: relative;
-      z-index: 1;
-      border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .welcome-box h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      color: #003366; /* Mélykék */
-      margin-bottom: 0.8rem !important;
-      letter-spacing: -1px;
-    }
-
-    .welcome-box p.lead {
-      font-size: 1.5rem;
-      color: #555;
-      margin-bottom: 2rem !important;
-    }
-
-    /* EGYEDI GOMBOK */
-    .btn-custom {
-      min-width: 200px;
-      font-size: 1.2rem;
-      padding: 1rem 1.5rem;
-      font-weight: 700;
-      border-radius: 50px; /* Lekerekített "pill" forma */
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s ease;
-      border: none;
-    }
-
-    /* Magyar gomb - Mélykék/Arany */
-    .btn-magyar {
-      background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
-      color: white !important;
-      box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
-    }
-
-    /* Angol gomb - Sötétszürke/Ezüst */
-    .btn-english {
-      background: linear-gradient(135deg, #444 0%, #777 100%);
-      color: white !important;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Német gomb - Aranybarna/Okker */
-    .btn-deutsch {
-      background: linear-gradient(135deg, #8a6d3b 0%, #c5a059 100%);
-      color: white !important;
-      box-shadow: 0 4px 15px rgba(138, 109, 59, 0.3);
-    }
-
-    .btn-custom:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      filter: brightness(1.1);
-    }
-	
-    .btn {
-      min-width: 150px;
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
+
 <body>
-  <div class="bg-blur-left"></div>
-  <div class="bg-blur-right"></div>
-  
-  <div class="background-origami"></div>
 
-  <div class="welcome-box" id="welcome-box">
-    <h1 class="mb-4">Üdvözöllek az Origamis oldalamon!</h1>
-    <p class="lead mb-4">Válaszd ki a kívánt nyelvet a belépéshez:</p>
-    <div class="d-flex justify-content-center gap-3">
-	  <a href="origami.htm" class="btn-custom btn-magyar">Belépés (Magyar)</a>
-      <a href="origami.htm" class="btn-custom btn-english">Enter (English)</a>
-      <a href="origami.htm" class="btn-custom btn-deutsch">Eintritt (Deutsch)</a>    
-	</div>
+<div class="background-origami"></div>
+
+<div class="welcome-box" id="welcome-box">
+  <h1>Üdvözöllek!</h1>
+  <p class="instruction">Válassz nyelvet / Select language</p>
+
+  <div class="wheel-frame" id="wheelFrame">
+    <div class="wheel-list" id="wheelList"></div>
   </div>
+</div>
 
-  <script>
-    const container = document.querySelector('.background-origami');
-    const box = document.getElementById('welcome-box');
-    let screenW = window.innerWidth;
-    let screenH = window.innerHeight;
-    let boxBottom = box.offsetTop + box.offsetHeight;
-    const margin = 50;
+<script>
+const languages = [
+  { name: "Magyar", code: "hu" },
+  { name: "English", code: "en" },
+  { name: "Deutsch", code: "de" },
+  { name: "Español", code: "es" },
+  { name: "Italiano", code: "it" },
+  { name: "Français", code: "fr" },
+  { name: "Português", code: "pt" },
+  { name: "Română", code: "ro" },
+  { name: "Slovenčina", code: "sk" },
+  { name: "Українська", code: "uk" },
+  { name: "Polski", code: "pl" },
+  { name: "Српски", code: "sr" },
+  { name: "Hrvatski", code: "hr" },
+  { name: "Slovenščina", code: "sl" },
+  { name: "日本語", code: "ja" },
+  { name: "中文", code: "zh" },
+  { name: "한국어", code: "ko" },
+  { name: "Esperanto", code: "eo" }
+];
 
-    const steps = [
-      "origami_step_01.png",
-      "origami_step_02.png",
-      "origami_step_03.png",
-      "origami_step_04.png",
-      "origami_step_05.png",
-      "origami_step_06.png",
-      "origami_step_07.png",
-      "origami_step_08.png",
-      "origami_step_09.png",
-      "origami_step_10.png",
-      "origami_step_11.png",
-      "origami_step_12.png",
-      "origami_step_13.png",
-      "origami_step_14.png",
-      "origami_step_15.png"
-    ];
+const wheelList = document.getElementById("wheelList");
+let currentIndex = 0;
+const radius = 80;
 
-    const floaters = [];
+function createWheel() {
+  languages.forEach((lang, i) => {
+    const a = document.createElement("a");
+    a.href = `origami.htm?lang=${lang.code}`;
+    a.className = "lang-item";
+    a.innerText = lang.name;
+    wheelList.appendChild(a);
+  });
+  updateWheel();
+}
 
-    function randomPos(imgW, imgH) {
-      return {
-        x: margin + Math.random() * (screenW - imgW - margin*2),
-        y: boxBottom + Math.random() * (screenH - boxBottom - imgH - margin)
-      };
-    }
+function updateWheel() {
+  const items = document.querySelectorAll(".lang-item");
+  items.forEach((item, i) => {
+    let diff = i - currentIndex;
+    if (diff > languages.length / 2) diff -= languages.length;
+    if (diff < -languages.length / 2) diff += languages.length;
 
-    // Létrehozzuk a darabokat
-    steps.forEach(src => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "wrapper";
+    const angle = diff * (360 / languages.length);
+    item.style.transform = `rotateX(${-angle}deg) translateZ(${radius}px)`;
+    item.classList.toggle('active', Math.abs(diff) < 0.1);
+  });
+}
 
-      const img = document.createElement("img");
-      img.src = "pictures/background/" + src;
+function move(dir) {
+  currentIndex = (currentIndex + dir + languages.length) % languages.length;
+  updateWheel();
+}
 
-      const baseSize = 120 + Math.random() * 80; // 120–200 px
-      wrapper.style.width = baseSize + "px";
+window.addEventListener("wheel", e => {
+  if (e.target.closest('.wheel-frame')) {
+    e.preventDefault();
+    move(e.deltaY > 0 ? 1 : -1);
+  }
+}, {passive: false});
 
-      const {x, y} = randomPos(baseSize, baseSize);
-      wrapper.style.left = x + "px";
-      wrapper.style.top  = y + "px";
+window.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+  if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+  if (e.key === "Enter") window.location.href = `origami.htm?lang=${languages[currentIndex].code}`;
+});
 
-      // Forgás sebesség
-      const spinDur = 20 + Math.random()*40;
-      img.style.animationDuration = `${spinDur}s`;
+/* ===== ORIGAMI FLOATERS ===== */
+const container = document.querySelector(".background-origami");
+const box = document.getElementById("welcome-box");
+let floaters = [];
+let screenW = window.innerWidth;
+let screenH = window.innerHeight;
 
-      wrapper.appendChild(img);
-      container.appendChild(wrapper);
+function createFloaters() {
+  container.innerHTML = "";
+  floaters = [];
+  const boxBottom = box.offsetHeight;
 
-      floaters.push({
-        el: wrapper,
-        x: x,
-        y: y,
-        size: baseSize,
-        dx: (Math.random() - 0.5) * 1.2,   // gyorsabb sodródás
-        dy: (Math.random() - 0.5) * 1.2,
-        dsize: (Math.random() - 0.5) * 0.6 // intenzívebb méretváltozás
-      });
+  for (let i = 1; i <= 15; i++) {
+    const w = document.createElement("div");
+    w.className = "wrapper";
+    const img = document.createElement("img");
+    img.src = `pictures/background/origami_step_${String(i).padStart(2, "0")}.png`;
+    
+    const size = 100 + Math.random() * 80;
+    w.style.width = size + "px";
+    w.appendChild(img);
+    container.appendChild(w);
+
+    floaters.push({
+      el: w,
+      size: size,
+      x: Math.random() * (screenW - size),
+      y: boxBottom + Math.random() * (screenH - boxBottom - size),
+      dx: (Math.random() - 0.5) * 1.5,
+      dy: (Math.random() - 0.5) * 1.5
     });
+  }
+}
 
-    // Folyamatos sodródás
-    function animate() {
-      floaters.forEach(f => {
-        f.x += f.dx;
-        f.y += f.dy;
-        f.size += f.dsize;
+function animate() {
+  const boxBottom = box.offsetHeight;
+  floaters.forEach(f => {
+    f.x += f.dx; f.y += f.dy;
+    if (f.x < 0 || f.x > screenW - f.size) f.dx *= -1;
+    if (f.y < boxBottom || f.y > screenH - f.size) f.dy *= -1;
+    f.el.style.left = f.x + "px";
+    f.el.style.top = f.y + "px";
+  });
+  requestAnimationFrame(animate);
+}
 
-        // Méret határok
-        if (f.size < 100 || f.size > 220) f.dsize *= -1;
+window.addEventListener("resize", () => {
+  screenW = window.innerWidth;
+  screenH = window.innerHeight;
+  const boxBottom = box.offsetHeight;
+  floaters.forEach(f => {
+    if (f.x > screenW - f.size) f.x = screenW - f.size;
+    if (f.y < boxBottom) f.y = boxBottom;
+    if (f.y > screenH - f.size) f.y = screenH - f.size;
+  });
+});
 
-        // Falról visszapattanás
-        if (f.x < margin || f.x > screenW - f.size - margin) f.dx *= -1;
-        if (f.y < boxBottom || f.y > screenH - f.size - margin) f.dy *= -1;
+createWheel();
+createFloaters();
+animate();
+</script>
 
-        f.el.style.left = f.x + "px";
-        f.el.style.top  = f.y + "px";
-        f.el.style.width = f.size + "px";
-      });
-
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // Újrapozícionálás ablakméret változáskor
-    window.addEventListener('resize', () => {
-      screenW = window.innerWidth;
-      screenH = window.innerHeight;
-      boxBottom = box.offsetTop + box.offsetHeight;
-
-      floaters.forEach(f => {
-        const newSize = 120 + Math.random() * 80;
-        const {x, y} = randomPos(newSize, newSize);
-        f.size = newSize;
-        f.x = x;
-        f.y = y;
-
-        f.el.style.width = f.size + "px";
-        f.el.style.left = f.x + "px";
-        f.el.style.top  = f.y + "px";
-      });
-    });
-	
-	function updateBoxBottom() {
-	  const box = document.getElementById('welcome-box');
-	  const boxBottom = box.offsetTop + box.offsetHeight;
-	  document.body.style.setProperty('--box-bottom', boxBottom + "px");
-	}
-
-	// induláskor és resize esetén hívjuk meg
-	updateBoxBottom();
-	window.addEventListener('resize', updateBoxBottom);
-
-  </script>
 </body>
 </html>
