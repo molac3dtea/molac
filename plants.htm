@@ -6,21 +6,64 @@
   <meta name="description" content="Virágok és gyümölcsök teástasakokból. A molac 3D-teaorigami technika részletgazdag alkotásai. Egyedi rózsák, virágkosarak.">
   <meta name="keywords" content="3D-teaorigami, molac, teafilter virág, origami növények, rózsák, virágkosarak, gyümölcsök">
   
+  <meta property="og:site_name" content="molac 3D-teaorigami">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Növények | 3D-teaorigami Galéria | molac">
+  <meta property="og:description" content="Virágok és gyümölcsök teástasakokból. A molac 3D-teaorigami technika részletgazdag alkotásai. Egyedi rózsák, virágkosarak.">
+  <meta property="og:image" content="https://molac.hu/pictures/plants/gyumkos.jpg">
+  <meta property="og:url" content="https://molac.hu/plants.htm">  
+  
   <link rel="stylesheet" href="bootstrap.css">
   <style>
-    /* ... Meglévő stílusok megőrizve ... */
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
     body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
-    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; transition: all 0.3s ease; }
-    .page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
+    body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
+
+    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
+	.back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
     table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
-    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; }
-    .gallery-img { width: 250px; height: auto; border-radius: 8px; cursor: pointer; }
-    /* Lightbox stílusok ... */
-    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; flex-direction: column; justify-content: center; align-items: center; }
+    td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.5rem !important; font-weight: bold; letter-spacing: 1px; }	
+    img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
+    img:hover { transform: scale(1.01); }
+
+    .lightbox {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); z-index: 2000;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 12px 30px; border-radius: 10px; font-size: 2rem; font-weight: bold; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+    .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; max-width: 80%; }
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; cursor: default; }
+    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.3rem; margin-top: 15px; }
+    
+    .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 3rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; }
+    .nav-arrow:hover { color: #0055aa; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
+	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.3rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}
   </style>
 </head>
+
+
 <body>
 
   <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
@@ -51,7 +94,122 @@
         <td data-lang-key="p_tea_fruits">Azután elkészültek ugyanezek teás tasakokból</td>
         <td><img src="pictures/plants/teagyumi.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>
-      </table>
+      <tr>
+        <td data-lang-key="p_pine_new">Az ananász is megújult</td>
+        <td><img src="pictures/plants/ananasz.jpg" class="gallery-img" onclick="openGallery(3)"></td>
+      </tr>    	  
+      <tr>
+        <td data-lang-key="p_fruit_basket">Elkészült a gyümölcskosár is<br>3500 darabból</td>
+        <td><img src="pictures/plants/gyumkos.jpg" class="gallery-img" onclick="openGallery(4)"></td>
+      </tr>    	  
+      <tr>
+        <td data-lang-key="p_orange">Ez egy narancs a gyümölcskosárhoz<br>576 kis darabból</td>
+        <td><img src="pictures/plants/narancs.jpg" class="gallery-img" onclick="openGallery(5)"></td>
+      </tr>
+      
+	  <tr>
+        <td data-lang-key="p_grapes">Ez pedig egy fürt szőlő<br>42 szemmel<br>1100 kis darabból</td>
+        <td><img src="pictures/plants/szolofurt.jpg" class="gallery-img" onclick="openGallery(6)"></td>
+      </tr>    
+      <tr>
+        <td data-lang-key="p_pumpkin">Ez egy sütőtök</td>
+        <td><img src="pictures/plants/sutotok0.jpg" class="gallery-img" onclick="openGallery(7)"></td>
+      </tr>    	  
+      <tr>
+        <td data-lang-key="p_pumpkin_lilac">Ez is egy sütőtök<br>Hamupipőke hintójához<br>( azért lilás a színe )</td>
+        <td><img src="pictures/plants/sutotok.jpg" class="gallery-img" onclick="openGallery(8)"></td>
+      </tr>
+	</table>
+
+    <table>
+      <caption data-lang-key="flowers_title">Virágok és fák, vázák és kosarak</caption>
+      <tr>
+        <td data-lang-key="p_roses_2010">Rózsák több színben<br>2010-ből</td>
+        <td><img src="pictures/plants/kekrozsa.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+        <td><img src="pictures/plants/vorosfekete.jpg" class="gallery-img" onclick="openGallery(10)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_60_flowers">60 szál kisvirág egy nagy kosárban<br>2011. március</td>
+		<td colspan="2"><img src="pictures/plants/hatvanszal.jpg" class="gallery-img" onclick="openGallery(11)"></td>
+      </tr>
+      <tr>
+        <td rowspan="2" data-lang-key="p_small_baskets">Kiskosárkák<br>2007. december</td>
+        <td><img src="pictures/plants/07121.jpg" class="gallery-img" onclick="openGallery(12)"></td>
+        <td><img src="pictures/plants/07122.jpg" class="gallery-img" onclick="openGallery(13)"></td>
+      </tr>
+      <tr>
+        <td><img src="pictures/plants/07123.jpg" class="gallery-img" onclick="openGallery(14)"></td>
+        <td><img src="pictures/plants/07124.jpg" class="gallery-img" onclick="openGallery(15)"></td>
+      </tr>	  
+      <tr>
+        <td data-lang-key="p_large_basket">Nagy kosárban<br>kicsi virágok</td>
+		<td colspan="2"><img src="pictures/plants/07125.jpg" class="gallery-img" onclick="openGallery(16)"></td>
+      </tr>	  
+      <tr>
+        <td data-lang-key="p_new_small_basket">Készült egy újabb<br>kiskosárka<br>2007. szeptember</td>
+        <td><img src="pictures/plants/kiskosar1.jpg" class="gallery-img" onclick="openGallery(17)"></td>
+        <td><img src="pictures/plants/kiskosar2.jpg" class="gallery-img" onclick="openGallery(18)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_larger_basket_small">Egy kicsit nagyobb<br>kosárka kicsi virágokkal</td>
+		<td colspan="2"><img src="pictures/plants/kiskosar3.jpg" class="gallery-img" onclick="openGallery(19)"></td>
+      </tr>	
+      <tr>
+        <td data-lang-key="p_roses_2007">Ezek a rózsák<br>2007-ben készültek</td>
+        <td><img src="pictures/plants/whiterose.jpg" class="gallery-img" onclick="openGallery(20)"></td>
+        <td><img src="pictures/plants/rozsak.jpg" class="gallery-img" onclick="openGallery(21)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_black_rose">Készült egy<br>extravagáns<br>fekete rózsa is</td>
+        <td><img src="pictures/plants/blackrose1.jpg" class="gallery-img" onclick="openGallery(22)"></td>
+        <td><img src="pictures/plants/blackrose2.jpg" class="gallery-img" onclick="openGallery(23)"></td>
+      </tr>	  
+      <tr>
+        <td data-lang-key="p_tulips_prim">Újabb virágok<br>tulipánok és primulák</td>
+        <td><img src="pictures/plants/tulipan.jpg" class="gallery-img" onclick="openGallery(24)"></td>
+        <td><img src="pictures/plants/8szirmos.jpg" class="gallery-img" onclick="openGallery(25)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_flowers_vase">Virágok együtt<br>vázákban</td>
+        <td><img src="pictures/plants/kiscsokor2.jpg" class="gallery-img" onclick="openGallery(26)"></td>
+        <td><img src="pictures/plants/kiscsokor3.jpg" class="gallery-img" onclick="openGallery(27)"></td>
+      </tr>	
+      <tr>
+        <td data-lang-key="p_womens_day">Kis vázák & virágok<br>2007 nőnapra</td>
+		<td colspan="2"><img src="pictures/plants/kisvazavirag.jpg" class="gallery-img" onclick="openGallery(28)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_tree">Pontosan 2000 db<br>Pickwick tasak<br>kellett a fához</td>
+		<td colspan="2"><img src="pictures/plants/fa.jpg" class="gallery-img" onclick="openGallery(29)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_larger_flowers">Nagyobb virágok<br>nagyobb vázákban</td>
+        <td><img src="pictures/plants/virag.jpg" class="gallery-img" onclick="openGallery(30)"></td>
+        <td><img src="pictures/plants/1vaza.jpg" class="gallery-img" onclick="openGallery(31)"></td>
+      </tr>		  
+      <tr>
+        <td data-lang-key="p_mothers_day">Ez a váza és virágok<br>Anyák Napjára<br>készültek, a<br>Papírvarázs Fesztivál<br>ideje alatt 2004-ben<br>Budapesten<br>a Ráday utcában</td>
+		<td colspan="2"><img src="pictures/plants/napraf.jpg" class="gallery-img" onclick="openGallery(32)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_sunflowers">Egy pár napraforgó</td>
+		<td colspan="2"><img src="pictures/plants/virag2.jpg" class="gallery-img" onclick="openGallery(33)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_flower_basket">Virágkosár<br>sok kis virággal</td>
+        <td><img src="pictures/plants/kosar1.jpg" class="gallery-img" onclick="openGallery(34)"></td>
+        <td><img src="pictures/plants/kosar2.jpg" class="gallery-img" onclick="openGallery(35)"></td>
+      </tr>		  
+      <tr>
+        <td data-lang-key="p_violets_vases">Kis csokor ibolya<br>és még néhány<br>váza, virággal</td>
+        <td><img src="pictures/plants/csokorka.jpg" class="gallery-img" onclick="openGallery(36)"></td>
+        <td><img src="pictures/plants/vazak.jpg" class="gallery-img" onclick="openGallery(37)"></td>
+      </tr>
+      <tr>
+        <td data-lang-key="p_xmas_tree">Karácsonyfa<br>2009-ben készült</td>
+		<td colspan="2"><img src="pictures/plants/karacsonyfa.jpg" class="gallery-img" onclick="openGallery(38)"></td>
+      </tr>	  
+	</table>
   </div>
 
   <script>
@@ -1112,13 +1270,12 @@
 		p_violets_vases: "작은 제비꽃 다발과 꽃이 꽂힌 화병들",
 		p_xmas_tree: "2009년에 제작된 크리스마스 트리"
 	  }  
-  
-	};
+ 	};
 
     let currentIndex = 0;
     const galleryData = [];
 
-    function applyLanguage(lang) {
+    function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
       document.querySelectorAll('[data-lang-key]').forEach(el => {
@@ -1128,7 +1285,138 @@
       refreshGalleryData(lang);
     }
 
-    // A többi logika (openGallery, changeImage, ESC kezelés) megegyezik az animals.htm-nél látottakkal.
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Adatok begyűjtése az oldal betöltésekor
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
+	  const imgElements = document.querySelectorAll('.gallery-img');
+	  imgElements.forEach((img) => {
+		const table = img.closest('table');
+		const caption = table ? table.querySelector('caption').innerText : "";
+		
+		const row = img.closest('tr');
+		let desc = "";
+		
+		if (row) {
+		  // Megkeressük az adott sor első celláját
+		  let descCell = row.querySelector('td');
+		  
+		  // Ha a cellában van kép, akkor ez nem a leírás cellája (hanem egy rowspan-es sor alja)
+		  // Ekkor megkeressük a felette lévő sorokban a rowspan-es cellát
+		  if (descCell && descCell.querySelector('img')) {
+			  let prevRow = row.previousElementSibling;
+			  while (prevRow) {
+				  let potentialDesc = prevRow.querySelector('td[rowspan]');
+				  if (potentialDesc) {
+					  descCell = potentialDesc;
+					  break;
+				  }
+				  prevRow = prevRow.previousElementSibling;
+			  }
+		  }
+		  
+		  if (descCell) {
+			desc = descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+			// HTML tisztítás (opcionális, ha csak szöveg kell)
+			let tempDiv = document.createElement("div");
+			tempDiv.innerHTML = desc;
+			desc = tempDiv.textContent || tempDiv.innerText || "";
+		  }
+		}
+
+		galleryData.push({
+		  bigSrc: img.src.replace('_', ''),
+		  title: caption,
+		  description: desc
+		});
+	  });
+	};
+
+	window.addEventListener('keydown', function (e) {
+	  const lightbox = document.getElementById('lightbox');
+	  const backBtn = document.querySelector('.back-button');
+	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+	  if (e.key === "Escape") {
+		// 1. Animáció elindítása
+		if (backBtn) {
+		  backBtn.classList.add('back-button-active');
+		}
+
+		if (isLightboxOpen) {
+		  // 2. Ha nyitva van a galéria, csak azt zárjuk be
+		  setTimeout(() => {
+			if (backBtn) backBtn.classList.remove('back-button-active');
+			closeImage();
+		  }, 200);
+		} else {
+		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
+		  setTimeout(() => {
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
+		  }, 200);
+		}
+	  }
+	  
+	  // Nyilakkal való léptetés (csak ha nyitva a lightbox)
+	  if (isLightboxOpen) {
+		if (e.key === "ArrowRight") changeImage(1);
+		if (e.key === "ArrowLeft") changeImage(-1);
+	  }
+	});
+	
   </script>
 </body>
 </html>

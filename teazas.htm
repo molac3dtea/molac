@@ -15,6 +15,14 @@
     
   <link rel="stylesheet" href="bootstrap.css">
   <style>
+  	
+	/* Pontozott elválasztó vonal */
+	.separator-dotted td {
+	  border-top: 2px dotted #0055aa !important; 
+	  padding-top: 25px !important;            
+	  border-radius: 0 !important;             
+	}
+	
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
     body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
     body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
@@ -60,15 +68,16 @@
 		height: auto;
 	  }
 	}
-	
   </style>
 </head>
+
+
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -82,25 +91,25 @@
 
   <div class="page-container">
     <table>
-      <caption>Teáskanna és társai</caption>
+      <caption data-lang-key="tea_title">Teáskanna és társai</caption>
       <tr>
-        <td>Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá</td>
+        <td data-lang-key="p_teapot1">Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá</td>
         <td><img src="pictures/tea&co/teapot.jpg" class="gallery-img" onclick="openGallery(0)"></td>
       </tr>
       <tr>
-        <td>Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült</td>
+        <td data-lang-key="p_cup1">Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült</td>
         <td><img src="pictures/tea&co/herbcsesze.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>
       <tr>
-        <td>Ez meg Liptonból</td>
+        <td data-lang-key="p_cup2">Ez meg Liptonból</td>
         <td><img src="pictures/tea&co/liptoncsesze.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>    
       <tr>
-        <td>Ez pedig TESCO-sból</td>
+        <td data-lang-key="p_cup3">Ez pedig TESCO-sból</td>
         <td><img src="pictures/tea&co/tescocsesze.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>    	  
-      <tr>
-        <td rowspan="3">Csészék és kanna<br>együtt</td>
+      <tr class="separator-dotted">
+        <td rowspan="3" data-lang-key="p_cup_pot">Csészék és kanna<br>együtt</td>
         <td><img src="pictures/tea&co/teaset1.jpg" class="gallery-img" onclick="openGallery(4)"></td>
       </tr>
       <tr>
@@ -109,8 +118,8 @@
       <tr>
         <td><img src="pictures/tea&co/cseszek.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>
-      <tr>
-        <td rowspan="2">Ez a kanna már a<br>Pickwicknél lakik</td>
+      <tr class="separator-dotted">
+        <td rowspan="2" data-lang-key="p_pot_pick">Ez a kanna már a<br>Pickwicknél lakik</td>
         <td><img src="pictures/tea&co/pickwickteapot.jpg" class="gallery-img" onclick="openGallery(7)"></td>
       </tr>
       <tr>
@@ -119,21 +128,21 @@
 	</table>
 
 	<table>
-      <caption>2004-es év termése</caption>
+      <caption data-lang-key="tea_title2004">2004-es év termése</caption>
       <tr>
-        <td>Egy cukorkás kínáló tálka</td>
+        <td data-lang-key="p_candy">Egy cukorkás kínáló tálka</td>
         <td><img src="pictures/tea&co/kinalo.jpg" class="gallery-img" onclick="openGallery(9)"></td>
       </tr>
       <tr>
-        <td>Egy újabb teáskanna</td>
+        <td data-lang-key="p_teapot2">Egy újabb teáskanna</td>
         <td><img src="pictures/tea&co/tea041222.jpg" class="gallery-img" onclick="openGallery(10)"></td>
       </tr>
 	</table>
 	
 	<table>
-      <caption>2007-es év termése</caption>
+      <caption data-lang-key="tea_title2007">2007-es év termése</caption>
       <tr>
-        <td>Egy teáskanna<br>egy fiú és egy lány<br>bögrével</td>
+        <td data-lang-key="p_teapot3">Egy teáskanna<br>egy fiú és egy lány<br>bögrével</td>
         <td><img src="pictures/tea&co/teaset3.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>
 	</table>
@@ -141,11 +150,574 @@
   </div>
 
   <script>
+  const translations = {
+	hu: {
+		back: "← Vissza", close: "✕ Bezár",
+		tea_title: "Teáskanna és társai",
+		tea_title2004: "2004-es év termése",
+		tea_title2007: "2007-es év termése",
+		p_teapot1: "Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá",
+		p_cup1: "Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült",
+		p_cup2: "Ez meg Liptonból",
+		p_cup3: "Ez pedig TESCO-sból",
+		p_cup_pot: "Csészék és kanna<br>együtt",
+		p_pot_pick: "Ez a kanna már a<br>Pickwicknél lakik",
+		p_candy: "Egy cukorkás kínáló tálka",
+		p_teapot2: "Egy újabb teáskanna",
+		p_teapot3: "Egy teáskanna<br>egy fiú és egy lány<br>bögrével"
+	},
+	en: {
+		back: "← Back", close: "✕ Close",
+		tea_title: "Teapots and companions",
+		tea_title2004: "Year 2004 Works",
+		tea_title2007: "Year 2007 Works",
+		p_teapot1: "This was my 1st teapot<br>It took 900 tea bags to make",
+		p_cup1: "This cup was made from<br>Herbária chamomile<br>tea bags",
+		p_cup2: "This one is made from Lipton",
+		p_cup3: "And this one is from TESCO bags",
+		p_cup_pot: "Cups and teapot<br>together",
+		p_pot_pick: "This teapot now lives<br>at Pickwick",
+		p_candy: "A candy serving bowl",
+		p_teapot2: "Another teapot",
+		p_teapot3: "A teapot with<br>a boy and a girl<br>cup"
+	  },
+	de: {
+		back: "← Zurück", close: "✕ Schließen",
+		tea_title: "Teekanne und Co.",
+		tea_title2004: "Werke aus dem Jahr 2004",
+		tea_title2007: "Werke aus dem Jahr 2007",
+		p_teapot1: "Das war meine 1. Teekanne<br>Dafür wurden 900 Beutel benötigt",
+		p_cup1: "Diese Tasse wurde aus<br>Herbária Kamillentee-<br>Beuteln gefertigt",
+		p_cup2: "Diese hier ist aus Lipton",
+		p_cup3: "Und diese aus TESCO-Beuteln",
+		p_cup_pot: "Tassen und Kanne<br>zusammen",
+		p_pot_pick: "Diese Kanne wohnt jetzt<br>bei Pickwick",
+		p_candy: "Eine kleine Schale für Süßigkeiten",
+		p_teapot2: "Noch eine Teekanne",
+		p_teapot3: "Eine Teekanne mit<br>einer Jungen- und einer<br>Mädchen-Tasse"
+	  },
+	fr: {
+		back: "← Retour", close: "✕ Fermer",
+		tea_title: "Théières et compagnie",
+		tea_title2004: "Réalisations de l'année 2004",
+		tea_title2007: "Réalisations de l'année 2007",
+		p_teapot1: "C'était ma 1ère théière<br>Il a fallu 900 sachets",
+		p_cup1: "Cette tasse a été faite à partir de<br>sachets de camomille<br>Herbária",
+		p_cup2: "Celle-ci est faite de Lipton",
+		p_cup3: "Et celle-là de sachets TESCO",
+		p_cup_pot: "Tasses et théière<br>ensemble",
+		p_pot_pick: "Cette théière habite<br>maintenant chez Pickwick",
+		p_candy: "Un petit bol à bonbons",
+		p_teapot2: "Une autre théière",
+		p_teapot3: "Une théière avec<br>un mug garçon et<br>un mug fille"
+	  },
+	es: {
+		back: "← Volver", close: "✕ Cerrar",
+		tea_title: "Teteras y compañía",
+		tea_title2004: "Obras del año 2004",
+		tea_title2007: "Obras del año 2007",
+		p_teapot1: "Esta fue mi primera tetera<br>hicieron falta 900 bolsas",
+		p_cup1: "Esta taza fue hecha con<br>bolsas de manzanilla<br>Herbária",
+		p_cup2: "Esta es de Lipton",
+		p_cup3: "Y esta de bolsas TESCO",
+		p_cup_pot: "Tazas y tetera<br>juntas",
+		p_pot_pick: "Esta tetera ahora vive<br>en Pickwick",
+		p_candy: "Un cuenco para caramelos",
+		p_teapot2: "Otra tetera",
+		p_teapot3: "Una tetera con<br>una taza de niño y<br>una de niña"
+	  },
+	it: {
+		back: "← Indietro", close: "✕ Chiudi",
+		tea_title: "Teiere e compagni",
+		tea_title2004: "Opere dell'anno 2004",
+		tea_title2007: "Opere dell'anno 2007",
+		p_teapot1: "Questa è stata la mia prima teiera<br>sono servite 900 bustine",
+		p_cup1: "Questa tazza è stata fatta con<br>bustine di camomilla<br>Herbária",
+		p_cup2: "Questa invece è di Lipton",
+		p_cup3: "E questa di bustine TESCO",
+		p_cup_pot: "Tazze e teiera<br>insieme",
+		p_pot_pick: "Questa teiera ora si trova<br>presso Pickwick",
+		p_candy: "Una ciotolina per caramelle",
+		p_teapot2: "Un'altra teiera",
+		p_teapot3: "Una teiera con<br>una tazza da ragazzo e<br>una da ragazza"
+	  },
+	pt: {
+		back: "← Voltar", close: "✕ Fechar",
+		tea_title: "Bules e companhia",
+		tea_title2004: "Obras do ano 2004",
+		tea_title2007: "Obras do ano 2007",
+		p_teapot1: "Este foi o meu 1º bule<br>foram precisos 900 saquinhos",
+		p_cup1: "Esta chávena foi feita de<br>saquinhos de camomila<br>Herbária",
+		p_cup2: "Esta é de Lipton",
+		p_cup3: "E esta de saquinhos TESCO",
+		p_cup_pot: "Chávenas e bule<br>juntos",
+		p_pot_pick: "Este bule agora mora<br>na Pickwick",
+		p_candy: "Uma tigela para doces",
+		p_teapot2: "Mais um bule",
+		p_teapot3: "Um bule com<br>uma caneca de menino e<br>uma de menina"
+	  },
+	ro: {
+		back: "← Înapoi", close: "✕ Închide",
+		tea_title: "Ceainic și altele",
+		tea_title2004: "Lucrări din anul 2004",
+		tea_title2007: "Lucrări din anul 2007",
+		p_teapot1: "Acesta a fost primul meu ceainic<br>a fost nevoie de 900 de pliculețe",
+		p_cup1: "Această ceașcă a fost făcută din<br>pliculețe de mușețel<br>Herbária",
+		p_cup2: "Aceasta este din Lipton",
+		p_cup3: "Iar aceasta din pliculețe TESCO",
+		p_cup_pot: "Ceștile și ceainicul<br>împreună",
+		p_pot_pick: "Acest ceainic locuiește<br>acum la Pickwick",
+		p_candy: "Un bol pentru bomboane",
+		p_teapot2: "Încă un ceainic",
+		p_teapot3: "Un ceainic cu<br>o cană pentru băiat și<br>una pentru fată"
+	  },
+	pl: {
+		back: "← Wstecz", close: "✕ Zamknij",
+		tea_title: "Czajniczek i spółka",
+		tea_title2004: "Prace z roku 2004",
+		tea_title2007: "Prace z roku 2007",
+		p_teapot1: "To był mój pierwszy czajniczek<br>potrzeba było na niego 900 torebek",
+		p_cup1: "Ta filiżanka została wykonana z<br>torebek herbaty rumiankowej<br>Herbária",
+		p_cup2: "Ta jest z herbaty Lipton",
+		p_cup3: "A ta z torebek TESCO",
+		p_cup_pot: "Filiżanki i czajniczek<br>razem",
+		p_pot_pick: "Ten czajniczek mieszka<br>teraz w Pickwick",
+		p_candy: "Miska na cukierki",
+		p_teapot2: "Kolejny czajniczek",
+		p_teapot3: "Czajniczek z<br>kubkiem dla chłopca<br>i dla dziewczynki"
+	  },
+	sk: {
+		back: "← Späť", close: "✕ Zavrieť",
+		tea_title: "Čajník a spoločníci",
+		tea_title2004: "Tvorba z roku 2004",
+		tea_title2007: "Tvorba z roku 2007",
+		p_teapot1: "Toto bol môj 1. čajník<br>bolo naň potrebných 900 vrecúšok",
+		p_cup1: "Táto šálka bola vyrobená z<br>harmančekových vrecúšok<br>Herbária",
+		p_cup2: "Táto je z Liptonu",
+		p_cup3: "A táto z vrecúšok TESCO",
+		p_cup_pot: "Šálky a čajník<br>spolu",
+		p_pot_pick: "Tento čajník už býva<br>v Pickwicku",
+		p_candy: "Miska na cukríky",
+		p_teapot2: "Ďalší čajník",
+		p_teapot3: "Čajník s<br>hrnčekom pre chlapca<br>a pre dievča"
+	  },
+	cs: {
+		back: "← Zpět", close: "✕ Zavřít",
+		tea_title: "Čajová konvice a spol.",
+		tea_title2004: "Tvorba z roku 2004",
+		tea_title2007: "Tvorba z roku 2007",
+		p_teapot1: "Tohle byla moje 1. konvice<br>bylo na ni potřeba 900 sáčků",
+		p_cup1: "Tento šálek byl vyroben z<br>heřmánkových sáčků<br>Herbária",
+		p_cup2: "Tenhle je z Liptonu",
+		p_cup3: "A tenhle ze sáčků TESCO",
+		p_cup_pot: "Šálky a konvice<br>společně",
+		p_pot_pick: "Tato konvice už bydlí<br>u Pickwicku",
+		p_candy: "Miska na cukrovinky",
+		p_teapot2: "Další čajová konvice",
+		p_teapot3: "Čajová konvice s<br>hrnkem pro kluka<br>a pro holku"
+	  },
+	uk: {
+		back: "← Назад", close: "✕ Закрити",
+		tea_title: "Чайник та інше",
+		tea_title2004: "Роботи 2004 року",
+		tea_title2007: "Роботи 2007 року",
+		p_teapot1: "Це був мій 1-й чайник<br>знадобилося 900 пакетиків",
+		p_cup1: "Ця чашка виготовлена з<br>пакетиків ромашкового чаю<br>Herbária",
+		p_cup2: "А ця з Lipton",
+		p_cup3: "Ця ж із пакетиків TESCO",
+		p_cup_pot: "Чашки та чайник<br>разом",
+		p_pot_pick: "Цей чайник тепер живе<br>у Pickwick",
+		p_candy: "Мисочка для цукерок",
+		p_teapot2: "Ще один чайник",
+		p_teapot3: "Чайник із<br>кухлем для хлопчика<br>та дівчинки"
+	  },
+	sr: {
+		back: "← Назад", close: "✕ Затвори",
+		tea_title: "Чајник и друштво",
+		tea_title2004: "Радови из 2004. године",
+		tea_title2007: "Радови из 2007. године",
+		p_teapot1: "Ово је био мој 1. чајник<br>било је потребно 900 кесица",
+		p_cup1: "Ова шоља је направљена од<br>кесица камилице<br>Herbária",
+		p_cup2: "Ова је од Липтона",
+		p_cup3: "А ова од ТЕСЦО кесица",
+		p_cup_pot: "Шоље и чајник<br>заједно",
+		p_pot_pick: "Овај чајник сада живи<br>у Пицквицку",
+		p_candy: "Чинија за бомбоне",
+		p_teapot2: "Још један чајник",
+		p_teapot3: "Чајник са<br>шољом за дечака<br>и девојчицу"
+	  },  
+	hr: {
+		back: "← Natrag", close: "✕ Zatvori",
+		tea_title: "Čajnik i društvo",
+		tea_title2004: "Radovi iz 2004. godine",
+		tea_title2007: "Radovi iz 2007. godine",
+		p_teapot1: "Ovo je bio moj 1. čajnik<br>trebalo je 900 vrećica",
+		p_cup1: "Ova šalica je napravljena od<br>vrećica kamilice<br>Herbária",
+		p_cup2: "Ova je od Liptona",
+		p_cup3: "A ova od TESCO vrećica",
+		p_cup_pot: "Šalice i čajnik<br>zajedno",
+		p_pot_pick: "Ovaj čajnik sada živi<br>u Pickwicku",
+		p_candy: "Posuda za bombone",
+		p_teapot2: "Još jedan čajnik",
+		p_teapot3: "Čajnik sa<br>šalicom za dječaka<br>i djevojčicu"
+	  },
+	sl: {
+		back: "← Nazaj", close: "✕ Zapri",
+		tea_title: "Čajnik in druščina",
+		tea_title2004: "Dela iz leta 2004",
+		tea_title2007: "Dela iz leta 2007",
+		p_teapot1: "To je bil moj 1. čajnik<br>zanj je bilo potrebnih 900 vrečk",
+		p_cup1: "Ta skodelica je narejena iz<br>kamiličnih vrečk<br>Herbária",
+		p_cup2: "Ta je iz Liptona",
+		p_cup3: "Ta pa iz vrečk TESCO",
+		p_cup_pot: "Skodelice in čajnik<br>skupaj",
+		p_pot_pick: "Ta čajnik zdaj domuje<br>pri Pickwicku",
+		p_candy: "Skledica za bonbone",
+		p_teapot2: "Še en čajnik",
+		p_teapot3: "Čajnik s<br>skodelico za fantka<br>in punčko"
+	  },
+	bg: {
+		back: "← Назад", close: "✕ Затвори",
+		tea_title: "Чайник и компания",
+		tea_title2004: "Творби от 2004 г.",
+		tea_title2007: "Творби от 2007 г.",
+		p_teapot1: "Това беше първият ми чайник<br>бяха нужни 900 пакетчета",
+		p_cup1: "Тази чаша е направена от<br>пакетчета лайка на<br>Herbária",
+		p_cup2: "Тази е от Lipton",
+		p_cup3: "А тази е от пакетчета TESCO",
+		p_cup_pot: "Чаши и чайник<br>заедно",
+		p_pot_pick: "Този чайник вече живее<br>в Pickwick",
+		p_candy: "Купичка за бонбони",
+		p_teapot2: "Още един чайник",
+		p_teapot3: "Чайник с<br>чаша за момче и<br>чаша за момиче"
+	  },
+	sq: {
+		back: "← Mbrapa", close: "✕ Mbyll",
+		tea_title: "Çajniku dhe shokët",
+		tea_title2004: "Punimet e vitit 2004",
+		tea_title2007: "Punimet e vitit 2007",
+		p_teapot1: "Ky ishte çajniku im i parë<br>u deshën 900 qese çaji",
+		p_cup1: "Kjo kupë është bërë nga<br>qeset e kamomilit<br>Herbária",
+		p_cup2: "Kjo është nga Lipton",
+		p_cup3: "Kurse kjo nga qeset TESCO",
+		p_cup_pot: "Kupat dhe çajniku<br>bashkë",
+		p_pot_pick: "Ky çajnik tani jeton<br>te Pickwick",
+		p_candy: "Një tas për karamele",
+		p_teapot2: "Një tjetër çajnik",
+		p_teapot3: "Një çajnik me<br>një filxhan për djem dhe<br>një për vajza"
+	  },
+	el: {
+		back: "← Πίσω", close: "✕ Κλείσιμο",
+		tea_title: "Τσαγιέρες και σία",
+		tea_title2004: "Έργα του έτους 2004",
+		tea_title2007: "Έργα του έτους 2007",
+		p_teapot1: "Αυτή ήταν η 1η μου τσαγιέρα<br>χρειάστηκαν 900 φακελάκια",
+		p_cup1: "Αυτό το φλιτζάνι φτιάχτηκε από<br>φακελάκια χαμομηλιού<br>Herbária",
+		p_cup2: "Αυτό είναι από Lipton",
+		p_cup3: "Και αυτό από φακελάκια TESCO",
+		p_cup_pot: "Φλιτζάνια και τσαγιέρα<br>μαζί",
+		p_pot_pick: "Αυτή η τσαγιέρα μένει<br>πλέον στην Pickwick",
+		p_candy: "Ένα μπολάκι για καραμέλες",
+		p_teapot2: "Ακόμα μία τσαγιέρα",
+		p_teapot3: "Μια τσαγιέρα με<br>μια κούπα για αγόρι και<br>μία για κορίτσι"
+	  },
+	tr: {
+		back: "← Geri", close: "✕ Kapat",
+		tea_title: "Çaydanlık και arkadaşları",
+		tea_title2004: "2004 yılı eserleri",
+		tea_title2007: "2007 yılı eserleri",
+		p_teapot1: "Bu benim ilk çaydanlığımdı<br>900 adet poşet gerekti",
+		p_cup1: "Bu fincan Herbária<br>papatya çayı poşetlerinden<br>yapıldı",
+		p_cup2: "Bu ise Lipton'dan",
+		p_cup3: "Bu da TESCO poşetlerinden",
+		p_cup_pot: "Fincanlar ve çaydanlık<br>bir arada",
+		p_pot_pick: "Bu çaydanlık artık<br>Pickwick'te duruyor",
+		p_candy: "Şekerleme servis kasesi",
+		p_teapot2: "Yeni ஒரு çaydanlık daha",
+		p_teapot3: "Bir erkek ve bir kız<br>kupasıyla birlikte<br>bir çaydanlık"
+	  },
+	nl: {
+		back: "← Terug", close: "✕ Sluiten",
+		tea_title: "Theepotten en co.",
+		tea_title2004: "Werk uit 2004",
+		tea_title2007: "Werk uit 2007",
+		p_teapot1: "Dit was mijn 1e theepot<br>er waren 900 zakjes voor nodig",
+		p_cup1: "Dit kopje is gemaakt van<br>Herbária kamille-<br>theezakjes",
+		p_cup2: "Deze is van Lipton",
+		p_cup3: "En deze van TESCO-zakjes",
+		p_cup_pot: "Kopjes en theepot<br>samen",
+		p_pot_pick: "Deze theepot woont nu<br>bij Pickwick",
+		p_candy: "Een schaaltje voor snoepjes",
+		p_teapot2: "Nog een theepot",
+		p_teapot3: "Een theepot met<br>een jongens- en een<br>meisjesmok"
+	  },
+	sv: {
+		back: "← Tillbaka", close: "✕ Stäng",
+		tea_title: "Tekannor och vänner",
+		tea_title2004: "Verk från 2004",
+		tea_title2007: "Verk från 2007",
+		p_teapot1: "Detta var min första tekanna<br>det krävdes 900 påsar",
+		p_cup1: "Denna kopp är gjord av<br>Herbária kamomill-<br>tepåsar",
+		p_cup2: "Den här är från Lipton",
+		p_cup3: "Och den här från TESCO-påsar",
+		p_cup_pot: "Koppar och tekanna<br>tillsammans",
+		p_pot_pick: "Denna tekanna bor numera<br>hos Pickwick",
+		p_candy: "En liten skål för godis",
+		p_teapot2: "Ännu en tekanna",
+		p_teapot3: "En tekanna med<br>en pojk- och en<br>flickmugg"
+	  },
+	da: {
+		back: "← Tilbage", close: "✕ Luk",
+		tea_title: "Tekander og co.",
+		tea_title2004: "Værker fra 2004",
+		tea_title2007: "Værker fra 2007",
+		p_teapot1: "Dette var min 1. tekande<br>der skulle bruges 900 poser",
+		p_cup1: "Denne kop er lavet af<br>Herbária kamille-<br>teposer",
+		p_cup2: "Denne er lavet af Lipton",
+		p_cup3: "Og denne er fra TESCO-poser",
+		p_cup_pot: "Kopper og tekande<br>sammen",
+		p_pot_pick: "Denne tekande bor nu<br>hos Pickwick",
+		p_candy: "En lille skål til slik",
+		p_teapot2: "Endnu en tekande",
+		p_teapot3: "En tekande med<br>et drenge- og et<br>pigekrus"
+	  },
+	no: {
+		back: "← Tilbake", close: "✕ Lukk",
+		tea_title: "Tekanner og venner",
+		tea_title2004: "Verk fra 2004",
+		tea_title2007: "Verk fra 2007",
+		p_teapot1: "Dette var min første tekanne<br>det trengtes 900 poser",
+		p_cup1: "Denne koppen er laget av<br>Herbária kamille-<br>teposer",
+		p_cup2: "Denne er laget av Lipton",
+		p_cup3: "Og denne er fra TESCO-poser",
+		p_cup_pot: "Kopper og tekanne<br>sammen",
+		p_pot_pick: "Denne tekannen bor nå<br>hos Pickwick",
+		p_candy: "En liten skål for godteri",
+		p_teapot2: "Enda en tekanne",
+		p_teapot3: "En tekanne med<br>et gutte- og et<br>jentekrus"
+	  },  
+	 fi: {
+		back: "← Takaisin", close: "✕ Sulje",
+		tea_title: "Teepannut ja kumppanit",
+		tea_title2004: "Vuoden 2004 työt",
+		tea_title2007: "Vuoden 2007 työt",
+		p_teapot1: "Tämä oli 1. teepannuni<br>siihen tarvittiin 900 pussia",
+		p_cup1: "Tämä kuppi on tehty<br>Herbária-kamomillatee-<br>pusseista",
+		p_cup2: "Tämä on tehty Liptonista",
+		p_cup3: "Ja tämä TESCO-pusseista",
+		p_cup_pot: "Kupit ja teepannu<br>yhdessä",
+		p_pot_pick: "Tämä teepannu asuu<br>nykyään Pickwickillä",
+		p_candy: "Pieni kulho karkkeja varten",
+		p_teapot2: "Vielä yksi teepannu",
+		p_teapot3: "Teepannu sekä<br>poika- ja tyttö-<br>mukit"
+	  },
+	is: {
+		back: "← Til baka", close: "✕ Loka",
+		tea_title: "Tepottar og félagar",
+		tea_title2004: "Verk frá árinu 2004",
+		tea_title2007: "Verk frá árinu 2007",
+		p_teapot1: "Þetta var minn fyrsti tepottur<br>það þurfti 900 poka í hann",
+		p_cup1: "Þessi bolli var gerður úr<br>Herbária kamillete-<br>pokum",
+		p_cup2: "Þessi er úr Lipton",
+		p_cup3: "Og þessi úr TESCO pokum",
+		p_cup_pot: "Bollar og tepottur<br>saman",
+		p_pot_pick: "Þessi tepottur býr núna<br>hjá Pickwick",
+		p_candy: "Lítil skál fyrir sælgæti",
+		p_teapot2: "Enn einn tepotturinn",
+		p_teapot3: "Tepottur með<br>stráka- og stelpu-<br>könnum"
+	  },
+	ca: {
+		back: "← Enrere", close: "✕ Tancar",
+		tea_title: "Teteres i companyia",
+		tea_title2004: "Obres de l'any 2004",
+		tea_title2007: "Obres de l'any 2007",
+		p_teapot1: "Aquesta va ser la meva 1a tetera<br>va requerir 900 bosses",
+		p_cup1: "Aquesta tassa es va fer amb<br>bosses de camamilla<br>Herbária",
+		p_cup2: "Aquesta és de Lipton",
+		p_cup3: "I aquesta de bosses TESCO",
+		p_cup_pot: "Tasses i tetera<br>juntes",
+		p_pot_pick: "Aquesta tetera ara viu<br>a Pickwick",
+		p_candy: "Un bol per a caramels",
+		p_teapot2: "Una altra tetera",
+		p_teapot3: "Una tetera amb<br>una tassa de nen i<br>una de nena"
+	  },
+	eo: {
+		back: "← Reen", close: "✕ Fermi",
+		tea_title: "Teopotoj kaj kompanio",
+		tea_title2004: "Verkoj el la jaro 2004",
+		tea_title2007: "Verkoj el la jaro 2007",
+		p_teapot1: "Tio estis mia 1-a teopoto<br>bezonis 900 saketojn",
+		p_cup1: "Tiu taso estis farita el<br>kamomilaj saketoj de<br>Herbária",
+		p_cup2: "Tiu ĉi estas el Lipton",
+		p_cup3: "Kaj tiu ĉi el saketoj de TESCO",
+		p_cup_pot: "Tasoj kaj teopoto<br>kune",
+		p_pot_pick: "Tiu teopoto nun loĝas<br>ĉe Pickwick",
+		p_candy: "Bovlo por bombonoj",
+		p_teapot2: "Plia teopoto",
+		p_teapot3: "Teopoto kun<br>taso por knabo kaj<br>taso por knabino"
+	  },  
+	et: {
+		back: "← Tagasi", close: "✕ Sulge",
+		tea_title: "Teekannud ja muu",
+		tea_title2004: "2004. aasta tööd",
+		tea_title2007: "2007. aasta tööd",
+		p_teapot1: "See oli minu 1. teekann<br>selleks kulus 900 pakki",
+		p_cup1: "See tass on valmistatud<br>Herbária kummeli-<br>teepakkidest",
+		p_cup2: "See on tehtud Liptonist",
+		p_cup3: "See aga TESCO pakkidest",
+		p_cup_pot: "Tassid ja teekann<br>koos",
+		p_pot_pick: "See teekann asub<br>nüüd Pickwicki juures",
+		p_candy: "Kommikauss",
+		p_teapot2: "Veel üks teekann",
+		p_teapot3: "Teekann koos<br>poisi ja tüdruku<br>kruusiga"
+	  },  
+	lv: {
+		back: "← Atpakaļ", close: "✕ Aizvērt",
+		tea_title: "Tējkannas un biedri",
+		tea_title2004: "2004. gada darbi",
+		tea_title2007: "2007. gada darbi",
+		p_teapot1: "Šī bija mana 1. tējkanna<br>tai vajadzēja 900 paciņas",
+		p_cup1: "Šī krūze ir izgatavota no<br>Herbária kumelīšu<br>tējas paciņām",
+		p_cup2: "Šī ir no Lipton",
+		p_cup3: "Bet šī no TESCO paciņām",
+		p_cup_pot: "Krūzes un tējkanna<br>kopā",
+		p_pot_pick: "Šī tējkanna tagad atrodas<br>pie Pickwick",
+		p_candy: "Trauciņš konfektēm",
+		p_teapot2: "Vēl viena tējkanna",
+		p_teapot3: "Tējkanna ar<br>zēna un meitenes<br>krūzi"
+	  },  
+	lt: {
+		back: "← Atgal", close: "✕ Uždaryti",
+		tea_title: "Arbatos virduliai ir kiti",
+		tea_title2004: "2004 metų darbai",
+		tea_title2007: "2007 metų darbai",
+		p_teapot1: "Tai buvo mano 1-asis virdulys<br>jam prireikė 900 maišelių",
+		p_cup1: "Šis puodelis pagamintas iš<br>„Herbária“ ramunėlių<br>arbatos maišelių",
+		p_cup2: "Šis pagamintas iš „Lipton“",
+		p_cup3: "O šis iš „TESCO“ maišelių",
+		p_cup_pot: "Puodeliai ir virdulys<br>kartu",
+		p_pot_pick: "Šis virdulys dabar gyvena<br>pas „Pickwick“",
+		p_candy: "Saldainių dubenėlis",
+		p_teapot2: "Dar vienas arbatos virdulys",
+		p_teapot3: "Virdulys su<br>berniuko ir mergaitės<br>puodeliais"
+	  },
+	ja: {
+		back: "← 戻る", close: "✕ 閉じる",
+		tea_title: "ティーポットとその仲間たち",
+		tea_title2004: "2004年の作品",
+		tea_title2007: "2007年の作品",
+		p_teapot1: "これが私の最初のティーポットです<br>900個のティーバッグを使いました",
+		p_cup1: "このカップは<br>Herbáriaのカモミール<br>ティーバッグで作られています",
+		p_cup2: "こちらはリプトンのバッグから",
+		p_cup3: "そしてこちらはTESCOのバッグから",
+		p_cup_pot: "カップとティーポットの<br>セット",
+		p_pot_pick: "このティーポットは現在<br>Pickwickにあります",
+		p_candy: "キャンディボウル",
+		p_teapot2: "もうひとつのティーポット",
+		p_teapot3: "ティーポットと<br>男の子・女の子の<br>マグカップ"
+	  },
+	zh: {
+		back: "← 返回", close: "✕ 关闭",
+		tea_title: "茶具系列",
+		tea_title2004: "2004年作品",
+		tea_title2007: "2007年作品",
+		p_teapot1: "这是我的第一个茶壶<br>使用了900个茶包袋制成",
+		p_cup1: "这个杯子是由<br>Herbária甘菊茶<br>包袋制成的",
+		p_cup2: "这个是用立顿茶包做的",
+		p_cup3: "而这个是用乐购（TESCO）茶包做的",
+		p_cup_pot: "茶杯与茶壶<br>合影",
+		p_pot_pick: "这个茶壶现在收藏于<br>Pickwick公司",
+		p_candy: "一个糖果盛放盘",
+		p_teapot2: "又一个茶壶作品",
+		p_teapot3: "一个茶壶配上<br>男孩和女孩款的<br>马克杯"
+	  },
+	ko: {
+		back: "← 뒤로", close: "✕ 닫기",
+		tea_title: "티타임 소품",
+		tea_title2004: "2004년 작품",
+		tea_title2007: "2007년 작품",
+		p_teapot1: "저의 첫 번째 티팟입니다<br>900개의 티백이 사용되었습니다",
+		p_cup1: "이 찻잔은<br>Herbária 카모마일<br>티백으로 만들었습니다",
+		p_cup2: "이것은 립톤 티백으로 만들었습니다",
+		p_cup3: "그리고 이것은 TESCO 티백으로 만들었습니다",
+		p_cup_pot: "찻잔과 티팟<br>단체 사진",
+		p_pot_pick: "이 티팟은 현재<br>Pickwick 본사에 소장되어 있습니다",
+		p_candy: "사탕이나 디저트를 담는 그릇",
+		p_teapot2: "또 다른 티팟 작품",
+		p_teapot3: "티팟과<br>소년, 소녀 모양의<br>머그컵 세트"
+	  }  
+	};
+  
     let currentIndex = 0;
     const galleryData = [];
 
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }	
+	
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }	
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+	
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });	
+	
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -189,31 +761,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -234,7 +781,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

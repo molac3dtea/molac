@@ -60,15 +60,16 @@
 		height: auto;
 	  }
 	}	
-	
   </style>
 </head>
+
+
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -82,40 +83,40 @@
 
   <div class="page-container">
     <table>
-      <caption>Lánchíd</caption>
+      <caption data-lang-key="title_chain">Lánchíd</caption>
       <tr>
-        <td>2010. nyarára<br>készült el és a<br>"Bridges Pécs2010"<br>Világkonferencián<br>volt kiállítva</td>
+        <td data-lang-key="p_chain">2010. nyarára<br>készült el és a<br>"Bridges Pécs2010"<br>Világkonferencián<br>volt kiállítva</td>
         <td><img src="pictures/buildings/lanchid1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/buildings/lanchid2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
 	</table>
 	
     <table>
-      <caption>Kisház</caption>
+      <caption data-lang-key="title_shouse">Kisház</caption>
       <tr>
-        <td>2009. nyarán<br>házavatóra készült</td>
+        <td data-lang-key="p_shouse">2009. nyarán<br>házavatóra készült</td>
         <td><img src="pictures/buildings/kishaz.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
 	</table>
 	
     <table>
-      <caption>Szélmalom</caption>
+      <caption data-lang-key="title_windmill">Szélmalom</caption>
       <tr>
-        <td>A 2007-es<br>Origami Találkozóra<br>készült el</td>
+        <td data-lang-key="p_windmill1">A 2007-es<br>Origami Találkozóra<br>készült el</td>
         <td><img src="pictures/buildings/windmill.jpg" class="gallery-img" onclick="openGallery(3)"></td>
 		<td><img src="pictures/buildings/windmill2.jpg" class="gallery-img" onclick="openGallery(4)"></td>
 		<td><img src="pictures/buildings/windmill3.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>	  
       <tr>
-        <td colspan="2">2008 tavaszán megújult a<br>szélmalom vitorlája</td>
+        <td colspan="2" data-lang-key="p_windmill2">2008 tavaszán megújult a<br>szélmalom vitorlája</td>
         <td colspan="2"><img src="pictures/buildings/windmill4.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption>Gárdonyi-Tea-Ház</caption>
+      <caption data-lang-key="title_gth">Gárdonyi-Tea-Ház</caption>
       <tr>
-        <td rowspan="2">A ház tégláit 900 db<br>Gárdonyi Teaházas tasakból<br>állítottam össze</td>
+        <td rowspan="2" data-lang-key="p_gth">A ház tégláit 900 db<br>Gárdonyi Teaházas tasakból<br>állítottam össze</td>
         <td><img src="pictures/buildings/teahaz1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/buildings/teahaz2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>	  
@@ -126,13 +127,13 @@
 	</table>
 	
     <table>
-      <caption>Gyulai vár</caption>
+      <caption data-lang-key="title_gyula">Gyulai vár</caption>
       <tr>
-        <td>12500 db elemet használtam<br>a vár tégláihoz</td>
+        <td data-lang-key="p_gyula1">12500 db elemet használtam<br>a vár tégláihoz</td>
         <td><img src="pictures/buildings/gyula041121.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
       <tr>
-        <td>Elkészültek az<br>udvari épületek is</td>
+        <td data-lang-key="p_gyula2">Elkészültek az<br>udvari épületek is</td>
         <td><img src="pictures/buildings/gyula041122.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
 	</table>	
@@ -141,11 +142,576 @@
   </div>
 
   <script>
-    let currentIndex = 0;
+	const translations = {
+	  hu: {
+		back: "← Vissza", close: "✕ Bezárás",
+		title_chain: "Lánchíd", 
+		title_shouse: "Kisház", 
+		title_windmill: "Szélmalom", 
+		title_gth: "Gárdonyi-Tea-Ház", 
+		title_gyula: "Gyulai vár", 
+		p_chain: "2010. nyarára<br>készült el és a<br>&quot;Bridges Pécs2010&quot;<br>Világkonferencián<br>volt kiállítva",
+		p_shouse: "2009. nyarán<br>házavatóra készült", 
+		p_windmill1: "A 2007-es<br>Origami Találkozóra<br>készült el", 
+		p_windmill2: "2008 tavaszán megújult a<br>szélmalom vitorlája", 
+		p_gth: "A ház tégláit 900 db<br>Gárdonyi Teaházas tasakból<br>állítottam össze", 
+		p_gyula1: "12500 db elemet használtam<br>a vár tégláihoz", 
+		p_gyula2: "Elkészültek az<br>udvari épületek is", 		
+	  },  
+	  en: {
+		back: "← Back", close: "✕ Close",
+		title_chain: "Chain Bridge", 
+		title_shouse: "Little House", 
+		title_windmill: "Windmill", 
+		title_gth: "Gárdonyi Tea House", 
+		title_gyula: "Castle of Gyula", 
+		p_chain: "Completed by the<br>summer of 2010 and<br>exhibited at the<br>'Bridges Pécs2010'<br>World Conference",
+		p_shouse: "Made for a<br>housewarming party<br>in the summer of 2009", 
+		p_windmill1: "Completed for the<br>2007 Origami<br>Meeting", 
+		p_windmill2: "The sails of the<br>windmill were renewed<br>in the spring of 2008", 
+		p_gth: "I assembled the bricks<br>of the house from 900<br>Gárdonyi Tea House bags", 
+		p_gyula1: "I used 12,500 elements<br>for the bricks of<br>the castle", 
+		p_gyula2: "The courtyard buildings<br>have also been<br>completed",
+	  },
+	  de: {
+		back: "← Zurück", close: "✕ Schließen",
+		title_chain: "Kettenbrücke", 
+		title_shouse: "Häuschen", 
+		title_windmill: "Windmühle", 
+		title_gth: "Gárdonyi-Teehaus", 
+		title_gyula: "Burg von Gyula", 
+		p_chain: "Bis zum Sommer 2010<br>fertiggestellt und auf der<br>Weltkonferenz<br>'Bridges Pécs2010'<br>ausgestellt",
+		p_shouse: "Im Sommer 2009<br>zur Einweihungsfeier<br>angefertigt", 
+		p_windmill1: "Für das<br>Origami-Treffen 2007<br>angefertigt", 
+		p_windmill2: "Im Frühjahr 2008 wurden<br>die Segel der Windmühle<br>erneuert", 
+		p_gth: "Die Ziegel des Hauses<br>habe ich aus 900<br>Gárdonyi-Teehaus-Beuteln<br>zusammengesetzt", 
+		p_gyula1: "Ich habe 12.500 Teile<br>für die Ziegel der Burg<br>verwendet", 
+		p_gyula2: "Auch die Gebäude im<br>Innenhof wurden<br>fertiggestellt",
+	  },
+	  es: {
+		back: "← Volver", close: "✕ Cerrar",
+		title_chain: "Puente de las Cadenas", 
+		title_shouse: "Casita", 
+		title_windmill: "Molino de viento", 
+		title_gth: "Casa de Té Gárdonyi", 
+		title_gyula: "Castillo de Gyula", 
+		p_chain: "Terminado para el verano<br>de 2010 y exhibido en la<br>conferencia mundial<br>'Bridges Pécs2010'",
+		p_shouse: "Hecho para una fiesta de<br>inauguración de casa<br>en el verano de 2009", 
+		p_windmill1: "Terminado para el<br>encuentro de origami<br>de 2007", 
+		p_windmill2: "En la primavera de 2008<br>se renovaron las aspas<br>del molino", 
+		p_gth: "Construí los ladrillos<br>de la casa con 900 bolsas<br>de té Gárdonyi", 
+		p_gyula1: "Utilicé 12.500 piezas<br>para los ladrillos del castillo", 
+		p_gyula2: "Los edificios del patio<br>también han sido<br>terminados",
+	  },
+	  it: {
+		back: "← Indietro", close: "✕ Chiudi",
+		title_chain: "Ponte delle Catene", 
+		title_shouse: "Casetta", 
+		title_windmill: "Mulino a vento", 
+		title_gth: "Casa del Tè Gárdonyi", 
+		title_gyula: "Castello di Gyula", 
+		p_chain: "Completato per l'estate<br>del 2010 ed esposto alla<br>conferenza mondiale<br>'Bridges Pécs2010'",
+		p_shouse: "Realizzato per una festa<br>di inaugurazione casa<br>nell'estate del 2009", 
+		p_windmill1: "Realizzato per l'incontro<br>di origami del 2007", 
+		p_windmill2: "Nella primavera del 2008<br>sono state rinnovate le<br>pale del mulino", 
+		p_gth: "Ho assemblato i mattoni<br>della casa con 900 bustine<br>di tè Gárdonyi", 
+		p_gyula1: "Ho usato 12.500 pezzi<br>per i mattoni del castello", 
+		p_gyula2: "Anche gli edifici del<br>cortile sono stati<br>completati",
+	  },
+	  fr: {
+		back: "← Retour", close: "✕ Fermer",
+		title_chain: "Pont des Chaînes", 
+		title_shouse: "Petite maison", 
+		title_windmill: "Moulin à vent", 
+		title_gth: "Maison de Thé Gárdonyi", 
+		title_gyula: "Château de Gyula", 
+		p_chain: "Terminé pour l'été 2010<br>et exposé à la<br>conférence mondiale<br>'Bridges Pécs2010'",
+		p_shouse: "Réalisé pour une<br>pendaison de crémaillère<br>en été 2009", 
+		p_windmill1: "Réalisé pour la<br>rencontre d'origami<br>de 2007", 
+		p_windmill2: "Les ailes du moulin<br>ont été renouvelées<br>au printemps 2008", 
+		p_gth: "J'ai assemblé les briques<br>de la maison à partir de<br>900 sachets Gárdonyi", 
+		p_gyula1: "J'ai utilisé 12 500 pièces<br>pour les briques du château", 
+		p_gyula2: "Les bâtiments de la<br>cour ont également<br>été terminés",
+	  },
+	  pt: {
+		back: "← Voltar", close: "✕ Fechar",
+		title_chain: "Ponte das Correntes", 
+		title_shouse: "Casinha", 
+		title_windmill: "Moinho de vento", 
+		title_gth: "Casa de Chá Gárdonyi", 
+		title_gyula: "Castelo de Gyula", 
+		p_chain: "Concluído no verão de<br>2010 e exibido na<br>conferência mundial<br>'Bridges Pécs2010'",
+		p_shouse: "Feito para uma festa de<br>inauguração de casa<br>no verão de 2009", 
+		p_windmill1: "Concluído para o<br>encontro de origami<br>de 2007", 
+		p_windmill2: "Na primavera de 2008<br>as pás do moinho<br>foram renovadas", 
+		p_gth: "Montei os tijolos da casa<br>a partir de 900 saquinhos<br>de chá Gárdonyi", 
+		p_gyula1: "Usei 12.500 peças para<br>os tijolos do castelo", 
+		p_gyula2: "Os edifícios do pátio<br>também foram<br>concluídos",
+	  },
+	  ro: {
+		back: "← Înapoi", close: "✕ Închide",
+		title_chain: "Podul cu Lanțuri", 
+		title_shouse: "Căsuță", 
+		title_windmill: "Moară de vânt", 
+		title_gth: "Casa de Ceai Gárdonyi", 
+		title_gyula: "Cetatea din Gyula", 
+		p_chain: "Finalizat pentru vara<br>anului 2010 și expus la<br>conferința mondială<br>'Bridges Pécs2010'",
+		p_shouse: "Realizat pentru o<br>petrecere de casă nouă<br>în vara anului 2009", 
+		p_windmill1: "Finalizat pentru<br>întâlnirea de origami<br>din 2007", 
+		p_windmill2: "În primăvara anului 2008<br>au fost reînnoite palele<br>morii de vânt", 
+		p_gth: "Am asamblat cărămizile<br>casei din 900 de pliculețe<br>de ceai Gárdonyi", 
+		p_gyula1: "Am folosit 12.500 de piese<br>pentru cărămizile cetății", 
+		p_gyula2: "Clădirile din curte<br>au fost de asemenea<br>finalizate",
+	  },
+	  pl: {
+		back: "← Wstecz", close: "✕ Zamknij",
+		title_chain: "Most Łańcuchowy", 
+		title_shouse: "Domek", 
+		title_windmill: "Wiatrak", 
+		title_gth: "Herbaciarnia Gárdonyi", 
+		title_gyula: "Zamek w Gyula", 
+		p_chain: "Ukończony latem 2010 r.<br>i wystawiony na<br>Światowej Konferencji<br>'Bridges Pécs2010'",
+		p_shouse: "Wykonany na parapetówkę<br>latem 2009 r.", 
+		p_windmill1: "Ukończony na<br>Spotkanie Origami 2007", 
+		p_windmill2: "Wiosną 2008 r. odnowiono<br>skrzydła wiatraka", 
+		p_gth: "Zbudowałem cegły domu<br>z 900 torebek herbaty<br>Gárdonyi", 
+		p_gyula1: "Użyłem 12 500 elementów<br>na cegły zamku", 
+		p_gyula2: "Ukończono również<br>budynki na dziedzińcu",
+	  },
+	  sk: {
+		back: "← Späť", close: "✕ Zavrieť",
+		title_chain: "Reťazový most", 
+		title_shouse: "Domček", 
+		title_windmill: "Veterný mlyn", 
+		title_gth: "Čajovňa Gárdonyi", 
+		title_gyula: "Hrad Gyula", 
+		p_chain: "Dokončený v lete 2010<br>a vystavený na<br>Svetovej konferencii<br>'Bridges Pécs2010'",
+		p_shouse: "Vyrobený na kolaudáciu<br>v lete 2009", 
+		p_windmill1: "Dokončený pre<br>stretnutie Origami 2007", 
+		p_windmill2: "Na jar 2008 boli<br>obnovené krídla mlyna", 
+		p_gth: "Tehly domu som zostavil<br>z 900 vrecúšok čaju<br>Gárdonyi", 
+		p_gyula1: "Na tehly hradu som<br>použil 12 500 dielov", 
+		p_gyula2: "Dokončené boli aj<br>nádvorné budovy",
+	  },
+	  cs: {
+		back: "← Zpět", close: "✕ Zavřít",
+		title_chain: "Řetězový most", 
+		title_shouse: "Domeček", 
+		title_windmill: "Větrný mlýn", 
+		title_gth: "Čajovna Gárdonyi", 
+		title_gyula: "Hrad Gyula", 
+		p_chain: "Dokončen v létě 2010<br>a vystaven na<br>Světové konferenci<br>'Bridges Pécs2010'",
+		p_shouse: "Vyroben pro kolaudaci<br>v létě 2009", 
+		p_windmill1: "Dokončen pro<br>setkání Origami 2007", 
+		p_windmill2: "Na jaře 2008 byla<br>obnovena křídla mlýna", 
+		p_gth: "Cihly domu jsem sestavil<br>z 900 sáčků čaje<br>Gárdonyi", 
+		p_gyula1: "Na cihly hradu jsem<br>použil 12 500 dílů", 
+		p_gyula2: "Dokončeny byly i<br>nádvorní budovy",
+	  },
+	  uk: {
+		back: "← Назад", close: "✕ Закрити",
+		title_chain: "Ланцюговий міст", 
+		title_shouse: "Будиночок", 
+		title_windmill: "Вітряк", 
+		title_gth: "Чайна Gárdonyi", 
+		title_gyula: "Замок Дюла", 
+		p_chain: "Завершено влітку 2010 р.<br>та експоновано на<br>Світовій конференції<br>'Bridges Pécs2010'",
+		p_shouse: "Виготовлено на новосілля<br>влітку 2009 р.", 
+		p_windmill1: "Завершено до<br>Зустрічі орігамі 2007", 
+		p_windmill2: "Навесні 2008 р. оновлено<br>крила вітряка", 
+		p_gth: "Я склав цеглини будинку<br>з 900 пакетиків чаю<br>Gárdonyi", 
+		p_gyula1: "Я використав 12 500 деталей<br>для цеглин замку", 
+		p_gyula2: "Будівлі у внутрішньому дворі<br>також завершені",
+	  },
+	  sr: {
+		back: "← Назад", close: "✕ Затвори",
+		title_chain: "Ланчани мост", 
+		title_shouse: "Кућица", 
+		title_windmill: "Ветрењача", 
+		title_gth: "Чајџиница Gárdonyi", 
+		title_gyula: "Тврђава у Ђули", 
+		p_chain: "Завршено у лето 2010.<br>и изложено на<br>Светској конференцији<br>'Bridges Pécs2010'",
+		p_shouse: "Направљено за усељење<br>у лето 2009.", 
+		p_windmill1: "Завршено за<br>Оригами сусрет 2007.", 
+		p_windmill2: "У пролеће 2008. обновљена<br>су крила ветрењаче", 
+		p_gth: "Саставио сам цигле куће<br>од 900 кесица чаја<br>Gárdonyi", 
+		p_gyula1: "Користио сам 12.500 делова<br>за цигле тврђаве", 
+		p_gyula2: "Завршене су и<br>дворишне зграде",
+	  },
+	  hr: {
+		back: "← Natrag", close: "✕ Zatvori",
+		title_chain: "Lančani most", 
+		title_shouse: "Kućica", 
+		title_windmill: "Vjetrenjača", 
+		title_gth: "Čajanka Gárdonyi", 
+		title_gyula: "Tvrđava u Đuli", 
+		p_chain: "Dovršen do ljeta 2010.<br>i izložen na svjetskoj<br>konferenciji<br>'Bridges Pécs2010'",
+		p_shouse: "Izrađen za proslavu<br>useljenja u ljeto 2009.", 
+		p_windmill1: "Dovršen za<br>Origami susret 2007.", 
+		p_windmill2: "U proljeće 2008. obnovljena<br>su krila vjetrenjače", 
+		p_gth: "Sastavio sam cigle kuće<br>od 900 vrećica čaja<br>Gárdonyi", 
+		p_gyula1: "Koristio sam 12.500 dijelova<br>za cigle tvrđave", 
+		p_gyula2: "Dovršene su i<br>dvorišne zgrade",
+	  },
+	  sl: {
+		back: "← Nazaj", close: "✕ Zapri",
+		title_chain: "Verižni most", 
+		title_shouse: "Hišica", 
+		title_windmill: "Vetrnica", 
+		title_gth: "Čajnica Gárdonyi", 
+		title_gyula: "Grad Gyula", 
+		p_chain: "Dokončan do poletja 2010<br>in razstavljen na svetovni<br>konferenci<br>'Bridges Pécs2010'",
+		p_shouse: "Izdelan za vselitveno<br>zabavo poleti 2009", 
+		p_windmill1: "Dokončan za<br>Origami srečanje 2007", 
+		p_windmill2: "Spomladi 2008 so bila<br>obnovljena jadra vetrnice", 
+		p_gth: "Opeke hiše sem sestavil<br>iz 900 vrečk čaja<br>Gárdonyi", 
+		p_gyula1: "Za opeke gradu sem<br>uporabil 12.500 delov", 
+		p_gyula2: "Dokončana so bila tudi<br>dvoriščna poslopja",
+	  },
+	  bg: {
+		back: "← Назад", close: "✕ Затвори",
+		title_chain: "Верижен мост", 
+		title_shouse: "Къщичка", 
+		title_windmill: "Вятърна мелница", 
+		title_gth: "Чайна Gárdonyi", 
+		title_gyula: "Крепост Гюла", 
+		p_chain: "Завършен до лятото на<br>2010 г. и изложен на<br>световната конференция<br>'Bridges Pécs2010'",
+		p_shouse: "Изработен за новоселие<br>през лятото на 2009 г.", 
+		p_windmill1: "Завършен за<br>Оригами среща 2007", 
+		p_windmill2: "През пролетта на 2008 г.<br>крилата на мелницата<br>бяха обновени", 
+		p_gth: "Сглобих тухлите на къщата<br>от 900 пакетчета чай<br>Gárdonyi", 
+		p_gyula1: "Използвах 12 500 елемента<br>за тухлите на крепостта", 
+		p_gyula2: "Сградите в двора също<br>бяха завършени",
+	  },
+	  sq: {
+		back: "← Mbrapa", close: "✕ Mbyll",
+		title_chain: "Ura e Zinxhirëve", 
+		title_shouse: "Shtëpizë", 
+		title_windmill: "Mulliri i erës", 
+		title_gth: "Shtëpia e Çajit Gárdonyi", 
+		title_gyula: "Kalaja e Gyulës", 
+		p_chain: "Përfunduar në verën e<br>vitit 2010 dhe u ekspozua<br>në konferencën botërore<br>'Bridges Pécs2010'",
+		p_shouse: "Punuar për një festë<br>shtëpie në verën e 2009", 
+		p_windmill1: "Përfunduar për<br>Takimin e Origamit 2007", 
+		p_windmill2: "Në pranverën e 2008 u<br>rinovuan krahët e mullirit", 
+		p_gth: "I montova tullat e shtëpisë<br>nga 900 qese çaji<br>Gárdonyi", 
+		p_gyula1: "Përdora 12.500 elementë<br>për tullat e kalasë", 
+		p_gyula2: "Edhe ndërtesat e oborrit<br>janë përfunduar",
+	  },
+	  el: {
+		back: "← Πίσω", close: "✕ Κλείσιμο",
+		title_chain: "Γέφυρα των Αλυσίδων", 
+		title_shouse: "Σπιτάκι", 
+		title_windmill: "Ανεμόμυλος", 
+		title_gth: "Τσαγιέρι Gárdonyi", 
+		title_gyula: "Κάστρο της Γιούλα", 
+		p_chain: "Ολοκληρώθηκε το καλοκαίρι<br>του 2010 και εκτέθηκε στο<br>παγκόσμιο συνέδριο<br>'Bridges Pécs2010'",
+		p_shouse: "Φτιάχτηκε για εγκαίνια<br>σπιτιού το καλοκαίρι του 2009", 
+		p_windmill1: "Ολοκληρώθηκε για τη<br>Συνάντηση Origami 2007", 
+		p_windmill2: "Την άνοιξη του 2008<br>ανανεώθηκαν τα πτερύγια<br>του ανεμόμυλου", 
+		p_gth: "Συναρμολόγησα τα τούβλα<br>του σπιτιού από 900<br>φακελάκια τσαγιού Gárdonyi", 
+		p_gyula1: "Χρησιμοποίησα 12.500 κομμάτια<br>για τα τούβλα του κάστρου", 
+		p_gyula2: "Ολοκληρώθηκαν και τα<br>κτίρια της αυλής",
+	  },
+	  tr: {
+		back: "← Geri", close: "✕ Kapat",
+		title_chain: "Zincirli Köprü", 
+		title_shouse: "Küçük Ev", 
+		title_windmill: "Yel Değirmeni", 
+		title_gth: "Gárdonyi Çay Evi", 
+		title_gyula: "Gyula Kalesi", 
+		p_chain: "2010 yazında tamamlandı<br>ve 'Bridges Pécs2010'<br>Dünya Konferansı'nda<br>sergilendi",
+		p_shouse: "2009 yazında bir<br>ev görme partisi için<br>yapıldı", 
+		p_windmill1: "2007 Origami Buluşması<br>için hazırlandı", 
+		p_windmill2: "2008 baharında yel<br>değirmeninin kanatları<br>yenilendi", 
+		p_gth: "Evin tuğlalarını 900 adet<br>Gárdonyi Çay Evi poşetinden<br>oluşturdum", 
+		p_gyula1: "Kalenin tuğlaları için<br>12.500 adet parça kullandım", 
+		p_gyula2: "Avlu binaları da<br>tamamlandı",
+	  },
+	  nl: {
+		back: "← Terug", close: "✕ Sluiten",
+		title_chain: "Kettingbrug", 
+		title_shouse: "Huisje", 
+		title_windmill: "Windmolen", 
+		title_gth: "Gárdonyi TheeHuis", 
+		title_gyula: "Kasteel van Gyula", 
+		p_chain: "Voltooid in de zomer van<br>2010 en tentoongesteld op<br>de wereldconferentie<br>'Bridges Pécs2010'",
+		p_shouse: "Gemaakt voor een<br>panty in de zomer van 2009", 
+		p_windmill1: "Voltooid voor de<br>Origami bijeenkomst 2007", 
+		p_windmill2: "In het voorjaar van 2008<br>zijn de wieken van de<br>molen vernieuwd", 
+		p_gth: "Ik heb de stenen van het<br>huis samengesteld uit 900<br>Gárdonyi theezakjes", 
+		p_gyula1: "Ik heb 12.500 onderdelen<br>gebruikt voor de stenen<br>van het kasteel", 
+		p_gyula2: "De bijgebouwen op de<br>binnenplaats zijn ook klaar",
+	  },
+	  sv: {
+		back: "← Tillbaka", close: "✕ Stäng",
+		title_chain: "Kedjebron", 
+		title_shouse: "Litet hus", 
+		title_windmill: "Väderkvarn", 
+		title_gth: "Gárdonyi Tehus", 
+		title_gyula: "Gyula slott", 
+		p_chain: "Färdigställd till sommaren<br>2010 och ställdes ut på<br>världskonferensen<br>'Bridges Pécs2010'",
+		p_shouse: "Tillverkad för en<br>inflyttningsfest sommaren 2009", 
+		p_windmill1: "Färdigställd för<br>Origami-mötet 2007", 
+		p_windmill2: "Våren 2008 förnyades<br>väderkvarnens vingar", 
+		p_gth: "Jag satte ihop husets<br>tegelstenar av 900 stycken<br>Gárdonyi tepåsar", 
+		p_gyula1: "Jag använde 12 500 delar<br>till slottets tegelstenar", 
+		p_gyula2: "Gårdsbyggnaderna har<br>också färdigställts",
+	  },
+	  fi: {
+		back: "← Takaisin", close: "✕ Sulje",
+		title_chain: "Ketjusilta", 
+		title_shouse: "Pikkutalo", 
+		title_windmill: "Tuulimylly", 
+		title_gth: "Gárdonyi-teehuone", 
+		title_gyula: "Gyulan linna", 
+		p_chain: "Valmistui kesällä 2010<br>ja oli esillä<br>'Bridges Pécs2010'<br>-maailmankonferenssissa",
+		p_shouse: "Tehty tupaantuliaisia<br>varten kesällä 2009", 
+		p_windmill1: "Valmistui vuoden 2007<br>Origami-tapaamiseen", 
+		p_windmill2: "Keväällä 2008 tuulimyllyn<br>siivet uudistettiin", 
+		p_gth: "Kokosin talon tiilet<br>900:sta Gárdonyi-teehuoneen<br>teepussista", 
+		p_gyula1: "Käytin linnan tiiliin<br>12 500 osaa", 
+		p_gyula2: "Myös piharakennukset<br>ovat valmistuneet",
+	  },
+	  no: {
+		back: "← Tilbake", close: "✕ Lukk",
+		title_chain: "Kjedebroen", 
+		title_shouse: "Lite hus", 
+		title_windmill: "Vindmølle", 
+		title_gth: "Gárdonyi Tehus", 
+		title_gyula: "Gyula slott", 
+		p_chain: "Fullført innen sommeren<br>2010 og stilt ut på<br>verdenskonferansen<br>'Bridges Pécs2010'",
+		p_shouse: "Laget for en<br>innflyttingsfest sommeren 2009", 
+		p_windmill1: "Fullført til<br>Origami-treffet 2007", 
+		p_windmill2: "Våren 2008 ble<br>vindmøllens seil fornyet", 
+		p_gth: "Jeg satte sammen husets<br>murstein av 900<br>Gárdonyi tehus-poser", 
+		p_gyula1: "Jeg brukte 12 500 deler<br>til slottets mursteiner", 
+		p_gyula2: "Bygningene i bakgården<br>er også ferdigstilt",
+	  },	  
+	  da: {
+		back: "← Tilbage", close: "✕ Luk",
+		title_chain: "Kædebroen", 
+		title_shouse: "Lille hus", 
+		title_windmill: "Vindmølle", 
+		title_gth: "Gárdonyi Tehus", 
+		title_gyula: "Gyula Slot", 
+		p_chain: "Færdiggjort i sommeren<br>2010 og udstillet på<br>verdenskonferencen<br>'Bridges Pécs2010'",
+		p_shouse: "Lavet til en<br>indflytterfest i sommeren 2009", 
+		p_windmill1: "Færdiggjort til<br>Origami-træffet 2007", 
+		p_windmill2: "I foråret 2008 blev<br>vindmøllens vinger fornyet", 
+		p_gth: "Jeg samlede husets mursten<br>af 900 Gárdonyi te-poser", 
+		p_gyula1: "Jeg brugte 12.500 dele<br>til slottets mursten", 
+		p_gyula2: "Bygningerne i gården<br>er også færdiggjort",
+	  },	  
+	  is: {
+		back: "← Til baka", close: "✕ Loka",
+		title_chain: "Keðjubrúin", 
+		title_shouse: "Lítið hús", 
+		title_windmill: "Vindmylla", 
+		title_gth: "Gárdonyi tehús", 
+		title_gyula: "Kastalinn í Gyula", 
+		p_chain: "Fullgert sumarið 2010<br>og sýnt á heimsþinginu<br>'Bridges Pécs2010'",
+		p_shouse: "Gert fyrir flutningspartý<br>sumarið 2009", 
+		p_windmill1: "Fullgert fyrir<br>Origami-mótið 2007", 
+		p_windmill2: "Vorið 2008 voru<br>vængir vindmyllunnar endurnýjaðir", 
+		p_gth: "Ég setti saman múrsteina<br>hússins úr 900 Gárdonyi<br>tepokum", 
+		p_gyula1: "Ég notaði 12.500 einingar<br>í múrsteina kastalans", 
+		p_gyula2: "Byggingar í garðinum<br>hafa einnig verið kláraðar",
+	  },
+	  ca: {
+		back: "← Enrere", close: "✕ Tancar",
+		title_chain: "Pont de les Cadenes", 
+		title_shouse: "Caseta", 
+		title_windmill: "Molí de vent", 
+		title_gth: "Casa de Te Gárdonyi", 
+		title_gyula: "Castell de Gyula", 
+		p_chain: "Enllestit l'estiu de 2010<br>i exposat a la conferència<br>mundial 'Bridges Pécs2010'",
+		p_shouse: "Fet per a una festa<br>d'inauguració de casa<br>l'estiu de 2009", 
+		p_windmill1: "Enllestit per a la<br>Trobada d'Origami 2007", 
+		p_windmill2: "A la primavera de 2008<br>es van renovar les veles<br>del molí de vent", 
+		p_gth: "Vaig muntar els totxos de<br>la casa amb 900 sobres<br>de te Gárdonyi", 
+		p_gyula1: "Vaig utilitzar 12.500 peces<br>per als totxos del castell", 
+		p_gyula2: "També s'han enllestit els<br>edificis del pati",
+	  },
+	  eo: {
+		back: "← Reen", close: "✕ Fermi",
+		title_chain: "Ĉenponto", 
+		title_shouse: "Dometo", 
+		title_windmill: "Ventmuelilo", 
+		title_gth: "Teodomo Gárdonyi", 
+		title_gyula: "Kastelo de Gyula", 
+		p_chain: "Pretiĝis por la somero<br>de 2010 kaj estis ekspoziciita<br>en la monda konferenco<br>'Bridges Pécs2010'",
+		p_shouse: "Farita por domfesteno<br>en la somero de 2009", 
+		p_windmill1: "Pretiĝis por la<br>Origami-Renkontiĝo 2007", 
+		p_windmill2: "En la printempo de 2008<br>renoviĝis la flugiloj de<br>la ventmuelilo", 
+		p_gth: "Mi kunmetis la brikojn de<br>la domo el 900 saketoj de<br>Teodomo Gárdonyi", 
+		p_gyula1: "Mi uzis 12.500 elementojn<br>por la brikoj de la kastelo", 
+		p_gyula2: "Ankaŭ la kortaj konstruaĵoj<br>estas finitaj",
+	  },	  
+	  et: {
+		back: "← Tagasi", close: "✕ Sulge",
+		title_chain: "Ketisild", 
+		title_shouse: "Majake", 
+		title_windmill: "Tuuleveski", 
+		title_gth: "Gárdonyi teemaja", 
+		title_gyula: "Gyula kindlus", 
+		p_chain: "Valmis 2010. aasta suveks<br>ja oli eksoneeritud<br>maailmakonverentsil<br>'Bridges Pécs2010'",
+		p_shouse: "Valmis soolaleivapeoks<br>2009. aasta suvel", 
+		p_windmill1: "Valmis 2007. aasta<br>origami kokkutulekuks", 
+		p_windmill2: "2008. aasta kevadel<br>uuendati tuuleveski tiivad", 
+		p_gth: "Panin maja tellised kokku<br>900-st Gárdonyi teemaja<br>pakist", 
+		p_gyula1: "Kasutasin kindluse<br>telliste jaoks 12 500 osa", 
+		p_gyula2: "Valmisid ka<br>õuehooned",
+	  },
+	  lv: {
+		back: "← Atpakaļ", close: "✕ Aizvērt",
+		title_chain: "Ķēžu tilts", 
+		title_shouse: "Mājiņa", 
+		title_windmill: "Vējdzirnavas", 
+		title_gth: "Gárdonyi tējas nams", 
+		title_gyula: "Ģulas pils", 
+		p_chain: "Pabeigts līdz 2010. gada<br>vasarai un izstādīts<br>pasaules konferencē<br>'Bridges Pécs2010'",
+		p_shouse: "Izgatavots sālsmaizes<br>baļļukam 2009. gada vasarā", 
+		p_windmill1: "Pabeigts 2007. gada<br>Origami sanāksmei", 
+		p_windmill2: "2008. gada pavasarī tika<br>atjaunoti vējdzirnavu spārni", 
+		p_gth: "Mājas ķieģeļus saliku no<br>900 Gárdonyi tējas<br>namiņa paciņām", 
+		p_gyula1: "Pils ķieģeļiem izmantoju<br>12 500 detaļas", 
+		p_gyula2: "Pabeigtas arī<br>pagalma ēkas",
+	  },
+	  lt: {
+		back: "← Atgal", close: "✕ Uždaryti",
+		title_chain: "Grandinių tiltas", 
+		title_shouse: "Namukas", 
+		title_windmill: "Vėjo malūnas", 
+		title_gth: "Gárdonyi arbatos namai", 
+		title_gyula: "Diulos pilis", 
+		p_chain: "Baigtas 2010 m. vasarą<br>ir eksponuotas pasaulinėje<br>konferencijoje<br>'Bridges Pécs2010'",
+		p_shouse: "Pagamintas įkurtuvėms<br>2009 m. vasarą", 
+		p_windmill1: "Baigtas 2007 m.<br>Origami susitikimui", 
+		p_windmill2: "2008 m. pavasarį buvo<br>atnaujinti malūno sparnai", 
+		p_gth: "Namo plytas surinkau iš<br>900 Gárdonyi arbatos<br>namų maišelių", 
+		p_gyula1: "Pilies plytoms panaudojau<br>12 500 detalių", 
+		p_gyula2: "Taip pat baigti ir<br>kiemo pastatai",
+	  },
+	  ja: {
+		back: "← 戻る", close: "✕ 閉じる",
+		title_chain: "くさり橋", 
+		title_shouse: "小さな家", 
+		title_windmill: "風車", 
+		title_gth: "Gárdonyi ティーハウス", 
+		title_gyula: "ジュラ城", 
+		p_chain: "2010年夏に完成し、<br>世界会議<br>「Bridges Pécs2010」で<br>展示されました",
+		p_shouse: "2009年の夏の<br>新築祝いのために<br>作られました", 
+		p_windmill1: "2007年の折り紙集会<br>のために完成しました", 
+		p_windmill2: "2008年の春に<br>風車の帆を新調しました", 
+		p_gth: "Gárdonyi ティーハウスの<br>バッグ900個で家のレンガを<br>組み立てました", 
+		p_gyula1: "城のレンガには<br>12,500個のパーツを<br>使用しました", 
+		p_gyula2: "中庭の建物も<br>完成しました",
+	  },
+	  zh: {
+		back: "← 返回", close: "✕ 关闭",
+		title_chain: "塞切尼链桥", 
+		title_shouse: "小屋", 
+		title_windmill: "风车", 
+		title_gth: "Gárdonyi 茶屋", 
+		title_gyula: "久洛城堡", 
+		p_chain: "于2010年夏天完工，<br>并在“Bridges Pécs2010”<br>世界会议上展出",
+		p_shouse: "为2009年夏天的<br>乔迁聚会制作", 
+		p_windmill1: "为2007年折纸大会<br>制作完成", 
+		p_windmill2: "2008年春天更新了<br>风车的叶片", 
+		p_gth: "我用900个 Gárdonyi 茶屋<br>的茶包袋拼成了<br>房子的砖块", 
+		p_gyula1: "城堡的砖块使用了<br>12,500个零件", 
+		p_gyula2: "院子里的建筑也<br>已完工",
+	  },
+	  ko: {
+		back: "← 뒤로", close: "✕ 닫기",
+		title_chain: "세체니 사슬다리", 
+		title_shouse: "작은 집", 
+		title_windmill: "풍차", 
+		title_gth: "가르도니 티하우스", 
+		title_gyula: "줄라 성", 
+		p_chain: "2010년 여름에 완성되었으며,<br>'Bridges Pécs2010'<br>세계 컨퍼런스에<br>전시되었습니다",
+		p_shouse: "2009년 여름 집들이 파티를<br>위해 제작되었습니다", 
+		p_windmill1: "2007년 오리가미 모임을 위해<br>완성되었습니다", 
+		p_windmill2: "2008년 봄에 풍차의 돛을<br>새롭게 교체했습니다", 
+		p_gth: "900개의 가르도니 티하우스<br>티백으로 집의 벽돌을<br>조립했습니다", 
+		p_gyula1: "성벽을 만드는데<br>12,500개의 부품이<br>사용되었습니다", 
+		p_gyula2: "안뜰의 건물들도 모두<br>완공되었습니다",
+	  }
+
+	};
+    
+	
+	let currentIndex = 0;
     const galleryData = [];
+	
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }	
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -189,31 +755,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -234,7 +775,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

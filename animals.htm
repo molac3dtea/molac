@@ -20,7 +20,6 @@
 
     .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
 	.back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-	
 	.page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
     table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
@@ -45,8 +44,25 @@
     .next { right: -60px; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
 	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+	
+	@media (max-width: 768px) {
+	  /* Még nagyobb betűk mobilon, ha szükséges */
+	  td {
+		font-size: 1.3rem !important; 
+		padding: 10px 5px !important;
+	  }
+
+	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
+	  .gallery-img {
+		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
+		max-width: 250px;       /* De ne legyen óriási */
+		height: auto;
+	  }
+	}	
   </style>
 </head>
+
+
 <body>
 
   <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
@@ -221,6 +237,17 @@
 		terrarium_title: "Abitanti del terrario", terrarium_croc: "1600 bustine di tè verde formano questo baby coccodrillo di 70 cm",
 		terrarium_dyno: "Alcuni giornali colorati tagliati in 2500 piccoli pezzi e il dinosauro è pronto (drago domestico :)", terrarium_frog: "Sempre tè verde: una raganella di 300 pezzi"
 	  },
+	pt: {
+		back: "← Voltar", close: "✕ Fechar",
+		stego_title: "Estegossauro", stego_header: "Este dinossauro levou mais de 6 anos a ser feito e tem 18.000 peças",
+		stego_r1: "Estas fotos foram tiradas em 2005", stego_r2: "Aqui o dinossauro ainda não tem patas", stego_r3: "As patas estão a ser fabricadas", stego_r4: "Agosto 2010: o dinossauro está pronto! Exibido pela primeira vez em Pécs",
+		spider_title: "Tarântula", spider_desc: "O novo habitante do terrário é uma tarântula de 25 cm",
+		poultry_title: "Habitantes da capoeira", poultry_hen: "Para a galinha, foram necessários cerca de 1700 saquinhos de chá Pickwick", poultry_chicks: "300-400 peças por pintainho", poultry_family: "A família reunida", poultry_egg_desc: "Galinha e ovo",
+		butterfly_big_title: "Borboleta grande", butterfly_big_desc: "Quase meio ano de trabalho com 1800 peças",
+		butterfly_small_title: "Borboletas pequenas", butterfly_small_desc: "Estas pequenas têm 400 peças",
+		terrarium_title: "Habitantes do terrário", terrarium_croc: "1600 saquinhos de chá verde formam este crocodilo bebé de 70 cm",
+		terrarium_dyno: "Alguns jornais coloridos cortados em 2500 pequenos pedaços e o dinossauro está pronto (dragão doméstico :)", terrarium_frog: "Também de chá verde: rã arborícola de 300 peças"
+	  },	  
 	ro: {
 		back: "← Înapoi", close: "✕ Închide",
 		stego_title: "Stegosaurus", stego_header: "Acest dinozaur a fost creat în peste 6 ani și are 18.000 de piese",
@@ -508,6 +535,7 @@
 		terrarium_dyno: "컬러 신문지를 2500개의 작은 조각으로 잘라 만든 공룡입니다 (애완용 용 :)", terrarium_frog: "마찬가지로 녹차 티백으로 만든 300개의 부품이 들어간 청개구리입니다"
 	  }
 	};
+	
     let currentIndex = 0;
     const galleryData = [];
 
@@ -563,6 +591,7 @@
       document.body.style.overflow = 'auto';
     }
 
+    // Adatok begyűjtése az oldal betöltésekor
     window.onload = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
@@ -576,19 +605,82 @@
           a.setAttribute('href', `${href}${sep}lang=${lang}`);
         }
       });
-    };
+	  
+	  const imgElements = document.querySelectorAll('.gallery-img');
+	  imgElements.forEach((img) => {
+		const table = img.closest('table');
+		const caption = table ? table.querySelector('caption').innerText : "";
+		
+		const row = img.closest('tr');
+		let desc = "";
+		
+		if (row) {
+		  // Megkeressük az adott sor első celláját
+		  let descCell = row.querySelector('td');
+		  
+		  // Ha a cellában van kép, akkor ez nem a leírás cellája (hanem egy rowspan-es sor alja)
+		  // Ekkor megkeressük a felette lévő sorokban a rowspan-es cellát
+		  if (descCell && descCell.querySelector('img')) {
+			  let prevRow = row.previousElementSibling;
+			  while (prevRow) {
+				  let potentialDesc = prevRow.querySelector('td[rowspan]');
+				  if (potentialDesc) {
+					  descCell = potentialDesc;
+					  break;
+				  }
+				  prevRow = prevRow.previousElementSibling;
+			  }
+		  }
+		  
+		  if (descCell) {
+			desc = descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+			// HTML tisztítás (opcionális, ha csak szöveg kell)
+			let tempDiv = document.createElement("div");
+			tempDiv.innerHTML = desc;
+			desc = tempDiv.textContent || tempDiv.innerText || "";
+		  }
+		}
 
-    window.addEventListener('keydown', function (e) {
-      const isLightboxOpen = document.getElementById('lightbox').style.display === 'flex';
-      if (e.key === "Escape") {
-        if (isLightboxOpen) closeImage();
-        else window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
-      }
-      if (isLightboxOpen) {
-        if (e.key === "ArrowRight") changeImage(1);
-        if (e.key === "ArrowLeft") changeImage(-1);
-      }
-    });
+		galleryData.push({
+		  bigSrc: img.src.replace('_', ''),
+		  title: caption,
+		  description: desc
+		});
+	  });
+	};
+
+	window.addEventListener('keydown', function (e) {
+	  const lightbox = document.getElementById('lightbox');
+	  const backBtn = document.querySelector('.back-button');
+	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+
+	  if (e.key === "Escape") {
+		// 1. Animáció elindítása
+		if (backBtn) {
+		  backBtn.classList.add('back-button-active');
+		}
+
+		if (isLightboxOpen) {
+		  // 2. Ha nyitva van a galéria, csak azt zárjuk be
+		  setTimeout(() => {
+			if (backBtn) backBtn.classList.remove('back-button-active');
+			closeImage();
+		  }, 200);
+		} else {
+		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
+		  setTimeout(() => {
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
+		  }, 200);
+		}
+	  }
+	  
+	  // Nyilakkal való léptetés (csak ha nyitva a lightbox)
+	  if (isLightboxOpen) {
+		if (e.key === "ArrowRight") changeImage(1);
+		if (e.key === "ArrowLeft") changeImage(-1);
+	  }
+	});
+
   </script>
 </body>
 </html>
