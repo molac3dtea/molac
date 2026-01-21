@@ -11,7 +11,6 @@
   <meta property="og:title" content="Állatok | 3D-teaorigami Galéria | molac">
   <meta property="og:description" content="Nézze meg a 18 000 darabos 3D-teaorigami Stegosaurust és más különleges állatszobrait, melyek mindegyiketeástasakokból készült (molac).">
   <meta property="og:image" content="https://molac.hu/pictures/animals/stego10.jpg">
-  <meta property="og:url" content="https://molac.hu/animals.htm">  
   
   <link rel="stylesheet" href="bootstrap.css">
   <style>
@@ -26,7 +25,7 @@
     table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 100%; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
     td { padding: 15px; text-align: center; font-weight: bold; border: none !important; font-size: 1.35rem; line-height: 1.4; }
-    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; font-size: 1.5rem !important; }	
+    th { background: #003366; color: white; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.5rem !important; font-weight: bold; letter-spacing: 1px; }	
     img { border-radius: 5px; cursor: pointer; transition: transform 0.3s; }
     img:hover { transform: scale(1.01); }
 
@@ -46,107 +45,88 @@
     .next { right: -60px; }
     .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #003366; color: white; padding: 8px 18px; border-radius: 50px; font-weight: bold; cursor: pointer; }
 	.gallery-img { width: 250px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
-
-	@media (max-width: 768px) {
-	  /* Még nagyobb betűk mobilon, ha szükséges */
-	  td {
-		font-size: 1.3rem !important; 
-		padding: 10px 5px !important;
-	  }
-
-	  /* Képek méretének igazítása, hogy ne lógjanak ki a szöveg mellől */
-	  .gallery-img {
-		width: 100% !important; /* Mobilon kitölti a rendelkezésre álló helyet */
-		max-width: 250px;       /* De ne legyen óriási */
-		height: auto;
-	  }
-	}
-
   </style>
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
-    
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
       <span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
       <img id="lightbox-img" src="">
       <span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
     </div>
-
     <div id="lb-desc" class="lightbox-footer"></div>
   </div>
 
   <div class="page-container">
     <table>
-      <caption>Stegosaurus</caption>
-      <tr><th colspan="3">Ez a dínó több mint 6 évig készült és 18000 darabból áll</th></tr>
+      <caption data-lang-key="stego_title">Stegosaurus</caption>
+      <tr><th colspan="3" data-lang-key="stego_header">Ez a dínó több mint 6 évig készült és 18000 darabból áll</th></tr>
       <tr>
-        <td>Ezek a képek<br>2005-ben készültek</td>
+        <td data-lang-key="stego_r1">Ezek a képek 2005-ben készültek</td>
         <td><img src="pictures/animals/stego01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
         <td><img src="pictures/animals/stego02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>
       <tr>
-        <td>Itt még nincs<br>lába a dínónak</td>
+        <td data-lang-key="stego_r2">Itt még nincs lába a dínónak</td>
         <td><img src="pictures/animals/stego03.jpg" class="gallery-img" onclick="openGallery(2)"></td>
         <td><img src="pictures/animals/stego04.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>
       <tr>
-        <td>Készülnek a lábak</td>
+        <td data-lang-key="stego_r3">Készülnek a lábak</td>
         <td><img src="pictures/animals/stego06.jpg" class="gallery-img" onclick="openGallery(4)"></td>
 		<td><img src="pictures/animals/stego07.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>    
       <tr>
-        <td>2010 augusztus<br>elkészült a dínó!<br>Pécsen volt<br>látható először</td>
+        <td data-lang-key="stego_r4">2010 augusztus: elkészült a dínó! Pécsen volt látható először</td>
         <td><img src="pictures/animals/stego09.jpg" class="gallery-img" onclick="openGallery(6)"></td>
 		<td><img src="pictures/animals/stego10.jpg" class="gallery-img" onclick="openGallery(7)"></td>
       </tr>    	  
-	
 	</table>
 
     <table>
-      <caption>Madárpók</caption>
+      <caption data-lang-key="spider_title">Madárpók</caption>
       <tr>
-        <td>Terrárium újabb lakója egy<br>25 cm-es madárpók</td>
+        <td data-lang-key="spider_desc">Terrárium újabb lakója egy 25 cm-es madárpók</td>
         <td><img src="pictures/animals/pok.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>
     </table>
 	
     <table>
-      <caption>Baromfiudvar lakói</caption>
+      <caption data-lang-key="poultry_title">Baromfiudvar lakói</caption>
       <tr>
-        <td>A tyúkanyóhoz kb. 1700 db<br>Pickwick tasak kellett</td>
-        <td><img src="pictures/animals/tyuk2.jpg" class="gallery-img" onclick="openGallery(9)"></td>
+        <td data-lang-key="poultry_hen">A tyúkanyóhoz kb. 1700 db Pickwick tasak kellett</td>
+        <td><img src="pictures/animals/tyuk1.jpg" class="gallery-img" onclick="openGallery(9)"></td>
         <td><img src="pictures/animals/tyuk2.jpg" class="gallery-img" onclick="openGallery(10)"></td>
       </tr>
       <tr>
-        <td>A csibékhez<br>darabonként 3-400 db</td>
+        <td data-lang-key="poultry_chicks">A csibékhez darabonként 3-400 db</td>
         <td><img src="pictures/animals/csibe.jpg" class="gallery-img" onclick="openGallery(11)"></td>
         <td><img src="pictures/animals/kiskakas.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>
       <tr>
-        <td>Együtt a család</td>
+        <td data-lang-key="poultry_family">Együtt a család</td>
         <td><img src="pictures/animals/bfiudvar.jpg" class="gallery-img" onclick="openGallery(13)"></td>
-		<td><img src="pictures/animals/tyuktojas.jpg" class="gallery-img" onclick="openGallery(14)"></td>
+		<td data-lang-key="poultry_egg_desc"><img src="pictures/animals/tyuktojas.jpg" class="gallery-img" onclick="openGallery(14)">Tyúk és tojás</td>
       </tr>    
 	</table>
 	
 	<table>
-      <caption>Nagy pillangó</caption>
+      <caption data-lang-key="butterfly_big_title">Nagy pillangó</caption>
       <tr>
-        <td>Közel fél évig készült<br>1800 darabból</td>
+        <td data-lang-key="butterfly_big_desc">Közel fél évig készült 1800 darabból</td>
         <td><img src="pictures/animals/butterfly.jpg" class="gallery-img" onclick="openGallery(15)"></td>
       </tr>
     </table>
 
     <table>
-      <caption>Kicsi pillangók</caption>
+      <caption data-lang-key="butterfly_small_title">Kicsi pillangók</caption>
       <tr>
-        <td>Ezek a kicsik<br>400 darabból állnak</td>
+        <td data-lang-key="butterfly_small_desc">Ezek a kicsik 400 darabból állnak</td>
         <td><img src="pictures/animals/bfly3.jpg" class="gallery-img" onclick="openGallery(16)"></td>
         <td><img src="pictures/animals/bfly1.jpg" class="gallery-img" onclick="openGallery(17)"></td>
 		<td><img src="pictures/animals/bfly2.jpg" class="gallery-img" onclick="openGallery(18)"></td>
@@ -154,64 +134,409 @@
 	</table>	
 	
 	<table>
-      <caption>Terrárium lakói</caption>
+      <caption data-lang-key="terrarium_title">Terrárium lakói</caption>
       <tr>
-        <td>1600 db zöldtea tasakja<br>alkotja ezt a 70 centis<br>bébikrokodilt</td>
+        <td data-lang-key="terrarium_croc">1600 db zöldtea tasakja alkotja ezt a 70 centis bébikrokodilt</td>
         <td><img src="pictures/animals/crokodil.jpg" class="gallery-img" onclick="openGallery(19)"></td>
         <td><img src="pictures/animals/chicken&crokodil.jpg" class="gallery-img" onclick="openGallery(20)"></td>
       </tr>
       <tr>
-        <td>Néhány színes újság<br>szétdarabolva<br>2500 kis darabra<br>és kész a dínó<br>(házi-sárkány:)</td>
+        <td data-lang-key="terrarium_dyno">Néhány színes újság szétdarabolva 2500 kis darabra és kész a dínó (házi-sárkány:)</td>
         <td><img src="pictures/animals/dyno.jpg" class="gallery-img" onclick="openGallery(21)"></td>
         <td><img src="pictures/animals/dyno&crokodil.jpg" class="gallery-img" onclick="openGallery(22)"></td>
       </tr>
       <tr>
-        <td>Szintén zöldtea:<br>300 darabos<br>levelibéka</td>
+        <td data-lang-key="terrarium_frog">Szintén zöldtea: 300 darabos levelibéka</td>
         <td><img src="pictures/animals/frog.jpg" class="gallery-img" onclick="openGallery(23)"></td>
 		<td><img src="pictures/animals/terrarium.jpg" class="gallery-img" onclick="openGallery(24)"></td>
       </tr>    
 	</table>
-	
   </div>
 
   <script>
+	const translations = {
+	  hu: {
+		back: "← Vissza", close: "✕ Bezárás",
+		stego_title: "Stegosaurus", stego_header: "Ez a dínó több mint 6 évig készült és 18000 darabból áll",
+		stego_r1: "Ezek a képek 2005-ben készültek", stego_r2: "Itt még nincs lába a dínónak", stego_r3: "Készülnek a lábak", stego_r4: "2010 augusztus: elkészült a dínó! Pécsen volt látható először",
+		spider_title: "Madárpók", spider_desc: "Terrárium újabb lakója egy 25 cm-es madárpók",
+		poultry_title: "Baromfiudvar lakói", poultry_hen: "A tyúkanyóhoz kb. 1700 db Pickwick tasak kellett", poultry_chicks: "A csibékhez darabonként 3-400 db", poultry_family: "Együtt a család", poultry_egg_desc: "Tyúk és tojás",
+		butterfly_big_title: "Nagy pillangó", butterfly_big_desc: "Közel fél évig készült 1800 darabból",
+		butterfly_small_title: "Kicsi pillangók", butterfly_small_desc: "Ezek a kicsik 400 darabból állnak",
+		terrarium_title: "Terrárium lakói", terrarium_croc: "1600 db zöldtea tasakja alkotja ezt a 70 centis bébikrokodilt",
+		terrarium_dyno: "Néhány színes újság szétdarabolva 2500 kis darabra és kész a dínó (házi-sárkány:)", terrarium_frog: "Szintén zöldtea: 300 darabos levelibéka"
+	  },
+	  en: {
+		back: "← Back", close: "✕ Close",
+		stego_title: "Stegosaurus", stego_header: "This dino took over 6 years to make and consists of 18,000 pieces",
+		stego_r1: "These pictures were taken in 2005", stego_r2: "The dino doesn't have legs yet", stego_r3: "The legs are being made", stego_r4: "August 2010: the dino is finished! First shown in Pécs",
+		spider_title: "Tarantula", spider_desc: "A 25 cm tarantula is the newest resident of the terrarium",
+		poultry_title: "Poultry Yard", poultry_hen: "The mother hen required about 1700 Pickwick bags", poultry_chicks: "Chicks took 3-400 pieces each", poultry_family: "The family together", poultry_egg_desc: "Chicken and egg",
+		butterfly_big_title: "Large Butterfly", butterfly_big_desc: "Made from 1800 pieces over nearly half a year",
+		butterfly_small_title: "Small Butterflies", butterfly_small_desc: "These little ones consist of 400 pieces",
+		terrarium_title: "Terrarium Residents", terrarium_croc: "1600 green tea bags form this 70 cm baby crocodile",
+		terrarium_dyno: "Newspapers cut into 2500 pieces and the dino is ready (house-dragon:)", terrarium_frog: "Also green tea: 300-piece tree frog"
+	  },
+	  de: {
+		back: "← Zurück", close: "✕ Schließen",
+		stego_title: "Stegosaurus", stego_header: "Dieser Dino wurde über 6 Jahre lang gebaut und besteht aus 18.000 Teilen",
+		stego_r1: "Diese Bilder wurden im Jahr 2005 aufgenommen", stego_r2: "Hier hat der Dino noch keine Beine", stego_r3: "Die Beine werden gefertigt", stego_r4: "August 2010: Der Dino ist fertig! Er war zuerst in Pécs zu sehen",
+		spider_title: "Vogelspinne", spider_desc: "Ein neuer Bewohner des Terrariums ist eine 25 cm große Vogelspinne",
+		poultry_title: "Geflügelhof", poultry_hen: "Für die Henne wurden ca. 1700 Pickwick-Beutel benötigt", poultry_chicks: "Für die Küken jeweils 300-400 Stück", poultry_family: "Die Familie zusammen", poultry_egg_desc: "Huhn und Ei",
+		butterfly_big_title: "Großer Schmetterling", butterfly_big_desc: "Fast ein halbes Jahr Arbeit aus 1800 Teilen",
+		butterfly_small_title: "Kleine Schmetterlinge", butterfly_small_desc: "Diese Kleinen bestehen aus 400 Teilen",
+		terrarium_title: "Terrarium-Bewohner", terrarium_croc: "1600 Grüntee-Beutel bilden dieses 70 cm lange Baby-Krokodil",
+		terrarium_dyno: "Bunte Zeitungen in 2500 Stücke zerschnitten und fertig ist der Dino (Hausdrache:)", terrarium_frog: "Ebenfalls Grüntee: Laubfrosch aus 300 Teilen"
+	  },
+	fr: {
+		back: "← Retour", close: "✕ Fermer",
+		stego_title: "Stégosaure", stego_header: "Ce dinosaure a mis plus de 6 ans à être construit et se compose de 18 000 pièces",
+		stego_r1: "Ces photos ont été prises en 2005", stego_r2: "Ici, le dinosaure n'a pas encore de pattes", stego_r3: "Les pattes sont en cours de fabrication", stego_r4: "Août 2010 : le dinosaure est terminé ! Il a été exposé pour la première fois à Pécs",
+		spider_title: "Mygale", spider_desc: "Le nouvel habitant du terrarium est une mygale de 25 cm",
+		poultry_title: "Habitants de la basse-cour", poultry_hen: "Pour la poule, il a fallu environ 1700 sachets de thé Pickwick", poultry_chicks: "300 à 400 pièces par poussin", poultry_family: "La famille réunie", poultry_egg_desc: "La poule et l'œuf",
+		butterfly_big_title: "Grand papillon", butterfly_big_desc: "Près de six mois de travail avec 1800 pièces",
+		butterfly_small_title: "Petits papillons", butterfly_small_desc: "Ces petits sont composés de 400 pièces",
+		terrarium_title: "Habitants du terrarium", terrarium_croc: "1600 sachets de thé vert forment ce bébé crocodile de 70 cm",
+		terrarium_dyno: "Quelques journaux colorés découpés en 2500 petits morceaux et le dinosaure est prêt (dragon domestique :))", terrarium_frog: "Également en thé vert : une rainette de 300 pièces"
+	  },
+	es: {
+		back: "← Volver", close: "✕ Cerrar",
+		stego_title: "Estegosaurio", stego_header: "Este dinosaurio tardó más de 6 años en hacerse y consta de 18.000 piezas",
+		stego_r1: "Estas fotos fueron tomadas en 2005", stego_r2: "Aquí el dinosaurio aún no tiene patas", stego_r3: "Se están fabricando las patas", stego_r4: "Agosto de 2010: ¡el dinosaurio está listo! Se exhibió por primera vez en Pécs",
+		spider_title: "Tarántula", spider_desc: "El nuevo habitante del terrario es una tarántula de 25 cm",
+		poultry_title: "Habitantes del corral", poultry_hen: "Para la gallina se necesitaron unas 1700 bolsas de té Pickwick", poultry_chicks: "300-400 piezas por pollito", poultry_family: "Toda la familia junta", poultry_egg_desc: "La gallina y el huevo",
+		butterfly_big_title: "Mariposa grande", butterfly_big_desc: "Casi medio año de trabajo con 1800 piezas",
+		butterfly_small_title: "Mariposas pequeñas", butterfly_small_desc: "Estas pequeñas constan de 400 piezas",
+		terrarium_title: "Habitantes del terrario", terrarium_croc: "1600 bolsas de té verde forman este cocodrilo bebé de 70 cm",
+		terrarium_dyno: "Unos cuantos periódicos de colores cortados en 2500 piezas pequeñas y el dinosaurio está listo (dragón doméstico :)", terrarium_frog: "También de té verde: rana arborícola de 300 piezas"
+	  },
+	it: {
+		back: "← Indietro", close: "✕ Chiudi",
+		stego_title: "Stegosauro", stego_header: "Questo dinosauro ha richiesto oltre 6 anni di lavoro e conta 18.000 pezzi",
+		stego_r1: "Queste foto sono state scattate nel 2005", stego_r2: "Qui il dinosauro non ha ancora le zampe", stego_r3: "Le zampe sono in lavorazione", stego_r4: "Agosto 2010: il dinosauro è finito! Esposto per la prima volta a Pécs",
+		spider_title: "Migale", spider_desc: "Il nuovo abitante del terrario è una migale di 25 cm",
+		poultry_title: "Abitanti del pollaio", poultry_hen: "Per la chioccia sono servite circa 1700 bustine di tè Pickwick", poultry_chicks: "300-400 pezzi per pulcino", poultry_family: "La famiglia al completo", poultry_egg_desc: "La gallina e l'uovo",
+		butterfly_big_title: "Farfalla grande", butterfly_big_desc: "Quasi sei mesi di lavoro con 1800 pezzi",
+		butterfly_small_title: "Farfalle piccole", butterfly_small_desc: "Queste piccole contano 400 pezzi",
+		terrarium_title: "Abitanti del terrario", terrarium_croc: "1600 bustine di tè verde formano questo baby coccodrillo di 70 cm",
+		terrarium_dyno: "Alcuni giornali colorati tagliati in 2500 piccoli pezzi e il dinosauro è pronto (drago domestico :)", terrarium_frog: "Sempre tè verde: una raganella di 300 pezzi"
+	  },
+	ro: {
+		back: "← Înapoi", close: "✕ Închide",
+		stego_title: "Stegosaurus", stego_header: "Acest dinozaur a fost creat în peste 6 ani și are 18.000 de piese",
+		stego_r1: "Aceste fotografii au fost făcute în 2005", stego_r2: "Aici dinozaurul nu are încă picioare", stego_r3: "Se lucrează la picioare", stego_r4: "August 2010: dinozaurul este gata! Expus prima dată la Pécs",
+		spider_title: "Tarantulă", spider_desc: "Noul locuitor al terariului este o tarantulă de 25 cm",
+		poultry_title: "Locuitorii curții de păsări", poultry_hen: "Pentru cloșcă a fost nevoie de aproximativ 1700 de pliculețe Pickwick", poultry_chicks: "300-400 piese pentru fiecare pui", poultry_family: "Familia împreună", poultry_egg_desc: "Găina și oul",
+		butterfly_big_title: "Fluture mare", butterfly_big_desc: "Aproape jumătate de an de muncă din 1800 de piese",
+		butterfly_small_title: "Fluturi mici", butterfly_small_desc: "Aceștia mici sunt formați din 400 de piese",
+		terrarium_title: "Locuitorii terariului", terrarium_croc: "1600 de pliculețe de ceai verde formează acest pui de crocodil de 70 cm",
+		terrarium_dyno: "Câteva ziare colorate tăiate în 2500 de bucățele și dinozaurul este gata (dragon de casă :)", terrarium_frog: "Tot din ceai verde: broscuță de copac din 300 de piese"
+	  },
+	pl: {
+		back: "← Wstecz", close: "✕ Zamknij",
+		stego_title: "Stegozaur", stego_header: "Ten dinozaur powstawał ponad 6 lat i składa się z 18 000 elementów",
+		stego_r1: "Te zdjęcia zostały zrobione w 2005 roku", stego_r2: "Tutaj dinozaur nie ma jeszcze nóg", stego_r3: "Trwają prace nad nogami", stego_r4: "Sierpień 2010: dinozaur gotowy! Po raz pierwszy został wystawiony w Peczu",
+		spider_title: "Ptasznik", spider_desc: "Nowym mieszkańcem terrarium jest 25-centymetrowy ptasznik",
+		poultry_title: "Mieszkańcy podwórka", poultry_hen: "Na kurę potrzeba było około 1700 torebek herbaty Pickwick", poultry_chicks: "Na pisklęta po 300-400 sztuk każde", poultry_family: "Rodzina w komplecie", poultry_egg_desc: "Kura i jajko",
+		butterfly_big_title: "Duży motyl", butterfly_big_desc: "Powstawał prawie pół roku z 1800 elementów",
+		butterfly_small_title: "Małe motyle", butterfly_small_desc: "Te małe składają się z 400 elementów",
+		terrarium_title: "Mieszkańcy terrarium", terrarium_croc: "1600 torebek po zielonej herbacie tworzy tego 70-centymetrowego małego krokodyla",
+		terrarium_dyno: "Kilka kolorowych gazet pociętych na 2500 małych kawałków i dinozaur gotowy (smok domowy :)", terrarium_frog: "Również zielona herbata: rzekotka z 300 elementów"
+	  },
+	sk: {
+		back: "← Späť", close: "✕ Zavrieť",
+		stego_title: "Stegosaurus", stego_header: "Tento dinosaurus vznikal viac ako 6 rokov a má 18 000 dielov",
+		stego_r1: "Tieto fotky boli urobené v roku 2005", stego_r2: "Tu dinosaurus ešte nemá nohy", stego_r3: "Nohy sú vo výrobe", stego_r4: "August 2010: dinosaurus je hotový! Prvýkrát bol vystavený v Pécsi",
+		spider_title: "Vtáčkar", spider_desc: "Novým obyvateľom terária je 25 cm vtáčkar",
+		poultry_title: "Obyvatelia dvora", poultry_hen: "Na kvočku bolo potrebných cca 1700 vrecúšok čaju Pickwick", poultry_chicks: "Na kuriatka po 300-400 kusov", poultry_family: "Rodina spolu", poultry_egg_desc: "Sliepka a vajce",
+		butterfly_big_title: "Veľký motýľ", butterfly_big_desc: "Vznikal takmer pol roka z 1800 dielov",
+		butterfly_small_title: "Malé motýle", butterfly_small_desc: "Tieto malé sa skladajú zo 400 dielov",
+		terrarium_title: "Obyvatelia terária", terrarium_croc: "1600 vrecúšok zeleného čaju tvorí tohto 70-centimetrového baby krokodíla",
+		terrarium_dyno: "Pár farebných novín rozstrihaných na 2500 kúskov a dinosaurus je hotový (domáci drak :)", terrarium_frog: "Tiež zelený čaj: rosnička z 300 dielov"
+	  },
+	cs: {
+		back: "← Zpět", close: "✕ Zavřít",
+		stego_title: "Stegosaurus", stego_header: "Tento dinosaurus vznikal přes 6 let a skládá se z 18 000 dílů",
+		stego_r1: "Tyto snímky byly pořízeny v roce 2005", stego_r2: "Zde dinosaurus ještě nemá nohy", stego_r3: "Nohy jsou ve výrobě", stego_r4: "Srpen 2010: dinosaurus je hotov! Poprvé byl vystaven v Pécsi",
+		spider_title: "Sklípkan", spider_desc: "Novým obyvatelem terária je 25 cm sklípkan",
+		poultry_title: "Obyvatelé dvora", poultry_hen: "Na kvočnu bylo potřeba cca 1700 sáčků čaje Pickwick", poultry_chicks: "Na kuřata po 300-400 kusech", poultry_family: "Rodina pohromadě", poultry_egg_desc: "Slepice a vejce",
+		butterfly_big_title: "Velký motýl", butterfly_big_desc: "Vznikal téměř půl roku z 1800 dílů",
+		butterfly_small_title: "Malí motýli", butterfly_small_desc: "Tito malí se skládají ze 400 dílů",
+		terrarium_title: "Obyvatelé terária", terrarium_croc: "1600 sáčků zeleného čaje tvoří tohoto 70centimetrového baby krokodýla",
+		terrarium_dyno: "Pár barevných novin rozstříhaných na 2500 kousků a dinosaurus je hotov (domácí drak :)", terrarium_frog: "Také zelený čaj: rosnička z 300 dílů"
+	  },
+	uk: {
+		back: "← Назад", close: "✕ Закрити",
+		stego_title: "Стегозавр", stego_header: "Цей динозавр створювався понад 6 років і складається з 18 000 деталей",
+		stego_r1: "Ці фото були зроблені у 2005 році", stego_r2: "Тут у динозавра ще немає ніг", stego_r3: "Виготовлення ніг", stego_r4: "Серпень 2010: динозавр готовий! Вперше був представлений у Печі",
+		spider_title: "Птахоїд", spider_desc: "Новий мешканець тераріуму — 25-сантиметровий птахоїд",
+		poultry_title: "Мешканці пташиного двору", poultry_hen: "Для курки знадобилося близько 1700 пакетиків Pickwick", poultry_chicks: "Для курчат — по 300-400 штук", poultry_family: "Сім'я разом", poultry_egg_desc: "Курка та яйце",
+		butterfly_big_title: "Великий метелик", butterfly_big_desc: "Створювався майже пів року з 1800 деталей",
+		butterfly_small_title: "Маленькі метелики", butterfly_small_desc: "Ці малюки складаються з 400 деталей",
+		terrarium_title: "Мешканці тераріуму", terrarium_croc: "1600 пакетиків зеленого чаю складають цього 70-сантиметрового бебі-крокодила",
+		terrarium_dyno: "Кілька кольорових газет, подрібнених на 2500 шматочків, і динозавр готовий (домашній дракон :)", terrarium_frog: "Також зелений чай: деревна жаба з 300 деталей"
+	  },	  
+	sr: {
+		back: "← Назад", close: "✕ Затвори",
+		stego_title: "Стегосаурус", stego_header: "Овај диносаурус је прављен више од 6 година и састоји се од 18.000 делова",
+		stego_r1: "Ове слике су направљене 2005. године", stego_r2: "Овде диносаурус још увек нема ноге", stego_r3: "Ноге су у изради", stego_r4: "Август 2010: диносаурус је завршен! Први пут изложен у Печују",
+		spider_title: "Тарантула", spider_desc: "Нови становник тераријума је тарантула од 25 цм",
+		poultry_title: "Становници живинског дворишта", poultry_hen: "За коку је требало око 1700 Pickwick кесица", poultry_chicks: "За пилиће по 300-400 комада", poultry_family: "Породица на окупу", poultry_egg_desc: "Кокошка и јаје",
+		butterfly_big_title: "Велики лептир", butterfly_big_desc: "Прављен скоро пола године од 1800 делова",
+		butterfly_small_title: "Мали лептири", butterfly_small_desc: "Ови мали се састоје од 400 делова",
+		terrarium_title: "Становници тераријума", terrarium_croc: "1600 кесица зеленог чаја чини овог бебу крокодила од 70 цм",
+		terrarium_dyno: "Шарене новине исецкане на 2500 делова и диносаурус је готов (кућни змај :)", terrarium_frog: "Такође зелени чај: гаталинка од 300 делова"
+	  },
+	hr: {
+		back: "← Natrag", close: "✕ Zatvori",
+		stego_title: "Stegosaurus", stego_header: "Ovaj dinosaur je rađen više od 6 godina i sastoji se od 18.000 dijelova",
+		stego_r1: "Ove slike su napravljene 2005. godine", stego_r2: "Ovdje dinosaur još uvijek nema noge", stego_r3: "Noge su u izradi", stego_r4: "Kolovoz 2010: dinosaur je gotov! Prvi put je izložen u Pečuhu",
+		spider_title: "Tarantula", spider_desc: "Novi stanovnik terarija je tarantula od 25 cm",
+		poultry_title: "Stanovnici dvorišta", poultry_hen: "Za kvočku je trebalo oko 1700 Pickwick vrećica", poultry_chicks: "Za piliće po 300-400 komada", poultry_family: "Obitelj na okupu", poultry_egg_desc: "Kokoš i jaje",
+		butterfly_big_title: "Veliki leptir", butterfly_big_desc: "Rađen skoro pola godine od 1800 dijelova",
+		butterfly_small_title: "Mali leptiri", butterfly_small_desc: "Ovi mali se sastoje od 400 dijelova",
+		terrarium_title: "Stanovnici terarija", terrarium_croc: "1600 vrećica zelenog čaja čini ovog bebu krokodila od 70 cm",
+		terrarium_dyno: "Nekoliko šarenih novina izrezanih na 2500 dijelova i dinosaur je gotov (kućni zmaj :)", terrarium_frog: "Također zeleni čaj: gatalinka od 300 dijelova"
+	  },
+	sl: {
+		back: "← Nazaj", close: "✕ Zapri",
+		stego_title: "Stegozavr", stego_header: "Ta dinozavr je nastajal več kot 6 let in ima 18.000 delov",
+		stego_r1: "Te slike so bile posnete leta 2005", stego_r2: "Tukaj dinozavr še nima nog", stego_r3: "Noge so v izdelavi", stego_r4: "Avgust 2010: dinozavr je končan! Prvič razstavljen v Pécsu",
+		spider_title: "Tarantela", spider_desc: "Novi stanovalec terarija je 25-centimetrska tarantela",
+		poultry_title: "Prebivalci dvorišča", poultry_hen: "Za kura je bilo potrebnih približno 1700 vrečk Pickwick", poultry_chicks: "Za piščance po 300-400 kosov", poultry_family: "Družina skupaj", poultry_egg_desc: "Kokoš in jajce",
+		butterfly_big_title: "Velik metulj", butterfly_big_desc: "Nastal v skoraj pol leta iz 1800 delov",
+		butterfly_small_title: "Majhni metulji", butterfly_small_desc: "Ti majhni so sestavljeni iz 400 delov",
+		terrarium_title: "Prebivalci terarija", terrarium_croc: "1600 vrečk zelenega čaja tvori tega 70-centimetrskega mladiča krokodila",
+		terrarium_dyno: "Nekaj barvnih časopisov, razrezanih na 2500 kosov, in dinozavr je pripravljen (hišni zmaj :)", terrarium_frog: "Tudi zeleni čaj: regica iz 300 delov"
+	  },
+	bg: {
+		back: "← Назад", close: "✕ Затвори",
+		stego_title: "Стегозавър", stego_header: "Този динозавър е правен повече от 6 години и се състои от 18 000 части",
+		stego_r1: "Тези снимки са направени през 2005 г.", stego_r2: "Тук динозавърът все още няма крака", stego_r3: "Краката са в процес на изработка", stego_r4: "Август 2010 г.: динозавърът е готов! Изложен първо в Печ",
+		spider_title: "Тарантула", spider_desc: "Новият обитател на терариума е 25-сантиметрова тарантула",
+		poultry_title: "Обитатели на двора", poultry_hen: "За кокошката бяха нужни около 1700 пакетчета Pickwick", poultry_chicks: "За пилетата по 300-400 броя всяко", poultry_family: "Семейството заедно", poultry_egg_desc: "Кокошка и яйце",
+		butterfly_big_title: "Голяма пеперуда", butterfly_big_desc: "Правена близо половин година от 1800 части",
+		butterfly_small_title: "Малки пеперуди", butterfly_small_desc: "Тези малките се състоят от 400 части",
+		terrarium_title: "Обитатели на терариума", terrarium_croc: "1600 пакетчета зелен чай съставят този 70-сантиметров бебе крокодил",
+		terrarium_dyno: "Няколко цветни вестника, нарязани на 2500 малки парчета и динозавърът е готов (домашен дракон :)", terrarium_frog: "Също от зелен чай: дървесна жаба от 300 части"
+	  },
+	sq: {
+		back: "← Mbrapa", close: "✕ Mbyll",
+		stego_title: "Stegosaurus", stego_header: "Ky dinozaur mori mbi 6 vjet për t'u bërë dhe përbëhet nga 18,000 pjesë",
+		stego_r1: "Këto foto janë bërë në vitin 2005", stego_r2: "Këtu dinozauri ende nuk ka këmbë", stego_r3: "Këmbët janë në prodhim", stego_r4: "Gusht 2010: dinozauri është gati! U ekspozua për herë të parë në Pécs",
+		spider_title: "Tarantula", spider_desc: "Banori më i ri i terrariumit është një tarantulë 25 cm",
+		poultry_title: "Banorët e oborrit", poultry_hen: "Për pulën u deshën rreth 1700 qese çaji Pickwick", poultry_chicks: "Për zogjtë nga 300-400 copë secili", poultry_family: "Familja së bashku", poultry_egg_desc: "Pula dhe veja",
+		butterfly_big_title: "Flutur e madhe", butterfly_big_desc: "U bë për gati gjysmë viti nga 1800 pjesë",
+		butterfly_small_title: "Flutura të vogla", butterfly_small_desc: "Këto të voglat përbëhen nga 400 pjesë",
+		terrarium_title: "Banorët e terrariumit", terrarium_croc: "1600 qese çaji jeshil përbëjnë këtë krokodil foshnje 70 cm",
+		terrarium_dyno: "Disa gazeta me ngjyra të prera në 2500 copë të vogla dhe dinozauri është gati (dragua shtëpie :)", terrarium_frog: "Gjithashtu nga çaji jeshil: bretkosë peme prej 300 pjesësh"
+	  },
+	el: {
+		back: "← Πίσω", close: "✕ Κλείσιμο",
+		stego_title: "Στεγόσαυρος", stego_header: "Αυτός ο δεινόσαυρος χρειάστηκε πάνω από 6 χρόνια και αποτελείται από 18.000 κομμάτια",
+		stego_r1: "Αυτές οι φωτογραφίες τραβήχτηκαν το 2005", stego_r2: "Εδώ ο δεινόσαυρος δεν έχει ακόμα πόδια", stego_r3: "Τα πόδια είναι υπό κατασκευή", stego_r4: "Αύγουστος 2010: ο δεινόσαυρος είναι έτοιμος! Πρωτοεμφανίστηκε στο Πετς",
+		spider_title: "Ταραντούλα", spider_desc: "Ο νέος κάτοικος του terrarium είναι μια ταραντούλα 25 εκατοστών",
+		poultry_title: "Κάτοικοι της αυλής", poultry_hen: "Για την κλώσα χρειάστηκαν περίπου 1700 φακελάκια Pickwick", poultry_chicks: "300-400 κομμάτια για κάθε κλωσσόπουλο", poultry_family: "Όλη η οικογένεια μαζί", poultry_egg_desc: "Η κότα και το αυγό",
+		butterfly_big_title: "Μεγάλη πεταλούδα", butterfly_big_desc: "Χρειάστηκε σχεδόν μισός χρόνος δουλειάς με 1800 κομμάτια",
+		butterfly_small_title: "Μικρές πεταλούδες", butterfly_small_desc: "Αυτές οι μικρές αποτελούνται από 400 κομμάτια",
+		terrarium_title: "Κάτοικοι του terrarium", terrarium_croc: "1600 φακελάκια πράσινου τσαγιού σχηματίζουν αυτό το μωρό κροκόδειλο 70 εκατοστών",
+		terrarium_dyno: "Μερικές χρωματιστές εφημερίδες κομμένες σε 2500 μικρά κομμάτια και ο δεινόσαυρος είναι έτοιμος (δράκος του σπιτιού :)", terrarium_frog: "Επίσης από πράσινο τσάι: δενδροβάτραχος 300 κομματιών"
+	  },
+	tr: {
+		back: "← Geri", close: "✕ Kapat",
+		stego_title: "Stegosaurus", stego_header: "Bu dinozorun yapımı 6 yıldan fazla sürdü ve 18.000 parçadan oluşuyor",
+		stego_r1: "Bu fotoğraflar 2005 yılında çekildi", stego_r2: "Burada dinozorun henüz bacakları yok", stego_r3: "Bacaklar yapım aşamasında", stego_r4: "Ağustos 2010: Dinozor bitti! İlk olarak Pécs'te sergilendi",
+		spider_title: "Tarantula", spider_desc: "Teraryumun yeni sakini 25 cm'lik bir tarantula",
+		poultry_title: "Kümes sakinleri", poultry_hen: "Anne tavuk için yaklaşık 1700 adet Pickwick poşeti gerekti", poultry_chicks: "Civcivlerin her biri için 300-400 parça", poultry_family: "Aile bir arada", poultry_egg_desc: "Tavuk ve yumurta",
+		butterfly_big_title: "Büyük kelebek", butterfly_big_desc: "1800 parçadan yaklaşık yarım yılda yapıldı",
+		butterfly_small_title: "Küçük kelebekler", butterfly_small_desc: "Bu küçükler 400 parçadan oluşuyor",
+		terrarium_title: "Teraryum sakinleri", terrarium_croc: "1600 adet yeşil çay poşeti bu 70 cm'lik bebek timsahı oluşturuyor",
+		terrarium_dyno: "2500 küçük parçaya bölünmüş birkaç renkli gazete ve dinozor hazır (ev ejderhası :)", terrarium_frog: "Yine yeşil çaydan: 300 parçalık ağaç kurbağası"
+	  },
+	nl: {
+		back: "← Terug", close: "✕ Sluiten",
+		stego_title: "Stegosaurus", stego_header: "Deze dino kostte meer dan 6 jaar om te maken en bestaat uit 18.000 stukjes",
+		stego_r1: "Deze foto's zijn gemaakt in 2005", stego_r2: "Hier heeft de dino nog geen poten", stego_r3: "De poten worden gemaakt", stego_r4: "Augustus 2010: de dino is klaar! Voor het eerst getoond in Pécs",
+		spider_title: "Vogelspin", spider_desc: "De nieuwste bewoner van het terrarium is een vogelspin van 25 cm",
+		poultry_title: "Bewoners van de achtertuin", poultry_hen: "Voor de hen waren ongeveer 1700 Pickwick-zakjes nodig", poultry_chicks: "Voor de kuikens elk 300-400 stuks", poultry_family: "De familie samen", poultry_egg_desc: "Kip en ei",
+		butterfly_big_title: "Grote vlinder", butterfly_big_desc: "Bijna een half jaar werk met 1800 stukjes",
+		butterfly_small_title: "Kleine vlinders", butterfly_small_desc: "Deze kleine bestaan uit 400 stukjes",
+		terrarium_title: "Terrariumbewoners", terrarium_croc: "1600 groene theezakjes vormen deze babykrokodil van 70 cm",
+		terrarium_dyno: "Enkele gekleurde kranten in 2500 kleine stukjes gesneden en de dino is klaar (huisdraak :)", terrarium_frog: "Ook van groene thee: boomkikker van 300 stukjes"
+	  },
+	sv: {
+		back: "← Tillbaka", close: "✕ Stäng",
+		stego_title: "Stegosaurus", stego_header: "Denna dino tog över 6 år att göra och består av 18 000 delar",
+		stego_r1: "Dessa bilder togs 2005", stego_r2: "Här har dinon ännu inga ben", stego_r3: "Benen tillverkas", stego_r4: "Augusti 2010: dinon är klar! Visades först i Pécs",
+		spider_title: "Fågelspindel", spider_desc: "Terrariets nyaste invånare är en 25 cm fågelspindel",
+		poultry_title: "Invånare i fjäderfägården", poultry_hen: "Till hönan behövdes ca 1700 Pickwick-påsar", poultry_chicks: "Till kycklingarna 300-400 delar var", poultry_family: "Familjen samlad", poultry_egg_desc: "Hönan och ägget",
+		butterfly_big_title: "Stor fjäril", butterfly_big_desc: "Tog nästan ett halvår att göra av 1800 delar",
+		butterfly_small_title: "Små fjärilar", butterfly_small_desc: "Dessa små består av 400 delar",
+		terrarium_title: "Terrarieinvånare", terrarium_croc: "1600 påsar grönt te bildar denna 70 cm babykrokodil",
+		terrarium_dyno: "Några färgglada tidningar uppdelade i 2500 små bitar och dinon är klar (husdrake :)", terrarium_frog: "Också av grönt te: lövgroda av 300 delar"
+	  },
+	da: {
+		back: "← Tilbage", close: "✕ Luk",
+		stego_title: "Stegosaurus", stego_header: "Denne dino tog over 6 år at lave og består af 18.000 dele",
+		stego_r1: "Disse billeder blev taget i 2005", stego_r2: "Her har dinoen endnu ingen ben", stego_r3: "Benene er under udarbejdelse", stego_r4: "August 2010: dinoen er færdig! Vist første gang i Pécs",
+		spider_title: "Fugleedderkop", spider_desc: "Terrariets nyeste beboer er en 25 cm fugleedderkop",
+		poultry_title: "Beboere i fjerkrægården", poultry_hen: "Til hønen skulle der bruges ca. 1700 Pickwick-poser", poultry_chicks: "Til kyllingerne 300-400 dele hver", poultry_family: "Familien samlet", poultry_egg_desc: "Hønen og ægget",
+		butterfly_big_title: "Stor sommerfugl", butterfly_big_desc: "Tog næsten et halvt år at lave af 1800 dele",
+		butterfly_small_title: "Små sommerfugle", butterfly_small_desc: "Disse små består af 400 dele",
+		terrarium_title: "Terrariebeboere", terrarium_croc: "1600 poser grøn te danner denne 70 cm babykrokodille",
+		terrarium_dyno: "Nogle farverige aviser opdelt i 2500 små stykker og dinoen er klar (husdrage :)", terrarium_frog: "Også af grøn te: løvfrø af 300 dele"
+	  },
+	no: {
+		back: "← Tilbake", close: "✕ Lukk",
+		stego_title: "Stegosaurus", stego_header: "Denne dinoen tok over 6 år å lage og består av 18 000 deler",
+		stego_r1: "Disse bildene ble tatt i 2005", stego_r2: "Her har dinoen ennå ingen bein", stego_r3: "Beina er under produksjon", stego_r4: "August 2010: dinoen er ferdig! Vist første gang i Pécs",
+		spider_title: "Fugleedderkopp", spider_desc: "Terrariets nyeste beboer er en 25 cm fugleedderkopp",
+		poultry_title: "Beboere i fjærfehuset", poultry_hen: "Til høna trengtes ca. 1700 Pickwick-poser", poultry_chicks: "Til kyllingene 300-400 deler hver", poultry_family: "Familien samlet", poultry_egg_desc: "Høna og egget",
+		butterfly_big_title: "Stor sommerfugl", butterfly_big_desc: "Tok nesten et halvt år å lage av 1800 deler",
+		butterfly_small_title: "Små sommerfugler", butterfly_small_desc: "Disse små består av 400 deler",
+		terrarium_title: "Terrariebeboere", terrarium_croc: "1600 poser grønn te danner denne 70 cm babykrokodillen",
+		terrarium_dyno: "Noen fargerike aviser delt opp i 2500 små biter og dinoen er klar (husdrage :)", terrarium_frog: "Også av grønn te: løvfrø av 300 deler"
+	  },
+	fi: {
+		back: "← Takaisin", close: "✕ Sulje",
+		stego_title: "Stegosaurus", stego_header: "Tämän dinosauruksen tekeminen kesti yli 6 vuotta ja se koostuu 18 000 osasta",
+		stego_r1: "Nämä kuvat on otettu vuonna 2005", stego_r2: "Tässä dinosauruksella ei ole vielä jalkoja", stego_r3: "Jalkoja valmistetaan", stego_r4: "Elokuu 2010: dinosaurus on valmis! Se oli ensimmäistä kertaa esillä Pécsissä",
+		spider_title: "Lintuhämähäkki", spider_desc: "Terraarion uusin asukas on 25 cm lintuhämähäkki",
+		poultry_title: "Siipikarjapihan asukkaat", poultry_hen: "Kanan tekemiseen tarvittiin noin 1700 Pickwick-teepussia", poultry_chicks: "Tipuihin meni 300-400 osaa kuhunkin", poultry_family: "Perhe yhdessä", poultry_egg_desc: "Kana ja muna",
+		butterfly_big_title: "Suuri perhonen", butterfly_big_desc: "Valmistui lähes puolessa vuodessa 1800 osasta",
+		butterfly_small_title: "Pienet perhoset", butterfly_small_desc: "Nämä pienet koostuvat 400 osasta",
+		terrarium_title: "Terraarion asukkaat", terrarium_croc: "1600 vihreän teen pussia muodostavat tämän 70-senttisen vauvakrokotiilin",
+		terrarium_dyno: "Muutama värikäs sanomalehti paloiteltuna 2500 pieneen osaan ja dinosaurus on valmis (kotilohikäärme :)", terrarium_frog: "Myös vihreästä teestä: 300 osasta koostuva lehtisammakko"
+	  },
+	is: {
+		back: "← Til baka", close: "✕ Loka",
+		stego_title: "Stegosaurus", stego_header: "Þessi risaeðla tók yfir 6 ár í smíðum og samanstendur af 18.000 hlutum",
+		stego_r1: "Þessar myndir voru teknar árið 2005", stego_r2: "Hér er risaeðlan ekki enn komin með fætur", stego_r3: "Verið er að búa til fæturna", stego_r4: "Ágúst 2010: risaeðlan er tilbúin! Hún var fyrst sýnd í Pécs",
+		spider_title: "Tarantúla", spider_desc: "Nýjasti íbúi terraríumsins er 25 cm tarantúla",
+		poultry_title: "Íbúar í hænsnagarðinum", poultry_hen: "Í hænuna þurfti um 1700 Pickwick-tepoka", poultry_chicks: "Í ungana fóru 300-400 hlutir í hvern", poultry_family: "Fjölskyldan saman", poultry_egg_desc: "Hænan og eggið",
+		butterfly_big_title: "Stórt fiðrildi", butterfly_big_desc: "Tók næstum hálft ár að búa til úr 1800 hlutum",
+		butterfly_small_title: "Lítil fiðrildi", butterfly_small_desc: "Þessi litlu samanstanda af 400 hlutum",
+		terrarium_title: "Íbúar í terraríum", terrarium_croc: "1600 græntepokar mynda þennan 70 cm krókódílaunga",
+		terrarium_dyno: "Nokkrum litríkum dagblöðum skipt í 2500 litla bita og risaeðlan er tilbúin (húsdreki :)", terrarium_frog: "Einnig úr grænu tei: 300 hluta laffiska"
+	  },
+	ca: {
+		back: "← Enrere", close: "✕ Tancar",
+		stego_title: "Estegosaure", stego_header: "Aquest dinosaure va trigar més de 6 anys a fer-se i té 18.000 peces",
+		stego_r1: "Aquestes fotos es van fer l'any 2005", stego_r2: "Aquí el dinosaure encara no té potes", stego_r3: "S'estan fabricant les potes", stego_r4: "Agost de 2010: el dinosaure està enllestit! Es va poder veure per primer cop a Pécs",
+		spider_title: "Taràntula", spider_desc: "El nou habitant del terrari és una taràntula de 25 cm",
+		poultry_title: "Habitants del corral", poultry_hen: "Per a la gallina es van necessitar unes 1700 bosses de te Pickwick", poultry_chicks: "Per als polls, unes 300-400 peces cadascun", poultry_family: "Toda la família junta", poultry_egg_desc: "La gallina i l'ou",
+		butterfly_big_title: "Papallona gran", butterfly_big_desc: "Gairebé mig any de feina amb 1800 peces",
+		butterfly_small_title: "Papallones petites", butterfly_small_desc: "Aquestes petites consten de 400 peces",
+		terrarium_title: "Habitants del terrari", terrarium_croc: "1600 bosses de te verd formen aquest cocodril nadó de 70 cm",
+		terrarium_dyno: "Uns quants diaris de colors tallats en 2500 peces petites i el dinosaure ja està llest (drac domèstic :)", terrarium_frog: "També de te verd: una granota de 300 peces"
+	  },
+	eo: {
+		back: "← Reen", close: "✕ Fermi",
+		stego_title: "Stegozaŭro", stego_header: "Tiu dinosaŭro estis farita dum pli ol 6 jaroj kaj konsistas el 18 000 pecoj",
+		stego_r1: "Tiuj bildoj estis faritaj en 2005", stego_r2: "Ĉi tie la dinosaŭro ankoraŭ ne havas krurojn", stego_r3: "La kruroj estas farataj", stego_r4: "Aŭgusto 2010: la dinosaŭro estas preta! Ĝi estis unue videbla en Pécs",
+		spider_title: "Araneo (Tarantulo)", spider_desc: "Nova loĝanto de la terario estas 25-centimetra tarantulo",
+		poultry_title: "Loĝantoj de la korta korto", poultry_hen: "Por la kokino necesis ĉirkaŭ 1700 teosaketoj de Pickwick", poultry_chicks: "Por la idoj po 300-400 pecoj", poultry_family: "La familio kune", poultry_egg_desc: "Kokino kaj ovo",
+		butterfly_big_title: "Granda papilio", butterfly_big_desc: "Farita dum preskaŭ duonjaro el 1800 pecoj",
+		butterfly_small_title: "Malgrandaj papilioj", butterfly_small_desc: "Tiuj malgranduloj konsistas el 400 pecoj",
+		terrarium_title: "Loĝantoj de la terario", terrarium_croc: "1600 saketoj da verda teo formas tiun 70-centimetran bebokrokodilon",
+		terrarium_dyno: "Kelkaj koloraj gazetoj dishakitaj en 2500 malgrandajn pecojn kaj la dinosaŭro pretas (dom-drako :)", terrarium_frog: "Ankaŭ verda teo: 300-peca rano"
+	  },
+	et: {
+		back: "← Tagasi", close: "✕ Sulge",
+		stego_title: "Stegosaurus", stego_header: "Selle dinosauruse tegemine võttis üle 6 aasta ja see koosneb 18 000 osast",
+		stego_r1: "Need pildid on tehtud 2005. aastal", stego_r2: "Siin pole dinosaurusel veel jalgu", stego_r3: "Jalad on tegemisel", stego_r4: "August 2010: dinosaurus on valmis! Esmakordselt oli see nähtav Pécsis",
+		spider_title: "Lindämblik", spider_desc: "Terraariumi uus elanik on 25 cm pikkune lindämblik",
+		poultry_title: "Linnuhoovi elanikud", poultry_hen: "Kanaemaks kulus umbes 1700 Pickwicki teekotti", poultry_chicks: "Tibudele kulus umbes 300-400 tükki igaühele", poultry_family: "Pere koos", poultry_egg_desc: "Kana ja muna",
+		butterfly_big_title: "Suur liblikas", butterfly_big_desc: "Valmis peaaegu poole aastaga 1800 osast",
+		butterfly_small_title: "Väikesed liblikad", butterfly_small_desc: "Need väikesed koosnevad 400 osast",
+		terrarium_title: "Terraariumi elanikud", terrarium_croc: "1600 rohelise tee kotti moodustavad selle 70-sentimeetrise beebikrokodilli",
+		terrarium_dyno: "Mõned värvilised ajalehed 2500 tükiks lõigatud ja dinosaurus ongi valmis (kodudraakon :)", terrarium_frog: "Samuti rohelisest teest: 300-osaline lehekonn"
+	  },
+	lv: {
+		back: "← Atpakaļ", close: "✕ Aizvērt",
+		stego_title: "Stegozaurs", stego_header: "Šis dinozaurs tapa vairāk nekā 6 gadus un sastāv no 18 000 detaļām",
+		stego_r1: "Šīs fotogrāfijas uzņemtas 2005. gadā", stego_r2: "Šeit dinozauram vēl nav kāju", stego_r3: "Tiek gatavotas kājas", stego_r4: "2010. gada augusts: dinozaurs ir gatavs! Pirmo reizi bija apskatāms Pēčā",
+		spider_title: "Putnu zirneklis", spider_desc: "Terārija jaunais iemītnieks ir 25 cm liels putnu zirneklis",
+		poultry_title: "Mājputnu pagalma iemītnieki", poultry_hen: "Vistai bija nepieciešami aptuveni 1700 Pickwick tējas maisiņi", poultry_chicks: "Cāļiem – 300-400 detaļas katram", poultry_family: "Ģimene kopā", poultry_egg_desc: "Vista un ola",
+		butterfly_big_title: "Lielais tauriņš", butterfly_big_desc: "Tapa gandrīz pusgadu no 1800 detaļām",
+		butterfly_small_title: "Mazie tauriņi", butterfly_small_desc: "Šie mazie sastāv no 400 detaļām",
+		terrarium_title: "Terārija iemītnieki", terrarium_croc: "1600 zaļās tējas maisiņi veido šo 70 centimetrus garo krokodilu mazuli",
+		terrarium_dyno: "Daži krāsaini laikraksti, sagriezti 2500 mazos gabaliņos, un dinozaurs ir gatavs (mājas pūķis :)", terrarium_frog: "Arī no zaļās tējas: 300 detaļu kokvarde"
+	  },
+	lt: {
+		back: "← Atgal", close: "✕ Uždaryti",
+		stego_title: "Stegozauras", stego_header: "Šis dinozauras buvo kuriamas daugiau nei 6 metus ir susideda iš 18 000 dalių",
+		stego_r1: "Šios nuotraukos darytos 2005 metais", stego_r2: "Čia dinozauras dar neturi kojų", stego_r3: "Gaminamos kojos", stego_r4: "2010 m. rugpjūtis: dinozauras baigtas! Pirmą kartą parodytas Pėče",
+		spider_title: "Tarantulas", spider_desc: "Naujas terariumo gyventojas – 25 cm tarantulas",
+		poultry_title: "Paukščių kiemo gyventojai", poultry_hen: "Vištai prireikė apie 1700 „Pickwick“ arbatos maišelių", poultry_chicks: "Viščiukams – po 300–400 dalių kiekvienam", poultry_family: "Šeima kartu", poultry_egg_desc: "Višta ir kiaušinis",
+		butterfly_big_title: "Didelis drugelis", butterfly_big_desc: "Kurtas beveik pusmetį iš 1800 dalių",
+		butterfly_small_title: "Maži drugeliai", butterfly_small_desc: "Šie mažieji susideda iš 400 dalių",
+		terrarium_title: "Terariumo gyventojai", terrarium_croc: "1600 žaliosios arbatos maišelių sudaro šį 70 cm krokodilo mažylį",
+		terrarium_dyno: "Kelios spalvotos naujienos, supjaustytos į 2500 mažų gabalėlių, ir dinozauras baigtas (namų drakonas :)", terrarium_frog: "Taip pat iš žaliosios arbatos: 300 dalių medvaržė"
+	  },  
+	  ja: {
+		back: "← 戻る", close: "✕ 閉じる",
+		stego_title: "ステゴサウルス", stego_header: "この恐竜は6年以上かけて制作され、18,000個のパーツで構成されています",
+		stego_r1: "これらの写真は2005年に撮影されました", stego_r2: "まだ恐竜に足がありません", stego_r3: "足を制作中", stego_r4: "2010年8月：恐竜が完成！ペーチで初公開されました",
+		spider_title: "タランチュラ", spider_desc: "テラリウムの新しい住人は25cmのタランチュラです",
+		poultry_title: "家禽の中庭", poultry_hen: "母鶏には約1,700個のティーバッグが必要でした", poultry_chicks: "ひよこは各300〜400個", poultry_family: "家族一緒", poultry_egg_desc: "鶏と卵",
+		butterfly_big_title: "大きな蝶", butterfly_big_desc: "1,800個のパーツから約半年かけて制作",
+		butterfly_small_title: "小さな蝶", butterfly_small_desc: "これらは400個のパーツでできています",
+		terrarium_title: "テラリウムの住人", terrarium_croc: "1,600個の緑茶の袋でできた70cmの赤ちゃんワニ",
+		terrarium_dyno: "新聞紙を2,500個の破片にして恐竜が完成（家のドラゴン :)）", terrarium_frog: "こちらも緑茶：300個のパーツでできたアマガエル"
+	  },
+	zh: {
+		back: "← 返回", close: "✕ 关闭",
+		stego_title: "剑龙", stego_header: "这只恐龙花了6年多时间制作，共由18,000个零件组成",
+		stego_r1: "这些照片拍摄于2005年", stego_r2: "此时恐龙还没有腿", stego_r3: "正在制作腿部", stego_r4: "2010年8月：恐龙完成了！首先在佩奇市展出",
+		spider_title: "捕鸟蛛", spider_desc: "饲养箱的新住人是一只25厘米长的捕鸟蛛",
+		poultry_title: "家禽庭院的居民", poultry_hen: "母鸡大约使用了1700个Pickwick茶包袋", poultry_chicks: "每只小鸡使用了300-400个零件", poultry_family: "全家福", poultry_egg_desc: "鸡与蛋",
+		butterfly_big_title: "大蝴蝶", butterfly_big_desc: "由1800个零件历时近半年完成",
+		butterfly_small_title: "小蝴蝶", butterfly_small_desc: "这些小蝴蝶由400个零件组成",
+		terrarium_title: "饲养箱居民", terrarium_croc: "由1600个绿茶茶包组成的70厘米长的幼年鳄鱼",
+		terrarium_dyno: "几张彩色报纸被切成2500个小碎片，恐龙就完成了（家用小恐龙 :)）", terrarium_frog: "同样由绿茶茶包制成：300个零件的树蛙"
+	  },
+	ko: {
+		back: "← 뒤로", close: "✕ 닫기",
+		stego_title: "스테고사우루스", stego_header: "이 공룡은 제작에 6년 이상 걸렸으며 18,000개의 부품으로 구성되어 있습니다",
+		stego_r1: "이 사진들은 2005년에 촬영되었습니다", stego_r2: "아직 공룡에게 다리가 없는 모습입니다", stego_r3: "다리를 제작 중입니다", stego_r4: "2010년 8월: 공룡 완성! 페치(Pécs)에서 처음으로 전시되었습니다",
+		spider_title: "타란툴라", spider_desc: "사육장의 새 식구인 25cm 크기의 타란툴라입니다",
+		poultry_title: "가금류 마당의 식구들", poultry_hen: "암탉을 만드는 데 약 1700개의 Pickwick 티백이 사용되었습니다", poultry_chicks: "병아리는 각각 300-400개의 부품이 들어갔습니다", poultry_family: "가족이 함께 있는 모습", poultry_egg_desc: "닭과 달걀",
+		butterfly_big_title: "큰 나비", butterfly_big_desc: "1800개의 부품으로 거의 반년 동안 제작되었습니다",
+		butterfly_small_title: "작은 나비들", butterfly_small_desc: "이 작은 나비들은 400개의 부품으로 구성됩니다",
+		terrarium_title: "사육장 식구들", terrarium_croc: "1600개의 녹차 티백으로 만든 70cm 아기 악어입니다",
+		terrarium_dyno: "컬러 신문지를 2500개의 작은 조각으로 잘라 만든 공룡입니다 (애완용 용 :)", terrarium_frog: "마찬가지로 녹차 티백으로 만든 300개의 부품이 들어간 청개구리입니다"
+	  }
+	};
     let currentIndex = 0;
     const galleryData = [];
 
-    // Adatok begyűjtése az oldal betöltésekor
-    window.onload = function() {
-		const imgElements = document.querySelectorAll('.gallery-img');
-		imgElements.forEach((img) => {
-		  const table = img.closest('table');
-		  const caption = table ? table.querySelector('caption').innerText : "";
-		  
-		  const row = img.closest('tr');
-		  let desc = "";
-		  
-		  if (row) {
-			// Megszerezzük az első cella tartalmát HTML-ként
-			desc = row.querySelector('td').innerHTML;
-			
-			// 1. Kicseréljük az összes <br> vagy <br/> taget szóközre
-			desc = desc.replace(/<br\s*\/?>/gi, ' ');
-			
-			// 2. Eltávolítjuk az esetleges egyéb HTML tageket, ha maradtak
-			let tempDiv = document.createElement("div");
-			tempDiv.innerHTML = desc;
-			desc = tempDiv.textContent || tempDiv.innerText || "";
-			
-			// 3. A tényleges sortöréseket (whitespace) is szóközre cseréljük, 
-			// és a dupla szóközöket egyetlen szóközre redukáljuk
-			desc = desc.replace(/\s+/g, ' ').trim();
-		  }
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
 
-		  galleryData.push({
-			bigSrc: img.src.replace('_', ''),
-			title: caption,
-			description: desc
-		  });
-		});
-    };
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }
 
     function openGallery(index) {
       currentIndex = index;
@@ -238,38 +563,32 @@
       document.body.style.overflow = 'auto';
     }
 
-	window.addEventListener('keydown', function (e) {
-	  const lightbox = document.getElementById('lightbox');
-	  const backBtn = document.querySelector('.back-button');
-	  const isLightboxOpen = lightbox && lightbox.style.display === 'flex';
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
 
-	  if (e.key === "Escape") {
-		// 1. Animáció elindítása
-		if (backBtn) {
-		  backBtn.classList.add('back-button-active');
-		}
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+    };
 
-		if (isLightboxOpen) {
-		  // 2. Ha nyitva van a galéria, csak azt zárjuk be
-		  setTimeout(() => {
-			if (backBtn) backBtn.classList.remove('back-button-active');
-			closeImage();
-		  }, 200);
-		} else {
-		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
-		  setTimeout(() => {
-			window.location.href = "origami.htm";
-		  }, 200);
-		}
-	  }
-	  
-	  // Nyilakkal való léptetés (csak ha nyitva a lightbox)
-	  if (isLightboxOpen) {
-		if (e.key === "ArrowRight") changeImage(1);
-		if (e.key === "ArrowLeft") changeImage(-1);
-	  }
-	});
-	
+    window.addEventListener('keydown', function (e) {
+      const isLightboxOpen = document.getElementById('lightbox').style.display === 'flex';
+      if (e.key === "Escape") {
+        if (isLightboxOpen) closeImage();
+        else window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
+      }
+      if (isLightboxOpen) {
+        if (e.key === "ArrowRight") changeImage(1);
+        if (e.key === "ArrowLeft") changeImage(-1);
+      }
+    });
   </script>
 </body>
 </html>

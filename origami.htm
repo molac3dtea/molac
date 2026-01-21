@@ -65,71 +65,35 @@
 
   <script>
     const translations = {
-      hu: {
-        title: "molac | 3D-teaorigami - Kategóriák",
-        desc: "Fedezze fel a molac 3D-teaorigami lenyűgöző világát: teástasakból készült állatok, növények és tárgyak.",
-        og_desc: "A dínótól a teáskannáig: böngésszen a molac 3D-teaorigami galéria kategóriái között.",
-        back: "← Vissza", welcome: "Üdvözöllek az Origamis oldalamon!",
-        cat_animals: "ÁLLATOK", cat_plants: "NÖVÉNYEK", cat_tea: "TEÁZÁS", cat_buildings: "ÉPÍTMÉNYEK",
-        cat_vehicles: "JÁRMŰVEK", cat_others: "EGYEBEK", cat_trad: "HAGYOMÁNYOS", cat_crumpled: "GYŰRT MODELLEK",
-        cat_wood: "FAMUNKÁK", cat_diag: "LEÍRÁSOK", cat_exh: "KIÁLLÍTÁSOK, MÉDIA", cat_order: "RENDELÉS",
-        intro: `Ezt a moduláris origami technikát az Origami c. újságból tanultam 2001-ben.<br>
-				GHIAN-ZHI névre hallgat kínaiul, jelentése: EZER PAPÍR. Láttam már BLOCK-FOLDING néven is emlegetni.<br>
-				A történet szerint börtönben kötött ki az Arany Kalandor 200 kínai hajótöröttje, akik 1993-ban futottak zátonyra USA partjainál.<br>
-				Az egyikük ráérő idejében színes újságokat és egyéb hulladékokat tépett egyforma féltenyérnyi darabokra és hajtogatott egyforma, háromszög alakú elemeket belőlük. Ezekből az egyszerű elemekből rakott össze bonyolult formákat. Majd megtanította a többi elítéltet is a hajtogatásra, így gyorsan gyarapodtak az alkotórészecskék. Innen kerültek a papírszobrok (vázák, edények, állatok) múzeumokba és galériákba.<br>
-				A minta emlékeztet a kínai temetési szertartásokon használt áldozati papírpénzek hajtogatására.<br>
-				Az első alapanyagaim színes fénymásoló- és újságpapírok voltak. 2002-ben kezdtem a teástasakokat használni.<br>
-				A papírfigurák saját ötletek alapján készülnek otthon, szabadidőmben. A sík felületek kialakításához egyedi téglákat készítettem az alapelemekből.<br>
-				2006-ban és 2009-ben a Képző és Iparművészeti Lektorátus zsűrizte virágaimat, vázáimat és a teázás kellékeit.<br>
-				<br>
-				<div style="text-align: center; margin-top: 20px;">
-					Jó hajtogatást kívánok!<br>
-					<strong>Molnár László<br>molac</strong>
-				</div>`
-      },
-      en: {
-        title: "molac | 3D-teaorigami - Categories",
-        desc: "Discover the amazing world of molac 3D-teaorigami: animals, plants and objects made from tea bags.",
-        og_desc: "From dinosaurs to teapots: browse through the categories of molac 3D-teaorigami gallery.",
-        back: "← Back", welcome: "Welcome to my Origami page!",
-        cat_animals: "ANIMALS", cat_plants: "PLANTS", cat_tea: "TEA TIME", cat_buildings: "BUILDINGS",
-        cat_vehicles: "VEHICLES", cat_others: "OTHERS", cat_trad: "TRADITIONAL", cat_crumpled: "CRUMPLED MODELS",
-        cat_wood: "WOODWORKS", cat_diag: "FOLDING DIAGRAMS", cat_exh: "EXHIBITIONS, MEDIA", cat_order: "ORDER",
-        intro: `I learned this modular origami technique from the 'Origami' magazine in 2001.<br>
-				In Chinese it is called GHIAN-ZHI, which means 'THOUSAND PAPERS'. I have also seen it referred to as BLOCK-FOLDING.<br>
-				According to the story, 200 Chinese shipwrecked people from the Golden Venture, who ran aground on the shores of the USA in 1993, ended up in prison.<br>
-				In his spare time, one of them tore colored newspapers and other waste into uniform palm-sized pieces and folded uniform triangular elements from them. From these simple elements, he assembled complex shapes. He then taught the other inmates how to fold, so the parts grew quickly. From there, the paper sculptures (vases, vessels, animals) made their way into museums and galleries.<br>
-				The pattern is reminiscent of the folding of sacrificial paper money used in Chinese funeral ceremonies.<br>
-				My first materials were colored copy and newspaper. I started using tea bags in 2002.<br>
-				The paper figures are based on my own ideas, created at home in my spare time. To create flat surfaces, I developed unique bricks from the basic elements.<br>
-				In 2006 and 2009, my flowers, vases, and tea accessories were judged by the Jury of the Fine and Applied Arts Directorate.<br>
-				<br>
-				<div style="text-align: center; margin-top: 20px;">
-					Happy folding!<br>
-					<strong>László Molnár<br>molac</strong>
-				</div>`
-      },
-      de: {
-        title: "molac | 3D-teaorigami - Kategorien",
-        desc: "Entdecken Sie die faszinierende Welt von molac 3D-Tee-Origami: Tiere, Pflanzen und Objekte aus Teebeuteln.",
-        og_desc: "Vom Dino bis zur Teekanne: Durchsuchen Sie die Kategorien der molac 3D-Tee-Origami Galerie.",
-        back: "← Zurück", welcome: "Willkommen auf meiner Origami-Seite!",
-        cat_animals: "TIERE", cat_plants: "PFLANZEN", cat_tea: "TEEZEIT", cat_buildings: "BAUWERKE",
-        cat_vehicles: "FAHRZEUGE", cat_others: "SONSTIGES", cat_trad: "TRADITIONELL", cat_crumpled: "GEKNITTERTE",
-        cat_wood: "HOLZARBEITEN", cat_diag: "FALTANLEITUNGEN", cat_exh: "AUSSTELLUNGEN, MEDIA", cat_order: "BESTELLUNG",
-		intro: `Ich habe diese modulare Origami-Technik im Jahr 2001 aus der Zeitschrift 'Origami' gelernt.<br>
-				Auf Chinesisch heißt sie GHIAN-ZHI, was 'TAUSEND PAPIERE' bedeutet. Ich habe sie auch schon unter dem Namen BLOCK-FOLDING gesehen.<br>
-				Der Geschichte nach landeten 200 chinesische Schiffbrüchige der 'Golden Venture', die 1993 vor der Küste der USA auf Grund liefen, im Gefängnis.<br>
-				Einer von ihnen riss in seiner Freizeit farbige Zeitungen und andere Abfälle in einheitliche, handtellergroße Stücke und faltete daraus einheitliche, dreieckige Elemente. Aus diesen einfachen Elementen setzte er komplexe Formen zusammen. Dann brachte er den anderen Häftlingen das Falten bei, so dass die Bauteile schnell zunahmen. Von dort aus gelangten die Papierskulpturen (Vasen, Gefäße, Tiere) in Museen und Galerien.<br>
-				Das Muster erinnert an das Falten von Opferpapiergeld, das bei chinesischen Begräbniszeremonien verwendet wird.<br>
-				Meine ersten Materialien waren farbiges Kopier- und Zeitungspapier. Im Jahr 2002 begann ich, Teebeutel zu verwenden.<br>
-				Die Papierfiguren entstehen nach eigenen Ideen zu Hause in meiner Freizeit. Um ebene Flächen zu gestalten, habe ich aus den Basiselementen eigene Ziegel entwickelt.<br>
-				In den Jahren 2006 und 2009 wurden meine Blumen, Vasen und Tee-Accessoires von der Jury des Direktorats für Bildende und Angewandte Kunst begutachtet.<br>
-				<br>
-				<div style="text-align: center; margin-top: 20px;">
-					Viel Spaß beim Falten!<br>
-					<strong>László Molnár<br>molac</strong>
-				</div>`
+		hu: {
+			title: "molac | 3D-teaorigami - Kategóriák",
+			desc: "Fedezze fel a molac 3D-teaorigami lenyűgöző világát: teástasakból készült állatok, növények és tárgyak.",
+			og_desc: "A dínótól a teáskannáig: böngésszen a molac 3D-teaorigami galéria kategóriái között.",
+			back: "← Vissza", welcome: "Üdvözöllek az Origamis oldalamon!",
+			cat_animals: "ÁLLATOK", cat_plants: "NÖVÉNYEK", cat_tea: "TEÁZÁS", cat_buildings: "ÉPÍTMÉNYEK",
+			cat_vehicles: "JÁRMŰVEK", cat_others: "EGYEBEK", cat_trad: "HAGYOMÁNYOS", cat_crumpled: "GYŰRT MODELLEK",
+			cat_wood: "FAMUNKÁK", cat_diag: "LEÍRÁSOK", cat_exh: "KIÁLLÍTÁSOK, MÉDIA", cat_order: "RENDELÉS",
+			intro: `Ezt a moduláris origami technikát az Origami c. újságból tanultam 2001-ben.<br>GHIAN-ZHI névre hallgat kínaiul, jelentése: EZER PAPÍR. Láttam már BLOCK-FOLDING néven is emlegetni.<br>A történet szerint börtönben kötött ki az Arany Kalandor 200 kínai hajótöröttje, akik 1993-ban futottak zátonyra USA partjainál.<br>Az egyikük ráérő idejében színes újságokat és egyéb hulladékokat tépett egyforma féltenyérnyi darabokra és hajtogatott egyforma, háromszög alakú elemeket belőlük. Ezekből az egyszerű elemekből rakott össze bonyolult formákat. Majd megtanította a többi elítéltet is a hajtogatásra, így gyorsan gyarapodtak az alkotórészecskék. Innen kerültek a papírszobrok (vázák, edények, állatok) múzeumokba és galériákba.<br>A minta emlékeztet a kínai temetési szertartásokon használt áldozati papírpénzek hajtogatására.<br>Az első alapanyagaim színes fénymásoló- és újságpapírok voltak. 2002-ben kezdtem a teástasakokat használni.<br>A papírfigurák saját ötletek alapján készülnek otthon, szabadidőmben. A sík felületek kialakításához egyedi téglákat készítettem az alapelemekből.<br>2006-ban és 2009-ben a Képző és Iparművészeti Lektorátus zsűrizte virágaimat, vázáimat és a teázás kellékeit.<br><br><div style="text-align: center; margin-top: 20px;">Jó hajtogatást kívánok!<br><strong>Molnár László<br>molac</strong></div>`
+		},
+		en: {
+			title: "molac | 3D-teaorigami - Categories",
+			desc: "Discover the amazing world of molac 3D-teaorigami: animals, plants and objects made from tea bags.",
+			og_desc: "From dinosaurs to teapots: browse through the categories of molac 3D-teaorigami gallery.",
+			back: "← Back", welcome: "Welcome to my Origami page!",
+			cat_animals: "ANIMALS", cat_plants: "PLANTS", cat_tea: "TEA TIME", cat_buildings: "BUILDINGS",
+			cat_vehicles: "VEHICLES", cat_others: "OTHERS", cat_trad: "TRADITIONAL", cat_crumpled: "CRUMPLED MODELS",
+			cat_wood: "WOODWORKS", cat_diag: "FOLDING DIAGRAMS", cat_exh: "EXHIBITIONS, MEDIA", cat_order: "ORDER",
+			intro: `I learned this modular origami technique from the 'Origami' magazine in 2001.<br>In Chinese it is called GHIAN-ZHI, which means 'THOUSAND PAPERS'. I have also seen it referred to as BLOCK-FOLDING.<br>According to the story, 200 Chinese shipwrecked people from the Golden Venture, who ran aground on the shores of the USA in 1993, ended up in prison.<br>In his spare time, one of them tore colored newspapers and other waste into uniform palm-sized pieces and folded uniform triangular elements from them. From these simple elements, he assembled complex shapes. He then taught the other inmates how to fold, so the parts grew quickly. From there, the paper sculptures (vases, vessels, animals) made their way into museums and galleries.<br>The pattern is reminiscent of the folding of sacrificial paper money used in Chinese funeral ceremonies.<br>My first materials were colored copy and newspaper. I started using tea bags in 2002.<br>The paper figures are based on my own ideas, created at home in my spare time. To create flat surfaces, I developed unique bricks from the basic elements.<br>In 2006 and 2009, my flowers, vases, and tea accessories were judged by the Jury of the Fine and Applied Arts Directorate.<br><br><div style="text-align: center; margin-top: 20px;">Happy folding!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		de: {
+			title: "molac | 3D-teaorigami - Kategorien",
+			desc: "Entdecken Sie die faszinierende Welt von molac 3D-Tee-Origami: Tiere, Pflanzen und Objekte aus Teebeuteln.",
+			og_desc: "Vom Dino bis zur Teekanne: Durchsuchen Sie die Kategorien der molac 3D-Tee-Origami Galerie.",
+			back: "← Zurück", welcome: "Willkommen auf meiner Origami-Seite!",
+			cat_animals: "TIERE", cat_plants: "PFLANZEN", cat_tea: "TEEZEIT", cat_buildings: "BAUWERKE",
+			cat_vehicles: "FAHRZEUGE", cat_others: "SONSTIGES", cat_trad: "TRADITIONELL", cat_crumpled: "GEKNITTERTE",
+			cat_wood: "HOLZARBEITEN", cat_diag: "FALTANLEITUNGEN", cat_exh: "AUSSTELLUNGEN, MEDIA", cat_order: "BESTELLUNG",
+			intro: `Ich habe diese modulare Origami-Technik im Jahr 2001 aus der Zeitschrift 'Origami' gelernt.<br>Auf Chinesisch heißt sie GHIAN-ZHI, was 'TAUSEND PAPIERE' bedeutet. Ich habe sie auch schon unter dem Namen BLOCK-FOLDING gesehen.<br>Der Geschichte nach landeten 200 chinesische Schiffbrüchige der 'Golden Venture', die 1993 vor der Küste der USA auf Grund liefen, im Gefängnis.<br>Einer von ihnen riss in seiner Freizeit farbige Zeitungen und andere Abfälle in einheitliche, handtellergroße Stücke und faltete daraus einheitliche, dreieckige Elemente. Aus diesen einfachen Elementen setzte er komplexe Formen zusammen. Dann brachte er den anderen Häftlingen das Falten bei, so dass die Bauteile schnell zunahmen. Von dort aus gelangten die Papierskulpturen (Vasen, Gefäße, Tiere) in Museen und Galerien.<br>Das Muster erinnert an das Falten von Opferpapiergeld, das bei chinesischen Begräbniszeremonien verwendet wird.<br>Meine ersten Materialien waren farbiges Kopier- und Zeitungspapier. Im Jahr 2002 begann ich, Teebeutel zu verwenden.<br>Die Papierfiguren entstehen nach eigenen Ideen zu Hause in meiner Freizeit. Um ebene Flächen zu gestalten, habe ich aus den Basiselementen eigene Ziegel entwickelt.<br>In den Jahren 2006 und 2009 wurden meine Blumen, Vasen und Tee-Accessoires von der Jury des Direktorats für Bildende und Angewandte Kunst begutachtet.<br><br><div style="text-align: center; margin-top: 20px;">Viel Spaß beim Falten!<br><strong>László Molnár<br>molac</strong></div>`
 		},
 		es: {
 			title: "molac | 3D-teaorigami - Categorías",
@@ -139,19 +103,7 @@
 			cat_animals: "ANIMALES", cat_plants: "PLANTAS", cat_tea: "HORA DEL TÉ", cat_buildings: "EDIFICIOS",
 			cat_vehicles: "VEHÍCULOS", cat_others: "OTROS", cat_trad: "TRADICIONAL", cat_crumpled: "MODELOS ARRUGADOS",
 			cat_wood: "TRABAJOS EN MADERA", cat_diag: "DIAGRAMAS", cat_exh: "EXPOSICIONES, MEDIOS", cat_order: "PEDIDOS",
-			intro: `Aprendí esta técnica de origami modular de la revista 'Origami' en 2001.<br>
-					En chino se llama GHIAN-ZHI, que significa 'MIL PAPELES'. También lo he visto mencionado como BLOCK-FOLDING.<br>
-					Según la historia, 200 náufragos chinos del Golden Venture, que encallaron en las costas de EE.UU. en 1993, terminaron en prisión.<br>
-					Uno de ellos, en su tiempo libre, rasgó periódicos de colores y otros desechos en trozos uniformes del tamaño de la palma de la mano y dobló elementos triangulares uniformes a partir de ellos. A partir de estos elementos simples, armó formas complejas. Luego enseñó a los otros reclusos a doblar, por lo que las piezas crecieron rápidamente. De allí, las esculturas de papel (jarrones, vasijas, animales) llegaron a museos y galerías.<br>
-					El patrón recuerda al plegado de dinero de papel sacrificial utilizado en las ceremonias funerarias chinas.<br>
-					Mis primeros materiales fueron papel de copia en color y periódicos. Empecé a usar sobres de té en 2002.<br>
-					Las figuras de papel se basan en mis propias ideas, creadas en casa en mi tiempo libre. Para crear superficies planas, desarrollé ladrillos únicos a partir de los elementos básicos.<br>
-					En 2006 y 2009, mis flores, jarrones y accesorios de té fueron evaluados por el Jurado de la Dirección de Bellas Artes y Artes Aplicadas.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						¡Feliz plegado!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+			intro: `Aprendí esta técnica de origami modular de la revista 'Origami' en 2001.<br>En chino se llama GHIAN-ZHI, que significa 'MIL PAPELES'. También lo he visto mencionado como BLOCK-FOLDING.<br>Según la historia, 200 náufragos chinos del Golden Venture, que encallaron en las costas de EE.UU. en 1993, terminaron en prisión.<br>Uno de ellos, en su tiempo libre, rasgó periódicos de colores y otros desechos en trozos uniformes del tamaño de la palma de la mano y dobló elementos triangulares uniformes a partir de ellos. A partir de estos elementos simples, armó formas complejas. Luego enseñó a los otros reclusos a doblar, por lo que las piezas crecieron rápidamente. De allí, las esculturas de papel (jarrones, vasijas, animales) llegaron a museos y galerías.<br>El patrón recuerda al plegado de dinero de papel sacrificial utilizado en las ceremonias funerarias chinas.<br>Mis primeros materiales fueron papel de copia en color y periódicos. Empecé a usar sobres de té en 2002.<br>Las figuras de papel se basan en mis propias ideas, creadas en casa en mi tiempo libre. Para crear superficies planas, desarrollé ladrillos únicos a partir de los elementos básicos.<br>En 2006 y 2009, mis flores, jarrones y accesorios de té fueron evaluados por el Jurado de la Dirección de Bellas Artes y Artes Aplicadas.<br><br><div style="text-align: center; margin-top: 20px;">¡Feliz plegado!<br><strong>László Molnár<br>molac</strong></div>`
 		},		
 		it: {
 			title: "molac | 3D-teaorigami - Categorie",
@@ -161,19 +113,7 @@
 			cat_animals: "ANIMALI", cat_plants: "PIANTE", cat_tea: "ORA DEL TÈ", cat_buildings: "EDIFICI",
 			cat_vehicles: "VEICOLI", cat_others: "ALTRO", cat_trad: "TRADIZIONALE", cat_crumpled: "MODELLI STROPICCIATI",
 			cat_wood: "LAVORI IN LEGNO", cat_diag: "DIAGRAMMI", cat_exh: "MOSTRE, MEDIA", cat_order: "ORDINI",
-			intro: `Ho imparato questa tecnica di origami modulare dalla rivista 'Origami' nel 2001.<br>
-					In cinese si chiama GHIAN-ZHI, che significa 'MILLE CARTE'. L'ho visto menzionato anche come BLOCK-FOLDING.<br>
-					Secondo la storia, 200 naufraghi cinesi della Golden Venture, che si arenarono sulle coste degli USA nel 1993, finirono in prigione.<br>
-					Uno di loro, nel tempo libero, strappava giornali a colori e altri scarti in pezzi uniformi grandi quanto un palmo e ne piegava elementi triangolari uniformi. Da questi semplici elementi, assemblava forme complesse. Poi insegnò agli altri detenuti a piegare, così i componenti crebbero rapidamente. Da lì, le sculture di carta (vasi, recipienti, animali) arrivarono nei musei e nelle gallerie.<br>
-					Il motivo ricorda la piegatura della carta moneta sacrificale usata nelle cerimonie funebri cinesi.<br>
-					I miei primi materiali sono stati carta colorata per fotocopie e giornali. Ho iniziato a usare le bustine di tè nel 2002.<br>
-					Le figure di carta si basano su idee proprie, create a casa nel tempo libero. Per creare superfici piane, ho sviluppato mattoncini unici partendo dagli elementi di base.<br>
-					Nel 2006 e nel 2009, i miei fiori, vasi e accessori per il tè sono stati valutati dalla Giuria della Direzione delle Belle Arti e delle Arti Applicate.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Buon piegatura!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+			intro: `Ho imparato questa tecnica di origami modulare dalla rivista 'Origami' nel 2001.<br>In cinese si chiama GHIAN-ZHI, che significa 'MILLE CARTE'. L'ho visto menzionato anche come BLOCK-FOLDING.<br>Secondo la storia, 200 naufraghi cinesi della Golden Venture, che si arenarono sulle coste degli USA nel 1993, finirono in prigione.<br>Uno di loro, nel tempo libero, strappava giornali a colori e altri scarti in pezzi uniformi grandi quanto un palmo e ne piegava elementi triangolari uniformi. Da questi semplici elementi, assemblava forme complesse. Poi insegnò agli altri detenuti a piegare, così i componenti crebbero rapidamente. Da lì, le sculture di carta (vasi, recipienti, animali) arrivarono nei musei e nelle gallerie.<br>Il motivo ricorda la piegatura della carta moneta sacrificale usata nelle cerimonie funebri cinesi.<br>I miei primi materiali sono stati carta colorata per fotocopie e giornali. Ho iniziato a usare le bustine di tè nel 2002.<br>Le figure di carta si basano su idee proprie, create a casa nel tempo libero. Per creare superfici piane, ho sviluppato mattoncini unici partendo dagli elementi di base.<br>Nel 2006 e nel 2009, i miei fiori, vasi e accessori per il tè sono stati valutati dalla Giuria della Direzione delle Belle Arti e delle Arti Applicate.<br><br><div style="text-align: center; margin-top: 20px;">Buon piegatura!<br><strong>László Molnár<br>molac</strong></div>`
 		},		
 		fr: {
 			title: "molac | 3D-teaorigami - Catégories",
@@ -183,19 +123,7 @@
 			cat_animals: "ANIMAUX", cat_plants: "PLANTES", cat_tea: "L'HEURE DU THÉ", cat_buildings: "BÂTIMENTS",
 			cat_vehicles: "VÉHICULES", cat_others: "AUTRES", cat_trad: "TRADITIONNEL", cat_crumpled: "MODÈLES FROISSÉS",
 			cat_wood: "TRAVAUX SUR BOIS", cat_diag: "DIAGRAMMES", cat_exh: "EXPOSITIONS, MÉDIA", cat_order: "COMMANDE",
-			intro: `J'ai appris cette technique d'origami modulaire dans le magazine 'Origami' en 2001.<br>
-					En chinois, elle s'appelle GHIAN-ZHI, ce qui signifie 'MILLE PAPIERS'. Je l'ai aussi vue mentionnée sous le nom de BLOCK-FOLDING.<br>
-					Selon l'histoire, 200 naufragés chinois du Golden Venture, qui s'est échoué sur les côtes américaines en 1993, se sont retrouvés en prison.<br>
-					L'un d'eux, pendant son temps libre, a déchiré des journaux colorés et d'autres déchets en morceaux uniformes de la taille d'une paume et en a plié des éléments triangulaires identiques. À partir de ces éléments simples, il a assemblé des formes complexes. Il a ensuite appris le pliage aux autres détenus, et les pièces se sont multipliées rapidement. C'est ainsi que les sculptures en papier (vases, récipients, animaux) sont arrivées dans les musées et les galeries.<br>
-					Le motif rappelle le pliage de l'argent sacrificiel en papier utilisé lors des funérailles chinoises.<br>
-					Mes premiers matériaux étaient du papier journal et du papier de couleur. J'ai commencé à utiliser des sachets de thé en 2002.<br>
-					Les figurines en papier sont basées sur mes propres idées, créées à la maison pendant mon temps libre. Pour créer des surfaces planes, j'ai développé des briques uniques à partir des éléments de base.<br>
-					En 2006 et 2009, le Jury de la Direction des Arts Plastiques et Appliqués a évalué mes fleurs, mes vases et mes accessoires pour le thé.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Bon pliage !<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+			intro: `J'ai appris cette technique d'origami modulaire dans le magazine 'Origami' en 2001.<br>En chinois, elle s'appelle GHIAN-ZHI, ce qui signifie 'MILLE PAPIERS'. Je l'ai aussi vue mentionnée sous le nom de BLOCK-FOLDING.<br>Selon l'histoire, 200 naufragés chinois du Golden Venture, qui s'est échoué sur les côtes américaines en 1993, se sont retrouvés en prison.<br>L'un d'eux, pendant son temps libre, a déchiré des journaux colorés et d'autres déchets en morceaux uniformes de la taille d'une paume et en a plié des éléments triangulaires identiques. À partir de ces éléments simples, il a assemblé des formes complexes. Il a ensuite appris le pliage aux autres détenus, et les pièces se sont multipliées rapidement. C'est ainsi que les sculptures en papier (vases, récipients, animaux) sont arrivées dans les musées et les galeries.<br>Le motif rappelle le pliage de l'argent sacrificiel en papier utilisé lors des funérailles chinoises.<br>Mes premiers matériaux étaient du papier journal et du papier de couleur. J'ai commencé à utiliser des sachets de thé en 2002.<br>Les figurines en papier sont basées sur mes propres idées, créées à la maison pendant mon temps libre. Pour créer des surfaces planes, j'ai développé des briques uniques à partir des éléments de base.<br>En 2006 et 2009, le Jury de la Direction des Arts Plastiques et Appliqués a évalué mes fleurs, mes vases et mes accessoires pour le thé.<br><br><div style="text-align: center; margin-top: 20px;">Bon pliage !<br><strong>László Molnár<br>molac</strong></div>`
 		},
 		pt: {
 			title: "molac | 3D-teaorigami - Categorias",
@@ -205,161 +133,77 @@
 			cat_animals: "ANIMAIS", cat_plants: "PLANTAS", cat_tea: "HORA DO CHÁ", cat_buildings: "EDIFÍCIOS",
 			cat_vehicles: "VEÍCULOS", cat_others: "OUTROS", cat_trad: "TRADICIONAL", cat_crumpled: "MODELOS AMASSADOS",
 			cat_wood: "TRABALHOS EM MADEIRA", cat_diag: "DIAGRAMAS", cat_exh: "EXPOSIÇÕES, MÍDIA", cat_order: "ENCOMENDAS",
-			intro: `Aprendi esta técnica de origami modular na revista 'Origami' em 2001.<br>
-					Em chinês chama-se GHIAN-ZHI, que significa 'MIL PAPÉIS'. Também já a vi referenciada como BLOCK-FOLDING.<br>
-					Segundo a história, 200 náufragos chineses do Golden Venture, que encalharam na costa dos EUA em 1993, acabaram na prisão.<br>
-					Um deles, no seu tempo livre, rasgou jornais coloridos e outros resíduos em pedaços uniformes do tamanho da palma da mão e dobrou elementos triangulares idênticos. A partir destes elementos simples, montou formas complexas. Depois ensinou os outros detidos a dobrar, e as peças multiplicaram-se rapidamente. Daí, as esculturas de papel (vasos, recipientes, animais) chegaram a museus e galerias.<br>
-					O padrão lembra a dobragem de dinheiro de papel sacrificial usado em cerimónias fúnebres chinesas.<br>
-					Os meus primeiros materiais foram papel de cópia colorido e jornais. Comecei a usar saquinhos de chá em 2002.<br>
-					As figuras de papel baseiam-se em ideias próprias, criadas em casa nos tempos livres. Para criar superfícies planas, desenvolvi tijolos únicos a partir dos elementos básicos.<br>
-					Em 2006 e 2009, as minhas flores, vasos e acessórios de chá foram avaliados pelo Júri da Direção de Belas Artes e Artes Aplicadas.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Boas dobragens!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+			intro: `Aprendi esta técnica de origami modular na revista 'Origami' em 2001.<br>Em chinês chama-se GHIAN-ZHI, que significa 'MIL PAPÉIS'. Também já a vi referenciada como BLOCK-FOLDING.<br>Segundo a história, 200 náufragos chineses do Golden Venture, que encalharam na costa dos EUA em 1993, acabaram na prisão.<br>Um deles, no seu tempo livre, rasgou jornais coloridos e outros resíduos em pedaços uniformes do tamanho da palma da mão e dobrou elementos triangulares idênticos. A partir destes elementos simples, montou formas complexas. Depois ensinou os outros detidos a dobrar, e as peças multiplicaram-se rapidamente. Daí, as esculturas de papel (vasos, recipientes, animais) chegaram a museus e galerias.<br>O padrão lembra a dobragem de dinheiro de papel sacrificial usado em cerimónias fúnebres chinesas.<br>Os meus primeiros materiais foram papel de cópia colorido e jornais. Comecei a usar saquinhos de chá em 2002.<br>As figuras de papel baseiam-se em ideias próprias, criadas em casa nos tempos livres. Para criar superfícies planas, desenvolvi tijolos únicos a partir dos elementos básicos.<br>Em 2006 e 2009, as minhas flores, vasos e acessórios de chá foram avaliados pelo Júri da Direção de Belas Artes e Artes Aplicadas.<br><br><div style="text-align: center; margin-top: 20px;">Boas dobragens!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		pl: {
-			title: "molac | 3D-teaorigami - Kategorie",
-			desc: "Odkryj fascynujący świat molac 3D-teaorigami: zwierzęta, rośliny i przedmioty wykonane z torebek po herbacie.",
-			og_desc: "Od dinozaura po imbryk: przeglądaj kategorie galerii molac 3D-teaorigami.",
-			back: "← Wstecz", welcome: "Witaj na mojej stronie Origami!",
-			cat_animals: "ZWIERZĘTA", cat_plants: "ROŚLINY", cat_tea: "CZAS NA HERBATĘ", cat_buildings: "BUDWLE",
-			cat_vehicles: "POJAZDY", cat_others: "INNE", cat_trad: "TRADYCYJNE", cat_crumpled: "MODELE GNIECIONE",
-			cat_wood: "PRACE W DREWNIE", cat_diag: "INSTRUKCJE", cat_exh: "WYSTAWY, MEDIA", cat_order: "ZAMÓWIENIA",
-			intro: `Tej modułowej techniki origami nauczyłem się z czasopisma „Origami” w 2001 roku.<br>
-					Po chińsku nazywa się ona GHIAN-ZHI, co oznacza „TYSIĄC PAPIERÓW”. Spotkałem się również z nazwą BLOCK-FOLDING.<br>
-					Według historii, 200 chińskich rozbitków ze statku Golden Venture, który osiadł na mieliźnie u wybrzeży USA w 1993 roku, trafiło do więzienia.<br>
-					Jeden z nich w wolnym czasie darł kolorowe gazety i inne odpady na równe kawałki wielkości dłoni i składał z nich identyczne, trójkątne elementy. Z tych prostych elementów składał skomplikowane kształty. Następnie nauczył składania pozostałych więźniów, dzięki czemu liczba części szybko rosła. Stamtąd rzeźby papierowe (wazony, naczynia, zwierzęta) trafiły do muzeów i galerii.<br>
-					Wzór przypomina składanie ofiarnych pieniędzy papierowych używanych podczas chińskich ceremonii pogrzebowych.<br>
-					Moimi pierwszymi materiałami był kolorowy papier ksero i gazety. W 2002 roku zacząłem używać torebek po herbacie.<br>
-					Figurki papierowe powstają według moich własnych pomysłów w domu, w wolnym czasie. Do tworzenia płaskich powierzchni opracowałem unikalne cegiełki z podstawowych elementów.<br>
-					W 2006 i 2009 roku moje kwiaty, wazony i akcesoria herbaciane zostały ocenione przez Jury Dyrekcji Sztuk Pięknych i Użytkowych.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Życzę miłego składania!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+		nl: {
+			title: "molac | 3D-thee-origami - Categorieën",
+			desc: "Ontdek de fascinerende wereld van molac 3D-thee-origami: dieren, planten en objecten gemaakt van theezakjes.",
+			og_desc: "Van dinosaurus tot theepot: blader door de categorieën van de molac 3D-thee-origami galerij.",
+			back: "← Terug", welcome: "Welkom op mijn Origami pagina!",
+			cat_animals: "DIEREN", cat_plants: "PLANTEN", cat_tea: "THEETIJD", cat_buildings: "GEBOUWEN",
+			cat_vehicles: "VOERTUIGEN", cat_others: "OVERIGE", cat_trad: "TRADITIONEEL", cat_crumpled: "KREUKELMODELLEN",
+			cat_wood: "HOUTWERK", cat_diag: "DIAGRAMMEN", cat_exh: "EXPOSITIES, MEDIA", cat_order: "BESTELLEN",
+			intro: `Ik leerde deze modulaire origami-techniek uit het tijdschrift 'Origami' in 2001.<br>In het Chinees heet het GHIAN-ZHI, wat 'DUIZEND PAPIEREN' betekent. Ik heb het ook gezien onder de naam BLOCK-FOLDING.<br>Volgens het verhaal belandden 200 Chinese schipbreukelingen van de Golden Venture, die in 1993 aan de kust van de VS strandde, in de gevangenis.<br>Een van hen scheurde in zijn vrije tijd gekleurde kranten en ander afval in uniforme stukjes ter grootte van een handpalm en vouwde daar uniforme driehoekige elementen van. Van deze eenvoudige elementen stelde hij complexe vormen samen. Vervolgens leerde hij de andere gevangenen hoe ze moesten vouwen, waardoor de onderdelen snel in aantal toenamen. Van daaruit vonden de papieren sculpturen (vazen, vaten, dieren) hun weg naar musea en galerieën.<br>Het patroon doet denken aan het vouwen van offerpapiergeld dat wordt gebruikt bij Chinese begrafenisplechtigheden.<br>Mijn eerste materialen waren gekleurd kopieer- en krantenpapier. In 2002 begon ik theezakjes te gebruiken.<br>De papieren figuren zijn gebaseerd op mijn eigen ideeën, thuis gecreëerd in mijn vrije tijd. Om vlakke oppervlakken te maken, ontwikkelde ik unieke bakstenen uit de basiselementen.<br>In 2006 en 2009 werden mijn bloemen, vazen en thee-accessoires beoordeeld door de Jury van de Directie Beeldende en Toegepaste Kunsten.<br><br><div style="text-align: center; margin-top: 20px;">Veel vouwplezier!<br><strong>László Molnár<br>molac</strong></div>`
+		},		
+		sv: {
+			title: "molac | 3D-teorigami - Kategorier",
+			desc: "Upptäck den fascinerande världen av molac 3D-teorigami: djur, växter och föremål gjorda av tepåsar.",
+			og_desc: "Från dinosaurier till tekannor: bläddra bland kategorierna i molac 3D-teorigami galleri.",
+			back: "← Tillbaka", welcome: "Välkommen till min Origami-sida!",
+			cat_animals: "DJUR", cat_plants: "VÄXTER", cat_tea: "TETID", cat_buildings: "BYGGNADER",
+			cat_vehicles: "FORDON", cat_others: "ÖVRIGT", cat_trad: "TRADITIONELL", cat_crumpled: "SKRYNKLIGA MODELLER",
+			cat_wood: "TRÄARBETEN", cat_diag: "DIAGRAM", cat_exh: "UTSTÄLLNINGAR, MEDIA", cat_order: "BESTÄLLNING",
+			intro: `Jag lärde mig denna modulära origami-teknik från tidningen 'Origami' 2001.<br>På kinesiska kallas det GHIAN-ZHI, vilket betyder 'TUSEN PAPPER'. Jag har också sett det kallas BLOCK-FOLDING.<br>Enligt historien hamnade 200 kinesiska skeppsbrutna från Golden Venture, som gick på grund vid USA:s kust 1993, i fängelse.<br>En av dem rev på sin fritid färgade tidningar och annat avfall i enhetliga bitar i handflatans storlek och vek enhetliga triangulära element av dem. Av dessa enkla element satte han ihop komplexa former. Han lärde sedan de andra fångarna hur man viker, så delarna ökade snabbt. Därifrån tog pappersskulpturerna (vaser, kärl, djur) sig till museer och gallerier.<br>Mönstret påminner om vikning av offerpapperspengar som används vid kinesiska begravningsceremonier.<br>Mina första material var färgat kopieringspapper och tidningspapper. Jag började använda tepåsar 2002.<br>Pappersfigurerna är baserade på mina egna idéer, skapade hemma på min fritid. För att skapa plana ytor utvecklade jag unika tegelstenar av basenlementen.<br>Under 2006 och 2009 bedömdes mina blommor, vaser och tetillbehör av juryn vid direktoratet för bildkonst och konsthantverk.<br><br><div style="text-align: center; margin-top: 20px;">Trevlig vikning!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		ro: {
-			title: "molac | 3D-teaorigami - Categorii",
-			desc: "Descoperiți lumea fascinantă a 3D-teaorigami molac: animale, plante și obiecte realizate din pliculețe de ceai.",
-			og_desc: "De la dinozaur la ceainic: răsfoiți categoriile galeriei 3D-teaorigami molac.",
-			back: "← Înapoi", welcome: "Bun venit pe pagina mea de Origami!",
-			cat_animals: "ANIMALE", cat_plants: "PLANTE", cat_tea: "ORA CEAIULUI", cat_buildings: "CLĂDIRI",
-			cat_vehicles: "VEHICULE", cat_others: "ALTELE", cat_trad: "TRADIȚIONAL", cat_crumpled: "MODELE ȘIFONATE",
-			cat_wood: "LUCRARE ÎN LEMN", cat_diag: "DIAGRAME", cat_exh: "EXPOZIȚII, MEDIA", cat_order: "COMANDĂ",
-			intro: `Am învățat această tehnică de origami modular din revista 'Origami' în 2001.<br>
-					În chineză se numește GHIAN-ZHI, ceea ce înseamnă 'O MIE DE HÂRTII'. Am văzut-o menționată și sub numele de BLOCK-FOLDING.<br>
-					Conform poveștii, 200 de chinezi naufragiați de pe Golden Venture, care a eșuat pe coastele SUA în 1993, au ajuns în închisoare.<br>
-					Unul dintre ei, în timpul liber, a rupt ziare colorate și alte deșeuri în bucăți uniforme de mărimea unei palme și a împăturit elemente triunghiulare identice. Din aceste elemente simple, a asamblat forme complexe. Apoi i-a învățat și pe ceilalți deținuți să împăturească, astfel încât piesele s-au multiplicat rapid. De acolo, sculpturile din hârtie (vaze, vase, animale) au ajuns în muzee și galerii.<br>
-					Modelul amintește de împăturirea banilor de hârtie sacrificiali folosiți la ceremoniile funerare chinezești.<br>
-					Primele mele materiale au fost hârtia colorată de copiator și ziarele. Am început să folosesc pliculețe de ceai în 2002.<br>
-					Figurinele din hârtie se bazează pe propriile mele idei, create acasă în timpul liber. Pentru a crea suprafețe plane, am dezvoltat cărămizi unice din elementele de bază.<br>
-					În 2006 și 2009, florile, vazele și accesoriile mele pentru ceai au fost evaluate de Juriul Direcției de Arte Plastice și Aplicate.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Spor la împăturit!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+		fi: {
+			title: "molac | 3D-te-origami - Kategoriat",
+			desc: "Tutustu molac 3D-te-origamin kiehtovaan maailmaan: teepusseista tehtyjä eläimiä, kasveja ja esineitä.",
+			og_desc: "Dinosauruksista teekannuihin: selaa molac 3D-te-origami-gallerian kategorioita.",
+			back: "← Takaisin", welcome: "Tervetuloa Origami-sivulleni!",
+			cat_animals: "ELÄIMET", cat_plants: "KASVIT", cat_tea: "TEEHETKI", cat_buildings: "RAKENNUKSET",
+			cat_vehicles: "KULKUNEUVOT", cat_others: "MUUT", cat_trad: "PERINTEINEN", cat_crumpled: "RYPYTETYT MALLIT",
+			cat_wood: "PUUTYÖT", cat_diag: "OHJEET", cat_exh: "NÄYTTELYT, MEDIA", cat_order: "TILAUS",
+			intro: `Opin tämän modulaarisen origami-tekniikan 'Origami'-lehdestä vuonna 2001.<br>Kiinaksi sitä kutsutaan nimellä GHIAN-ZHI, mikä tarkoittaa 'TUHANNET PAPERIT'. Olen nähnyt sitä kutsuttavan myös nimellä BLOCK-FOLDING.<br>Tarinan mukaan 200 kiinalaista haaksirikkoutunutta Golden Venture -laivalta, joka ajoi karille USA:n rannikolla vuonna 1993, päätyi vankilaan.<br>Yksi heistä repi vapaa-ajallaan värikkäitä sanomalehtiä ja muuta jätettä tasakokoisiksi kämmenenkokoisiksi palasiksi ja taittoi niistä tasakokoisia kolmiomaisia elementtejä. Näistä yksinkertaisista elementeistä hän koosi monimutkaisia muotoja. Sitten hän opetti muut vangit taittelemaan, joten osat lisääntyivät nopeasti. Sieltä paperiveistokset (maljakot, astiat, eläimet) löysivät tiensä museoihin ja gallerioihin.<br>Kuvio muistuttaa kiinalaisissa hautajaismenoissa käytettyjen uhrilahjapaperirahojen taittelua.<br>Ensimmäiset materiaalini olivat värillinen kopiopaperi ja sanomalehti. Aloin käyttää teepusseja vuonna 2002.<br>Paperihahmot perustuvat omiin ideoihini, jotka on luotu kotona vapaa-ajallani. Litteiden pintojen luomiseksi kehitin peruselementeistä ainutlaatuisia tiiliä.<br>Vuosina 2006 ja 2009 kuvataide- ja taideteollisuusviraston tuomaristo arvioi kukkiani, maljakoitani ja teetarvikkeitani.<br><br><div style="text-align: center; margin-top: 20px;">Iloisia taitteluhetkiä!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		sk: {
-			title: "molac | 3D-teaorigami - Kategórie",
-			desc: "Objavte fascinujúci svet 3D-teaorigami od molac: zvieratá, rastliny a predmety vyrobené z čajových vrecúšok.",
-			og_desc: "Od dinosaura po čajník: prehliadajte kategórie galérie 3D-teaorigami molac.",
-			back: "← Späť", welcome: "Vitajte na mojej stránke Origami!",
-			cat_animals: "ZVIERATÁ", cat_plants: "RASTLINY", cat_tea: "ČAS NA ČAJ", cat_buildings: "STAVBY",
-			cat_vehicles: "VOZIDLÁ", cat_others: "INÉ", cat_trad: "TRADIČNÉ", cat_crumpled: "KRČENÉ MODELY",
-			cat_wood: "DREVENÉ PRÁCE", cat_diag: "NÁVODY", cat_exh: "VÝSTAVY, MÉDIÁ", cat_order: "OBJEDNÁVKA",
-			intro: `Túto modulárnu techniku origami som sa naučil z časopisu 'Origami' v roku 2001.<br>
-					V čínštine sa nazýva GHIAN-ZHI, čo znamená 'TISÍC PAPIEROV'. Stretol som sa aj s názvom BLOCK-FOLDING.<br>
-					Podľa príbehu 200 čínskych stroskotancov z lode Golden Venture, ktorá v roku 1993 uviazla na pobreží USA, skončilo vo väzení.<br>
-					Jeden z nich vo voľnom čase trhal farebné noviny a iný odpad na rovnaké kúsky veľkosti dlane a skladal z nich rovnaké trojuholníkové prvky. Z týchto jednoduchých prvkov zostavoval zložité tvary. Potom naučil skladať aj ostatných väzňov, vďaka čomu počet dielov rýchlo rástol. Odtiaľ sa papierové sochy (vázy, nádoby, zvieratá) dostali do múzeí a galérií.<br>
-					Vzor pripomína skladanie obetných papierových peňazí používaných pri čínskych pohrebných obradoch.<br>
-					Mojím prvým materiálom bol farebný kopírovací papier a noviny. V roku 2002 som začal používať čajové vrecúška.<br>
-					Papierové figúrky vychádzajú z mojich vlastných nápadov, vytvorených doma vo voľnom čase. Na vytvorenie plochých povrchov som vyvinul unikátne tehličky zo základných prvkov.<br>
-					V rokoch 2006 a 2009 moje kvety, vázy a čajové doplnky posudzovala porota Riaditeľstva pre výtvarné a úžitkové umenie.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Príjemné skladanie!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+		no: {
+			title: "molac | 3D-te-origami - Kategorier",
+			desc: "Oppdag den fascinerende verdenen av molac 3D-te-origami: dyr, planter og gjenstander laget av teposer.",
+			og_desc: "Fra dinosaur til tekanne: bla gjennom kategoriene i molac 3D-te-origami galleriet.",
+			back: "← Tilbake", welcome: "Velkommen til min Origami-side!",
+			cat_animals: "DYR", cat_plants: "PLANTER", cat_tea: "TETID", cat_buildings: "BYGNINGER",
+			cat_vehicles: "KJØRETØY", cat_others: "ANNET", cat_trad: "TRADISJONELL", cat_crumpled: "KRØLLETE MODELLER",
+			cat_wood: "TREARBEID", cat_diag: "DIAGRAMMER", cat_exh: "UTSTILLINGER, MEDIA", cat_order: "BESTILLING",
+			intro: `Jeg lærte denne modulære origami-teknikken fra bladet 'Origami' i 2001.<br>På kinesisk kalles det GHIAN-ZHI, som betyr 'TUSEN PAPIR'. Jeg har også sett det referert til som BLOCK-FOLDING.<br>Ifølge historien endte 200 kinesiske skibbrudne fra Golden Venture, som gikk på grunn ved kysten av USA i 1993, i fengsel.<br>En av dem rev på fritiden fargede aviser og annet avfall i ensartede stykker på størrelse med en håndflate og brettet ensartede trekantede elementer av dem. Av disse enkle elementene satte han sammen komplekse former. Deretter lærte han de andre innsatte å brette, så delene økte raskt. Derfra fant papirskulpturene (vaser, kar, dyr) veien til museer og gallerier.<br>Mønsteret minner om bretting av ofringspapirpenger brukt i kinesiske begravelsesseremonier.<br>Mine første materialer var farget kopipapir og avispapir. Jeg begynte å bruke teposer i 2002.<br>Papirfigurene er basert på egne idéer, skapt hjemme på fritiden. For å lage flate overflater utviklet jeg unike murstein fra basiselementene.<br>I 2006 og 2009 ble mine blomster, vaser og tetilbehør vurdert av juryen ved direktoratet for bildekunst og kunsthåndverk.<br><br><div style="text-align: center; margin-top: 20px;">God bretting!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		sr: {
-			title: "molac | 3D-teaorigami - Категорије",
-			desc: "Откријте фасцинантни свет molac 3D-teaorigami-ја: животиње, биљке и предмети направљени од кесица чаја.",
-			og_desc: "Од диносауруса до чајника: прегледајте категорије галерије molac 3D-teaorigami.",
-			back: "← Назад", 
-			welcome: "Добродошли на моју Оригами страницу!",
-			cat_animals: "ЖИВОТИЊЕ", 
-			cat_plants: "БИЉКЕ", 
-			cat_tea: "ЧАЈАНКА", 
-			cat_buildings: "ГРАЂЕВИНЕ",
-			cat_vehicles: "ВОЗИЛА", 
-			cat_others: "ОСТАЛО", 
-			cat_trad: "ТРАДИЦИОНАЛНО", 
-			cat_crumpled: "ЗГУЖВАНИ МОДЕЛИ",
-			cat_wood: "РАД У ДРВЕТУ", 
-			cat_diag: "ДИЈАГРАМИ", 
-			cat_exh: "ИЗЛОЖБЕ, МЕДИЈИ", 
-			cat_order: "ПОРУЏБИНЕ",
-			intro: `Ову модуларну технику оригамија научио сам из часописа 'Origami' 2001. године.<br>
-					На кинеском се зове GHIAN-ZHI, што значи 'ХИЉАДУ ПАПИРА'. Виђао сам да се помиње и под називом BLOCK-FOLDING.<br>
-					Према причи, 200 кинеских бродоломника са брода Golden Venture, који се насукао на обале САД 1993. године, завршило је у затвору.<br>
-					Један од њих је у слободно време цепао обојене новине и други отпад на једнаке комаде величине длана и савијао од њих једнаке троугласте елементе. Од ових једноставних елемената састављао је сложене облике. Потом је научио и остале затворенике да савијају, па су се делови брзо множили. Одатле су папирне скулптуре (вазе, посуде, животиње) доспеле у музеје и галерије.<br>
-					Шара подсећа на савијање жртвеног папирног новца који се користи у кинеским погребним церемонијама.<br>
-					Моји први материјали били су папир у боји и новине. Кесице чаја почео сам да користим 2002. године.<br>
-					Папирне фигуре су засноване на мојим сопственим идејама, насталим код куће у слободно време. За креирање равних површина развио сам јединствене цигле од основних елемената.<br>
-					Током 2006. и 2009. године, моје цвеће, вазе и прибор за чај оцењивао је Жири Управе за ликовну и примењену уметност.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Уживајте у савијању!<br>
-						<strong>László Molnár (Ласло Молнар)<br>molac</strong>
-					</div>`
+		da: {
+			title: "molac | 3D-te-origami - Kategorier",
+			desc: "Oplev den fascinerende verden af molac 3D-te-origami: dyr, planter og genstande lavet af teposer.",
+			og_desc: "Fra dinosaur til tekande: gennemse kategorierne i molac 3D-te-origami galleriet.",
+			back: "← Tilbage", welcome: "Velkommen til min Origami-side!",
+			cat_animals: "DYR", cat_plants: "PLANTER", cat_tea: "TETID", cat_buildings: "BYGNINGER",
+			cat_vehicles: "KØRETØJER", cat_others: "ANDET", cat_trad: "TRADITIONEL", cat_crumpled: "KRØLLEDE MODELLER",
+			cat_wood: "TRÆARBEJDE", cat_diag: "DIAGRAMMER", cat_exh: "UDSTILLINGER, MEDIA", cat_order: "BESTILLING",
+			intro: `Jeg lærte denne modulære origami-teknik fra bladet 'Origami' i 2001.<br>På kinesisk kaldes det GHIAN-ZHI, hvilket betyder 'TUSIND PAPIRER'. Jeg har også set det omtalt som BLOCK-FOLDING.<br>Ifølge historien endte 200 kinesiske skibbrudne fra Golden Venture, som gik på grund ved USA's kyst i 1993, i fængsel.<br>En af dem rev i sin fritid farvede aviser og andet affald i ensartede stykker på størrelse med en håndflade og foldede ensartede trekantede elementer af dem. Af disse enkle elementer samlede han komplekse former. Derefter lærte han de andre indsatte at folde, så delene voksede hurtigt. Derfra fandt papirskulpturerne (vaser, kar, dyr) vej til museer og gallerier.<br>Mønsteret minder om foldning af offerpapirpenge brugt ved kinesiske begravelsesceremonier.<br>Mine første materialer var farvet kopipapir og avispapir. Jeg begyndte at bruge teposer i 2002.<br>Papirfigurerne er baseret på mine egne idéer, skabt hjemme i min fritid. For at skabe flade overflader udviklede jeg unikke mursten ud fra basiselementerne.<br>I 2006 og 2009 blev mine blomster, vaser og tetilbehør bedømt af juryen ved direktoratet for billedkunst og kunsthåndværk.<br><br><div style="text-align: center; margin-top: 20px;">God foldelyst!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		hr: {
-			title: "molac | 3D-teaorigami - Kategorije",
-			desc: "Otkrijte fascinantan svijet molac 3D-teaorigamija: životinje, biljke i predmeti izrađeni od vrećica čaja.",
-			og_desc: "Od dinosaura do čajnika: pregledajte kategorije galerije molac 3D-teaorigami.",
-			back: "← Natrag", welcome: "Dobrodošli na moju Origami stranicu!",
-			cat_animals: "ŽIVOTINJE", cat_plants: "BILJKE", cat_tea: "VRIJEME ZA ČAJ", cat_buildings: "GRAĐEVINE",
-			cat_vehicles: "VOZILA", cat_others: "OSTALO", cat_trad: "TRADICIONALNO", cat_crumpled: "ZGUŽVANI MODELI",
-			cat_wood: "RAD U DRVETU", cat_diag: "DIJAGRAMI", cat_exh: "IZLOŽBE, MEDIJI", cat_order: "NARUDŽBA",
-			intro: `Ovu modularnu tehniku origamija naučio sam iz časopisa 'Origami' 2001. godine.<br>
-					Na kineskom se zove GHIAN-ZHI, što znači 'TISUĆU PAPIRA'. Vidio sam da se spominje i kao BLOCK-FOLDING.<br>
-					Prema priči, 200 kineskih brodolomaca s broda Golden Venture, koji se nasukao na obale SAD-a 1993. godine, završilo je u zatvoru.<br>
-					Jedan od njih je u slobodno vrijeme kidao obojene novine i drugi otpad na jednake komade veličine dlana i savijao od njih jednake trokutaste elemente. Od tih jednostavnih elemenata sastavljao je složene oblike. Potom je naučio i ostale zatvorenike savijanju, pa su se dijelovi brzo množili. Odatle su papirnate skulpture (vaze, posude, životinje) dospjele u muzeje i galerije.<br>
-					Uzorak podsjeća na savijanje žrtvenog papirnatog novca koji se koristi u kineskim pogrebnim ceremonijama.<br>
-					Moji prvi materijali bili su papir u boji i novine. Vrećice čaja počeo sam koristiti 2002. godine.<br>
-					Papirnate figure temelje se na mojim vlastitim idejama, nastalim kod kuće u slobodno vrijeme. Za stvaranje ravnih površina razvio sam jedinstvene cigle od osnovnih elemenata.<br>
-					Tijekom 2006. i 2009. godine, moje cvijeće, vaze i pribor za čaj ocjenjivao je Žiri Uprave za likovnu i primijenjenu umjetnost.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Uživajte u savijanju!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+		is: {
+			title: "molac | 3D-te-origami - Flokkar",
+			desc: "Uppgötvaðu heillandi heim molac 3D-te-origami: dýr, plöntur og hlutir búnir til úr tepokum.",
+			og_desc: "Frá risaeðlu til tekönnu: skoðaðu flokka molac 3D-te-origami gallerísins.",
+			back: "← Til baka", welcome: "Velkomin á Origami síðuna mína!",
+			cat_animals: "DÝR", cat_plants: "PLÖNTUR", cat_tea: "TETÍMI", cat_buildings: "BYGGINGAR",
+			cat_vehicles: "FARARTÆKI", cat_others: "ANNAÐ", cat_trad: "HEFÐBUNDIÐ", cat_crumpled: "KRUMPANDI LIKÖN",
+			cat_wood: "VIÐARVINNA", cat_diag: "LEIÐBEININGAR", cat_exh: "SÝNINGAR, MIÐLAR", cat_order: "PÖNTUN",
+			intro: `Ég lærði þessa einingaskiptu origami tækni úr tímaritinu 'Origami' árið 2001.<br>Á kínversku heitir það GHIAN-ZHI, sem þýðir 'ÞÚSUND PAPÍRAR'. Ég hef líka séð það kallað BLOCK-FOLDING.<br>Samkvæmt sögunni enduðu 200 kínverskir skipreika menn af Golden Venture, sem strandandaði við strendur Bandaríkjanna árið 1993, í fangelsi.<br>Einn þeirra reif í frístundum sínum litað dagblað og annan úrgang í einsleita bita á stærð við lófann og braut einsleita þríhyrningslaga hluta úr þeim. Úr þessum einföldu hlutum setti hann saman flókin form. Síðan kenndi hann hinum föngunum að brjóta saman, svo hlutunum fjölgaði hratt. Þaðan fóru pappírsskúlptúrarnir (vasar, ílát, dýr) leið sína á söfn og gallerí.<br>Mynstrið minnir á brttingu á fórnarpappírspeningum sem notaðir eru í kínverskum jarðarförum.<br>Fyrstu efnin mín voru litaður ljósritunarpappír og dagblað. Ég byrjaði að nota tepoka árið 2002.<br>Pappírsfígúrurnar eru byggðar á eigin hugmyndum, búnar til heima í frístundum mínum. Til að búa til flata fleti þróaði ég einstaka múrsteina úr grunnhlutunum.<br>Árin 2006 og 2009 voru blómin mín, vasarnir og tefylgihlutirnir dæmdir af dómnefnd Myndlistar- og hönnunarstofnunar.<br><br><div style="text-align: center; margin-top: 20px;">Góða skemmtun við að brjóta saman!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		sl: {
-			title: "molac | 3D-teaorigami - Kategorije",
-			desc: "Odkrijte fascinanten svet molac 3D-teaorigamija: živali, rastline in predmeti iz čajnih vrečk.",
-			og_desc: "Od dinozavra do čajnika: brskajte po kategorijah galerije molac 3D-teaorigami.",
-			back: "← Nazaj", welcome: "Dobrodošli na moji Origami strani!",
-			cat_animals: "ŽIVALI", cat_plants: "RASTLINE", cat_tea: "ČAS ZA ČAJ", cat_buildings: "ZGRADBE",
-			cat_vehicles: "VOZILA", cat_others: "OSTALO", cat_trad: "TRADICIONALNO", cat_crumpled: "ZMEČKANI MODELI",
-			cat_wood: "LESARSTVO", cat_diag: "DIAGRAMI", cat_exh: "RAZSTAVE, MEDIJI", cat_order: "NAROČILO",
-			intro: `To modularno tehniko origamija sem se naučil iz revije 'Origami' leta 2001.<br>
-					V kitajščini se imenuje GHIAN-ZHI, kar pomeni 'TISOČ PAPIRJEV'. Videla sem jo tudi pod imenom BLOCK-FOLDING.<br>
-					Po zgodbi je 200 kitajskih brodolomcev z ladje Golden Venture, ki je leta 1993 nasedla na obalah ZDA, končalo v zaporu.<br>
-					Eden izmed njih je v prostem času trgal barvne časopise in druge odpadke na enake kose velikosti dlani in iz njih zgibal enake trikotne elemente. Iz teh preprostih elementov je sestavljal kompleksne oblike. Nato je naučil zgibati še ostale zapornike, zato so se deli hitro množili. Od tam so papirnate skulpture (vaze, posode, živali) prišle v muzeje in galerije.<br>
-					Vzorec spominja na zgibanje žrtvenega papirnatega denarja, ki se uporablja pri kitajskih pogrebnih obredih.<br>
-					Moji prvi materiali so bili barvni papir in časopisi. Čajne vrečke sem začel uporabljati leta 2002.<br>
-					Papirnate figure temeljijo na mojih lastnih idejah, nastalih doma v prostem času. Za ustvarjanje ravnih površin sem razvil edinstvene opeke iz osnovnih elementov.<br>
-					V letih 2006 in 2009 je moje cvetje, vaze in čajne dodatke ocenjevala žirija Uprave za likovno in uporabno umetnost.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Veselo zgibanje!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+		ca: {
+			title: "molac | 3D-teaorigami - Categories",
+			desc: "Descobreix el fascinant món del 3D-teaorigami de molac: animals, plantes i objectes fets amb sobres de te.",
+			og_desc: "Del dinosaure a la tetera: navega per les categories de la galeria 3D-teaorigami de molac.",
+			back: "← Enrere", welcome: "Benvinguts a la meva pàgina d'Origami!",
+			cat_animals: "ANIMALS", cat_plants: "PLANTES", cat_tea: "HORA DEL TE", cat_buildings: "EDIFICIS",
+			cat_vehicles: "VEHICLES", cat_others: "ALTRES", cat_trad: "TRADICIONAL", cat_crumpled: "MODELS ARRUGATS",
+			cat_wood: "TREBALLS EN FUSTA", cat_diag: "DIAGRAMES", cat_exh: "EXPOSICIONS, MITJANS", cat_order: "COMANDA",
+			intro: `Vaig aprendre aquesta tècnica d'origami modular de la revista 'Origami' l'any 2001.<br>En xinès es diu GHIAN-ZHI, que significa 'MIL PAPERS'. També ho he vist esmentat com BLOCK-FOLDING.<br>Segons la història, 200 nàufrags xinesos del Golden Venture, que va encallar a les costes dels EUA l'any 1993, van acabar a la presó.<br>Un d'ells, en el seu temps lliure, estripava diaris de colors i altres deixalles en trossos uniformes de la mida del palmell de la mà i en plegava elements triangulars idèntics. A partir d'aquests elements simples, muntava formes complexes. Després va ensenyar als altres detinguts a plegar, i les peces es van multiplicar ràpidament. D'allí, les escultures de paper (vasos, recipients, animals) van arribar a museus i galeries.<br>El patró recorda el plegat dels diners de paper sacrificial utilitzat en les cerimònies funeràries xineses.<br>Els meus primers materials van ser paper de còpia en color i diaris. Vaig començar a utilitzar sobres de te l'any 2002.<br>Les figures de paper es basen en idees pròpies, creades a casa en el meu temps lliure. Per crear superfícies planes, vaig desenvolupar maons únics a partir dels elements bàsics.<br>El 2006 i el 2009, les meves flors, vasos i accessoris de te van ser avaluats pel Jurat de la Direcció d'Arts Plàstiques i Aplicades.<br><br><div style="text-align: center; margin-top: 20px;">Feliç plegat!<br><strong>László Molnár<br>molac</strong></div>`
 		},
 		ja: {
 			title: "molac | 3Dティーバッグ・折り紙 - カテゴリー",
@@ -369,19 +213,7 @@
 			cat_animals: "動物", cat_plants: "植物", cat_tea: "ティータイム", cat_buildings: "建造物",
 			cat_vehicles: "乗り物", cat_others: "その他", cat_trad: "伝承折り紙", cat_crumpled: "クランプル・モデル",
 			cat_wood: "木工品", cat_diag: "折り図", cat_exh: "展示会・メディア", cat_order: "ご注文",
-			intro: `私は2001年に雑誌「Origami」からこのユニット折り紙の技法を学びました。<br>
-					中国語では「千紙（チェンジ / GHIAN-ZHI）」と呼ばれ、「千枚の紙」を意味します。「ブロック折り（BLOCK-FOLDING）」という名でも知られています。<br>
-					物語によると、1993年にアメリカ沿岸で座礁した「ゴールデン・ベンチャー号」の中国人漂流者200人が刑務所に収容されました。<br>
-					その中の一人が、余暇に色鮮やかな新聞紙などの廃棄物を手のひらサイズの均等な大きさに破り、同じ三角形のパーツを折りました。これらの単純なパーツから複雑な形を組み立てたのです。彼は他の囚人たちにも折り方を教え、パーツは急速に増えていきました。そこから紙の彫刻（花瓶、器、動物）が美術館やギャラリーに飾られるようになったのです。<br>
-					そのパターンは、中国の葬儀で使われる供え物の紙銭（紙のお金）の折り方を彷彿とさせます。<br>
-					私の最初の材料は、カラーコピー用紙や新聞紙でした。2002年からティーバッグを使い始めました。<br>
-					作品はすべて私自身のアイデアに基づき、余暇に自宅で制作しています。平らな面を作るために、基本パーツから独自の「レンガ」を考案しました。<br>
-					2006年と2009年には、美術・応用美術審査委員会の審査を受け、私の花や花瓶、茶器などが認められました。<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						折り紙を楽しんでください！<br>
-						<strong>László Molnár（モルナール・ラースロー）<br>molac</strong>
-					</div>`
+			intro: `私は2001年に雑誌「Origami」からこのユニット折り紙の技法を学びました。<br>中国語では「千紙（チェンジ / GHIAN-ZHI）」と呼ばれ、「千枚の紙」を意味します。「ブロック折り（BLOCK-FOLDING）」という名でも知られています。<br>物語によると、1993年にアメリカ沿岸で座礁した「ゴールデン・ベンチャー号」の中国人漂流者200人が刑務所に収容されました。<br>その中の一人が、余暇に色鮮やかな新聞紙などの廃棄物を手のひらサイズの均等な大きさに破り、同じ三角形のパーツを折りました。これらの単純なパーツから複雑な形を組み立てたのです。彼は他の囚人たちにも折り方を教え、パーツは急速に増えていきました。そこから紙の彫刻（花瓶、器、動物）が美術館やギャラリーに飾られるようになったのです。<br>そのパターンは、中国の葬儀で使われる供え物の紙銭（紙のお金）の折り方を彷彿とさせます。<br>私の最初の材料は、カラーコピー用紙や新聞紙でした。2002年からティーバッグを使い始めました。<br>作品はすべて私自身のアイデアに基づき、余暇に自宅で制作しています。平らな面を作るために、基本パーツから独自の「レンガ」を考案しました。<br>2006年と2009年には、美術・応用美術審査委員会の審査を受け、私の花や花瓶、茶器などが認められました。<br><br><div style="text-align: center; margin-top: 20px;">折り紙を楽しんでください！<br><strong>László Molnár（モルナール・ラースロー）<br>molac</strong></div>`
 		},
 		zh: {
 			title: "molac | 3D 茶包折纸 - 类别",
@@ -391,19 +223,7 @@
 			cat_animals: "动物", cat_plants: "植物", cat_tea: "茶艺", cat_buildings: "建筑",
 			cat_vehicles: "交通工具", cat_others: "其他", cat_trad: "传统折纸", cat_crumpled: "皱纹模型",
 			cat_wood: "木工制品", cat_diag: "折纸教程", cat_exh: "展览与媒体", cat_order: "订购",
-			intro: `我是在 2001 年从《折纸》杂志学习到这种模块化折纸技术的。<br>
-					在中文里它被称为“千纸”（GHIAN-ZHI），意为“一千张纸”。我也见过它被称为“块状折纸”（BLOCK-FOLDING）。<br>
-					故事背景是 1993 年在美洲海岸搁浅的“金色冒险号”上的 200 名中国船民，他们最终被关进了监狱。<br>
-					其中一人在闲暇时间将彩色的报纸和其他废纸撕成手掌大小的均匀碎片，并将其折叠成相同的三角形零件。通过这些简单的零件，他组装出了复杂的形状。随后他教会了其他囚犯折纸，零件数量迅速增加。从此，这些纸雕作品（花瓶、器皿、动物）开始进入博物馆和画廊。<br>
-					这种图案让人联想到中国丧葬仪式中使用的纸钱折叠方式。<br>
-					我最初使用的材料是彩色复印纸和报纸。2002 年我开始使用茶包。<br>
-					这些纸质作品都是基于我自己的构思，在闲暇时间居家创作的。为了构造平面，我从基础零件中开发出了独特的“砖块”单元。<br>
-					2006 年和 2009 年，我的花卉、花瓶和茶具作品通过了美术与应用艺术理事会的评审。<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						祝折纸愉快！<br>
-						<strong>László Molnár（莫尔纳尔·拉斯洛）<br>molac</strong>
-					</div>`
+			intro: `我是在 2001 年从《折纸》杂志学习到这种模块化折纸技术的。<br>在中文里它被称为“千纸”（GHIAN-ZHI），意为“一千张纸”。我也见过它被称为“块状折纸”（BLOCK-FOLDING）。<br>故事背景是 1993 年在美洲海岸搁浅的“金色冒险号”上的 200 名中国船民，他们最终被关进了监狱。<br>其中一人在闲暇时间将彩色的报纸和其他废纸撕成手掌大小的均匀碎片，并将其折叠成相同的三角形零件。通过这些简单的零件，他组装出了复杂的形状。随后他教会了其他囚犯折纸，零件数量迅速增加。从此，这些纸雕作品（花瓶、器皿、动物）开始进入博物馆和画廊。<br>这种图案让人联想到中国丧葬仪式中使用的纸钱折叠方式。<br>我最初使用的材料是彩色复印纸和报纸。2002 年我开始使用茶包。<br>这些纸质作品都是基于我自己的构思，在闲暇时间居家创作的。为了构造平面，我从基础零件中开发出了独特的“砖块”单元。<br>2006 年和 2009 年，我的花卉、花瓶和茶具作品通过了美术与应用艺术理事会的评审。<br><br><div style="text-align: center; margin-top: 20px;">祝折纸愉快！<br><strong>László Molnár（莫尔纳尔·拉斯洛）<br>molac</strong></div>`
 		},
 		ko: {
 			title: "molac | 3D 티백 종이접기 - 카테고리",
@@ -413,21 +233,8 @@
 			cat_animals: "동물", cat_plants: "식물", cat_tea: "다도", cat_buildings: "건축물",
 			cat_vehicles: "탈것", cat_others: "기타", cat_trad: "전통 종이접기", cat_crumpled: "주름 모델",
 			cat_wood: "목공예", cat_diag: "접기 설명서", cat_exh: "전시 및 미디어", cat_order: "주문",
-			intro: `저는 2001년에 'Origami' 잡지를 통해 이 모듈러 종이접기 기술을 배웠습니다.<br>
-					중국어로는 '千紙(천지 / GHIAN-ZHI)'라고 불리며, '천 장의 종이'라는 뜻입니다. '블록 폴딩(BLOCK-FOLDING)'이라는 이름으로도 알려져 있습니다.<br>
-					이야기에 따르면, 1993년 미국 해안에서 좌초된 '골든 벤처호'의 중국인 표류자 200명이 감옥에 수용되었습니다.<br>
-					그들 중 한 명이 여가 시간에 화려한 신문지와 기타 폐지를 손바닥 크기로 일정하게 찢어 동일한 삼각형 부품을 접었습니다. 이 단순한 부품들을 조합해 복잡한 형태를 만들어냈습니다. 그는 다른 수감자들에게도 접는 법을 가르쳤고, 부품은 빠르게 늘어났습니다. 이를 통해 종이 조각품(꽃병, 그릇, 동물)들이 박물관과 갤러리에 전시되기 시작했습니다.<br>
-					그 문양은 중국 장례 의식에서 사용되는 종이 돈(지전)을 접는 방식과 유사합니다.<br>
-					제가 처음 사용한 재료는 컬러 복사지와 신문지였습니다. 2002년부터 티백을 사용하기 시작했습니다.<br>
-					모든 작품은 저의 개인적인 아이디어를 바탕으로 여가 시간에 집에서 제작됩니다. 평평한 표면을 구현하기 위해 기본 부품으로부터 독창적인 '벽돌' 단위를 고안했습니다.<br>
-					2006년과 2009년에 저의 꽃, 꽃병, 다기 작품들이 미술 및 응용미술 심사위원회의 심사를 통과했습니다.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						즐거운 종이접기 되세요!<br>
-						<strong>László Molnár(몰나르 라슬로)<br>molac</strong>
-					</div>`
+			intro: `저는 2001년에 'Origami' 잡지를 통해 이 모듈러 종이접기 기술을 배웠습니다.<br>중국어로는 '千紙(천지 / GHIAN-ZHI)'라고 불리며, '천 장의 종이'라는 뜻입니다. '블록 폴딩(BLOCK-FOLDING)'이라는 이름으로도 알려져 있습니다.<br>이야기에 따르면, 1993년 미국 해안에서 좌초된 '골든 벤처호'의 중국인 표류자 200명이 감옥에 수용되었습니다.<br>그들 중 한 명이 여가 시간에 화려한 신문지와 기타 폐지를 손바닥 크기로 일정하게 찢어 동일한 삼각형 부품을 접었습니다. 이 단순한 부품들을 조합해 복잡한 형태를 만들어냈습니다. 그는 다른 수감자들에게도 접는 법을 가르쳤고, 부품은 빠르게 늘어났습니다. 이를 통해 종이 조각품(꽃병, 그릇, 동물)들이 박물관과 갤러리에 전시되기 시작했습니다.<br>그 문양은 중국 장례 의식에서 사용되는 종이 돈(지전)을 접는 방식과 유사합니다.<br>제가 처음 사용한 재료는 컬러 복사지와 신문지였습니다. 2002년부터 티백을 사용하기 시작했습니다.<br>모든 작품은 저의 개인적인 아이디어를 바탕으로 여가 시간에 집에서 제작됩니다. 평평한 표면을 구현하기 위해 기본 부품으로부터 독창적인 '벽돌' 단위를 고안했습니다.<br>2006년과 2009년에 저의 꽃, 꽃병, 다기 작품들이 미술 및 응용미술 심사위원회의 심사를 통과했습니다.<br><br><div style="text-align: center; margin-top: 20px;">즐거운 종이접기 되세요!<br><strong>László Molnár(몰나르 라슬로)<br>molac</strong></div>`
 		},
-
 		eo: {
 			title: "molac | 3D-teaorigami - Kategorioj",
 			desc: "Malkovru la fascinan mondon de molac 3D-teaorigami: bestoj, plantoj kaj objektoj faritaj el te-saketoj.",
@@ -436,21 +243,108 @@
 			cat_animals: "BESTOJ", cat_plants: "PLANTOJ", cat_tea: "TE-HORO", cat_buildings: "KONSTRUAĴOJ",
 			cat_vehicles: "VEHIKLOJ", cat_others: "ALIAJ", cat_trad: "TRADICIA", cat_crumpled: "FORMOLITaj MODELOJ",
 			cat_wood: "LIGNOLABOROJ", cat_diag: "DIAGRAMOJ", cat_exh: "EKSPOZICIOJ, KOMUNIKILOJ", cat_order: "MENDOJ",
-			intro: `Mi lernis ĉi tiun modulan origami-teknikon el la revuo 'Origami' en 2001.<br>
-					En la ĉina ĝi nomiĝas GHIAN-ZHI, kio signifas 'MIL PAPEROJ'. Mi ankaŭ vidis ĝin menciita kiel BLOCK-FOLDING.<br>
-					Laŭ la historio, 200 ĉinaj vrakuloj de la Golden Venture, kiuj surteriĝis ĉe la bordoj de Usono en 1993, finiĝis en malliberejo.<br>
-					Unu el ili, en sia libertempo, ŝiris kolorajn gazetojn kaj aliajn rubaĵojn en unuformajn manplat-grandajn pecojn kaj faldis unuformajn triangulajn elementojn el ili. El tiuj simplaj elementoj li kunmetis kompleksajn formojn. Poste li instruis la aliajn malliberulojn faldadi, tiel la partoj rapide multiĝis. De tie, la paperaj skulptaĵoj (vazoj, ujoj, bestoj) trovis sian vojon al muzeoj kaj galerioj.<br>
-					La modelo memorigas pri la faldado de oferaj papermonoj uzataj en ĉinaj funebraj ceremonioj.<br>
-					Miaj unuaj materialoj estis koloraj kopipaperoj kaj gazetoj. Mi komencis uzi te-saketojn en 2002.<br>
-					La paperaj figuroj baziĝas sur miaj propraj ideoj, kreitaj hejme dum mia libertempo. Por krei platajn surfacojn, mi ellaboris unikajn brikojn el la bazaj elementoj.<br>
-					En 2006 kaj 2009, miaj floroj, vazoj kaj te-akcesoraĵoj estis taksitaj de la Ĵurio de la Direktorejo pri Belartoj kaj Aplikataj Artoj.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Bonan faldadon!<br>
-						<strong>László Molnár<br>molac</strong>
-					</div>`
+			intro: `Mi lernis ĉi tiun modulan origami-teknikon el la revuo 'Origami' en 2001.<br>En la ĉina ĝi nomiĝas GHIAN-ZHI, kio signifas 'MIL PAPEROJ'. Mi ankaŭ vidis ĝin menciita kiel BLOCK-FOLDING.<br>Laŭ la historio, 200 ĉinaj vrakuloj de la Golden Venture, kiuj surteriĝis ĉe la bordoj de Usono en 1993, finiĝis en malliberejo.<br>Unu el ili, en sia libertempo, ŝiris kolorajn gazetojn kaj aliajn rubaĵojn en unuformajn manplat-grandajn pecojn kaj faldis unuformajn triangulajn elementojn el ili. El tiuj simplaj elementoj li kunmetis kompleksajn formojn. Poste li instruis la aliajn malliberulojn faldadi, tiel la partoj rapide multiĝis. De tie, la paperaj skulptaĵoj (vazoj, ujoj, bestoj) trovis sian vojon al muzeoj kaj galerioj.<br>La modelo memorigas pri la faldado de oferaj papermonoj uzataj en ĉinaj funebraj ceremonioj.<br>Miaj unuaj materialoj estis koloraj kopipaperoj kaj gazetoj. Mi komencis uzi te-saketojn en 2002.<br>La paperaj figuroj baziĝas sur miaj propraj ideoj, kreitaj hejme dum mia libertempo. Por krei platajn surfacojn, mi ellaboris unikajn brikojn el la bazaj elementoj.<br>En 2006 kaj 2009, miaj floroj, vazoj kaj te-akcesoraĵoj estis taksitaj de la Ĵurio de la Direktorejo pri Belartoj kaj Aplikataj Artoj.<br><br><div style="text-align: center; margin-top: 20px;">Bonan faldadon!<br><strong>László Molnár<br>molac</strong></div>`
 		},
-		
+		lt: {
+			title: "molac | 3D-teaorigami - Kategorijos",
+			desc: "Atraskite žavingą molac 3D-teaorigami pasaulį: gyvūnai, augalai ir daiktai pagaminti iš arbatos maišelių.",
+			og_desc: "Nuo dinozauro iki arbatinuko: naršykite molac 3D-teaorigami galerijos kategorijas.",
+			back: "← Atgal", welcome: "Sveiki atvykę į mano Origami puslapį!",
+			cat_animals: "GYVŪNAI", cat_plants: "AUGALAI", cat_tea: "ARBATOS METAS", cat_buildings: "STATINIAI",
+			cat_vehicles: "TRANSPORTO PRIEMONĖS", cat_others: "KITI", cat_trad: "TRADICINIS", cat_crumpled: "SUGLAMŽYTI MODELIAI",
+			cat_wood: "MEDŽIO DARBAI", cat_diag: "INSTRUKCIJOS", cat_exh: "PARODOS, MEDIJA", cat_order: "UŽSAKYMAS",
+			intro: `Šios modulinės origami technikos išmokau iš žurnalo 'Origami' 2001 metais.<br>Kinų kalba ji vadinama GHIAN-ZHI, kas reiškia 'TŪKSTANTIS POPIERIŲ'. Taip pat esu matęs ją vadinant BLOCK-FOLDING.<br>Pagal istoriją 200 kinų sudužusio laivo Golden Venture, kuris 1993 m. užplaukė ant seklumos prie JAV krastų, keleivių atsidūrė kalėjime.<br>Vienas iš jų laisvalaikiu plėšė spalvotus laikraščius ir kitas atliekas į vienodus delno dydžio gabalėlius ir lankstė iš jų vienodus trikampius elementus. Iš šių paprastų elementų jis surinko sudėtingas formas. Tada jis išmokė lankstyti ir kitus kalinius, todėl dalių skaičius sparčiai augo. Iš ten popierinės skulptūros (vazos, indai, gyvūnai) pateko į muziejus ir galerijas.<br>Raštas primena kinų laidotuvių ceremonijose naudojamų aukojamų popierinių pinigų lankstymą.<br>Mano pirmosios medžiagos buvo spalvotas kopijavimo popierius ir laikraštis. Arbatos maišelius pradėjau naudoti 2002 metais.<br>Popierinės figūros sukurtos remiantis mano paties idėjomis, sukurtomis namuose laisvalaikiu. Plokštiems paviršiams sukurti iš pagrindinių elementų sukūriau unikalias plytas.<br>2006 ir 2009 metais mano gėles, vazas ir arbatos reikmenis vertino Dailės ir taikomosios dailės direktorato žiuri.<br><br><div style="text-align: center; margin-top: 20px;">Gero lankstymo!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		lv: {
+			title: "molac | 3D-teaorigami - Kategorijas",
+			desc: "Atklājiet molac 3D-teaorigami aizraujošo pasauli: dzīvnieki, augi un priekšmeti, kas izgatavoti no tējas paciņām.",
+			og_desc: "No dinozaura līdz tējkannai: pārlūkojiet molac 3D-teaorigami galerijas kategorijas.",
+			back: "← Atpakaļ", welcome: "Laipni lūdzam manā Origami lapā!",
+			cat_animals: "DZĪVNIEKI", cat_plants: "AUGI", cat_tea: "TĒJAS LAIKS", cat_buildings: "BŪVES",
+			cat_vehicles: "TRANSPORTLĪDZEKĻI", cat_others: "CITI", cat_trad: "TRADICIONĀLAIS", cat_crumpled: "SABURZĪTI MODEĻI",
+			cat_wood: "KOKA DARBI", cat_diag: "INSTRUKCIJAS", cat_exh: "IZSTĀDES, MEDIJI", cat_order: "PASŪTĪJUMS",
+			intro: `Šo modulāro origami tehniku es apguvu no žurnāla 'Origami' 2001. gadā.<br>Ķīniešu valodā to sauc par GHIAN-ZHI, kas nozīmē 'TŪKSTOŠ PAPĪRU'. Esmu redzējis to dēvējam arī par BLOCK-FOLDING.<br>Saskaņā ar stāstu 200 ķīniešu kuģa avārijā cietušie no Golden Venture, kas 1993. gadā uzskrēja uz sēkļa pie ASV krastiem, nonāca cietumā.<br>Viens no viņiem brīvajā laikā plēsa krāsainus laikrakstus un citus atkritumus vienādos plaukstas lieluma gabaliņos un locīja no tiem vienādus trīsstūra elementus. No šiem vienkāršajiem elementiem viņš salika sarežģītas formas. Pēc tam viņš iemācīja locīt arī pārējiem ieslodzītajiem, tāpēc detaļu skaits strauji pieauga. No turienes papīra skulptūras (vāzes, trauki, dzīvnieki) nonāca muzejos un galerijās.<br>Raksts atgādina ķīniešu bēru ceremonijās izmantotās upura papīra naudas locīšanu.<br>Mani pirmie materiāli bija krāsains kopējamais papīrs un laikraksts. Tējas paciņas sāku izmantot 2002. gadā.<br>Papīra figūras ir balstītas uz manām idejām, kas tapušas mājās brīvajā laikā. Lai izveidotu plakanas virsmas, es izstrādāju unikālus ķieģeļus no pamata elementiem.<br>2006. un 2009. gadā manus ziedus, vāzes un tējas piederumus vērtēja Tēlotājmākslas un lietišķās mākslas direktorāta žūrija.<br><br><div style="text-align: center; margin-top: 20px;">Lai jauka locīšana!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		et: {
+			title: "molac | 3D-teaorigami - Kategooriad",
+			desc: "Avastage molaci 3D-teaorigami lummav maailm: teepakkidest valmistatud loomad, taimed ja esemed.",
+			og_desc: "Dinosaurusest teekannuni: sirvige molaci 3D-teaorigami galerii kategooriaid.",
+			back: "← Tagasi", welcome: "Tere tulemast minu origami lehele!",
+			cat_animals: "LOOMAD", cat_plants: "TAIMED", cat_tea: "TEEAEG", cat_buildings: "EHITISED",
+			cat_vehicles: "SÕIDUKID", cat_others: "MUUD", cat_trad: "TRADITSIOONILINE", cat_crumpled: "KORTSUTATUD MUDELID",
+			cat_wood: "PUUTÖÖD", cat_diag: "JUHISED", cat_exh: "NÄITUSED, MEEDIA", cat_order: "TELLIMINE",
+			intro: `Õppisin seda modulaarset origamitehnikat ajakirjast 'Origami' 2001. aastal.<br>Hiina keeles nimetatakse seda GHIAN-ZHI, mis tähendab 'TUHAT PABERIT'. Olen näinud seda nimetatavat ka BLOCK-FOLDINGuks.<br>Loo kohaselt sattusid 200 hiina merehädalist laevalt Golden Venture, mis 1993. aastal USA rannikul madalikule jooksis, vanglasse.<br>Üks neist rebis vabal ajal värvilisi ajalehti ja muid jäätmeid ühesugusteks peopesasuurusteks tükkideks ja voltis neist ühesuguseid kolmnurkseid elemente. Nendest lihtsatest elementidest pani ta kokku keerulisi kujundeid. Seejärel õpetas ta ka teised vangid voltima, mistõttu osade arv kasvas kiiresti. Sealt jõudsid paberskulptuurid (vaasid, anumad, loomad) muuseumidesse ja galeriidesse.<br>Muster meenutab hiina matusetseremooniatel kasutatava ohvripaberraha voltimist.<br>Minu esimesed materjalid olid värviline koopiapaber ja ajaleht. Alustasin teepakkide kasutamist 2002. aastal.<br>Paberfiguurid põhinevad minu enda ideedel, mis on loodud kodus vabal ajal. Siledate pindade loomiseks arendasin baaselementidest välja ainulaadsed tellised.<br>Aastatel 2006 ja 2009 hindas minu lilli, vaase ja teetarvikuid kujutava ja tarbekunsti direktoraadi žürii.<br><br><div style="text-align: center; margin-top: 20px;">Head voltimist!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		tr: {
+			title: "molac | 3D-teaorigami - Kategoriler",
+			desc: "Molac 3D-teaorigami'nin büyüleyici dünyasını keşfedin: çay poşetlerinden yapılmış hayvanlar, bitkiler ve nesneler.",
+			og_desc: "Dinozordan çaydanlığa: molac 3D-teaorigami galeri kategorilerine göz atın.",
+			back: "← Geri", welcome: "Origami sayfama hoş geldiniz!",
+			cat_animals: "HAYVANLAR", cat_plants: "BİTKİLER", cat_tea: "ÇAY KEYFİ", cat_buildings: "YAPILAR",
+			cat_vehicles: "ARAÇLAR", cat_others: "DİĞERLERİ", cat_trad: "GELENEKSEL", cat_crumpled: "BURUŞUK MODELLER",
+			cat_wood: "AHŞAP İŞLERİ", cat_diag: "DİYAGRAMLAR", cat_exh: "SERGİLER, MEDYA", cat_order: "SİPARİŞ",
+			intro: `Bu modüler origami tekniğini 2001 yılında 'Origami' dergisinden öğrendim.<br>Çincede GHIAN-ZHI olarak adlandırılır ve 'BİN KAĞIT' anlamına gelir. Ayrıca BLOCK-FOLDING adıyla da anıldığını gördüm.<br>Hikayeye göre, 1993 yılında ABD kıyılarında karaya oturan Golden Venture'dan 200 Çinli kazazede hapse düştü.<br>İçlerinden biri boş zamanlarında renkli gazeteleri ve diğer atıkları avuç içi büyüklüğünde parçalara ayırıyor ve bunlardan tek tip üçgen elemanlar katlıyordu. Bu basit elemanlardan karmaşık şekiller oluşturdu. Daha sonra diğer mahkumlara da katlamayı öğretti, böylece parçalar hızla çoğalmaya başladı. Oradan kağıt heykeller (vazolar, kaplar, hayvanlar) müzelere ve galerilere ulaştı.<br>Desen, Çin cenaze törenlerinde kullanılan kurbanlık kağıt paraların katlanmasını andırıyor.<br>İlk malzemelerim renkli fotokopi kağıdı ve gazeteydi. 2002 yılında çay poşetlerini kullanmaya başladım.<br>Kağıt figürler, boş zamanlarımda evde yarattığım kendi fikirlerime dayanıyor. Düz yüzeyler oluşturmak için temel elemanlardan benzersiz tuğlalar geliştirdim.<br>2006 ve 2009 yıllarında çiçeklerim, vazolarım ve çay aksesuarlarım Güzel Sanatlar ve Uygulamalı Sanatlar Direktörlüğü Jürisi tarafından değerlendirildi.<br><br><div style="text-align: center; margin-top: 20px;">Keyifli katlamalar!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		el: {
+			title: "molac | 3D-teaorigami - Κατηγορίες",
+			desc: "Ανακαλύψτε τον συναρπαστικό κόσμο του molac 3D-teaorigami: ζώα, φυτά και αντικείμενα από φακελάκια τσαγιού.",
+			og_desc: "Από δεινόσαυρους μέχρι τσαγιέρες: περιηγηθείτε στις κατηγορίες της γκαλερί molac 3D-teaorigami.",
+			back: "← Πίσω", welcome: "Καλώς ήρθατε στη σελίδα μου για το Οριγκάμι!",
+			cat_animals: "ΖΩΑ", cat_plants: "ΦΥΤΑ", cat_tea: "ΤΣΑΙ", cat_buildings: "ΚΤΙΡΙΑ",
+			cat_vehicles: "ΟΧΗΜΑΤΑ", cat_others: "ΑΛΛΑ", cat_trad: "ΠΑΡΑΔΟΣΙΑΚΑ", cat_crumpled: "ΤΣΑΛΑΚΩΜΕΝΑ",
+			cat_wood: "ΞΥΛΙΝΑ", cat_diag: "ΟΔΗΓΙΕΣ", cat_exh: "ΕΚΘΕΣΕΙΣ, ΜΜΕ", cat_order: "ΠΑΡΑΓΓΕΛΙΑ",
+			intro: `Έμαθα αυτή την τεχνική σπονδυλωτού οριγκάμι από το περιοδικό 'Origami' το 2001.<br>Στα κινέζικα ονομάζεται GHIAN-ZHI, που σημαίνει 'ΧΙΛΙΑ ΧΑΡΤΙΑ'. Το έχω δει επίσης να αναφέρεται ως BLOCK-FOLDING.<br>Σύμφωνα με την ιστορία, 200 Κινέζοι ναυαγοί του Golden Venture, που προσάραξε στις ακτές των ΗΠΑ το 1993, κατέληξαν στη φυλακή.<br>Ένας από αυτούς στον ελεύθερο χρόνο του έσχιζε χρωματιστές εφημερίδες και άλλα απορρίμματα σε ομοιόμορφα κομμάτια μεγέθους παλάμης και δίπλωνε ομοιόμορφα τριγωνικά στοιχεία από αυτά. Από αυτά τα απλά στοιχεία, συναρμολόγησε πολύπλοκα σχήματα. Στη συνέχεια έμαθε στους άλλους κρατούμενους πώς να διπλώνουν, έτσι τα κομμάτια αυξήθηκαν γρήγορα. Από εκεί, τα χάρτινα γλυπτά (βάζα, σκεύη, ζώα) πήραν το δρόμο τους για μουσεία και γκαλερί.<br>Το μοτίβο θυμίζει το δίπλωμα των θυσιαστικών χαρτονομισμάτων που χρησιμοποιούνται στις κινεζικές κηδείες.<br>Τα πρώτα μου υλικά ήταν έγχρωμο χαρτί φωτοτυπικού και εφημερίδα. Άρχισα να χρησιμοποιώ φακελάκια τσαγιού το 2002.<br>Οι χάρτινες φιγούρες βασίζονται σε δικές μου ιδέες, που δημιουργήθηκαν στο σπίτι στον ελεύθερο χρόνο μου. Για τη δημιουργία επίπεδων επιφανειών, ανέπτυξα μοναδικά τούβλα από τα βασικά στοιχεία.<br>Το 2006 και το 2009, τα λουλούδια, τα βάζα και τα αξεσουάρ τσαγιού μου κρίθηκαν από την Επιτροπή της Διεύθυνσης Καλών και Εφαρμοσμένων Τεχνών.<br><br><div style="text-align: center; margin-top: 20px;">Καλές δημιουργίες!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		sq: {
+			title: "molac | 3D-teaorigami - Kategoritë",
+			desc: "Zbuloni botën magjepsëse të molac 3D-teaorigami: kafshë, bimë dhe objekte të bëra nga qeset e çajit.",
+			og_desc: "Nga dinosauri te çajniku: shfletoni kategoritë e galerisë molac 3D-teaorigami.",
+			back: "← Mbrapa", welcome: "Mirë se vini në faqen time të Origamit!",
+			cat_animals: "KAFSHËT", cat_plants: "BIMËT", cat_tea: "KOHA PËR ÇAJ", cat_buildings: "NDËRTESA",
+			cat_vehicles: "MJETE", cat_others: "TË TJERA", cat_trad: "TRADICIONALE", cat_crumpled: "MODELE TË RRUDHOSURA",
+			cat_wood: "PUNIME DRURI", cat_diag: "DIAGRAME", cat_exh: "EKSPOZITA, MEDIA", cat_order: "POROSI",
+			intro: `E mësova këtë teknikë origami modula nga revista 'Origami' në vitin 2001.<br>Në kinezisht quhet GHIAN-ZHI, që do të thotë 'MIJË PAPERA'. E kam parë gjithashtu të referuar si BLOCK-FOLDING.<br>Sipas historisë, 200 kinezë të mbytur nga Golden Venture, i cili u bllokua në brigjet e SHBA-së në vitin 1993, përfunduan në burg.<br>Njëri prej tyre në kohën e lirë grisi gazeta me ngjyra dhe mbetje të tjera në copa uniforme sa pëllëmba e dorës dhe palosi elemente trekëndore uniforme prej tyre. Nga këto elemente të thjeshta, ai montoi forma komplekse. Më pas ai u mësoi të burgosurve të tjerë si të palosnin, kështu që pjesët u rritën shpejt. Prej andej, skulpturat prej letre (vazo, enë, kafshë) shkuan në muze dhe galeri.<br>Modeli të kujton palosjen e parave të letrës sakrifikuese të përdorura në ceremonitë funerale kineze.<br>Materialet e mia të para ishin letra kopjimi me ngjyra dhe gazeta. Fillova të përdor qese çaji në vitin 2002.<br>Figurat e letrës bazohen në idetë e mia, të krijuara në shtëpi në kohën time të lirë. Për të krijuar sipërfaqe të sheshta, zhvillova tulla unike nga elementët bazë.<br>Në vitet 2006 dhe 2009, lulet, vazot dhe aksesorët e mi të çajit u gjykuan nga Juria e Drejtorisë së Arteve të Bukura dhe të Aplikuara.<br><br><div style="text-align: center; margin-top: 20px;">Palosje të mbarë!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		bg: {
+			title: "molac | 3D-teaorigami - Категории",
+			desc: "Открийте завладяващия свят на molac 3D-teaorigami: животни, растения и предмети, направени от пакетчета чай.",
+			og_desc: "От динозавър до чайник: разгледайте категориите на галерията molac 3D-teaorigami.",
+			back: "← Назад", welcome: "Добре дошли в моята страница за Оригами!",
+			cat_animals: "ЖИВОТНИ", cat_plants: "РАСТЕНИЯ", cat_tea: "ЧАЙ", cat_buildings: "СГРАДИ",
+			cat_vehicles: "АВТОМОБИЛИ", cat_others: "ДРУГИ", cat_trad: "ТРАДИЦИОННИ", cat_crumpled: "МАЧКАНИ МОДЕЛИ",
+			cat_wood: "ДЪРВООБРАБОТКА", cat_diag: "ИНСТРУКЦИИ", cat_exh: "ИЗЛОЖБИ, МЕДИИ", cat_order: "ПОРЪЧКА",
+			intro: `Научих тази техника за модулно оригами от списание 'Origami' през 2001 г.<br>На китайски се нарича GHIAN-ZHI, което означава 'ХИЛЯДА ХАРТИИ'. Виждал съм я и под името BLOCK-FOLDING.<br>Според историята 200 китайски корабокрушенци от Golden Venture, който засяда на бреговете на САЩ през 1993 г., се озовават в затвора.<br>Един от тях в свободното си време късал цветни вестници и други отпадъци на еднакви парчета с размер на длан и сгъвал еднакви триъгълни елементи от тях. От тези прости елементи той сглобявал сложни форми. След това научил и останалите затворници да сгъват, така че частите се множили бързо. Оттам хартиените скулптури (вази, съдове, животни) стигнали до музеи и галерии.<br>Моделът напомня на сгъването на жертвени хартиени пари, използвани при китайски погребални церемонии.<br>Първите ми материали бяха цветна копирна хартия и вестници. Започнах да използвам пакетчета чай през 2002 г.<br>Хартиените фигури са базирани на мои собствени идеи, създадени у дома в свободното ми време. За създаване на плоски повърхности разработих уникални тухли от основните елементи.<br>През 2006 и 2009 г. моите цветя, вази и аксесоари за чай бяха оценени от Журито на Дирекцията за изящни и приложни изкуства.<br><br><div style="text-align: center; margin-top: 20px;">Приятно сгъване!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		pl: {
+			title: "molac | 3D-teaorigami - Kategorie",
+			desc: "Odkryj fascynujący świat molac 3D-teaorigami: zwierzęta, rośliny i przedmioty wykonane z torebek po herbacie.",
+			og_desc: "Od dinozaura po imbryk: przeglądaj kategorie galerii molac 3D-teaorigami.",
+			back: "← Wstecz", welcome: "Witaj na mojej stronie Origami!",
+			cat_animals: "ZWIERZĘTA", cat_plants: "ROŚLINY", cat_tea: "CZAS NA HERBATĘ", cat_buildings: "BUDWLE",
+			cat_vehicles: "POJAZDY", cat_others: "INNE", cat_trad: "TRADYCYJNE", cat_crumpled: "MODELE GNIECIONE",
+			cat_wood: "PRACE W DREWNIE", cat_diag: "INSTRUKCJE", cat_exh: "WYSTAWY, MEDIA", cat_order: "ZAMÓWIENIA",
+			intro: `Tej modułowej techniki origami nauczyłem się z czasopisma „Origami” w 2001 roku.<br>Po chińsku nazywa się ona GHIAN-ZHI, co oznacza „TYSIĄC PAPIERÓW”. Spotkałem się również z nazwą BLOCK-FOLDING.<br>Według historii, 200 chińskich rozbitków ze statku Golden Venture, który osiadł na mieliźnie u wybrzeży USA w 1993 roku, trafiło do więzienia.<br>Jeden z nich w wolnym czasie darł kolorowe gazety i inne odpady na równe kawałki wielkości dłoni i składał z nich identyczne, trójkątne elementy. Z tych prostych elementów składał skomplikowane kształty. Następnie nauczył składania pozostałych więźniów, dzięki czemu liczba części szybko rosła. Stamtąd rzeźby papierowe (wazony, naczynia, zwierzęta) trafiły do muzeów i galerii.<br>Wzór przypomina składanie ofiarnych pieniędzy papierowych używanych podczas chińskich ceremonii pogrzebowych.<br>Moimi pierwszymi materiałami był kolorowy papier ksero i gazety. W 2002 roku zacząłem używać torebek po herbacie.<br>Figurki papierowe powstają według moich własnych pomysłów w domu, w wolnym czasie. Do tworzenia płaskich powierzchni opracowałem unikalne cegiełki z podstawowych elementów.<br>W 2006 i 2009 roku moje kwiaty, wazony i akcesoria herbaciane zostały ocenione przez Jury Dyrekcji Sztuk Pięknych i Użytkowych.<br><br><div style="text-align: center; margin-top: 20px;">Życzę miłego składania!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		cs: {
+			title: "molac | 3D-teaorigami - Kategorie",
+			desc: "Objevte fascinující svět molac 3D-teaorigami: zvířata, rostliny a předměty vyrobené z čajových sáčků.",
+			og_desc: "Od dinosaura po čajovou konvici: procházejte kategorie galerie molac 3D-teaorigami.",
+			back: "← Zpět", welcome: "Vítejte na mé stránce Origami!",
+			cat_animals: "ZVÍŘATA", cat_plants: "ROSTLINY", cat_tea: "ČAJ", cat_buildings: "STAVBY",
+			cat_vehicles: "VOZIDLA", cat_others: "OSTATNÍ", cat_trad: "TRADIČNÍ", cat_crumpled: "MAČKANÉ MODELY",
+			cat_wood: "DŘEVĚNÉ PRÁCE", cat_diag: "NÁVODY", cat_exh: "VÝSTAVY, MÉDIA", cat_order: "OBJEDNÁVKA",
+			intro: `Tuto modulární techniku origami jsem se naučil z časopisu 'Origami' v roce 2001.<br>Čínsky se nazývá GHIAN-ZHI, což znamená 'TISÍC PAPÍRŮ'. Viděl jsem ji také pod názvem BLOCK-FOLDING.<br>Podle příběhu 200 čínských trosečníků z lodi Golden Venture, která v roce 1993 uvízla u pobřeží USA, skončilo ve vězení.<br>Jeden z nich ve volném čase trhal barevné noviny a jiný odpad na stejné kousky velikosti dlaně a skládal z nich stejné trojúhelníkové prvky. Z těchto jednoduchých prvků sestavoval složité tvary. Poté naučil skládat i ostatní vězně, takže dílů rychle přibývalo. Odtud se papírové sochy (vázy, nádoby, zvířata) dostaly do muzeí a galerií.<br>Vzor připomíná skládání obětních papírových peněz používaných při čínských pohřebních obřadech.<br>Mým prvním materiálem byl barevný kopírovací papír a noviny. V roce 2002 jsem začal používat čajové sáčky.<br>Papírové figurky vycházejí z mých vlastních nápadů, vytvořených doma ve volném čase. Pro vytvoření plochých povrchů jsem vyvinul unikátní cihly ze základních prvků.<br>V letech 2006 a 2009 mé květiny, vázy a čajové doplňky posuzovala porota Ředitelství pro výtvarné a užité umění.<br><br><div style="text-align: center; margin-top: 20px;">Přeji příjemné skládání!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		sk: {
+			title: "molac | 3D-teaorigami - Kategórie",
+			desc: "Objavte fascinujúci svet 3D-teaorigami od molac: zvieratá, rastliny a predmety vyrobené z čajových vrecúšok.",
+			og_desc: "Od dinosaura po čajník: prehliadajte kategórie galérie 3D-teaorigami molac.",
+			back: "← Späť", welcome: "Vitajte na mojej stránke Origami!",
+			cat_animals: "ZVIERATÁ", cat_plants: "RASTLINY", cat_tea: "ČAS NA ČAJ", cat_buildings: "STAVBY",
+			cat_vehicles: "VOZIDLÁ", cat_others: "INÉ", cat_trad: "TRADIČNÉ", cat_crumpled: "KRČENÉ MODELY",
+			cat_wood: "DREVENÉ PRÁCE", cat_diag: "NÁVODY", cat_exh: "VÝSTAVY, MÉDIÁ", cat_order: "OBJEDNÁVKA",
+			intro: `Túto modulárnu techniku origami som sa naučil z časopisu 'Origami' v roku 2001.<br>V čínštine sa nazýva GHIAN-ZHI, čo znamená 'TISÍC PAPIEROV'. Stretol som sa aj s názvom BLOCK-FOLDING.<br>Podľa príbehu 200 čínskych stroskotancov z lode Golden Venture, ktorá v roku 1993 uviazla na pobreží USA, skončilo vo väzení.<br>Jeden z nich vo voľnom čase trhal farebné noviny a iný odpad na rovnaké kúsky veľkosti dlane a skladal z nich rovnaké trojuholníkové prvky. Z týchto jednoduchých prvkov zostavoval zložité tvary. Potom naučil skladať aj ostatných väzňov, vďaka čomu počet dielov rýchlo rástol. Odtiaľ sa papierové sochy (vázy, nádoby, zvieratá) dostali do múzeí a galérií.<br>Vzor pripomína skladanie obetných papierových peňazí používaných pri čínskych pohrebných obradoch.<br>Mojím prvým materiálom bol farebný kopírovací papier a noviny. V roku 2002 som začal používať čajové vrecúška.<br>Papierové figúrky vychádzajú z mojich vlastných nápadov, vytvorených doma vo voľnom čase. Na vytvorenie plochých povrchov som vyvinul unikátne tehličky zo základných prvkov.<br>V rokoch 2006 a 2009 moje kvety, vázy a čajové doplnky posudzovala porota Riaditeľstva pre výtvarné a úžitkové umenie.<br><br><div style="text-align: center; margin-top: 20px;">Príjemné skladanie!<br><strong>László Molnár<br>molac</strong></div>`
+		},
 		uk: {
 			title: "molac | 3D-teaorigami - Категорії",
 			desc: "Відкрийте для себе захоплюючий світ 3D-teaorigami від molac: тварини, рослини та предмети, виготовлені з чайних пакетиків.",
@@ -459,24 +353,53 @@
 			cat_animals: "ТВАРИНИ", cat_plants: "РОСЛИНИ", cat_tea: "ЧАЮВАННЯ", cat_buildings: "БУДІВЛІ",
 			cat_vehicles: "ТРАНСПОРТ", cat_others: "ІНШЕ", cat_trad: "ТРАДИЦІЙНЕ", cat_crumpled: "ЗІМ'ЯТІ МОДЕЛІ",
 			cat_wood: "ВИРОБИ З ДЕРЕВА", cat_diag: "СХЕМИ", cat_exh: "ВИСТАВКИ, МЕДІА", cat_order: "ЗАМОВЛЕННЯ",
-			intro: `Я навчився цієї техніки модульного оригамі з журналу 'Origami' у 2001 році.<br>
-					Китайською вона називається GHIAN-ZHI, що означає 'ТИСЯЧА ПАПЕРІВ'. Я також зустрічав назву BLOCK-FOLDING.<br>
-					Згідно з історією, 200 китайських мореплавців із судна 'Golden Venture', яке сіло на мілину біля берегів США у 1993 році, опинилися у в'язниці.<br>
-					Один із них у вільний час рвав кольорові газети та інші відходи на однакові шматочки розміром з долоню і складав із них однакові трикутні елементи. З цих простих елементів він збирав складні форми. Потім він навчив складанню інших в'язнів, тому кількість частин швидко зростала. Звідти паперові скульптури (вази, посуд, тварини) потрапили до музеїв та галерей.<br>
-					Візерунок нагадує складання жертовних паперових грошей, які використовуються в китайських похоронних церемоніях.<br>
-					Моїми першими матеріалами були кольоровий папір для копіювання та газети. У 2002 році я почав використовувати чайні пакетики.<br>
-					Паперові фігури базуються на моїх власних ідеях, створених вдома у вільний час. Для створення плоских поверхонь я розробив унікальні цеглинки з базових елементів.<br>
-					У 2006 та 2009 роках журі Дирекції образотворчого та прикладного мистецтва оцінювало мої квіти, вази та аксесуари для чаю.<br>
-					<br>
-					<div style="text-align: center; margin-top: 20px;">
-						Бажаю приємного складання!<br>
-						<strong>László Molnár (Ласло Молнар)<br>molac</strong>
-					</div>`
-		}		
-		
+			intro: `Я навчився цієї техніки модульного оригамі з журналу 'Origami' у 2001 році.<br>Китайською вона називається GHIAN-ZHI, що означає 'ТИСЯЧА ПАПЕРІВ'. Я також зустрічав назву BLOCK-FOLDING.<br>Згідно з історією, 200 китайських мореплавців із судна 'Golden Venture', яке сіло на мілину біля берегів США у 1993 році, опинилися у в'язниці.<br>Один із них у вільний час рвав кольорові газети та інші відходи на однакові шматочки розміром з долоню і складав із них однакові трикутні елементи. З цих простих елементів він збирав складні форми. Потім він навчив складанню інших в'язнів, тому кількість частин швидко зростала. Звідти паперові скульптури (вази, посуд, тварини) потрапили до музеїв та галерей.<br>Візерунок нагадує складання жертовних паперових грошей, які використовуються в китайських похоронних церемоніях.<br>Моїми першими матеріалами були кольоровий папір для копіювання та газети. У 2002 році я почав використовувати чайні пакетики.<br>Паперові фігури базуються на моїх власних ідеях, створених вдома у вільний час. Для створення плоских поверхонь я розробив унікальні цеглинки з базових елементів.<br>У 2006 та 2009 роках журі Дирекції образотворчого та прикладного мистецтва оцінювало мої квіти, вази та аксесуари для чаю.<br><br><div style="text-align: center; margin-top: 20px;">Бажаю приємного складання!<br><strong>László Molnár (Ласло Молнар)<br>molac</strong></div>`
+		},
+		ro: {
+			title: "molac | 3D-teaorigami - Categorii",
+			desc: "Descoperiți lumea fascinantă a 3D-teaorigami molac: animale, plante și obiecte realizate din pliculețe de ceai.",
+			og_desc: "De la dinozaur la ceainic: răsfoiți categoriile galeriei 3D-teaorigami molac.",
+			back: "← Înapoi", welcome: "Bun venit pe pagina mea de Origami!",
+			cat_animals: "ANIMALE", cat_plants: "PLANTE", cat_tea: "ORA CEAIULUI", cat_buildings: "CLĂDIRI",
+			cat_vehicles: "VEHICULE", cat_others: "ALTELE", cat_trad: "TRADIȚIONAL", cat_crumpled: "MODELE ȘIFONATE",
+			cat_wood: "LUCRARE ÎN LEMN", cat_diag: "DIAGRAME", cat_exh: "EXPOZIȚII, MEDIA", cat_order: "COMANDĂ",
+			intro: `Am învățat această tehnică de origami modular din revista 'Origami' în 2001.<br>În chineză se numește GHIAN-ZHI, ceea ce înseamnă 'O MIE DE HÂRTII'. Am văzut-o menționată și sub numele de BLOCK-FOLDING.<br>Conform poveștii, 200 de chinezi naufragiați de pe Golden Venture, care a eșuat pe coastele SUA în 1993, au ajuns în închisoare.<br>Unul dintre ei, în timpul liber, a rupt ziare colorate și alte deșeuri în bucăți uniforme de mărimea unei palme și a împăturit elemente triunghiulare identice. Din aceste elemente simple, a asamblat forme complexe. Apoi i-a învățat și pe ceilalți deținuți să împăturească, astfel încât piesele s-au multiplicat rapid. De acolo, sculpturile din hârtie (vaze, vase, animale) au ajuns în muzee și galerii.<br>Modelul amintește de împăturirea banilor de hârtie sacrificiali folosiți la ceremoniile funerare chinezești.<br>Primele mele materiale au fost hârtia colorată de copiator și ziarele. Am început să folosesc pliculețe de ceai în 2002.<br>Figurinele din hârtie se bazează pe propriile mele idei, create acasă în timpul liber. Pentru a crea suprafețe plane, am dezvoltat cărămizi unice din elementele de bază.<br>În 2006 și 2009, florile, vazele și accesoriile mele pentru ceai au fost evaluate de Juriul Direcției de Arte Plastice și Aplicate.<br><br><div style="text-align: center; margin-top: 20px;">Spor la împăturit!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		sr: {
+			title: "molac | 3D-teaorigami - Категорије",
+			desc: "Откријте фасцинантни свет molac 3D-teaorigami-ја: животиње, биљке и предмети направљени од кесица чаја.",
+			og_desc: "Од диносауруса до чајника: прегледајте категорије галерије molac 3D-teaorigami.",
+			back: "← Назад", welcome: "Добродошли на моју Оригами страницу!",
+			cat_animals: "ЖИВОТИЊЕ", cat_plants: "БИЉКЕ", cat_tea: "ЧАЈАНКА", cat_buildings: "ГРАЂЕВИНЕ",
+			cat_vehicles: "ВОЗИЛА", cat_others: "ОСТАЛО", cat_trad: "ТРАДИЦИОНАЛНО", cat_crumpled: "ЗГУЖВАНИ МОДЕЛИ",
+			cat_wood: "РАД У ДРВЕТУ", cat_diag: "ДИЈАГРАМИ", cat_exh: "ИЗЛОЖБЕ, МЕДИЈИ", cat_order: "ПОРУЏБИНЕ",
+			intro: `Ову модуларну технику оригамија научио сам из часописа 'Origami' 2001. године.<br>На кинеском се зове GHIAN-ZHI, што значи 'ХИЉАДУ ПАПИРА'. Виђао сам да се помиње и под називом BLOCK-FOLDING.<br>Према причи, 200 кинеских бродоломника са брода Golden Venture, који се насукао на обале САД 1993. године, завршило је у затвору.<br>Један од њих је у слободно време цепао обојене новине и други отпад на једнаке комаде величине длана и савијао од њих једнаке троугласте елементе. Од ових једноставних елемената састављао је сложене облике. Потом је научио и остале затворенике да савијају, па су се делови брзо множили. Одатле су папирне скулптуре (вазе, посуде, животиње) доспеле у музеје и галерије.<br>Шара подсећа на савијање жртвеног папирног новца који се користи у кинеским погребним церемонијама.<br>Моји први материјали били су папир у боји и новине. Кесице чаја почео сам да користим 2002. године.<br>Папирне фигуре су засноване на мојим сопственим идејама, насталим код куће у слободно време. За креирање равних површина развио сам јединствене цигле од основних елемената.<br>Током 2006. и 2009. године, моје цвеће, вазе и прибор за чај оцењивао је Жири Управе за ликовну и примењену уметност.<br><br><div style="text-align: center; margin-top: 20px;">Уживајте у савијању!<br><strong>László Molnár (Ласло Молнар)<br>molac</strong></div>`
+		},
+		hr: {
+			title: "molac | 3D-teaorigami - Kategorije",
+			desc: "Otkrijte fascinantan svijet molac 3D-teaorigamija: životinje, biljke i predmeti izrađeni od vrećica čaja.",
+			og_desc: "Od dinosaura do čajnika: pregledajte kategorije galerije molac 3D-teaorigami.",
+			back: "← Natrag", welcome: "Dobrodošli na moju Origami stranicu!",
+			cat_animals: "ŽIVOTINJE", cat_plants: "BILJKE", cat_tea: "VRIJEME ZA ČAJ", cat_buildings: "GRAĐEVINE",
+			cat_vehicles: "VOZILA", cat_others: "OSTALO", cat_trad: "TRADICIONALNO", cat_crumpled: "ZGUŽVANI MODELI",
+			cat_wood: "RADOVI OD DRVETA", cat_diag: "DIJAGRAMI", cat_exh: "IZLOŽBE, MEDIJE", cat_order: "NARUDŽBA",
+			intro: `Ovu modularnu tehniku origamija naučio sam iz časopisa 'Origami' 2001. godine.<br>Na kineskom se zove GHIAN-ZHI, što znači 'TISUĆU PAPIRA'. Vidio sam da se spominje i kao BLOCK-FOLDING.<br>Prema priči, 200 kineskih brodolomaca s broda Golden Venture, koji se nasukao na obale SAD-a 1993. godine, završilo je u zatvoru.<br>Jedan od njih je u slobodno vrijeme kidao obojene novine i drugi otpad na jednake komade veličine dlana i savijao od njih jednake trokutaste elemente. Od tih jednostavnih elemenata sastavljao je složene oblike. Potom je naučio i ostale zatvorenike savijanju, pa su se dijelovi brzo množili. Odatle su papirnate skulpture (vaze, posude, životinje) dospjele u muzeje i galerije.<br>Uzorak podsjeća na savijanje žrtvenog papirnatog novca koji se koristi u kineskim pogrebnim ceremonijama.<br>Moji prvi materijali bili su papir u boji i novine. Vrećice čaja počeo sam koristiti 2002. godine.<br>Papirnate figure temelje se na mojim vlastitim idejama, nastalim kod kuće u slobodno vrijeme. Za stvaranje ravnih površina razvio sam jedinstvene cigle od osnovnih elemenata.<br>Tijekom 2006. i 2009. godine, moje cvijeće, vaze i pribor za čaj ocjenjivao je Žiri Uprave za likovnu i primijenjenu umjetnost.<br><br><div style="text-align: center; margin-top: 20px;">Uživajte u savijanju!<br><strong>László Molnár<br>molac</strong></div>`
+		},
+		sl: {
+			title: "molac | 3D-teaorigami - Kategorije",
+			desc: "Odkrijte fascinanten svet molac 3D-teaorigamija: živali, rastline in predmeti iz čajnih vrečk.",
+			og_desc: "Od dinozavra do čajnika: brskajte po kategorijah galerije molac 3D-teaorigami.",
+			back: "← Nazaj", welcome: "Dobrodošli na moji Origami strani!",
+			cat_animals: "ŽIVALI", cat_plants: "RASTLINE", cat_tea: "ČAS ZA ČAJ", cat_buildings: "ZGRADBE",
+			cat_vehicles: "VOZILA", cat_others: "OSTALO", cat_trad: "TRADICIONALNO", cat_crumpled: "ZMEČKANI MODELI",
+			cat_wood: "LESARSTVO", cat_diag: "DIAGRAMI", cat_exh: "RAZSTAVE, MEDIJI", cat_order: "NAROČILO",
+			intro: `To modularno tehniko origamija sem se naučil iz revije 'Origami' leta 2001.<br>V kitajščini se imenuje GHIAN-ZHI, kar pomeni 'TISOČ PAPIRJEV'. Videla sem jo tudi pod imenom BLOCK-FOLDING.<br>Po zgodbi je 200 kitajskih brodolomcev z ladje Golden Venture, ki je leta 1993 nasedla na obalah ZDA, končalo v zaporu.<br>Eden izmed njih je v prostem času trgal barvne časopise in druge odpadke na enake kose velikosti dlani in iz njih zgibal enake trikotne elemente. Iz teh preprostih elementov je sestavljal kompleksne oblike. Nato je naučil zgibati še ostale zapornike, zato so se deli hitro množili. Od tam so papirnate skulpture (vaze, posode, živali) prišle v muzeje in galerije.<br>Vzorec spominja na zgibanje žrtvenega papirnatega denarja, ki se uporablja pri kitajskih pogrebnih obredih.<br>Moji prvi materiali so bili barvni papir in časopisi. Čajne vrečke sem začel uporabljati leta 2002.<br>Papirnate figure temeljijo na mojih lastnih idejah, nastalih doma v prostem času. Za ustvarjanje ravnih površin sem razvil edinstvene opeke iz osnovnih elementov.<br>V letih 2006 in 2009 je moje cvetje, vaze in čajne dodatke ocenjevala žirija Uprave za likovno in uporabno umetnost.<br><br><div style="text-align: center; margin-top: 20px;">Veselo zgibanje!<br><strong>László Molnár<br>molac</strong></div>`
+		}
     };
 
     function changeLanguage(lang) {
+	  if (!translations[lang]) lang = 'hu';
+	
       localStorage.setItem('preferredLang', lang);
       
       // Szövegcsere az oldalon
@@ -495,6 +418,10 @@
       if (oT) oT.setAttribute('content', translations[lang].title);
     }
 
+	const lang = getCurrentLang();
+	localStorage.setItem("preferredLang", lang);   // biztos, ami biztos
+	addLangToLinks(lang);
+
 // ESC billentyű figyelése a visszalépéshez
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
@@ -505,8 +432,33 @@
     window.onload = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
-      changeLanguage(lang);
+      changeLanguage(translations[lang] ? lang : 'hu');
     };
+	
+	function getCurrentLang() {
+	  const p = new URLSearchParams(location.search);
+	  const fromUrl = (p.get("lang") || "").toLowerCase();
+	  const stored = (localStorage.getItem("preferredLang") || "").toLowerCase();
+	  return fromUrl || stored || "hu";
+	}
+
+	function addLangToLinks(lang) {
+	  document.querySelectorAll('a[href$=".htm"], a[href$=".html"]').forEach(a => {
+		const href = a.getAttribute("href");
+		if (!href) return;
+
+		// külső / horgony / mailto / javascript maradjon
+		if (href.startsWith("http") || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("javascript:")) return;
+
+		// ha már van lang, nem bántjuk
+		if (href.includes("lang=")) return;
+
+		const [path, hash] = href.split("#");
+		const sep = path.includes("?") ? "&" : "?";
+		a.setAttribute("href", `${path}${sep}lang=${encodeURIComponent(lang)}${hash ? "#" + hash : ""}`);
+	  });
+	}
+	
   </script>
 </body>
 </html>

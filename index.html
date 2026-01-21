@@ -36,23 +36,21 @@
     }
 
     /* ===== WELCOME BOX (Keskenyebb és dinamikus) ===== */
-    .welcome-box {
-      margin: 0 auto;
-      text-align: center;
-      background: rgba(255, 255, 255, .95);
-      padding: 1.2rem 1.5rem;
-      border-radius: 0 0 1.5rem 1.5rem;
-      box-shadow: 0 0.5rem 2rem rgba(0,0,0,.15);
-      width: 320px;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      border: 1px solid rgba(0,51,102,0.1);
-      border-top: none;
-    }
-
+	.welcome-box {
+	  text-align: center;
+	  background: rgba(255, 255, 255, .95);
+	  padding: 1.2rem 1.5rem;
+	  border-radius: 2rem; /* Minden sarka kerek */
+	  box-shadow: 0 0.5rem 2rem rgba(0,0,0,.15);
+	  width: 320px;
+	  position: absolute;
+	  top: 10px; /* 15 pixel távolság a tetejétől, hogy látsszon a kerekítés */
+	  left: 50%;
+	  transform: translateX(-50%);
+	  z-index: 10;
+	  border: 1px solid rgba(0,51,102,0.1);
+	}
+	
     .welcome-box h1 {
       font-size: 1.8rem;
       font-weight: 800;
@@ -77,8 +75,10 @@
       background: rgba(0, 51, 102, 0.05);
       border-radius: 1rem;
       border: 1px solid rgba(0, 51, 102, 0.15);
-      mask-image: linear-gradient(to bottom, transparent, black 45%, black 55%, transparent);
+      mask-image: linear-gradient(to bottom, transparent, black 48%, black 52%, transparent);
       -webkit-mask-image: linear-gradient(to bottom, transparent, black 45%, black 55%, transparent);
+	  touch-action: none;
+	  -webkit-tap-highlight-color: transparent;
     }
 
     .wheel-list {
@@ -164,22 +164,37 @@ const languages = [
   { name: "Italiano", code: "it" },
   { name: "Français", code: "fr" },
   { name: "Português", code: "pt" },
-  { name: "Română", code: "ro" },
-  { name: "Slovenčina", code: "sk" },
-  { name: "Українська", code: "uk" },
-  { name: "Polski", code: "pl" },
-  { name: "Српски", code: "sr" },
-  { name: "Hrvatski", code: "hr" },
-  { name: "Slovenščina", code: "sl" },
+  { name: "Nederlands", code: "nl" },
+  { name: "Svenska", code: "sv" },
+  { name: "Suomi", code: "fi" },
+  { name: "Norsk", code: "no" },
+  { name: "Dansk", code: "da" },
+  { name: "Íslenska", code: "is" },
+  { name: "Català", code: "ca" },
   { name: "日本語", code: "ja" },
   { name: "中文", code: "zh" },
   { name: "한국어", code: "ko" },
-  { name: "Esperanto", code: "eo" }
+  { name: "Esperanto", code: "eo" },
+  { name: "Lietuvių", code: "lt" },
+  { name: "Latviešu", code: "lv" },  
+  { name: "Eesti", code: "et" },
+  { name: "Türkçe", code: "tr" },
+  { name: "Ελληνικά", code: "el" },
+  { name: "Shqip", code: "sq" },
+  { name: "Български", code: "bg" },
+  { name: "Polski", code: "pl" },
+  { name: "Čeština", code: "cs" },
+  { name: "Slovenčina", code: "sk" },
+  { name: "Українська", code: "uk" },
+  { name: "Română", code: "ro" },
+  { name: "Српски", code: "sr" },
+  { name: "Hrvatski", code: "hr" },
+  { name: "Slovenščina", code: "sl" },
 ];
 
 const wheelList = document.getElementById("wheelList");
 let currentIndex = 0;
-const radius = 80;
+const radius = 130;
 
 function createWheel() {
   languages.forEach((lang, i) => {
@@ -218,10 +233,69 @@ window.addEventListener("wheel", e => {
 }, {passive: false});
 
 window.addEventListener("keydown", e => {
+  // ESC -> Magyar
+  if (e.key === "Escape") {
+    e.preventDefault();
+    const huIndex = languages.findIndex(l => l.code === "hu");
+    if (huIndex !== -1) {
+      currentIndex = huIndex;
+      updateWheel();
+    }
+    return; // ne fusson tovább más billentyű ágra
+  }
   if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
   if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
   if (e.key === "Enter") window.location.href = `origami.htm?lang=${languages[currentIndex].code}`;
 });
+
+/* ===== TOUCH / SWIPE (Android) ===== */
+const wheelFrame = document.getElementById("wheelFrame");
+
+let touchStartY = null;
+let touchLastY = null;
+let touchAccum = 0;
+const TOUCH_STEP_PX = 22; // ennyi pixel húzás = 1 lépés (ízlés szerint 18–30)
+
+wheelFrame.addEventListener("touchstart", (e) => {
+  e.target.getBoundingClientRect(); // iOS Safari gesture lock
+  if (e.touches.length !== 1) return;
+  touchStartY = e.touches[0].clientY;
+  touchLastY = touchStartY;
+  touchAccum = 0;
+}, { passive: true });
+
+wheelFrame.addEventListener("touchmove", (e) => {
+  if (touchStartY === null) return;
+
+  // fontos: különben az oldal “scrollozni” próbál
+  e.preventDefault();
+
+  const y = e.touches[0].clientY;
+  const dy = y - touchLastY;
+  touchLastY = y;
+
+  touchAccum += dy;
+
+  // ha elég nagyot húztunk, léptetünk egyet (vagy többet)
+  while (touchAccum <= -TOUCH_STEP_PX) {
+    move(1);              // felfelé húzás -> következő
+    touchAccum += TOUCH_STEP_PX;
+  }
+  while (touchAccum >= TOUCH_STEP_PX) {
+    move(-1);             // lefelé húzás -> előző
+    touchAccum -= TOUCH_STEP_PX;
+  }
+}, { passive: false });
+
+wheelFrame.addEventListener("touchend", () => {
+  touchStartY = null;
+  touchLastY = null;
+}, { passive: true });
+
+wheelFrame.addEventListener("touchcancel", () => {
+  touchStartY = null;
+  touchLastY = null;
+}, { passive: true });
 
 /* ===== ORIGAMI FLOATERS ===== */
 const container = document.querySelector(".background-origami");
