@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,39 +83,39 @@
   <div class="page-container">
 
     <table>
-      <caption>Fából készített használati tárgyak, játékok</caption>
+      <caption data-lang-key="title_fa">Fából készített használati tárgyak, játékok</caption>
       <tr>
-        <td colspan="2">1 polcos szekrények készültek az<br>előszoba szekrény tetejére</td>
+        <td colspan="2" data-lang-key="p_fa1">1 polcos szekrények készültek az<br>előszoba szekrény tetejére</td>
         <td><img src="pictures/famunka/szekreny1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/famunka/szekreny2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
       <tr>
-        <td>Elkészült az összes:<br>3 db 2 ajtós és<br>1 db 1 ajtós</td>
+        <td data-lang-key="p_fa0">Elkészült az összes:<br>3 db 2 ajtós és<br>1 db 1 ajtós</td>
         <td colspan="3"><img src="pictures/famunka/szekrenyegyutt.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
-        <td>Udvari játékok is készültek:<br>csúszda és a lépcsője alatti kuckó<br>egybeépítve egy hintával</td>
+        <td data-lang-key="p_fa2">Udvari játékok is készültek:<br>csúszda és a lépcsője alatti kuckó<br>egybeépítve egy hintával</td>
         <td><img src="pictures/famunka/csuszda.jpg" class="gallery-img" onclick="openGallery(3)"></td>
 		<td><img src="pictures/famunka/kucko.jpg" class="gallery-img" onclick="openGallery(4)"></td>
 		<td><img src="pictures/famunka/hinta.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>
       <tr>
-        <td colspan="2">Készítettem magamnak egy borpolcot</td>
+        <td colspan="2" data-lang-key="p_fa3">Készítettem magamnak egy borpolcot</td>
         <td colspan="2"><img src="pictures/famunka/borarium.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>	  
       <tr>
-        <td>Készült a lányaimnak<br>egy babaház bútorokkal<br>lépcsőkkel</td>
+        <td data-lang-key="p_fa4">Készült a lányaimnak<br>egy babaház bútorokkal<br>lépcsőkkel</td>
         <td><img src="pictures/famunka/babahaz5.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/famunka/babahaz6.jpg" class="gallery-img" onclick="openGallery(8)"></td>
 		<td><img src="pictures/famunka/babahaz7.jpg" class="gallery-img" onclick="openGallery(9)"></td>
       </tr>
       <tr>
-        <td colspan="2">Egy kisasztal székkel</td>
+        <td colspan="2" data-lang-key="p_fa5">Egy kisasztal székkel</td>
         <td><img src="pictures/famunka/szek.jpg" class="gallery-img" onclick="openGallery(10)"></td>
 		<td><img src="pictures/famunka/asztalszek.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
       <tr>
-        <td colspan="2">Favonathoz készültek fák és állatok<br>Gurulós tároló dobozok az ágy alá</td>
+        <td colspan="2" data-lang-key="p_fa6">Favonathoz készültek fák és állatok<br>Gurulós tároló dobozok az ágy alá</td>
         <td colspan="2"><img src="pictures/famunka/faallatfiok.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>		  
 	  
@@ -124,11 +124,442 @@
   </div>
 
   <script>
-    let currentIndex = 0;
+  	const translations = {
+		hu: {
+			back: "← Vissza", close: "✕ Bezárás",
+			title_fa: "Fából készített használati tárgyak, játékok", 
+			p_fa0: "Elkészült az összes:<br>3 db 2 ajtós és<br>1 db 1 ajtós",
+			p_fa1: "1 polcos szekrények készültek az<br>előszoba szekrény tetejére",
+			p_fa2: "Udvari játékok is készültek:<br>csúszda és a lépcsője alatti kuckó<br>egybeépítve egy hintával", 
+			p_fa3: "Készítettem magamnak egy borpolcot", 
+			p_fa4: "Készült a lányaimnak<br>egy babaház bútorokkal<br>lépcsőkkel", 
+			p_fa5: "Egy kisasztal székkel", 
+			p_fa6: "Favonathoz készültek fák és állatok<br>Gurulós tároló dobozok az ágy alá", 
+		},   
+		en: {
+			back: "← Back", close: "✕ Close",
+			title_fa: "Wooden household items and toys",
+			p_fa0: "All of them are finished:<br>3 double-door cabinets and<br>1 single-door cabinet",
+			p_fa1: "Single-shelf cabinets were made<br>for the top of the hallway wardrobe",
+			p_fa2: "Outdoor toys were also made:<br>a slide and a small nook under the stairs<br>combined with a swing",
+			p_fa3: "I made myself a wine rack",
+			p_fa4: "A dollhouse with furniture<br>and stairs was made<br>for my daughters",
+			p_fa5: "A small table with a chair",
+			p_fa6: "Trees and animals were made for a wooden train<br>Rolling storage boxes for under the bed",
+		},
+		de: {
+			back: "← Zurück", close: "✕ Schließen",
+			title_fa: "Gebrauchsgegenstände und Spielzeuge aus Holz",
+			p_fa0: "Alle sind fertig:<br>3 zweiflügelige Schränke und<br>1 einflügeliger Schrank",
+			p_fa1: "Einregalige Schränke wurden für den<br>oberen Teil des Flurschranks angefertigt",
+			p_fa2: "Auch Spielgeräte für den Garten entstanden:<br>eine Rutsche und eine kleine Höhle unter der Treppe,<br>kombiniert mit einer Schaukel",
+			p_fa3: "Ich habe mir ein Weinregal gebaut",
+			p_fa4: "Für meine Töchter entstand ein Puppenhaus<br>mit Möbeln und Treppen",
+			p_fa5: "Ein kleiner Tisch mit einem Stuhl",
+			p_fa6: "Für eine Holzeisenbahn wurden Bäume und Tiere gefertigt<br>Rollbare Aufbewahrungsboxen für unter das Bett",
+		},
+		es: {
+			back: "← Volver", close: "✕ Cerrar",
+			title_fa: "Objetos utilitarios y juguetes de madera",
+			p_fa0: "Ya están terminados todos:<br>3 armarios de 2 puertas y<br>1 armario de 1 puerta",
+			p_fa1: "Se fabricaron armarios de un estante<br>para la parte superior del armario del recibidor",
+			p_fa2: "También se hicieron juegos para el exterior:<br>un tobogán y un rincón bajo la escalera,<br>combinados con un columpio",
+			p_fa3: "Me hice un botellero",
+			p_fa4: "Se hizo una casa de muñecas con muebles<br>y escaleras<br>para mis hijas",
+			p_fa5: "Una mesita con una silla",
+			p_fa6: "Se hicieron árboles y animales para un tren de madera<br>Cajas de almacenamiento con ruedas para debajo de la cama",
+		},
+		it: {
+			back: "← Indietro", close: "✕ Chiudi",
+			title_fa: "Oggetti utili e giocattoli in legno",
+			p_fa0: "Sono tutti pronti:<br>3 armadietti a 2 ante e<br>1 armadietto a 1 anta",
+			p_fa1: "Sono stati realizzati armadietti a un ripiano<br>per la parte superiore dell’armadio dell’ingresso",
+			p_fa2: "Sono stati realizzati anche giochi da esterno:<br>uno scivolo e un angolo sotto la scala,<br>combinati con un’altalena",
+			p_fa3: "Mi sono costruito una cantinetta per il vino",
+			p_fa4: "È stata realizzata una casa delle bambole con mobili<br>e scale<br>per le mie figlie",
+			p_fa5: "Un tavolino con una sedia",
+			p_fa6: "Per un trenino di legno sono stati realizzati alberi e animali<br>Contenitori su ruote per sotto il letto",
+		},
+		fr: {
+			back: "← Retour", close: "✕ Fermer",
+			title_fa: "Objets utilitaires et jouets en bois",
+			p_fa0: "Tout est terminé :<br>3 armoires à 2 portes et<br>1 armoire à 1 porte",
+			p_fa1: "Des armoires à une étagère ont été fabriquées<br>pour le dessus du placard de l’entrée",
+			p_fa2: "Des jeux d’extérieur ont également été réalisés :<br>un toboggan et un petit coin sous l’escalier,<br>combinés avec une balançoire",
+			p_fa3: "Je me suis fabriqué un porte-bouteilles",
+			p_fa4: "Une maison de poupée avec des meubles<br>et des escaliers a été réalisée<br>pour mes filles",
+			p_fa5: "Une petite table avec une chaise",
+			p_fa6: "Des arbres et des animaux ont été réalisés pour un train en bois<br>Des boîtes de rangement à roulettes pour sous le lit",
+		},
+		pt: {
+			back: "← Voltar", close: "✕ Fechar",
+			title_fa: "Objetos utilitários e brinquedos de madeira",
+			p_fa0: "Estão todos prontos:<br>3 armários de 2 portas e<br>1 armário de 1 porta",
+			p_fa1: "Foram feitos armários de uma prateleira<br>para a parte superior do armário do hall de entrada",
+			p_fa2: "Também foram feitos brinquedos para o exterior:<br>um escorrega e um cantinho sob a escada,<br>combinados com um baloiço",
+			p_fa3: "Fiz para mim uma garrafeira",
+			p_fa4: "Foi feita uma casa de bonecas com móveis<br>e escadas<br>para as minhas filhas",
+			p_fa5: "Uma mesinha com uma cadeira",
+			p_fa6: "Foram feitos árvores e animais para um comboio de madeira<br>Caixas de arrumação com rodas para debaixo da cama",
+		},
+		nl: {
+			back: "← Terug", close: "✕ Sluiten",
+			title_fa: "Gebruiksvoorwerpen en speelgoed van hout",
+			p_fa0: "Ze zijn allemaal klaar:<br>3 kasten met 2 deuren en<br>1 kast met 1 deur",
+			p_fa1: "Er werden kasten met één plank gemaakt<br>voor de bovenkant van de gangkast",
+			p_fa2: "Er werden ook buitenspellen gemaakt:<br>een glijbaan en een knus hoekje onder de trap,<br>gecombineerd met een schommel",
+			p_fa3: "Ik heb voor mezelf een wijnrek gemaakt",
+			p_fa4: "Voor mijn dochters werd een poppenhuis gemaakt<br>met meubels<br>en trappen",
+			p_fa5: "Een klein tafeltje met een stoel",
+			p_fa6: "Voor een houten trein werden bomen en dieren gemaakt<br>Rijdende opbergdozen voor onder het bed",
+		},
+		sv: {
+			back: "← Tillbaka", close: "✕ Stäng",
+			title_fa: "Bruksföremål och leksaker av trä",
+			p_fa0: "Alla är klara:<br>3 skåp med 2 dörrar och<br>1 skåp med 1 dörr",
+			p_fa1: "Skåp med en hylla tillverkades<br>för ovansidan av hallgarderoben",
+			p_fa2: "Även uteleksaker tillverkades:<br>en rutschkana och en liten vrå under trappan,<br>kombinerat med en gunga",
+			p_fa3: "Jag gjorde ett vinställ till mig själv",
+			p_fa4: "Ett dockhus med möbler<br>och trappor tillverkades<br>för mina döttrar",
+			p_fa5: "Ett litet bord med en stol",
+			p_fa6: "Träd och djur tillverkades till ett trätåg<br>Rullande förvaringslådor för under sängen",
+		},
+		fi: {
+			back: "← Takaisin", close: "✕ Sulje",
+			title_fa: "Puiset käyttöesineet ja lelut",
+			p_fa0: "Kaikki ovat valmiit:<br>3 kaksovista kaappia ja<br>1 yksovinen kaappi",
+			p_fa1: "Yhden hyllyn kaappeja tehtiin<br>eteisen kaapin päälle",
+			p_fa2: "Myös pihaleluja tehtiin:<br>liukumäki ja portaiden alla oleva soppi,<br>yhdistettynä keinuun",
+			p_fa3: "Tein itselleni viinitelineen",
+			p_fa4: "Tyttärilleni tehtiin nukkekoti<br>kalusteilla<br>ja portailla",
+			p_fa5: "Pieni pöytä ja tuoli",
+			p_fa6: "Puujunaan tehtiin puita ja eläimiä<br>Pyörälliset säilytyslaatikot sängyn alle",
+		},
+		no: {
+			back: "← Tilbake", close: "✕ Lukk",
+			title_fa: "Bruksgjenstander og leker av tre",
+			p_fa0: "Alle er ferdige:<br>3 skap med 2 dører og<br>1 skap med 1 dør",
+			p_fa1: "Skap med én hylle ble laget<br>for toppen av garderobeskapet i gangen",
+			p_fa2: "Det ble også laget uteleker:<br>en sklie og en liten krok under trappen,<br>kombinert med en huske",
+			p_fa3: "Jeg laget et vinreol til meg selv",
+			p_fa4: "Det ble laget et dukkehus med møbler<br>og trapper<br>til døtrene mine",
+			p_fa5: "Et lite bord med en stol",
+			p_fa6: "Det ble laget trær og dyr til et tretog<br>Rullende oppbevaringsbokser for under sengen",
+		},
+		da: {
+			back: "← Tilbage", close: "✕ Luk",
+			title_fa: "Brugsgenstande og legetøj af træ",
+			p_fa0: "De er alle færdige:<br>3 skabe med 2 døre og<br>1 skab med 1 dør",
+			p_fa1: "Der blev lavet skabe med én hylde<br>til toppen af garderobeskabet i entreen",
+			p_fa2: "Der blev også lavet udendørs legetøj:<br>en rutsjebane og en lille krog under trappen,<br>kombineret med en gynge",
+			p_fa3: "Jeg lavede et vinstativ til mig selv",
+			p_fa4: "Der blev lavet et dukkehus med møbler<br>og trapper<br>til mine døtre",
+			p_fa5: "Et lille bord med en stol",
+			p_fa6: "Der blev lavet træer og dyr til et trætog<br>Rullede opbevaringskasser til under sengen",
+		},
+		is: {
+			back: "← Til baka", close: "✕ Loka",
+			title_fa: "Nytjahlutir og leikföng úr tré",
+			p_fa0: "Allt er tilbúið:<br>3 skápar með 2 hurðum og<br>1 skápur með 1 hurð",
+			p_fa1: "Skápar með einni hillu voru smíðaðir<br>ofan á forstofuskápinn",
+			p_fa2: "Einnig voru smíðuð útileikföng:<br>rennibraut og lítið afdrep undir stiganum,<br>sameinað ról",
+			p_fa3: "Ég smíðaði mér vínrekk",
+			p_fa4: "Smíðað var dúkkhús með húsgögnum<br>og stigum<br>fyrir dætur mínar",
+			p_fa5: "Lítið borð með stól",
+			p_fa6: "Tré og dýr voru smíðuð fyrir tré-lest<br>Hjólaskápar til geymslu undir rúmi",
+		},
+		ca: {
+			back: "← Enrere", close: "✕ Tanca",
+			title_fa: "Objectes d’ús i joguines de fusta",
+			p_fa0: "Ja estan tots acabats:<br>3 armaris de 2 portes i<br>1 armari d’1 porta",
+			p_fa1: "Es van fer armaris d’un sol prestatge<br>per a la part superior de l’armari del rebedor",
+			p_fa2: "També es van fer jocs d’exterior:<br>un tobogan i un racó sota l’escala,<br>combinats amb un gronxador",
+			p_fa3: "Em vaig fer un boteller",
+			p_fa4: "Es va fer una casa de nines amb mobles<br>i escales<br>per a les meves filles",
+			p_fa5: "Una tauleta amb una cadira",
+			p_fa6: "Es van fer arbres i animals per a un tren de fusta<br>Caixes d’emmagatzematge amb rodes per sota del llit",
+		},
+		ja: {
+			back: "← 戻る", close: "✕ 閉じる",
+			title_fa: "木製の日用品とおもちゃ",
+			p_fa0: "すべて完成しました：<br>両開き（2枚扉）3台と<br>片開き（1枚扉）1台",
+			p_fa1: "玄関のクローゼットの上に置くための<br>一段棚のキャビネットを作りました",
+			p_fa2: "屋外用のおもちゃも作りました：<br>すべり台と階段下の小さなスペースを<br>ブランコと組み合わせました",
+			p_fa3: "自分用にワインラックを作りました",
+			p_fa4: "娘たちのために家具付きの<br>ドールハウスと階段を作りました",
+			p_fa5: "小さなテーブルと椅子",
+			p_fa6: "木製列車用に木や動物を作りました<br>ベッド下用のキャスター付き収納ボックス",
+		},
+		zh: {
+			back: "← 返回", close: "✕ 关闭",
+			title_fa: "木制生活用品和玩具",
+			p_fa0: "全部完成了：<br>3个双开门柜子和<br>1个单开门柜子",
+			p_fa1: "制作了一层搁板的柜子，<br>放置在玄关衣柜的顶部",
+			p_fa2: "还制作了户外玩具：<br>滑梯和楼梯下的小角落，<br>并与秋千组合在一起",
+			p_fa3: "我为自己制作了一个酒架",
+			p_fa4: "为女儿们制作了一个带家具<br>和楼梯的娃娃屋",
+			p_fa5: "一张小桌子和一把椅子",
+			p_fa6: "为木制火车制作了树木和动物<br>用于床下的带轮收纳箱",
+		},
+		ko: {
+			back: "← 뒤로", close: "✕ 닫기",
+			title_fa: "나무로 만든 생활용품과 장난감",
+			p_fa0: "모두 완성되었습니다:<br>2문 수납장 3개와<br>1문 수납장 1개",
+			p_fa1: "현관 옷장 위에 놓을 수 있는<br>한 칸 선반장이 제작되었습니다",
+			p_fa2: "야외 놀이기구도 제작되었습니다:<br>미끄럼틀과 계단 아래 작은 공간을<br>그네와 함께 구성했습니다",
+			p_fa3: "나를 위해 와인 선반을 만들었습니다",
+			p_fa4: "딸들을 위해 가구와 계단이 있는<br>인형의 집을 만들었습니다",
+			p_fa5: "작은 테이블과 의자",
+			p_fa6: "나무 기차를 위해 나무와 동물을 만들었습니다<br>침대 아래용 바퀴 달린 수납 상자",
+		},
+		eo: {
+			back: "← Reen", close: "✕ Fermi",
+			title_fa: "Uzobjektoj kaj ludiloj el ligno",
+			p_fa0: "Ĉio estas preta:<br>3 ŝrankoj kun 2 pordoj kaj<br>1 ŝranko kun 1 pordo",
+			p_fa1: "Unu-bretaj ŝrankoj estis faritaj<br>por la supro de la antaŭĉambra ŝranko",
+			p_fa2: "Ankaŭ eksteraj ludiloj estis faritaj:<br>glitilo kaj eta angulo sub la ŝtuparo,<br>kombinitaj kun balancilo",
+			p_fa3: "Mi faris por mi vinbreton",
+			p_fa4: "Por miaj filinoj estis farita pupdomo kun mebloj<br>kaj ŝtupoj",
+			p_fa5: "Malgranda tablo kun seĝo",
+			p_fa6: "Arboj kaj bestoj estis faritaj por ligna trajno<br>Rulantaj stokaj skatoloj por sub la lito",
+		},
+		lt: {
+			back: "← Atgal", close: "✕ Uždaryti",
+			title_fa: "Mediniai buities daiktai ir žaislai",
+			p_fa0: "Visi pagaminti:<br>3 spintelės su 2 durimis ir<br>1 spintelė su 1 durimis",
+			p_fa1: "Buvo pagamintos vienos lentynos spintelės<br>prieškambario spintos viršui",
+			p_fa2: "Taip pat buvo pagaminti lauko žaislai:<br>čiuožykla ir jaukus kampelis po laiptais,<br>sujungtas su sūpynėmis",
+			p_fa3: "Pasigaminau vyno lentyną",
+			p_fa4: "Mano dukroms buvo pagamintas lėlių namelis su baldais<br>ir laiptais",
+			p_fa5: "Mažas staliukas su kėde",
+			p_fa6: "Mediniam traukiniui buvo pagaminti medžiai ir gyvūnai<br>Ritinėjamos laikymo dėžės po lova",
+		},
+		lv: {
+			back: "← Atpakaļ", close: "✕ Aizvērt",
+			title_fa: "No koka izgatavoti sadzīves priekšmeti un rotaļlietas",
+			p_fa0: "Viss ir pabeigts:<br>3 skapīši ar 2 durvīm un<br>1 skapītis ar 1 durvīm",
+			p_fa1: "Tika izgatavoti vienas plaukta skapīši<br>priekšnama skapja augšdaļai",
+			p_fa2: "Tika izgatavotas arī āra rotaļlietas:<br>slidkalniņš un mazs stūrītis zem kāpnēm,<br>apvienots ar šūpolēm",
+			p_fa3: "Es sev izgatavoju vīna plauktu",
+			p_fa4: "Manām meitām tika izgatavota leļļu māja ar mēbelēm<br>un kāpnēm",
+			p_fa5: "Mazs galdiņš ar krēslu",
+			p_fa6: "Koka vilcienam tika izgatavoti koki un dzīvnieki<br>Rullējamas uzglabāšanas kastes zem gultas",
+		},
+		et: {
+			back: "← Tagasi", close: "✕ Sulge",
+			title_fa: "Puidust valmistatud tarbeesemed ja mänguasjad",
+			p_fa0: "Kõik on valmis:<br>3 kahe uksega kappi ja<br>1 ühe uksega kapp",
+			p_fa1: "Esikukapi peale valmistati ühe riiuliga kapid",
+			p_fa2: "Valmistati ka õuemänguasju:<br>liumägi ja väike nurgake trepi all,<br>koos kiigega",
+			p_fa3: "Valmistasin endale veiniriiuli",
+			p_fa4: "Minu tütardele valmistati nukumaja mööbli<br>ja treppidega",
+			p_fa5: "Väike laud koos tooliga",
+			p_fa6: "Puidust rongi jaoks valmistati puud ja loomad<br>Ratastega hoiukastid voodi alla",
+		},
+		tr: {
+			back: "← Geri", close: "✕ Kapat",
+			title_fa: "Ahşaptan yapılmış ev eşyaları ve oyuncaklar",
+			p_fa0: "Hepsi tamamlandı:<br>2 kapılı 3 dolap ve<br>1 kapılı 1 dolap",
+			p_fa1: "Antre dolabının üstü için<br>tek raflı dolaplar yapıldı",
+			p_fa2: "Dış mekân oyuncakları da yapıldı:<br>bir kaydırak ve merdiven altındaki küçük bir köşe,<br>bir salıncakla birleştirildi",
+			p_fa3: "Kendime bir şarap rafı yaptım",
+			p_fa4: "Kızlarım için mobilyalı<br>ve merdivenli bir oyuncak ev yapıldı",
+			p_fa5: "Bir küçük masa ve sandalye",
+			p_fa6: "Ahşap tren için ağaçlar ve hayvanlar yapıldı<br>Yatağın altı için tekerlekli saklama kutuları",
+		},
+		el: {
+			back: "← Πίσω", close: "✕ Κλείσιμο",
+			title_fa: "Ξύλινα χρηστικά αντικείμενα και παιχνίδια",
+			p_fa0: "Όλα ολοκληρώθηκαν:<br>3 ντουλάπια με 2 πόρτες και<br>1 ντουλάπι με 1 πόρτα",
+			p_fa1: "Κατασκευάστηκαν ντουλάπια με ένα ράφι<br>για την κορυφή της ντουλάπας του χολ",
+			p_fa2: "Κατασκευάστηκαν επίσης παιχνίδια εξωτερικού χώρου:<br>μια τσουλήθρα και μια μικρή γωνιά κάτω από τη σκάλα,<br>σε συνδυασμό με μια κούνια",
+			p_fa3: "Κατασκεύασα για τον εαυτό μου μια θήκη κρασιών",
+			p_fa4: "Για τις κόρες μου κατασκευάστηκε ένα κουκλόσπιτο<br>με έπιπλα και σκάλες",
+			p_fa5: "Ένα μικρό τραπέζι με καρέκλα",
+			p_fa6: "Κατασκευάστηκαν δέντρα και ζώα για ένα ξύλινο τρενάκι<br>Κυλιόμενα κουτιά αποθήκευσης για κάτω από το κρεβάτι",
+		},
+		sq: {
+			back: "← Kthehu", close: "✕ Mbyll",
+			title_fa: "Objekte përdorimi dhe lodra prej druri",
+			p_fa0: "Të gjitha u përfunduan:<br>3 dollapë me 2 dyer dhe<br>1 dollap me 1 derë",
+			p_fa1: "U ndërtuan dollapë me një raft<br>për pjesën e sipërme të dollapit të korridorit",
+			p_fa2: "U ndërtuan gjithashtu lodra për oborrin:<br>një rrëshqitëse dhe një kënd i vogël nën shkallë,<br>të kombinuara me një lëkundëse",
+			p_fa3: "I ndërtova vetes një raft vere",
+			p_fa4: "Për vajzat e mia u ndërtua një shtëpi kukullash<br>me mobilje dhe shkallë",
+			p_fa5: "Një tavolinë e vogël me një karrige",
+			p_fa6: "U ndërtuan pemë dhe kafshë për një tren druri<br>Kuti magazinimi me rrota për nën shtrat",
+		},
+		bg: {
+			back: "← Назад", close: "✕ Затвори",
+			title_fa: "Дървени битови предмети и играчки",
+			p_fa0: "Всички са готови:<br>3 шкафа с 2 врати и<br>1 шкаф с 1 врата",
+			p_fa1: "Бяха изработени шкафове с един рафт<br>за горната част на гардероба в коридора",
+			p_fa2: "Бяха изработени и игри за двора:<br>пързалка и малък кът под стълбите,<br>комбинирани с люлка",
+			p_fa3: "Направих си поставка за вино",
+			p_fa4: "За дъщерите ми беше направена къща за кукли<br>с мебели и стълби",
+			p_fa5: "Малка маса със стол",
+			p_fa6: "Бяха направени дървета и животни за дървено влакче<br>Кутии за съхранение с колела под леглото",
+		},
+		pl: {
+			back: "← Wstecz", close: "✕ Zamknij",
+			title_fa: "Przedmioty użytkowe i zabawki z drewna",
+			p_fa0: "Wszystkie są gotowe:<br>3 szafki z 2 drzwiami i<br>1 szafka z 1 drzwiami",
+			p_fa1: "Wykonano szafki z jedną półką<br>na górną część szafy w przedpokoju",
+			p_fa2: "Powstały także zabawki ogrodowe:<br>zjeżdżalnia i mały kącik pod schodami,<br>połączone z huśtawką",
+			p_fa3: "Zrobiłem sobie stojak na wino",
+			p_fa4: "Dla moich córek wykonano domek dla lalek<br>z meblami i schodami",
+			p_fa5: "Mały stolik z krzesłem",
+			p_fa6: "Dla drewnianej kolejki wykonano drzewa i zwierzęta<br>Pojemniki do przechowywania na kółkach pod łóżko",
+		},
+		cs: {
+			back: "← Zpět", close: "✕ Zavřít",
+			title_fa: "Užitkové předměty a hračky ze dřeva",
+			p_fa0: "Vše je hotové:<br>3 skříňky se 2 dveřmi a<br>1 skříňka s 1 dveřmi",
+			p_fa1: "Byly vyrobeny skříňky s jednou policí<br>pro horní část skříně v předsíni",
+			p_fa2: "Vznikly také venkovní hračky:<br>skluzavka a malý kout pod schody,<br>spojené s houpačkou",
+			p_fa3: "Vyrobil jsem si stojan na víno",
+			p_fa4: "Pro mé dcery byl vyroben domeček pro panenky<br>s nábytkem a schody",
+			p_fa5: "Malý stolek se židlí",
+			p_fa6: "Pro dřevěný vláček byly vyrobeny stromy a zvířata<br>Pojízdné úložné boxy pod postel",
+		},
+		sk: {
+			back: "← Späť", close: "✕ Zavrieť",
+			title_fa: "Úžitkové predmety a hračky z dreva",
+			p_fa0: "Všetko je hotové:<br>3 skrinky s 2 dverami a<br>1 skrinka s 1 dverami",
+			p_fa1: "Boli vyrobené skrinky s jednou policou<br>pre hornú časť skrine v predsieni",
+			p_fa2: "Vznikli aj vonkajšie hračky:<br>šmykľavka a malý kútik pod schodmi,<br>spojené s hojdačkou",
+			p_fa3: "Vyrobil som si stojan na víno",
+			p_fa4: "Pre moje dcéry bol vyrobený domček pre bábiky<br>s nábytkom a schodmi",
+			p_fa5: "Malý stolík so stoličkou",
+			p_fa6: "Pre drevený vláčik boli vyrobené stromy a zvieratá<br>Pojazdné úložné boxy pod posteľ",
+		},
+		uk: {
+			back: "← Назад", close: "✕ Закрити",
+			title_fa: "Побутові предмети та іграшки з дерева",
+			p_fa0: "Усе готово:<br>3 шафки з 2 дверцятами та<br>1 шафка з 1 дверцятами",
+			p_fa1: "Було виготовлено шафки з однією полицею<br>для верхньої частини шафи в передпокої",
+			p_fa2: "Також були зроблені вуличні іграшки:<br>гірка та невеликий куточок під сходами,<br>поєднані з гойдалкою",
+			p_fa3: "Я зробив для себе винну полицю",
+			p_fa4: "Для моїх дочок був виготовлений ляльковий будиночок<br>з меблями та сходами",
+			p_fa5: "Невеликий столик зі стільцем",
+			p_fa6: "Для дерев’яного поїзда були зроблені дерева та тварини<br>Контейнери для зберігання на колесах під ліжко",
+		},
+		ro: {
+			back: "← Înapoi", close: "✕ Închide",
+			title_fa: "Obiecte utilitare și jucării din lemn",
+			p_fa0: "Toate sunt gata:<br>3 dulapuri cu 2 uși și<br>1 dulap cu 1 ușă",
+			p_fa1: "Au fost realizate dulapuri cu un singur raft<br>pentru partea superioară a dulapului din hol",
+			p_fa2: "Au fost realizate și jucării pentru exterior:<br>un tobogan și un mic colț sub scări,<br>combinate cu un leagăn",
+			p_fa3: "Mi-am construit un suport pentru vin",
+			p_fa4: "Pentru fiicele mele a fost realizată o casă de păpuși<br>cu mobilier și scări",
+			p_fa5: "O măsuță cu un scaun",
+			p_fa6: "Au fost realizați copaci și animale pentru un tren din lemn<br>Cutii de depozitare cu roți pentru sub pat",
+		},
+		sr: {
+			back: "← Назад", close: "✕ Затвори",
+			title_fa: "Корисни предмети и играчке од дрвета",
+			p_fa0: "Све је готово:<br>3 ормарића са 2 врата и<br>1 ормарић са 1 вратима",
+			p_fa1: "Направљени су ормарићи са једном полицом<br>за горњи део ормара у ходнику",
+			p_fa2: "Направљене су и играчке за двориште:<br>тобоган и мали кутак испод степеница,<br>комбиновани са љуљашком",
+			p_fa3: "Направио сам себи сталак за вино",
+			p_fa4: "За моје ћерке направљена је кућа за лутке<br>са намештајем и степеницама",
+			p_fa5: "Мали сто са столицом",
+			p_fa6: "За дрвени воз направљени су дрвеће и животиње<br>Кутије за одлагање на точковима испод кревета",
+		},
+		hr: {
+			back: "← Natrag", close: "✕ Zatvori",
+			title_fa: "Uporabni predmeti i igračke od drva",
+			p_fa0: "Sve je gotovo:<br>3 ormarića s 2 vrata i<br>1 ormarić s 1 vratima",
+			p_fa1: "Izrađeni su ormarići s jednom policom<br>za gornji dio ormara u hodniku",
+			p_fa2: "Izrađene su i igračke za dvorište:<br>tobogan i mali kutak ispod stepenica,<br>u kombinaciji s ljuljačkom",
+			p_fa3: "Izradio sam sebi stalak za vino",
+			p_fa4: "Za moje kćeri izrađena je kućica za lutke<br>s namještajem i stepenicama",
+			p_fa5: "Mali stol sa stolicom",
+			p_fa6: "Za drveni vlak izrađeni su drveće i životinje<br>Kutije za pohranu na kotačima ispod kreveta",
+		},
+		sl: {
+			back: "← Nazaj", close: "✕ Zapri",
+			title_fa: "Uporabni predmeti in igrače iz lesa",
+			p_fa0: "Vse je končano:<br>3 omarice z 2 vrati in<br>1 omarica z 1 vrati",
+			p_fa1: "Izdelane so bile omarice z eno polico<br>za zgornji del omare v predsobi",
+			p_fa2: "Izdelane so bile tudi zunanje igrače:<br>tobogan in majhen kotiček pod stopnicami,<br>v kombinaciji z gugalnico",
+			p_fa3: "Izdelal sem si stojalo za vino",
+			p_fa4: "Za moje hčere je bila izdelana hišica za punčke<br>s pohištvom in stopnicami",
+			p_fa5: "Majhna miza s stolom",
+			p_fa6: "Za lesen vlakec so bila izdelana drevesa in živali<br>Kotalne shranjevalne škatle pod posteljo",
+		}	
+	};
+  
+	let currentIndex = 0;
     const galleryData = [];
+	
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }	
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -172,31 +603,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -217,7 +623,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

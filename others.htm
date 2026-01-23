@@ -60,15 +60,16 @@
 		height: auto;
 	  }
 	}
-	
   </style>
 </head>
+
+
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,7 +84,7 @@
   <div class="page-container">
 
     <table>
-      <caption>Az én Rubik kockám</caption>
+      <caption data-lang-key="title_rubik">Az én Rubik kockám</caption>
       <tr>
         <td><img src="pictures/others/rubik01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/others/rubik02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
@@ -106,21 +107,21 @@
 	</table>
 	
     <table>
-      <caption>Unicumos üvegek</caption>
+      <caption data-lang-key="title_unicum">Unicumos üvegek</caption>
       <tr>
-        <td>450 kisméretű elemből áll</td>
+        <td data-lang-key="p_unicum1">450 kisméretű elemből áll</td>
         <td><img src="pictures/others/unicum.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
       <tr>
-		<td>Az újabb üveg már<br>650 elemből áll</td>
+		<td data-lang-key="p_unicum2">Az újabb üveg már<br>650 elemből áll</td>
         <td><img src="pictures/others/unicum2.jpg" class="gallery-img" onclick="openGallery(13)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption>EU zászló</caption>
+      <caption data-lang-key="title_zaszlo">EU zászló</caption>
       <tr>
-        <td>2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével</td>
+        <td data-lang-key="p_zaszlo">2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével</td>
         <td><img src="pictures/others/euflag.jpg" class="gallery-img" onclick="openGallery(14)"></td>
       </tr>	  
 	</table>	
@@ -128,11 +129,377 @@
   </div>
 
   <script>
-    let currentIndex = 0;
+  	const translations = {
+		hu: {
+			back: "← Vissza", close: "✕ Bezárás",
+			title_rubik: "Az én Rubik kockám", 
+			title_unicum: "Unicumos üvegek", 
+			title_zaszlo: "EU zászló", 
+			p_unicum1: "450 kisméretű elemből áll", 
+			p_unicum2: "Az újabb üveg már<br>650 elemből áll", 
+			p_zaszlo: "2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével", 		
+		},
+		en: {
+			back: "← Back", close: "✕ Close",
+			title_rubik: "My Rubik's Cube",
+			title_unicum: "Unicum bottles",
+			title_zaszlo: "EU flag",
+			p_unicum1: "Made of 450 small pieces",
+			p_unicum2: "The newer bottle already<br>consists of 650 pieces",
+			p_zaszlo: "Made on April 30, 2004<br>at the Paper Magic Festival<br>with the help of visitors",
+		},
+		de: {
+			back: "← Zurück", close: "✕ Schließen",
+			title_rubik: "Mein Rubik-Würfel",
+			title_unicum: "Unicum-Flaschen",
+			title_zaszlo: "EU-Flagge",
+			p_unicum1: "Besteht aus 450 kleinen Teilen",
+			p_unicum2: "Die neuere Flasche besteht bereits<br>aus 650 Teilen",
+			p_zaszlo: "Entstanden am 30. April 2004<br>beim Papierzauber-Festival<br>mit Hilfe der Besucher",
+		},
+		es: {
+			back: "← Volver", close: "✕ Cerrar",
+			title_rubik: "Mi cubo de Rubik",
+			title_unicum: "Botellas de Unicum",
+			title_zaszlo: "Bandera de la UE",
+			p_unicum1: "Consta de 450 piezas pequeñas",
+			p_unicum2: "La botella más nueva ya<br>consta de 650 piezas",
+			p_zaszlo: "Realizada el 30 de abril de 2004<br>en el Festival Paper Magic<br>con la ayuda de los visitantes",
+		},
+		it: {
+			back: "← Indietro", close: "✕ Chiudi",
+			title_rubik: "Il mio cubo di Rubik",
+			title_unicum: "Bottiglie di Unicum",
+			title_zaszlo: "Bandiera dell'UE",
+			p_unicum1: "Composta da 450 piccoli elementi",
+			p_unicum2: "La bottiglia più recente<br>è composta da 650 elementi",
+			p_zaszlo: "Realizzata il 30 aprile 2004<br>al Festival Paper Magic<br>con l'aiuto dei visitatori",
+		},
+		fr: {
+			back: "← Retour", close: "✕ Fermer",
+			title_rubik: "Mon cube Rubik",
+			title_unicum: "Bouteilles d’Unicum",
+			title_zaszlo: "Drapeau de l’UE",
+			p_unicum1: "Composé de 450 petits éléments",
+			p_unicum2: "La bouteille plus récente<br>est déjà composée de 650 éléments",
+			p_zaszlo: "Réalisé le 30 avril 2004<br>lors du Festival Paper Magic<br>avec l’aide des visiteurs",
+		},
+		pt: {
+			back: "← Voltar", close: "✕ Fechar",
+			title_rubik: "O meu cubo de Rubik",
+			title_unicum: "Garrafas de Unicum",
+			title_zaszlo: "Bandeira da UE",
+			p_unicum1: "Composto por 450 pequenas peças",
+			p_unicum2: "A garrafa mais recente<br>já é composta por 650 peças",
+			p_zaszlo: "Criado em 30 de abril de 2004<br>no Festival Paper Magic<br>com a ajuda dos visitantes",
+		},
+		nl: {
+			back: "← Terug", close: "✕ Sluiten",
+			title_rubik: "Mijn Rubiks kubus",
+			title_unicum: "Unicum-flessen",
+			title_zaszlo: "EU-vlag",
+			p_unicum1: "Bestaat uit 450 kleine onderdelen",
+			p_unicum2: "De nieuwere fles bestaat al<br>uit 650 onderdelen",
+			p_zaszlo: "Gemaakt op 30 april 2004<br>op het Paper Magic Festival<br>met hulp van bezoekers",
+		},
+		sv: {
+			back: "← Tillbaka", close: "✕ Stäng",
+			title_rubik: "Min Rubiks kub",
+			title_unicum: "Unicum-flaskor",
+			title_zaszlo: "EU-flagga",
+			p_unicum1: "Består av 450 små delar",
+			p_unicum2: "Den nyare flaskan består redan<br>av 650 delar",
+			p_zaszlo: "Tillverkad den 30 april 2004<br>på Paper Magic Festival<br>med hjälp av besökare",
+		},
+		fi: {
+			back: "← Takaisin", close: "✕ Sulje",
+			title_rubik: "Minun Rubikin kuutioni",
+			title_unicum: "Unicum-pullot",
+			title_zaszlo: "EU-lippu",
+			p_unicum1: "Koostuu 450 pienestä osasta",
+			p_unicum2: "Uudempi pullo koostuu jo<br>650 osasta",
+			p_zaszlo: "Valmistettu 30. huhtikuuta 2004<br>Paper Magic -festivaalilla<br>yleisön avustuksella",
+		},
+		no: {
+			back: "← Tilbake", close: "✕ Lukk",
+			title_rubik: "Min Rubiks kube",
+			title_unicum: "Unicum-flasker",
+			title_zaszlo: "EU-flagg",
+			p_unicum1: "Består av 450 små deler",
+			p_unicum2: "Den nyere flasken består allerede<br>av 650 deler",
+			p_zaszlo: "Laget 30. april 2004<br>på Paper Magic Festival<br>med hjelp fra publikum",
+		},
+		da: {
+			back: "← Tilbage", close: "✕ Luk",
+			title_rubik: "Min Rubiks terning",
+			title_unicum: "Unicum-flasker",
+			title_zaszlo: "EU-flag",
+			p_unicum1: "Består af 450 små elementer",
+			p_unicum2: "Den nyere flaske består allerede<br>af 650 elementer",
+			p_zaszlo: "Fremstillet den 30. april 2004<br>på Paper Magic Festival<br>med hjælp fra de besøgende",
+		},
+		is: {
+			back: "← Til baka", close: "✕ Loka",
+			title_rubik: "Rubiks kubburinn minn",
+			title_unicum: "Unicum-flöskur",
+			title_zaszlo: "ESB-fáni",
+			p_unicum1: "Samanstendur af 450 litlum einingum",
+			p_unicum2: "Nýrri flaskan samanstendur nú þegar<br>af 650 einingum",
+			p_zaszlo: "Gerður 30. apríl 2004<br>á Paper Magic hátíðinni<br>með aðstoð gesta",
+		},
+		ca: {
+			back: "← Enrere", close: "✕ Tanca",
+			title_rubik: "El meu cub de Rubik",
+			title_unicum: "Ampolles d’Unicum",
+			title_zaszlo: "Bandera de la UE",
+			p_unicum1: "Consta de 450 peces petites",
+			p_unicum2: "L’ampolla més nova ja<br>consta de 650 peces",
+			p_zaszlo: "Realitzada el 30 d’abril de 2004<br>al Festival Paper Magic<br>amb l’ajuda dels visitants",
+		},
+		ja: {
+			back: "← 戻る", close: "✕ 閉じる",
+			title_rubik: "私のルービックキューブ",
+			title_unicum: "ウニクムのボトル",
+			title_zaszlo: "EUの旗",
+			p_unicum1: "450個の小さなパーツで構成",
+			p_unicum2: "新しいボトルはすでに<br>650個のパーツで構成されています",
+			p_zaszlo: "2004年4月30日に制作<br>ペーパー・マジック・フェスティバルにて<br>来場者の協力で完成",
+		},
+		zh: {
+			back: "← 返回", close: "✕ 关闭",
+			title_rubik: "我的魔方",
+			title_unicum: "乌尼库姆酒瓶",
+			title_zaszlo: "欧盟旗帜",
+			p_unicum1: "由450个小部件组成",
+			p_unicum2: "较新的酒瓶已经<br>由650个部件组成",
+			p_zaszlo: "制作于2004年4月30日<br>在纸艺魔法节上<br>在参观者的帮助下完成",
+		},
+		ko: {
+			back: "← 뒤로", close: "✕ 닫기",
+			title_rubik: "나의 루빅스 큐브",
+			title_unicum: "우니쿰 병",
+			title_zaszlo: "EU 깃발",
+			p_unicum1: "450개의 작은 부품으로 구성",
+			p_unicum2: "새로운 병은 이미<br>650개의 부품으로 구성됨",
+			p_zaszlo: "2004년 4월 30일 제작<br>페이퍼 매직 페스티벌에서<br>관람객의 도움으로 완성",
+		},
+		eo: {
+			back: "← Reen", close: "✕ Fermi",
+			title_rubik: "Mia Rubik-kubo",
+			title_unicum: "Unicum-boteloj",
+			title_zaszlo: "EU-flago",
+			p_unicum1: "Konsistas el 450 malgrandaj elementoj",
+			p_unicum2: "La pli nova botelo jam<br>konsistas el 650 elementoj",
+			p_zaszlo: "Farita la 30-an de aprilo 2004<br>dum la Paper Magic Festivalo<br>kun la helpo de vizitantoj",
+		},
+		lt: {
+			back: "← Atgal", close: "✕ Uždaryti",
+			title_rubik: "Mano Rubiko kubas",
+			title_unicum: "Unicum buteliai",
+			title_zaszlo: "ES vėliava",
+			p_unicum1: "Sudaryta iš 450 mažų detalių",
+			p_unicum2: "Naujesnis butelis jau<br>sudarytas iš 650 detalių",
+			p_zaszlo: "Sukurta 2004 m. balandžio 30 d.<br>„Paper Magic“ festivalyje<br>padedant lankytojams",
+		},
+		lv: {
+			back: "← Atpakaļ", close: "✕ Aizvērt",
+			title_rubik: "Mans Rubika kubs",
+			title_unicum: "Unicum pudeles",
+			title_zaszlo: "ES karogs",
+			p_unicum1: "Sastāv no 450 maziem elementiem",
+			p_unicum2: "Jaunākā pudele jau<br>sastāv no 650 elementiem",
+			p_zaszlo: "Izgatavots 2004. gada 30. aprīlī<br>Paper Magic festivālā<br>ar apmeklētāju palīdzību",
+		},
+		et: {
+			back: "← Tagasi", close: "✕ Sulge",
+			title_rubik: "Minu Rubiku kuubik",
+			title_unicum: "Unicumi pudelid",
+			title_zaszlo: "EL lipp",
+			p_unicum1: "Koosneb 450 väikesest osast",
+			p_unicum2: "Uuem pudel koosneb juba<br>650 osast",
+			p_zaszlo: "Valmistatud 30. aprillil 2004<br>Paper Magic festivalil<br>külastajate abiga",
+		},
+		tr: {
+			back: "← Geri", close: "✕ Kapat",
+			title_rubik: "Rubik Küpüm",
+			title_unicum: "Unicum şişeleri",
+			title_zaszlo: "AB bayrağı",
+			p_unicum1: "450 küçük parçadan oluşur",
+			p_unicum2: "Daha yeni şişe<br>650 parçadan oluşmaktadır",
+			p_zaszlo: "30 Nisan 2004’te yapıldı<br>Paper Magic Festivali’nde<br>ziyaretçilerin yardımıyla",
+		},
+		el: {
+			back: "← Πίσω", close: "✕ Κλείσιμο",
+			title_rubik: "Ο κύβος του Ρούμπικ μου",
+			title_unicum: "Μπουκάλια Unicum",
+			title_zaszlo: "Σημαία της ΕΕ",
+			p_unicum1: "Αποτελείται από 450 μικρά κομμάτια",
+			p_unicum2: "Το νεότερο μπουκάλι<br>αποτελείται ήδη από 650 κομμάτια",
+			p_zaszlo: "Κατασκευάστηκε στις 30 Απριλίου 2004<br>στο Φεστιβάλ Paper Magic<br>με τη βοήθεια των επισκεπτών",
+		},
+		sq: {
+			back: "← Kthehu", close: "✕ Mbyll",
+			title_rubik: "Kubi im Rubik",
+			title_unicum: "Shishe Unicum",
+			title_zaszlo: "Flamuri i BE-së",
+			p_unicum1: "Përbëhet nga 450 pjesë të vogla",
+			p_unicum2: "Shishja më e re tashmë<br>përbëhet nga 650 pjesë",
+			p_zaszlo: "U krijua më 30 prill 2004<br>në Festivalin Paper Magic<br>me ndihmën e vizitorëve",
+		},
+		bg: {
+			back: "← Назад", close: "✕ Затвори",
+			title_rubik: "Моят куб на Рубик",
+			title_unicum: "Бутилки Unicum",
+			title_zaszlo: "Знаме на ЕС",
+			p_unicum1: "Състои се от 450 малки елемента",
+			p_unicum2: "По-новата бутилка вече<br>се състои от 650 елемента",
+			p_zaszlo: "Изработено на 30 април 2004 г.<br>на фестивала Paper Magic<br>с помощта на посетителите",
+		},
+		pl: {
+			back: "← Wstecz", close: "✕ Zamknij",
+			title_rubik: "Moja kostka Rubika",
+			title_unicum: "Butelki Unicum",
+			title_zaszlo: "Flaga UE",
+			p_unicum1: "Składa się z 450 małych elementów",
+			p_unicum2: "Nowsza butelka składa się już<br>z 650 elementów",
+			p_zaszlo: "Wykonana 30 kwietnia 2004 roku<br>na Festiwalu Paper Magic<br>z pomocą odwiedzających",
+		},
+		cs: {
+			back: "← Zpět", close: "✕ Zavřít",
+			title_rubik: "Moje Rubikova kostka",
+			title_unicum: "Lahve Unicum",
+			title_zaszlo: "Vlajka EU",
+			p_unicum1: "Skládá se ze 450 malých dílů",
+			p_unicum2: "Novější láhev se již<br>skládá z 650 dílů",
+			p_zaszlo: "Vytvořeno 30. dubna 2004<br>na festivalu Paper Magic<br>za pomoci návštěvníků",
+		},
+		sk: {
+			back: "← Späť", close: "✕ Zavrieť",
+			title_rubik: "Moja Rubikova kocka",
+			title_unicum: "Fľaše Unicum",
+			title_zaszlo: "Vlajka EÚ",
+			p_unicum1: "Pozostáva zo 450 malých dielikov",
+			p_unicum2: "Novšia fľaša už<br>pozostáva zo 650 dielikov",
+			p_zaszlo: "Vytvorené 30. apríla 2004<br>na festivale Paper Magic<br>s pomocou návštevníkov",
+		},
+		uk: {
+			back: "← Назад", close: "✕ Закрити",
+			title_rubik: "Мій кубик Рубіка",
+			title_unicum: "Пляшки Unicum",
+			title_zaszlo: "Прапор ЄС",
+			p_unicum1: "Складається з 450 маленьких елементів",
+			p_unicum2: "Новіша пляшка вже<br>складається з 650 елементів",
+			p_zaszlo: "Створено 30 квітня 2004 року<br>на фестивалі Paper Magic<br>за допомогою відвідувачів",
+		},
+		ro: {
+			back: "← Înapoi", close: "✕ Închide",
+			title_rubik: "Cubul meu Rubik",
+			title_unicum: "Sticle Unicum",
+			title_zaszlo: "Steagul UE",
+			p_unicum1: "Este alcătuit din 450 de piese mici",
+			p_unicum2: "Sticla mai nouă este deja<br>alcătuită din 650 de piese",
+			p_zaszlo: "Realizat pe 30 aprilie 2004<br>la Festivalul Paper Magic<br>cu ajutorul vizitatorilor",
+		},
+		sr: {
+			back: "← Назад", close: "✕ Затвори",
+			title_rubik: "Моја Рубикова коцка",
+			title_unicum: "Unicum флаше",
+			title_zaszlo: "Застава ЕУ",
+			p_unicum1: "Састоји се од 450 малих елемената",
+			p_unicum2: "Новија флаша већ<br>се састоји од 650 елемената",
+			p_zaszlo: "Израђено 30. априла 2004.<br>на фестивалу Paper Magic<br>уз помоћ посетилаца",
+		},
+		hr: {
+			back: "← Natrag", close: "✕ Zatvori",
+			title_rubik: "Moja Rubikova kocka",
+			title_unicum: "Unicum boce",
+			title_zaszlo: "Zastava EU",
+			p_unicum1: "Sastoji se od 450 malih elemenata",
+			p_unicum2: "Novija boca već<br>sastoji se od 650 elemenata",
+			p_zaszlo: "Izrađeno 30. travnja 2004.<br>na festivalu Paper Magic<br>uz pomoć posjetitelja",
+		},
+		sl: {
+			back: "← Nazaj", close: "✕ Zapri",
+			title_rubik: "Moja Rubikova kocka",
+			title_unicum: "Steklenice Unicum",
+			title_zaszlo: "Zastava EU",
+			p_unicum1: "Sestavljena je iz 450 majhnih delov",
+			p_unicum2: "Novejša steklenica je že<br>sestavljena iz 650 delov",
+			p_zaszlo: "Izdelano 30. aprila 2004<br>na festivalu Paper Magic<br>s pomočjo obiskovalcev",
+		},
+  
+  	};
+  
+	let currentIndex = 0;
     const galleryData = [];
+	
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }	
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -176,31 +543,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -221,7 +563,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

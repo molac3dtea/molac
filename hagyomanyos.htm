@@ -13,7 +13,6 @@
   <meta property="og:url" content="https://molac.hu/hagyomanyos.htm">
   <meta property="og:image" content="https://molac.hu/pictures/hagyomanyos/dino3.jpg">
   
-  
   <link rel="stylesheet" href="bootstrap.css">
   <style>
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
@@ -61,15 +60,16 @@
 		height: auto;
 	  }
 	}
-	
   </style>
 </head>
+
+
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -84,46 +84,46 @@
   <div class="page-container">
 
     <table>
-      <caption>Hagyományos origami modellek</caption>
+      <caption data-lang-key="title_hagyom">Hagyományos origami modellek</caption>
       <tr>
-        <td>Dinoszauruszok</td>
+        <td data-lang-key="p_hagyom1">Dinoszauruszok</td>
         <td><img src="pictures/hagyomanyos/dino1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/hagyomanyos/dino2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
 		<td><img src="pictures/hagyomanyos/dinomadar.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
-        <td>Miniatűr dinoszaurusz</td>
+        <td data-lang-key="p_hagyom2">Miniatűr dinoszaurusz</td>
         <td colspan="2"><img src="pictures/hagyomanyos/dino3.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>	  
       <tr>
-        <td>Ez egy kabóca</td>
+        <td data-lang-key="p_hagyom3">Ez egy kabóca</td>
         <td colspan="2"><img src="pictures/hagyomanyos/kaboca.jpg" class="gallery-img" onclick="openGallery(4)"></td>
       </tr>	 
       <tr>
-        <td>Ez itt 2 WC</td>
+        <td data-lang-key="p_hagyom4">Ez itt 2 WC</td>
         <td colspan="2"><img src="pictures/hagyomanyos/wck.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>	 	  
 	</table>
 	
     <table>
-      <caption>Moduláris origami modellek</caption>
+      <caption data-lang-key="title_modul">Moduláris origami modellek</caption>
       <tr>
-        <td>Igen rugalmas gömb<br>60 db teáspapírból</td>
+        <td data-lang-key="p_modul1">Igen rugalmas gömb<br>60 db teáspapírból</td>
         <td><img src="pictures/hagyomanyos/flexiball1.jpg" class="gallery-img" onclick="openGallery(6)"></td>
 		<td><img src="pictures/hagyomanyos/flexiball2.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/hagyomanyos/flexiball3.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>	  
       <tr>
-        <td colspan="2">2008 nyarán a XIX. Origami Találkozón<br>hajtogattuk ezt a labdát</td>
+        <td colspan="2" data-lang-key="p_modul2">2008 nyarán a XIX. Origami Találkozón<br>hajtogattuk ezt a labdát</td>
         <td><img src="pictures/hagyomanyos/labda1.jpg" class="gallery-img" onclick="openGallery(9)"></td>
 		<td><img src="pictures/hagyomanyos/labda2.jpg" class="gallery-img" onclick="openGallery(10)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption>Kockák csíkból</caption>
+      <caption data-lang-key="title_kocka">Kockák csíkból</caption>
       <tr>
-        <td rowspan="2">8 kocka 1 csíkból,<br>amikből különféle<br>alakzatok hajtogathatók</td>
+        <td rowspan="2" data-lang-key="p_kocka1">8 kocka 1 csíkból,<br>amikből különféle<br>alakzatok hajtogathatók</td>
         <td><img src="pictures/hagyomanyos/8kocka1.jpg" class="gallery-img" onclick="openGallery(11)"></td>
 		<td><img src="pictures/hagyomanyos/8kocka2.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
@@ -132,7 +132,7 @@
 		<td><img src="pictures/hagyomanyos/8kocka4.jpg" class="gallery-img" onclick="openGallery(14)"></td>
       </tr>	  
       <tr>
-        <td rowspan="3">16 kocka 1 csíkból,<br>itt az alakzatok<br>alakzatok hajtogathatók</td>
+        <td rowspan="3" data-lang-key="p_kocka2">16 kocka 1 csíkból,<br>itt az alakzatok<br>alakzatok hajtogathatók</td>
         <td><img src="pictures/hagyomanyos/16kocka1.jpg" class="gallery-img" onclick="openGallery(15)"></td>
 		<td><img src="pictures/hagyomanyos/16kocka2.jpg" class="gallery-img" onclick="openGallery(16)"></td>
       </tr>	  
@@ -146,13 +146,13 @@
  	</table>
 
     <table>
-      <caption>Origami-ruha</caption>
+      <caption data-lang-key="title_ruha">Origami-ruha</caption>
       <tr>
-        <td>Farsangi jelmeznek készült,<br>többféle technikát felhasználva</td>
+        <td data-lang-key="p_ruha1">Farsangi jelmeznek készült,<br>többféle technikát felhasználva</td>
 		<td><img src="pictures/hagyomanyos/2009021.jpg" class="gallery-img" onclick="openGallery(20)"></td>
       </tr>	  
       <tr>
-        <td>A kalap 2008 nyarán készült<br>Budapesten az Origami Találkozón</td>
+        <td data-lang-key="p_ruha2">A kalap 2008 nyarán készült<br>Budapesten az Origami Találkozón</td>
 		<td><img src="pictures/hagyomanyos/2009031.jpg" class="gallery-img" onclick="openGallery(21)"></td>
       </tr>	  
  	</table>
@@ -160,11 +160,640 @@
   </div>
 
   <script>
-    let currentIndex = 0;
+	const translations = {
+		hu: {
+			back: "← Vissza", close: "✕ Bezárás",
+			title_hagyom: "Hagyományos origami modellek", 
+			title_modul: "Moduláris origami modellek", 
+			title_kocka: "Kockák csíkból", 
+			title_ruha: "Origami-ruha", 
+			p_hagyom1: "Dinoszauruszok",
+			p_hagyom2: "Miniatűr dinoszaurusz", 
+			p_hagyom3: "Ez egy kabóca", 
+			p_hagyom4: "Ez itt 2 WC", 
+			p_modul1: "Igen rugalmas gömb<br>60 db teáspapírból", 
+			p_modul2: "2008 nyarán a XIX. Origami Találkozón<br>hajtogattuk ezt a labdát", 		
+			p_kocka1: "8 kocka 1 csíkból,<br>amikből különféle<br>alakzatok hajtogathatók", 
+			p_kocka2: "16 kocka 1 csíkból,<br>itt az alakzatok<br>alakzatok hajtogathatók", 		
+			p_ruha1: "Farsangi jelmeznek készült,<br>többféle technikát felhasználva", 
+			p_ruha2: "A kalap 2008 nyarán készült<br>Budapesten az Origami Találkozón", 		
+		},   
+		en: {
+			back: "← Back", close: "✕ Close",
+			title_hagyom: "Traditional origami models",
+			title_modul: "Modular origami models",
+			title_kocka: "Cubes from a strip",
+			title_ruha: "Origami dress",
+			p_hagyom1: "Dinosaurs",
+			p_hagyom2: "Miniature dinosaur",
+			p_hagyom3: "This is a cicada",
+			p_hagyom4: "These are two toilets",
+			p_modul1: "Very flexible sphere<br>made from 60 tea papers",
+			p_modul2: "Folded in the summer of 2008<br>at the 19th Origami Meeting",
+			p_kocka1: "8 cubes from one strip,<br>from which various<br>shapes can be folded",
+			p_kocka2: "16 cubes from one strip,<br>here various<br>shapes can be folded",
+			p_ruha1: "Made as a carnival costume,<br>using several techniques",
+			p_ruha2: "The hat was made in the summer of 2008<br>in Budapest at the Origami Meeting",
+		},
+		de: {
+			back: "← Zurück", close: "✕ Schließen",
+			title_hagyom: "Traditionelle Origami-Modelle",
+			title_modul: "Modulare Origami-Modelle",
+			title_kocka: "Würfel aus einem Streifen",
+			title_ruha: "Origami-Kleid",
+			p_hagyom1: "Dinosaurier",
+			p_hagyom2: "Miniatur-Dinosaurier",
+			p_hagyom3: "Dies ist eine Zikade",
+			p_hagyom4: "Das sind zwei Toiletten",
+			p_modul1: "Sehr flexible Kugel<br>aus 60 Teepapieren",
+			p_modul2: "Gefaltet im Sommer 2008<br>beim XIX. Origami-Treffen",
+			p_kocka1: "8 Würfel aus einem Streifen,<br>aus denen verschiedene<br>Formen gefaltet werden können",
+			p_kocka2: "16 Würfel aus einem Streifen,<br>hier können verschiedene<br>Formen gefaltet werden",
+			p_ruha1: "Als Faschingskostüm gefertigt,<br>unter Verwendung mehrerer Techniken",
+			p_ruha2: "Der Hut entstand im Sommer 2008<br>in Budapest beim Origami-Treffen",
+		},
+		es: {
+			back: "← Volver", close: "✕ Cerrar",
+			title_hagyom: "Modelos de origami tradicionales",
+			title_modul: "Modelos de origami modular",
+			title_kocka: "Cubos a partir de una tira",
+			title_ruha: "Vestido de origami",
+			p_hagyom1: "Dinosaurios",
+			p_hagyom2: "Dinosaurio en miniatura",
+			p_hagyom3: "Esta es una cigarra",
+			p_hagyom4: "Estos son dos inodoros",
+			p_modul1: "Esfera muy flexible<br>hecha con 60 papeles de té",
+			p_modul2: "Plegada en el verano de 2008<br>en el XIX Encuentro de Origami",
+			p_kocka1: "8 cubos a partir de una tira,<br>con los que se pueden plegar<br>diversas formas",
+			p_kocka2: "16 cubos a partir de una tira,<br>aquí se pueden plegar<br>diversas formas",
+			p_ruha1: "Hecho como disfraz de carnaval,<br>utilizando varias técnicas",
+			p_ruha2: "El sombrero se realizó en el verano de 2008<br>en Budapest en el Encuentro de Origami",
+		},
+		it: {
+			back: "← Indietro", close: "✕ Chiudi",
+			title_hagyom: "Modelli di origami tradizionali",
+			title_modul: "Modelli di origami modulare",
+			title_kocka: "Cubi da una striscia",
+			title_ruha: "Abito di origami",
+			p_hagyom1: "Dinosauri",
+			p_hagyom2: "Dinosauro in miniatura",
+			p_hagyom3: "Questa è una cicala",
+			p_hagyom4: "Questi sono due WC",
+			p_modul1: "Sfera molto flessibile<br>realizzata con 60 carte da tè",
+			p_modul2: "Piegata nell’estate del 2008<br>al XIX Incontro di Origami",
+			p_kocka1: "8 cubi da una striscia,<br>con cui si possono piegare<br>diverse forme",
+			p_kocka2: "16 cubi da una striscia,<br>qui si possono piegare<br>diverse forme",
+			p_ruha1: "Realizzato come costume di carnevale,<br>utilizzando diverse tecniche",
+			p_ruha2: "Il cappello è stato realizzato nell’estate del 2008<br>a Budapest all’Incontro di Origami",
+		},
+		fr: {
+			back: "← Retour", close: "✕ Fermer",
+			title_hagyom: "Modèles d’origami traditionnels",
+			title_modul: "Modèles d’origami modulaires",
+			title_kocka: "Cubes à partir d’une bande",
+			title_ruha: "Robe en origami",
+			p_hagyom1: "Dinosaures",
+			p_hagyom2: "Dinosaure miniature",
+			p_hagyom3: "Ceci est une cigale",
+			p_hagyom4: "Voici deux WC",
+			p_modul1: "Sphère très flexible<br>réalisée avec 60 papiers de thé",
+			p_modul2: "Pliée à l’été 2008<br>lors de la XIXe Rencontre d’Origami",
+			p_kocka1: "8 cubes à partir d’une bande,<br>permettant de plier<br>diverses formes",
+			p_kocka2: "16 cubes à partir d’une bande,<br>ici aussi, diverses<br>formes peuvent être pliées",
+			p_ruha1: "Réalisée comme costume de carnaval,<br>en utilisant plusieurs techniques",
+			p_ruha2: "Le chapeau a été réalisé à l’été 2008<br>à Budapest lors de la Rencontre d’Origami",
+		},
+		pt: {
+			back: "← Voltar", close: "✕ Fechar",
+			title_hagyom: "Modelos de origami tradicionais",
+			title_modul: "Modelos de origami modular",
+			title_kocka: "Cubos a partir de uma tira",
+			title_ruha: "Vestido de origami",
+			p_hagyom1: "Dinossauros",
+			p_hagyom2: "Dinossauro em miniatura",
+			p_hagyom3: "Isto é uma cigarra",
+			p_hagyom4: "Estes são dois WC",
+			p_modul1: "Esfera muito flexível<br>feita com 60 papéis de chá",
+			p_modul2: "Dobrado no verão de 2008<br>no XIX Encontro de Origami",
+			p_kocka1: "8 cubos a partir de uma tira,<br>com os quais podem ser dobradas<br>diversas formas",
+			p_kocka2: "16 cubos a partir de uma tira,<br>aqui também podem ser dobradas<br>diversas formas",
+			p_ruha1: "Feito como fantasia de carnaval,<br>utilizando várias técnicas",
+			p_ruha2: "O chapéu foi feito no verão de 2008<br>em Budapeste no Encontro de Origami",
+		},
+		nl: {
+			back: "← Terug", close: "✕ Sluiten",
+			title_hagyom: "Traditionele origami-modellen",
+			title_modul: "Modulaire origami-modellen",
+			title_kocka: "Kubussen uit één strook",
+			title_ruha: "Origami-jurk",
+			p_hagyom1: "Dinosauriërs",
+			p_hagyom2: "Miniatuur dinosaurus",
+			p_hagyom3: "Dit is een cicade",
+			p_hagyom4: "Dit zijn twee wc’s",
+			p_modul1: "Zeer flexibele bol<br>gemaakt van 60 theepapiertjes",
+			p_modul2: "Gevouwen in de zomer van 2008<br>op de 19e Origami-bijeenkomst",
+			p_kocka1: "8 kubussen uit één strook,<br>waarmee verschillende<br>vormen kunnen worden gevouwen",
+			p_kocka2: "16 kubussen uit één strook,<br>waarmee eveneens verschillende<br>vormen kunnen worden gevouwen",
+			p_ruha1: "Gemaakt als carnavalskostuum,<br>met gebruik van meerdere technieken",
+			p_ruha2: "De hoed is gemaakt in de zomer van 2008<br>in Boedapest tijdens de Origami-bijeenkomst",
+		},
+		sv: {
+			back: "← Tillbaka", close: "✕ Stäng",
+			title_hagyom: "Traditionella origamimodeller",
+			title_modul: "Modulära origamimodeller",
+			title_kocka: "Kuber från en remsa",
+			title_ruha: "Origamiklänning",
+			p_hagyom1: "Dinosaurier",
+			p_hagyom2: "Miniatyrdinosaurie",
+			p_hagyom3: "Detta är en cikada",
+			p_hagyom4: "Detta är två toaletter",
+			p_modul1: "Mycket flexibel sfär<br>gjord av 60 tepapper",
+			p_modul2: "Vikt sommaren 2008<br>på det 19:e Origamimötet",
+			p_kocka1: "8 kuber från en remsa,<br>som kan vikas till<br>olika former",
+			p_kocka2: "16 kuber från en remsa,<br>här kan också olika<br>former vikas",
+			p_ruha1: "Gjort som en karnevalsdräkt,<br>med flera olika tekniker",
+			p_ruha2: "Hatten gjordes sommaren 2008<br>i Budapest på Origamimötet",
+		},
+		fi: {
+			back: "← Takaisin", close: "✕ Sulje",
+			title_hagyom: "Perinteiset origamimallit",
+			title_modul: "Modulaariset origamimallit",
+			title_kocka: "Kuutiot yhdestä nauhasta",
+			title_ruha: "Origami-asu",
+			p_hagyom1: "Dinosaurukset",
+			p_hagyom2: "Pienoiskokoinen dinosaurus",
+			p_hagyom3: "Tämä on kaskas",
+			p_hagyom4: "Nämä ovat kaksi WC:tä",
+			p_modul1: "Erittäin joustava pallo<br>60 teepaperista",
+			p_modul2: "Taiteltu kesällä 2008<br>XIX Origami-tapaamisessa",
+			p_kocka1: "8 kuutiota yhdestä nauhasta,<br>joista voidaan taitella<br>erilaisia muotoja",
+			p_kocka2: "16 kuutiota yhdestä nauhasta,<br>joista voidaan taitella<br>erilaisia muotoja",
+			p_ruha1: "Tehty karnevaaliasuksi,<br>useita tekniikoita käyttäen",
+			p_ruha2: "Hattu valmistui kesällä 2008<br>Budapestissä Origami-tapaamisessa",
+		},
+		no: {
+			back: "← Tilbake", close: "✕ Lukk",
+			title_hagyom: "Tradisjonelle origamimodeller",
+			title_modul: "Modulære origamimodeller",
+			title_kocka: "Kuber fra en stripe",
+			title_ruha: "Origami-kjole",
+			p_hagyom1: "Dinosaurer",
+			p_hagyom2: "Miniatyrdinosaur",
+			p_hagyom3: "Dette er en sikade",
+			p_hagyom4: "Dette er to toaletter",
+			p_modul1: "Svært fleksibel kule<br>laget av 60 tepapirer",
+			p_modul2: "Brettet sommeren 2008<br>på det XIX Origami-treffet",
+			p_kocka1: "8 kuber fra én stripe,<br>som kan brettes til<br>ulike former",
+			p_kocka2: "16 kuber fra én stripe,<br>her kan også ulike<br>former brettes",
+			p_ruha1: "Laget som karnevalskostyme,<br>ved bruk av flere teknikker",
+			p_ruha2: "Hatten ble laget sommeren 2008<br>i Budapest på Origami-treffet",
+		},
+		da: {
+			back: "← Tilbage", close: "✕ Luk",
+			title_hagyom: "Traditionelle origami-modeller",
+			title_modul: "Modulære origami-modeller",
+			title_kocka: "Kuber fra en strimmel",
+			title_ruha: "Origami-kjole",
+			p_hagyom1: "Dinosaurer",
+			p_hagyom2: "Miniature dinosaur",
+			p_hagyom3: "Dette er en cikade",
+			p_hagyom4: "Dette er to toiletter",
+			p_modul1: "Meget fleksibel kugle<br>lavet af 60 tepapirer",
+			p_modul2: "Foldet sommeren 2008<br>på det XIX Origami-møde",
+			p_kocka1: "8 kuber fra én strimmel,<br>som kan foldes til<br>forskellige former",
+			p_kocka2: "16 kuber fra én strimmel,<br>her kan også forskellige<br>former foldes",
+			p_ruha1: "Lavet som karnevalskostume,<br>med brug af flere teknikker",
+			p_ruha2: "Hatten blev lavet sommeren 2008<br>i Budapest ved Origami-mødet",
+		},
+		is: {
+			back: "← Til baka", close: "✕ Loka",
+			title_hagyom: "Hefðbundin origami-líkön",
+			title_modul: "Mátanleg origami-líkön",
+			title_kocka: "Tenningar úr einni ræmu",
+			title_ruha: "Origami-kjóll",
+			p_hagyom1: "Risaeðlur",
+			p_hagyom2: "Smágerð risaeðla",
+			p_hagyom3: "Þetta er síkada",
+			p_hagyom4: "Þetta eru tvö salerni",
+			p_modul1: "Mjög sveigjanleg kúla<br>gerð úr 60 te-pappírum",
+			p_modul2: "Brotin sumarið 2008<br>á XIX Origami-fundinum",
+			p_kocka1: "8 tenningar úr einni ræmu,<br>sem hægt er að brjóta í<br>ýmis form",
+			p_kocka2: "16 tenningar úr einni ræmu,<br>hér er einnig hægt að<br>brjóta ýmis form",
+			p_ruha1: "Gert sem karnivalsbúningur,<br>með notkun margra aðferða",
+			p_ruha2: "Hatturinn var gerður sumarið 2008<br>í Búdapest á Origami-fundinum",
+		},
+		ca: {
+			back: "← Enrere", close: "✕ Tanca",
+			title_hagyom: "Models d’origami tradicionals",
+			title_modul: "Models d’origami modular",
+			title_kocka: "Cubs a partir d’una tira",
+			title_ruha: "Vestit d’origami",
+			p_hagyom1: "Dinosaures",
+			p_hagyom2: "Dinosaure en miniatura",
+			p_hagyom3: "Això és una cigala",
+			p_hagyom4: "Aquests són dos lavabos",
+			p_modul1: "Esfera molt flexible<br>feta amb 60 papers de te",
+			p_modul2: "Plegada a l’estiu de 2008<br>a la XIX Trobada d’Origami",
+			p_kocka1: "8 cubs a partir d’una tira,<br>amb els quals es poden plegar<br>diverses formes",
+			p_kocka2: "16 cubs a partir d’una tira,<br>aquí també es poden plegar<br>diverses formes",
+			p_ruha1: "Fet com a disfressa de carnaval,<br>utilitzant diverses tècniques",
+			p_ruha2: "El barret es va fer a l’estiu de 2008<br>a Budapest a la Trobada d’Origami",
+		},
+		ja: {
+			back: "← 戻る", close: "✕ 閉じる",
+			title_hagyom: "伝統的な折り紙モデル",
+			title_modul: "モジュラー折り紙モデル",
+			title_kocka: "帯から作るキューブ",
+			title_ruha: "折り紙の衣装",
+			p_hagyom1: "恐竜",
+			p_hagyom2: "ミニチュア恐竜",
+			p_hagyom3: "これはセミです",
+			p_hagyom4: "これはトイレが2つです",
+			p_modul1: "60枚のティーペーパーで作られた<br>とても柔軟な球体",
+			p_modul2: "2008年夏<br>第19回折り紙集会で折られました",
+			p_kocka1: "1本の帯から8個のキューブを作り、<br>さまざまな形に折ることができます",
+			p_kocka2: "1本の帯から16個のキューブを作り、<br>ここでもさまざまな形に折れます",
+			p_ruha1: "複数の技法を用いて<br>カーニバル衣装として制作",
+			p_ruha2: "帽子は2008年夏に<br>ブダペストの折り紙集会で作られました",
+		},
+		zh: {
+			back: "← 返回", close: "✕ 关闭",
+			title_hagyom: "传统折纸模型",
+			title_modul: "模块化折纸模型",
+			title_kocka: "由纸条折成的立方体",
+			title_ruha: "折纸服装",
+			p_hagyom1: "恐龙",
+			p_hagyom2: "微型恐龙",
+			p_hagyom3: "这是一只蝉",
+			p_hagyom4: "这是两个厕所",
+			p_modul1: "非常灵活的球体<br>由60张茶包纸制成",
+			p_modul2: "2008年夏天<br>在第19届折纸大会上折制",
+			p_kocka1: "由一条纸带折成8个立方体，<br>可以折出各种<br>不同的形状",
+			p_kocka2: "由一条纸带折成16个立方体，<br>同样可以折出<br>不同的形状",
+			p_ruha1: "作为狂欢节服装制作，<br>采用了多种技法",
+			p_ruha2: "帽子制作于2008年夏天<br>在布达佩斯的折纸大会上",
+		},
+		ko: {
+			back: "← 뒤로", close: "✕ 닫기",
+			title_hagyom: "전통 종이접기 모델",
+			title_modul: "모듈식 종이접기 모델",
+			title_kocka: "한 줄로 만든 큐브",
+			title_ruha: "종이접기 의상",
+			p_hagyom1: "공룡",
+			p_hagyom2: "미니어처 공룡",
+			p_hagyom3: "이것은 매미입니다",
+			p_hagyom4: "이것은 화장실 두 개입니다",
+			p_modul1: "60장의 차 포장지로 만든<br>매우 유연한 구",
+			p_modul2: "2008년 여름<br>제19회 종이접기 모임에서 접음",
+			p_kocka1: "한 줄로 8개의 큐브를 만들 수 있으며,<br>다양한<br>형태로 접을 수 있습니다",
+			p_kocka2: "한 줄로 16개의 큐브를 만들 수 있으며,<br>여기서도 다양한<br>형태로 접을 수 있습니다",
+			p_ruha1: "여러 기법을 사용하여<br>카니발 의상으로 제작",
+			p_ruha2: "모자는 2008년 여름에<br>부다페스트 종이접기 모임에서 제작됨",
+		},
+		eo: {
+			back: "← Reen", close: "✕ Fermi",
+			title_hagyom: "Tradiciaj origami-modeloj",
+			title_modul: "Modulaj origami-modeloj",
+			title_kocka: "Kuboj el unu strio",
+			title_ruha: "Origami-robo",
+			p_hagyom1: "Dinosaŭroj",
+			p_hagyom2: "Miniatura dinosaŭro",
+			p_hagyom3: "Ĉi tio estas cikado",
+			p_hagyom4: "Ĉi tiuj estas du necesejoj",
+			p_modul1: "Tre fleksebla sfero<br>farita el 60 te-paperoj",
+			p_modul2: "Faldita en la somero de 2008<br>dum la XIX Origami-Renkontiĝo",
+			p_kocka1: "8 kuboj el unu strio,<br>el kiuj eblas faldi<br>diversajn formojn",
+			p_kocka2: "16 kuboj el unu strio,<br>ĉi tie ankaŭ eblas faldi<br>diversajn formojn",
+			p_ruha1: "Farita kiel karnavala kostumo,<br>uzante plurajn teknikojn",
+			p_ruha2: "La ĉapelo estis farita en la somero de 2008<br>en Budapeŝto dum la Origami-Renkontiĝo",
+		},
+		lt: {
+			back: "← Atgal", close: "✕ Uždaryti",
+			title_hagyom: "Tradiciniai origami modeliai",
+			title_modul: "Moduliniai origami modeliai",
+			title_kocka: "Kubai iš vienos juostelės",
+			title_ruha: "Origami suknelė",
+			p_hagyom1: "Dinozaurai",
+			p_hagyom2: "Miniatiūrinis dinozauras",
+			p_hagyom3: "Tai cikada",
+			p_hagyom4: "Tai du tualetai",
+			p_modul1: "Labai lanksti sfera<br>pagaminta iš 60 arbatos popierėlių",
+			p_modul2: "Lankstyta 2008 m. vasarą<br>XIX Origami susitikime",
+			p_kocka1: "8 kubai iš vienos juostelės,<br>iš kurių galima lankstyti<br>įvairias formas",
+			p_kocka2: "16 kubų iš vienos juostelės,<br>čia taip pat galima lankstyti<br>įvairias formas",
+			p_ruha1: "Pagaminta kaip karnavalinis kostiumas,<br>naudojant kelias technikas",
+			p_ruha2: "Skrybėlė pagaminta 2008 m. vasarą<br>Budapešte Origami susitikime",
+		},
+		lv: {
+			back: "← Atpakaļ", close: "✕ Aizvērt",
+			title_hagyom: "Tradicionālie origami modeļi",
+			title_modul: "Modulārie origami modeļi",
+			title_kocka: "Kubi no vienas strēmeles",
+			title_ruha: "Origami kleita",
+			p_hagyom1: "Dinozauri",
+			p_hagyom2: "Miniatūrs dinozaurs",
+			p_hagyom3: "Šī ir cikāde",
+			p_hagyom4: "Šie ir divi tualetes",
+			p_modul1: "Ļoti elastīga sfēra<br>izgatavota no 60 tējas papīriem",
+			p_modul2: "Locīta 2008. gada vasarā<br>XIX Origami sanāksmē",
+			p_kocka1: "8 kubi no vienas strēmeles,<br>no kuriem var locīt<br>dažādas formas",
+			p_kocka2: "16 kubi no vienas strēmeles,<br>arī šeit var locīt<br>dažādas formas",
+			p_ruha1: "Izgatavota kā karnevāla tērps,<br>izmantojot vairākas tehnikas",
+			p_ruha2: "Cepure izgatavota 2008. gada vasarā<br>Budapeštā Origami sanāksmē",
+		},
+		et: {
+			back: "← Tagasi", close: "✕ Sulge",
+			title_hagyom: "Traditsioonilised origami mudelid",
+			title_modul: "Modulaarsed origami mudelid",
+			title_kocka: "Kuubikud ühest ribast",
+			title_ruha: "Origami kleit",
+			p_hagyom1: "Dinosaurused",
+			p_hagyom2: "Miniatuurne dinosaurus",
+			p_hagyom3: "See on tsikaad",
+			p_hagyom4: "Need on kaks tualetti",
+			p_modul1: "Väga paindlik kera<br>valmistatud 60 teepaberist",
+			p_modul2: "Volditud 2008. aasta suvel<br>XIX Origami kohtumisel",
+			p_kocka1: "8 kuubikut ühest ribast,<br>millest saab voltida<br>erinevaid kujundeid",
+			p_kocka2: "16 kuubikut ühest ribast,<br>ka siin saab voltida<br>erinevaid kujundeid",
+			p_ruha1: "Valmistatud karnevalikostüümiks,<br>kasutades mitut tehnikat",
+			p_ruha2: "Müts valmistati 2008. aasta suvel<br>Budapestis Origami kohtumisel",
+		},
+		tr: {
+			back: "← Geri", close: "✕ Kapat",
+			title_hagyom: "Geleneksel origami modelleri",
+			title_modul: "Modüler origami modelleri",
+			title_kocka: "Şeritten küpler",
+			title_ruha: "Origami elbise",
+			p_hagyom1: "Dinozorlar",
+			p_hagyom2: "Minyatür dinozor",
+			p_hagyom3: "Bu bir ağustos böceği",
+			p_hagyom4: "Bunlar iki tuvalet",
+			p_modul1: "60 çay kâğıdından yapılmış<br>çok esnek bir küre",
+			p_modul2: "2008 yazında<br>XIX Origami Buluşması’nda katlandı",
+			p_kocka1: "Bir şeritten 8 küp,<br>bunlardan çeşitli<br>şekiller katlanabilir",
+			p_kocka2: "Bir şeritten 16 küp,<br>burada da çeşitli<br>şekiller katlanabilir",
+			p_ruha1: "Bir karnaval kostümü olarak yapıldı,<br>birden fazla teknik kullanılarak",
+			p_ruha2: "Şapka 2008 yazında<br>Budapeşte’deki Origami Buluşması’nda yapıldı",
+		},
+		el: {
+			back: "← Πίσω", close: "✕ Κλείσιμο",
+			title_hagyom: "Παραδοσιακά μοντέλα origami",
+			title_modul: "Αρθρωτά μοντέλα origami",
+			title_kocka: "Κύβοι από μία λωρίδα",
+			title_ruha: "Φόρεμα origami",
+			p_hagyom1: "Δεινόσαυροι",
+			p_hagyom2: "Μινιατούρα δεινόσαυρος",
+			p_hagyom3: "Αυτό είναι ένα τζιτζίκι",
+			p_hagyom4: "Αυτά είναι δύο τουαλέτες",
+			p_modul1: "Πολύ εύκαμπτη σφαίρα<br>φτιαγμένη από 60 χαρτιά τσαγιού",
+			p_modul2: "Διπλώθηκε το καλοκαίρι του 2008<br>στη XIX Συνάντηση Origami",
+			p_kocka1: "8 κύβοι από μία λωρίδα,<br>από τους οποίους μπορούν να<br>διπλωθούν διάφορα σχήματα",
+			p_kocka2: "16 κύβοι από μία λωρίδα,<br>και εδώ μπορούν να<br>διπλωθούν διάφορα σχήματα",
+			p_ruha1: "Κατασκευάστηκε ως αποκριάτικη στολή,<br>χρησιμοποιώντας πολλές τεχνικές",
+			p_ruha2: "Το καπέλο κατασκευάστηκε το καλοκαίρι του 2008<br>στη Βουδαπέστη στη Συνάντηση Origami",
+		},
+		sq: {
+			back: "← Kthehu", close: "✕ Mbyll",
+			title_hagyom: "Modele tradicionale origami",
+			title_modul: "Modele origami modulare",
+			title_kocka: "Kube nga një shirit",
+			title_ruha: "Fustan origami",
+			p_hagyom1: "Dinosaurë",
+			p_hagyom2: "Dinosaur miniaturë",
+			p_hagyom3: "Kjo është një cikadë",
+			p_hagyom4: "Këto janë dy tualete",
+			p_modul1: "Sferë shumë fleksibile<br>e bërë nga 60 letra çaji",
+			p_modul2: "Palosur në verën e vitit 2008<br>në Takimin XIX të Origamit",
+			p_kocka1: "8 kube nga një shirit,<br>nga të cilat mund të palosen<br>forma të ndryshme",
+			p_kocka2: "16 kube nga një shirit,<br>këtu gjithashtu mund të palosen<br>forma të ndryshme",
+			p_ruha1: "E bërë si kostum karnavali,<br>duke përdorur disa teknika",
+			p_ruha2: "Kapela u bë në verën e vitit 2008<br>në Budapest në Takimin e Origamit",
+		},
+		bg: {
+			back: "← Назад", close: "✕ Затвори",
+			title_hagyom: "Традиционни модели оригами",
+			title_modul: "Модулни модели оригами",
+			title_kocka: "Кубове от една лента",
+			title_ruha: "Оригами рокля",
+			p_hagyom1: "Динозаври",
+			p_hagyom2: "Миниатюрен динозавър",
+			p_hagyom3: "Това е цикада",
+			p_hagyom4: "Това са две тоалетни",
+			p_modul1: "Много гъвкава сфера<br>направена от 60 чаени хартии",
+			p_modul2: "Сгъната през лятото на 2008 г.<br>на XIX среща по оригами",
+			p_kocka1: "8 куба от една лента,<br>от които могат да се сгъват<br>различни форми",
+			p_kocka2: "16 куба от една лента,<br>тук също могат да се сгъват<br>различни форми",
+			p_ruha1: "Изработена като карнавален костюм,<br>с използване на няколко техники",
+			p_ruha2: "Шапката е изработена през лятото на 2008 г.<br>в Будапеща на срещата по оригами",
+		},
+		pl: {
+			back: "← Wstecz", close: "✕ Zamknij",
+			title_hagyom: "Tradycyjne modele origami",
+			title_modul: "Modułowe modele origami",
+			title_kocka: "Kostki z jednego paska",
+			title_ruha: "Suknia origami",
+			p_hagyom1: "Dinozaury",
+			p_hagyom2: "Miniaturowy dinozaur",
+			p_hagyom3: "To jest cykada",
+			p_hagyom4: "To są dwie toalety",
+			p_modul1: "Bardzo elastyczna kula<br>wykonana z 60 papierków po herbacie",
+			p_modul2: "Złożona latem 2008 roku<br>na XIX Spotkaniu Origami",
+			p_kocka1: "8 kostek z jednego paska,<br>z których można składać<br>różne kształty",
+			p_kocka2: "16 kostek z jednego paska,<br>tutaj również można składać<br>różne kształty",
+			p_ruha1: "Wykonana jako kostium karnawałowy,<br>z użyciem kilku technik",
+			p_ruha2: "Kapelusz powstał latem 2008 roku<br>w Budapeszcie na Spotkaniu Origami",
+		},
+		cs: {
+			back: "← Zpět", close: "✕ Zavřít",
+			title_hagyom: "Tradiční modely origami",
+			title_modul: "Modulární modely origami",
+			title_kocka: "Kostky z jednoho proužku",
+			title_ruha: "Origami šaty",
+			p_hagyom1: "Dinosauři",
+			p_hagyom2: "Miniaturní dinosaurus",
+			p_hagyom3: "Toto je cikáda",
+			p_hagyom4: "Toto jsou dvě toalety",
+			p_modul1: "Velmi pružná koule<br>vyrobená z 60 čajových papírků",
+			p_modul2: "Složeno v létě 2008<br>na XIX Setkání Origami",
+			p_kocka1: "8 kostek z jednoho proužku,<br>ze kterých lze skládat<br>různé tvary",
+			p_kocka2: "16 kostek z jednoho proužku,<br>i zde lze skládat<br>různé tvary",
+			p_ruha1: "Vyrobeno jako karnevalový kostým,<br>s využitím několika technik",
+			p_ruha2: "Klobouk vznikl v létě 2008<br>v Budapešti na Setkání Origami",
+		},
+		sk: {
+			back: "← Späť", close: "✕ Zavrieť",
+			title_hagyom: "Tradičné modely origami",
+			title_modul: "Modulárne modely origami",
+			title_kocka: "Kocky z jedného pásu",
+			title_ruha: "Origami šaty",
+			p_hagyom1: "Dinosaury",
+			p_hagyom2: "Miniatúrny dinosaurus",
+			p_hagyom3: "Toto je cikáda",
+			p_hagyom4: "Toto sú dve toalety",
+			p_modul1: "Veľmi pružná guľa<br>vyrobená zo 60 čajových papierikov",
+			p_modul2: "Skladané v lete 2008<br>na XIX stretnutí Origami",
+			p_kocka1: "8 kociek z jedného pásu,<br>z ktorých možno skladať<br>rôzne tvary",
+			p_kocka2: "16 kociek z jedného pásu,<br>aj tu možno skladať<br>rôzne tvary",
+			p_ruha1: "Vyrobené ako karnevalový kostým,<br>pomocou viacerých techník",
+			p_ruha2: "Klobúk bol vyrobený v lete 2008<br>v Budapešti na stretnutí Origami",
+		},
+		uk: {
+			back: "← Назад", close: "✕ Закрити",
+			title_hagyom: "Традиційні моделі оріґамі",
+			title_modul: "Модульні моделі оріґамі",
+			title_kocka: "Кубики з однієї смужки",
+			title_ruha: "Сукня оріґамі",
+			p_hagyom1: "Динозаври",
+			p_hagyom2: "Мініатюрний динозавр",
+			p_hagyom3: "Це цикада",
+			p_hagyom4: "Це два туалети",
+			p_modul1: "Дуже гнучка сфера<br>виготовлена з 60 чайних папірців",
+			p_modul2: "Складено влітку 2008 року<br>на XIX зустрічі оріґамі",
+			p_kocka1: "8 кубиків з однієї смужки,<br>з яких можна складати<br>різні форми",
+			p_kocka2: "16 кубиків з однієї смужки,<br>тут також можна складати<br>різні форми",
+			p_ruha1: "Зроблено як карнавальний костюм,<br>з використанням кількох технік",
+			p_ruha2: "Капелюх був зроблений влітку 2008 року<br>у Будапешті на зустрічі оріґамі",
+		},
+		ro: {
+			back: "← Înapoi", close: "✕ Închide",
+			title_hagyom: "Modele tradiționale de origami",
+			title_modul: "Modele de origami modular",
+			title_kocka: "Cuburi dintr-o singură bandă",
+			title_ruha: "Rochie origami",
+			p_hagyom1: "Dinozauri",
+			p_hagyom2: "Dinozaur miniatural",
+			p_hagyom3: "Aceasta este o cicadă",
+			p_hagyom4: "Acestea sunt două toalete",
+			p_modul1: "Sferă foarte flexibilă<br>realizată din 60 de hârtii de ceai",
+			p_modul2: "Plia­tă în vara anului 2008<br>la a XIX-a Întâlnire Origami",
+			p_kocka1: "8 cuburi dintr-o singură bandă,<br>din care pot fi pliate<br>diverse forme",
+			p_kocka2: "16 cuburi dintr-o singură bandă,<br>aici pot fi pliate<br>diverse forme",
+			p_ruha1: "Realizată ca un costum de carnaval,<br>folosind mai multe tehnici",
+			p_ruha2: "Pălăria a fost realizată în vara anului 2008<br>la Budapesta, la Întâlnirea Origami",
+		},
+		sr: {
+			back: "← Назад", close: "✕ Затвори",
+			title_hagyom: "Традиционални модели оригамија",
+			title_modul: "Модуларни модели оригамија",
+			title_kocka: "Коцке из једне траке",
+			title_ruha: "Оригами хаљина",
+			p_hagyom1: "Диносауруси",
+			p_hagyom2: "Минијатурни диносаурус",
+			p_hagyom3: "Ово је цикада",
+			p_hagyom4: "Ово су два тоалета",
+			p_modul1: "Веома флексибилна сфера<br>направљена од 60 папира за чај",
+			p_modul2: "Савијено лета 2008.<br>на XIX Оригами сусрету",
+			p_kocka1: "8 коцки из једне траке,<br>од којих се могу савијати<br>различити облици",
+			p_kocka2: "16 коцки из једне траке,<br>овде се такође могу савијати<br>различити облици",
+			p_ruha1: "Направљена као карневалски костим,<br>коришћењем више техника",
+			p_ruha2: "Шешир је направљен лета 2008.<br>у Будимпешти на Оригами сусрету",
+		},
+		hr: {
+			back: "← Natrag", close: "✕ Zatvori",
+			title_hagyom: "Tradicionalni modeli origamija",
+			title_modul: "Modularni modeli origamija",
+			title_kocka: "Kocke iz jedne trake",
+			title_ruha: "Origami haljina",
+			p_hagyom1: "Dinosauri",
+			p_hagyom2: "Minijaturni dinosaurus",
+			p_hagyom3: "Ovo je cikada",
+			p_hagyom4: "Ovo su dva WC-a",
+			p_modul1: "Vrlo fleksibilna sfera<br>izrađena od 60 čajnih papira",
+			p_modul2: "Složeno u ljeto 2008.<br>na XIX susretu Origamija",
+			p_kocka1: "8 kocki iz jedne trake,<br>od kojih se mogu savijati<br>različiti oblici",
+			p_kocka2: "16 kocki iz jedne trake,<br>ovdje se također mogu savijati<br>različiti oblici",
+			p_ruha1: "Izrađena kao karnevalski kostim,<br>korištenjem više tehnika",
+			p_ruha2: "Šešir je izrađen u ljeto 2008.<br>u Budimpešti na Origami susretu",
+		},
+		sl: {
+			back: "← Nazaj", close: "✕ Zapri",
+			title_hagyom: "Tradicionalni modeli origamija",
+			title_modul: "Modularni modeli origamija",
+			title_kocka: "Kocke iz enega traku",
+			title_ruha: "Origami obleka",
+			p_hagyom1: "Dinozavri",
+			p_hagyom2: "Miniaturni dinozaver",
+			p_hagyom3: "To je cikada",
+			p_hagyom4: "To sta dva stranišča",
+			p_modul1: "Zelo prilagodljiva krogla<br>izdelana iz 60 čajnih papirjev",
+			p_modul2: "Zloženo poleti 2008<br>na XIX srečanju origamija",
+			p_kocka1: "8 kock iz enega traku,<br>iz katerih je mogoče zlagati<br>različne oblike",
+			p_kocka2: "16 kock iz enega traku,<br>tudi tukaj je mogoče zlagati<br>različne oblike",
+			p_ruha1: "Izdelano kot pustni kostum,<br>z uporabo več tehnik",
+			p_ruha2: "Klobuk je bil izdelan poleti 2008<br>v Budimpešti na srečanju origamija",
+		}
+	};
+	
+	let currentIndex = 0;
     const galleryData = [];
+	
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }	
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
 
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -208,31 +837,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -253,7 +857,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,19 +83,19 @@
   <div class="page-container">
 
     <table>
-      <caption>Gyűrt technikájú modellek</caption>
+      <caption data-lang-key="title_gyurt">Gyűrt technikájú modellek</caption>
       <tr>
-        <td>Ezek általában<br>absztrakt formák</td>
+        <td data-lang-key="p_gyurt1">Ezek általában<br>absztrakt formák</td>
         <td><img src="pictures/gyurt/gyurt1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/gyurt/gyurt2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
 		<td><img src="pictures/gyurt/gyurt12.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
-        <td colspan="2">Készültek gombák is ezzel a technikával<br>selyem és csomagolópapírból, szalvétából</td>
+        <td colspan="2" data-lang-key="p_gyurt2">Készültek gombák is ezzel a technikával<br>selyem és csomagolópapírból, szalvétából</td>
         <td colspan="2"><img src="pictures/gyurt/gomba.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>	  
       <tr>
-        <td colspan="2">A fenyőfák szalvétából készültek</td>
+        <td colspan="2" data-lang-key="p_gyurt3">A fenyőfák szalvétából készültek</td>
         <td colspan="2"><img src="pictures/gyurt/fenyok.jpg" class="gallery-img" onclick="openGallery(4)"></td>
       </tr>	  
 	</table>
@@ -103,11 +103,310 @@
   </div>
 
   <script>
+	const translations = {
+		hu: {
+			back: "← Vissza", close: "✕ Bezárás",
+			title_gyurt: "Gyűrt technikájú modellek", 
+			p_gyurt1: "Ezek általában<br>absztrakt formák",
+			p_gyurt2: "Készültek gombák is ezzel a technikával<br>selyem és csomagolópapírból, szalvétából", 
+			p_gyurt3: "A fenyőfák szalvétából készültek", 
+		},  
+		en: {
+			back: "← Back", close: "✕ Close",
+			title_gyurt: "Crumpled technique models",
+			p_gyurt1: "These are usually<br>abstract forms",
+			p_gyurt2: "Mushrooms were also made<br>with this technique<br>from silk, wrapping paper and napkins",
+			p_gyurt3: "The pine trees were made from napkins",
+		},
+		de: {
+			back: "← Zurück", close: "✕ Schließen",
+			title_gyurt: "Modelle in Knittertechnik",
+			p_gyurt1: "Dies sind meist<br>abstrakte Formen",
+			p_gyurt2: "Auch Pilze wurden mit dieser Technik<br>aus Seide, Geschenkpapier und Servietten hergestellt",
+			p_gyurt3: "Die Tannenbäume wurden aus Servietten gefertigt",
+		},
+		es: {
+			back: "← Volver", close: "✕ Cerrar",
+			title_gyurt: "Modelos con técnica arrugada",
+			p_gyurt1: "Suelen ser<br>formas abstractas",
+			p_gyurt2: "También se hicieron hongos<br>con esta técnica<br>a partir de seda, papel de regalo y servilletas",
+			p_gyurt3: "Los pinos se hicieron con servilletas",
+		},
+		it: {
+			back: "← Indietro", close: "✕ Chiudi",
+			title_gyurt: "Modelli con tecnica stropicciata",
+			p_gyurt1: "Di solito sono<br>forme astratte",
+			p_gyurt2: "Con questa tecnica sono stati realizzati anche funghi<br>utilizzando seta, carta da regalo e tovaglioli",
+			p_gyurt3: "Gli alberi di pino sono stati realizzati con tovaglioli",
+		},
+		fr: {
+			back: "← Retour", close: "✕ Fermer",
+			title_gyurt: "Modèles à technique froissée",
+			p_gyurt1: "Il s’agit généralement de<br>formes abstraites",
+			p_gyurt2: "Des champignons ont également été réalisés<br>avec cette technique<br>à partir de soie, de papier cadeau et de serviettes",
+			p_gyurt3: "Les pins ont été réalisés à partir de serviettes",
+		},
+		pt: {
+			back: "← Voltar", close: "✕ Fechar",
+			title_gyurt: "Modelos com técnica amassada",
+			p_gyurt1: "Geralmente são<br>formas abstratas",
+			p_gyurt2: "Também foram feitos cogumelos<br>com esta técnica<br>a partir de seda, papel de embrulho e guardanapos",
+			p_gyurt3: "Os pinheiros foram feitos de guardanapos",
+		},
+		nl: {
+			back: "← Terug", close: "✕ Sluiten",
+			title_gyurt: "Modellen met gekreukelde techniek",
+			p_gyurt1: "Dit zijn meestal<br>abstracte vormen",
+			p_gyurt2: "Ook paddenstoelen zijn met deze techniek gemaakt<br>van zijde, cadeaupapier en servetten",
+			p_gyurt3: "De dennenbomen zijn gemaakt van servetten",
+		},
+		sv: {
+			back: "← Tillbaka", close: "✕ Stäng",
+			title_gyurt: "Modeller med skrynklig teknik",
+			p_gyurt1: "Detta är oftast<br>abstrakta former",
+			p_gyurt2: "Även svampar tillverkades med denna teknik<br>av siden, presentpapper och servetter",
+			p_gyurt3: "Tallarna tillverkades av servetter",
+		},
+		fi: {
+			back: "← Takaisin", close: "✕ Sulje",
+			title_gyurt: "Rypistystekniikalla tehdyt mallit",
+			p_gyurt1: "Nämä ovat yleensä<br>abstrakteja muotoja",
+			p_gyurt2: "Myös sieniä on tehty tällä tekniikalla<br>silkistä, lahjapaperista ja servieteistä",
+			p_gyurt3: "Männyt on tehty servieteistä",
+		},
+		no: {
+			back: "← Tilbake", close: "✕ Lukk",
+			title_gyurt: "Modeller med krølleteknikk",
+			p_gyurt1: "Dette er vanligvis<br>abstrakte former",
+			p_gyurt2: "Det ble også laget sopper med denne teknikken<br>av silke, gavepapir og servietter",
+			p_gyurt3: "Furutrærne er laget av servietter",
+		},
+		da: {
+			back: "← Tilbage", close: "✕ Luk",
+			title_gyurt: "Modeller med krølleteknik",
+			p_gyurt1: "Disse er som regel<br>abstrakte former",
+			p_gyurt2: "Der blev også lavet svampe med denne teknik<br>af silke, gavepapir og servietter",
+			p_gyurt3: "Fyrretræerne er lavet af servietter",
+		},
+		is: {
+			back: "← Til baka", close: "✕ Loka",
+			title_gyurt: "Líkön með krumpuaðferð",
+			p_gyurt1: "Þetta eru yfirleitt<br>abstrakt form",
+			p_gyurt2: "Einnig voru gerðir sveppir með þessari aðferð<br>úr silki, gjafapappír og servíettum",
+			p_gyurt3: "Grenitrén voru gerð úr servíettum",
+		},
+		ca: {
+			back: "← Enrere", close: "✕ Tanca",
+			title_gyurt: "Models amb tècnica arrugada",
+			p_gyurt1: "Normalment són<br>formes abstractes",
+			p_gyurt2: "També es van fer bolets amb aquesta tècnica<br>a partir de seda, paper d’embolcall i tovallons",
+			p_gyurt3: "Els pins es van fer amb tovallons",
+		},
+		ja: {
+			back: "← 戻る", close: "✕ 閉じる",
+			title_gyurt: "しわ加工技法のモデル",
+			p_gyurt1: "通常は<br>抽象的な形です",
+			p_gyurt2: "この技法で、絹や包装紙、ナプキンから<br>きのこも作られました",
+			p_gyurt3: "松の木はナプキンで作られました",
+		},
+		zh: {
+			back: "← 返回", close: "✕ 关闭",
+			title_gyurt: "揉皱技法模型",
+			p_gyurt1: "这些通常是<br>抽象形态",
+			p_gyurt2: "也使用这种技法制作了蘑菇，<br>材料包括丝绸、包装纸和餐巾纸",
+			p_gyurt3: "松树是用餐巾纸制作的",
+		},
+		ko: {
+			back: "← 뒤로", close: "✕ 닫기",
+			title_gyurt: "구김 기법 모델",
+			p_gyurt1: "보통<br>추상적인 형태입니다",
+			p_gyurt2: "이 기법으로 비단, 포장지, 냅킨을 사용해<br>버섯도 제작되었습니다",
+			p_gyurt3: "소나무는 냅킨으로 만들었습니다",
+		},
+		eo: {
+			back: "← Reen", close: "✕ Fermi",
+			title_gyurt: "Modeloj per ĉifita tekniko",
+			p_gyurt1: "Ĉi tiuj estas kutime<br>abstraktaj formoj",
+			p_gyurt2: "Ankaŭ fungoj estis faritaj per ĉi tiu tekniko<br>el silko, donacpapero kaj buŝtukoj",
+			p_gyurt3: "La pinoj estis faritaj el buŝtukoj",
+		},
+		lt: {
+			back: "← Atgal", close: "✕ Uždaryti",
+			title_gyurt: "Modeliai su glamžymo technika",
+			p_gyurt1: "Tai paprastai yra<br>abstrakčios formos",
+			p_gyurt2: "Taikant šią techniką taip pat buvo gaminami grybai<br>iš šilko, dovanų popieriaus ir servetėlių",
+			p_gyurt3: "Pušys buvo pagamintos iš servetėlių",
+		},
+		lv: {
+			back: "← Atpakaļ", close: "✕ Aizvērt",
+			title_gyurt: "Modeļi ar saburzīšanas tehniku",
+			p_gyurt1: "Tie parasti ir<br>abstrakti veidojumi",
+			p_gyurt2: "Ar šo tehniku tika veidotas arī sēnes<br>no zīda, dāvanu papīra un salvetēm",
+			p_gyurt3: "Priedes tika veidotas no salvetēm",
+		},
+		et: {
+			back: "← Tagasi", close: "✕ Sulge",
+			title_gyurt: "Kortsutamistehnikas mudelid",
+			p_gyurt1: "Need on tavaliselt<br>abstraktsed vormid",
+			p_gyurt2: "Selle tehnikaga valmistati ka seeni<br>siidist, kinkepaberist ja salvrätikutest",
+			p_gyurt3: "Männid valmistati salvrätikutest",
+		},
+		tr: {
+			back: "← Geri", close: "✕ Kapat",
+			title_gyurt: "Buruşturma tekniğiyle yapılan modeller",
+			p_gyurt1: "Bunlar genellikle<br>soyut formlardır",
+			p_gyurt2: "Bu teknikle ayrıca mantarlar da yapıldı<br>ipek, ambalaj kâğıdı ve peçeteden",
+			p_gyurt3: "Çam ağaçları peçeteden yapıldı",
+		},
+		el: {
+			back: "← Πίσω", close: "✕ Κλείσιμο",
+			title_gyurt: "Μοντέλα με τεχνική τσαλακώματος",
+			p_gyurt1: "Συνήθως είναι<br>αφηρημένες μορφές",
+			p_gyurt2: "Με αυτή την τεχνική κατασκευάστηκαν επίσης μανιτάρια<br>από μετάξι, χαρτί περιτυλίγματος και χαρτοπετσέτες",
+			p_gyurt3: "Τα πεύκα κατασκευάστηκαν από χαρτοπετσέτες",
+		},
+		sq: {
+			back: "← Kthehu", close: "✕ Mbyll",
+			title_gyurt: "Modele me teknikë të rrudhur",
+			p_gyurt1: "Zakonisht janë<br>forma abstrakte",
+			p_gyurt2: "Me këtë teknikë u bënë edhe kërpudha<br>nga mëndafshi, letra ambalazhi dhe peceta",
+			p_gyurt3: "Pishat u bënë nga peceta",
+		},
+		bg: {
+			back: "← Назад", close: "✕ Затвори",
+			title_gyurt: "Модели с намачкана техника",
+			p_gyurt1: "Обикновено това са<br>абстрактни форми",
+			p_gyurt2: "С тази техника бяха направени и гъби<br>от коприна, опаковъчна хартия и салфетки",
+			p_gyurt3: "Боровете са направени от салфетки",
+		},
+		pl: {
+			back: "← Wstecz", close: "✕ Zamknij",
+			title_gyurt: "Modele wykonane techniką gniecenia",
+			p_gyurt1: "Zazwyczaj są to<br>formy abstrakcyjne",
+			p_gyurt2: "Tą techniką wykonano również grzyby<br>z jedwabiu, papieru ozdobnego i serwetek",
+			p_gyurt3: "Sosny zostały wykonane z serwetek",
+		},
+		cs: {
+			back: "← Zpět", close: "✕ Zavřít",
+			title_gyurt: "Modely vytvořené mačkací technikou",
+			p_gyurt1: "Obvykle se jedná o<br>abstraktní tvary",
+			p_gyurt2: "Touto technikou byly vytvořeny také houby<br>z hedvábí, balicího papíru a ubrousků",
+			p_gyurt3: "Borovice byly vyrobeny z ubrousků",
+		},
+		sk: {
+			back: "← Späť", close: "✕ Zavrieť",
+			title_gyurt: "Modely vytvorené krčivou technikou",
+			p_gyurt1: "Zvyčajne ide o<br>abstraktné formy",
+			p_gyurt2: "Touto technikou sa vyrábali aj huby<br>z hodvábu, baliaceho papiera a obrúskov",
+			p_gyurt3: "Borovice boli vyrobené z obrúskov",
+		},
+		uk: {
+			back: "← Назад", close: "✕ Закрити",
+			title_gyurt: "Моделі, створені технікою зминання",
+			p_gyurt1: "Зазвичай це<br>абстрактні форми",
+			p_gyurt2: "Цією технікою також виготовляли гриби<br>із шовку, пакувального паперу та серветок",
+			p_gyurt3: "Сосни були виготовлені із серветок",
+		},
+		ro: {
+			back: "← Înapoi", close: "✕ Închide",
+			title_gyurt: "Modele realizate prin tehnica mototolirii",
+			p_gyurt1: "De obicei sunt<br>forme abstracte",
+			p_gyurt2: "Prin această tehnică au fost realizate și ciuperci<br>din mătase, hârtie de ambalaj și șervețele",
+			p_gyurt3: "Pinii au fost realizați din șervețele",
+		},
+		sr: {
+			back: "← Назад", close: "✕ Затвори",
+			title_gyurt: "Модели рађени техником гужвања",
+			p_gyurt1: "Обично су то<br>апстрактни облици",
+			p_gyurt2: "Овом техником су прављене и печурке<br>од свиле, украсног папира и салвета",
+			p_gyurt3: "Борови су направљени од салвета",
+		},
+		hr: {
+			back: "← Natrag", close: "✕ Zatvori",
+			title_gyurt: "Modeli izrađeni tehnikom gužvanja",
+			p_gyurt1: "To su obično<br>apstraktni oblici",
+			p_gyurt2: "Ovom tehnikom izrađene su i gljive<br>od svile, ukrasnog papira i salveta",
+			p_gyurt3: "Borovi su izrađeni od salveta",
+		},
+		sl: {
+			back: "← Nazaj", close: "✕ Zapri",
+			title_gyurt: "Modeli, izdelani s tehniko mečkanja",
+			p_gyurt1: "Običajno so to<br>abstraktne oblike",
+			p_gyurt2: "S to tehniko so bile izdelane tudi gobe<br>iz svile, darilnega papirja in prtičkov",
+			p_gyurt3: "Bori so bili izdelani iz prtičkov",
+		}
+	};
+  
     let currentIndex = 0;
     const galleryData = [];
 
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -151,31 +450,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -196,7 +470,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }

@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button">← Vissza</a>
+  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,9 +83,9 @@
   <div class="page-container">
 
     <table>
-      <caption>Traktor</caption>
+      <caption data-lang-key="title_trak">Traktor</caption>
       <tr>
-        <td rowspan="2">Több mint<br>fél évig készült,<br>2009. júliusában<br>lett kész</td>
+        <td rowspan="2" data-lang-key="p_trak">Több mint fél évig készült,<br>2009. júliusában lett kész<br>legalább 200 munkaóra után.</td>
         <td><img src="pictures/vehicles/traktorb.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/vehicles/traktorj.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
@@ -96,9 +96,9 @@
 	</table>
 	
     <table>
-      <caption>Motor</caption>
+      <caption data-lang-key="title_moto">Motor</caption>
       <tr>
-        <td rowspan="2">2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz</td>
+        <td rowspan="2" data-lang-key="p_moto">2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz.</td>
         <td><img src="pictures/vehicles/motor1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/vehicles/motor2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>	  
@@ -109,9 +109,9 @@
 	</table>
 
     <table>
-      <caption>Babakocsi</caption>
+      <caption data-lang-key="title_bako">Babakocsi</caption>
       <tr>
-        <td>Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán</td>
+        <td data-lang-key="p_bako">Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán.</td>
         <td><img src="pictures/vehicles/babakocsi.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
 	</table>	
@@ -119,11 +119,377 @@
   </div>
 
   <script>
+	const translations = {
+		hu: {
+			back: "← Vissza", close: "✕ Bezárás",
+			title_trak: "Traktor", 
+			title_moto: "Motor", 
+			title_bako: "Babakocsi", 
+			p_trak: "Több mint fél évig készült,<br>2009. júliusában lett kész<br>legalább 200 munkaóra után",
+			p_moto: "2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz.", 
+			p_bako: "Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán.", 
+		},
+		en: {
+			back: "← Back",
+			close: "✕ Close",
+			title_trak: "Tractor",
+			title_moto: "Motorcycle",
+			title_bako: "Baby Stroller",
+			p_trak: "It took more than half a year to complete,<br>finished in July 2009<br>after at least 200 hours of work",
+			p_moto: "Made in the summer of 2008,<br>it required more than 100 working hours<br>to assemble",
+			p_bako: "This baby stroller<br>was made from at least 500 pieces<br>in the summer of 2007"
+		},
+		de: {
+			back: "← Zurück",
+			close: "✕ Schließen",
+			title_trak: "Traktor",
+			title_moto: "Motorrad",
+			title_bako: "Kinderwagen",
+			p_trak: "Die Fertigstellung dauerte mehr als ein halbes Jahr,<br>im Juli 2009 abgeschlossen<br>nach mindestens 200 Arbeitsstunden",
+			p_moto: "Entstanden im Sommer 2008,<br>für den Zusammenbau waren<br>mehr als 100 Arbeitsstunden nötig",
+			p_bako: "Dieser Kinderwagen<br>wurde aus mindestens 500 Teilen<br>im Sommer 2007 gefertigt"
+		},
+		es:{
+			back:"← Volver",close:"✕ Cerrar",
+			title_trak:"Tractor",
+			title_moto:"Motocicleta",
+			title_bako:"Cochecito",
+			p_trak:"Tardó más de medio año en completarse,<br>terminado en julio de 2009<br>tras al menos 200 horas de trabajo",
+			p_moto:"Realizado en el verano de 2008,<br>se necesitaron más de 100 horas de trabajo<br>para su montaje",
+			p_bako:"Este cochecito<br>fue hecho con al menos 500 piezas<br>en el verano de 2007"
+		},
+		it:{
+			back:"← Indietro",close:"✕ Chiudi",
+			title_trak:"Trattore",
+			title_moto:"Motocicletta",
+			title_bako:"Passeggino",
+			p_trak:"Ha richiesto più di mezzo anno di lavoro,<br>completato nel luglio 2009<br>dopo almeno 200 ore di lavoro",
+			p_moto:"Realizzato nell’estate del 2008,<br>sono state necessarie più di 100 ore di lavoro<br>per l’assemblaggio",
+			p_bako:"Questo passeggino<br>è stato realizzato con almeno 500 pezzi<br>nell’estate del 2007"
+		},
+		fr: {
+			back: "← Retour", close: "✕ Fermer",
+			title_trak: "Tracteur",
+			title_moto: "Moto",
+			title_bako: "Poussette",
+			p_trak: "La réalisation a pris plus d’un demi-an,<br>terminée en juillet 2009<br>après au moins 200 heures de travail",
+			p_moto: "Réalisée à l’été 2008,<br>plus de 100 heures de travail<br>ont été nécessaires pour l’assemblage.",
+			p_bako: "Cette poussette<br>a été réalisée avec au moins 500 pièces<br>à l’été 2007.",
+		},
+		pt: {
+			back: "← Voltar", close: "✕ Fechar",
+			title_trak: "Trator",
+			title_moto: "Motocicleta",
+			title_bako: "Carrinho de bebé",
+			p_trak: "Levou mais de meio ano para ser concluído,<br>finalizado em julho de 2009<br>após pelo menos 200 horas de trabalho",
+			p_moto: "Feito no verão de 2008,<br>foram necessárias mais de 100 horas de trabalho<br>para a montagem.",
+			p_bako: "Este carrinho de bebé<br>foi feito com pelo menos 500 peças<br>no verão de 2007.",
+		},
+		nl: {
+			back: "← Terug", close: "✕ Sluiten",
+			title_trak: "Tractor",
+			title_moto: "Motorfiets",
+			title_bako: "Kinderwagen",
+			p_trak: "Het duurde meer dan een half jaar om te voltooien,<br>afgerond in juli 2009<br>na minstens 200 werkuren",
+			p_moto: "Gemaakt in de zomer van 2008,<br>voor de montage waren<br>meer dan 100 werkuren nodig.",
+			p_bako: "Deze kinderwagen<br>werd gemaakt van minstens 500 onderdelen<br>in de zomer van 2007.",
+		},
+		sv: {
+			back: "← Tillbaka", close: "✕ Stäng",
+			title_trak: "Traktor",
+			title_moto: "Motorcykel",
+			title_bako: "Barnvagn",
+			p_trak: "Det tog mer än ett halvt år att färdigställa,<br>klar i juli 2009<br>efter minst 200 arbetstimmar",
+			p_moto: "Tillverkad sommaren 2008,<br>det krävdes mer än 100 arbetstimmar<br>för att montera den.",
+			p_bako: "Denna barnvagn<br>tillverkades av minst 500 delar<br>sommaren 2007.",
+		},
+		fi: {
+			back: "← Takaisin", close: "✕ Sulje",
+			title_trak: "Traktori",
+			title_moto: "Moottoripyörä",
+			title_bako: "Lastenvaunut",
+			p_trak: "Valmistuminen kesti yli puoli vuotta,<br>valmis heinäkuussa 2009<br>vähintään 200 työtunnin jälkeen",
+			p_moto: "Valmistettu kesällä 2008,<br>kokoonpanoon tarvittiin<br>yli 100 työtuntia.",
+			p_bako: "Nämä lastenvaunut<br>valmistettiin vähintään 500 osasta<br>kesällä 2007.",
+		},
+		no: {
+			back: "← Tilbake", close: "✕ Lukk",
+			title_trak: "Traktor",
+			title_moto: "Motorsykkel",
+			title_bako: "Barnevogn",
+			p_trak: "Det tok mer enn et halvt år å fullføre,<br>ferdig i juli 2009<br>etter minst 200 arbeidstimer",
+			p_moto: "Laget sommeren 2008,<br>det krevdes mer enn 100 arbeidstimer<br>for montering.",
+			p_bako: "Denne barnevognen<br>ble laget av minst 500 deler<br>sommeren 2007.",
+		},
+		da: {
+			back: "← Tilbage", close: "✕ Luk",
+			title_trak: "Traktor",
+			title_moto: "Motorcykel",
+			title_bako: "Barnevogn",
+			p_trak: "Det tog mere end et halvt år at færdiggøre,<br>afsluttet i juli 2009<br>efter mindst 200 arbejdstimer",
+			p_moto: "Fremstillet i sommeren 2008,<br>der var brug for mere end 100 arbejdstimer<br>til samlingen.",
+			p_bako: "Denne barnevogn<br>blev lavet af mindst 500 dele<br>i sommeren 2007.",
+		},
+		is: {
+			back: "← Til baka", close: "✕ Loka",
+			title_trak: "Dráttarvél",
+			title_moto: "Mótorhjól",
+			title_bako: "Barnavagn",
+			p_trak: "Það tók meira en hálft ár að ljúka verkinu,<br>lokið í júlí 2009<br>eftir að minnsta kosti 200 vinnustundir",
+			p_moto: "Gert sumarið 2008,<br>það þurfti meira en 100 vinnustundir<br>til samsetningar.",
+			p_bako: "Þessi barnavagn<br>var gerður úr að minnsta kosti 500 hlutum<br>sumarið 2007.",
+		},
+		ca: {
+			back: "← Enrere", close: "✕ Tanca",
+			title_trak: "Tractor",
+			title_moto: "Motocicleta",
+			title_bako: "Cotxet",
+			p_trak: "Va trigar més de mig any a completar-se,<br>finalitzat el juliol de 2009<br>després d’almenys 200 hores de feina",
+			p_moto: "Fet a l’estiu de 2008,<br>van ser necessàries més de 100 hores de feina<br>per al muntatge.",
+			p_bako: "Aquest cotxet<br>es va fer amb almenys 500 peces<br>a l’estiu de 2007.",
+		},
+		ja: {
+			back: "← 戻る", close: "✕ 閉じる",
+			title_trak: "トラクター",
+			title_moto: "オートバイ",
+			title_bako: "ベビーカー",
+			p_trak: "完成までに半年以上かかり、<br>2009年7月に完成しました。<br>少なくとも200時間の作業を要しました。",
+			p_moto: "2008年の夏に制作され、<br>組み立てには<br>100時間以上の作業が必要でした。",
+			p_bako: "このベビーカーは<br>少なくとも500個の部品で作られ、<br>2007年の夏に完成しました。",
+		},
+		zh: {
+			back: "← 返回", close: "✕ 关闭",
+			title_trak: "拖拉机",
+			title_moto: "摩托车",
+			title_bako: "婴儿车",
+			p_trak: "制作历时半年以上，<br>于2009年7月完成，<br>至少投入了200个工时",
+			p_moto: "制作于2008年夏季，<br>组装过程<br>需要100多个工时。",
+			p_bako: "这辆婴儿车<br>由至少500个部件制成，<br>完成于2007年夏季。",
+		},
+		ko: {
+			back: "← 뒤로", close: "✕ 닫기",
+			title_trak: "트랙터",
+			title_moto: "오토바이",
+			title_bako: "유모차",
+			p_trak: "완성까지 반년 이상이 걸렸으며,<br>2009년 7월에 완성되었습니다.<br>최소 200시간의 작업이 필요했습니다.",
+			p_moto: "2008년 여름에 제작되었으며,<br>조립에<br>100시간 이상의 작업이 필요했습니다.",
+			p_bako: "이 유모차는<br>최소 500개의 부품으로 제작되었으며,<br>2007년 여름에 완성되었습니다.",
+		},
+		eo: {
+			back: "← Reen", close: "✕ Fermi",
+			title_trak: "Traktoro",
+			title_moto: "Motorciklo",
+			title_bako: "Infanĉaro",
+			p_trak: "La realigo daŭris pli ol duonan jaron,<br>finita en julio 2009<br>post almenaŭ 200 laborhoroj",
+			p_moto: "Farita en la somero de 2008,<br>pli ol 100 laborhoroj<br>estis necesaj por la muntado.",
+			p_bako: "Ĉi tiu infanĉaro<br>estis farita el almenaŭ 500 partoj<br>en la somero de 2007.",
+		},
+		lt: {
+			back: "← Atgal", close: "✕ Uždaryti",
+			title_trak: "Traktorius",
+			title_moto: "Motociklas",
+			title_bako: "Vaikiškas vežimėlis",
+			p_trak: "Gamyba truko daugiau nei pusę metų,<br>baigta 2009 m. liepą<br>po mažiausiai 200 darbo valandų",
+			p_moto: "Pagaminta 2008 m. vasarą,<br>surinkimui reikėjo<br>daugiau nei 100 darbo valandų.",
+			p_bako: "Šis vaikiškas vežimėlis<br>buvo pagamintas iš mažiausiai 500 dalių<br>2007 m. vasarą.",
+		},
+		lv: {
+			back: "← Atpakaļ", close: "✕ Aizvērt",
+			title_trak: "Traktors",
+			title_moto: "Motocikls",
+			title_bako: "Bērnu ratiņi",
+			p_trak: "Izgatavošana ilga vairāk nekā pusgadu,<br>pabeigta 2009. gada jūlijā<br>pēc vismaz 200 darba stundām",
+			p_moto: "Izgatavots 2008. gada vasarā,<br>salikšanai bija nepieciešamas<br>vairāk nekā 100 darba stundas.",
+			p_bako: "Šie bērnu ratiņi<br>tika izgatavoti no vismaz 500 detaļām<br>2007. gada vasarā.",
+		},
+		et: {
+			back: "← Tagasi", close: "✕ Sulge",
+			title_trak: "Traktor",
+			title_moto: "Mootorratas",
+			title_bako: "Lapsevanker",
+			p_trak: "Valmistamine kestis üle poole aasta,<br>valmis 2009. aasta juulis<br>vähemalt 200 töötunni järel",
+			p_moto: "Valmistatud 2008. aasta suvel,<br>kokkupanekuks kulus<br>rohkem kui 100 töötundi.",
+			p_bako: "See lapsevanker<br>valmistati vähemalt 500 osast<br>2007. aasta suvel.",
+		},
+		tr: {
+			back: "← Geri", close: "✕ Kapat",
+			title_trak: "Traktör",
+			title_moto: "Motosiklet",
+			title_bako: "Bebek Arabası",
+			p_trak: "Tamamlanması yarım yıldan fazla sürdü,<br>Temmuz 2009'da bitirildi<br>en az 200 saatlik çalışmanın ardından",
+			p_moto: "2008 yazında yapıldı,<br>montaj için<br>100 saatten fazla çalışma gerekti.",
+			p_bako: "Bu bebek arabası<br>en az 500 parçadan yapıldı<br>2007 yazında.",
+		},
+		el: {
+			back: "← Πίσω", close: "✕ Κλείσιμο",
+			title_trak: "Τρακτέρ",
+			title_moto: "Μοτοσικλέτα",
+			title_bako: "Καρότσι μωρού",
+			p_trak: "Η κατασκευή διήρκεσε περισσότερο από μισό χρόνο,<br>ολοκληρώθηκε τον Ιούλιο του 2009<br>μετά από τουλάχιστον 200 ώρες εργασίας",
+			p_moto: "Κατασκευάστηκε το καλοκαίρι του 2008,<br>για τη συναρμολόγηση<br>απαιτήθηκαν περισσότερες από 100 ώρες εργασίας.",
+			p_bako: "Αυτό το καρότσι μωρού<br>κατασκευάστηκε από τουλάχιστον 500 κομμάτια<br>το καλοκαίρι του 2007.",
+		},
+		sq: {
+			back: "← Kthehu", close: "✕ Mbyll",
+			title_trak: "Traktor",
+			title_moto: "Motoçikletë",
+			title_bako: "Karrocë fëmijësh",
+			p_trak: "Përfundimi zgjati më shumë se gjysmë viti,<br>u përfundua në korrik 2009<br>pas të paktën 200 orësh pune",
+			p_moto: "U realizua në verën e vitit 2008,<br>u deshën më shumë se 100 orë pune<br>për montimin.",
+			p_bako: "Kjo karrocë fëmijësh<br>u realizua nga të paktën 500 pjesë<br>në verën e vitit 2007.",
+		},
+		bg: {
+			back: "← Назад", close: "✕ Затвори",
+			title_trak: "Трактор",
+			title_moto: "Мотоциклет",
+			title_bako: "Бебешка количка",
+			p_trak: "Изработката отне повече от половин година,<br>завършена през юли 2009 г.<br>след поне 200 работни часа",
+			p_moto: "Изработен през лятото на 2008 г.,<br>за сглобяването бяха необходими<br>повече от 100 работни часа.",
+			p_bako: "Тази бебешка количка<br>е изработена от поне 500 части<br>през лятото на 2007 г.",
+		},
+		pl: {
+			back: "← Wstecz", close: "✕ Zamknij",
+			title_trak: "Traktor",
+			title_moto: "Motocykl",
+			title_bako: "Wózek dziecięcy",
+			p_trak: "Wykonanie zajęło ponad pół roku,<br>ukończone w lipcu 2009 roku<br>po co najmniej 200 godzinach pracy",
+			p_moto: "Wykonany latem 2008 roku,<br>do montażu potrzebnych było<br>ponad 100 godzin pracy.",
+			p_bako: "Ten wózek dziecięcy<br>został wykonany z co najmniej 500 elementów<br>latem 2007 roku.",
+		},
+		cs: {
+			back: "← Zpět", close: "✕ Zavřít",
+			title_trak: "Traktor",
+			title_moto: "Motocykl",
+			title_bako: "Kočárek",
+			p_trak: "Výroba trvala více než půl roku,<br>dokončeno v červenci 2009<br>po nejméně 200 hodinách práce",
+			p_moto: "Vyrobeno v létě 2008,<br>k montáži bylo potřeba<br>více než 100 hodin práce.",
+			p_bako: "Tento kočárek<br>byl vyroben z nejméně 500 dílů<br>v létě 2007.",
+		},
+		sk: {
+			back: "← Späť", close: "✕ Zavrieť",
+			title_trak: "Traktor",
+			title_moto: "Motocykel",
+			title_bako: "Detský kočík",
+			p_trak: "Výroba trvala viac ako pol roka,<br>dokončené v júli 2009<br>po najmenej 200 hodinách práce",
+			p_moto: "Vyrobené v lete 2008,<br>na montáž bolo potrebných<br>viac ako 100 hodín práce.",
+			p_bako: "Tento detský kočík<br>bol vyrobený z najmenej 500 dielov<br>v lete 2007.",
+		},
+		uk: {
+			back: "← Назад", close: "✕ Закрити",
+			title_trak: "Трактор",
+			title_moto: "Мотоцикл",
+			title_bako: "Дитячий візок",
+			p_trak: "Виготовлення тривало понад пів року,<br>завершено у липні 2009 року<br>після щонайменше 200 годин роботи",
+			p_moto: "Виготовлено влітку 2008 року,<br>для складання знадобилося<br>понад 100 годин роботи.",
+			p_bako: "Цей дитячий візок<br>було виготовлено щонайменше з 500 деталей<br>влітку 2007 року.",
+		},
+		ro: {
+			back: "← Înapoi", close: "✕ Închide",
+			title_trak: "Tractor",
+			title_moto: "Motocicletă",
+			title_bako: "Cărucior pentru copii",
+			p_trak: "Realizarea a durat mai mult de jumătate de an,<br>finalizat în iulie 2009<br>după cel puțin 200 de ore de muncă",
+			p_moto: "Realizat în vara anului 2008,<br>pentru asamblare au fost necesare<br>peste 100 de ore de muncă.",
+			p_bako: "Acest cărucior pentru copii<br>a fost realizat din cel puțin 500 de piese<br>în vara anului 2007.",
+		},
+		sr: {
+			back: "← Назад", close: "✕ Затвори",
+			title_trak: "Трактор",
+			title_moto: "Мотоцикл",
+			title_bako: "Беби колица",
+			p_trak: "Израда је трајала више од пола године,<br>завршена у јулу 2009.<br>након најмање 200 радних сати",
+			p_moto: "Израђено у лето 2008,<br>за монтажу је било потребно<br>више од 100 радних сати.",
+			p_bako: "Ова беби колица<br>израђена су од најмање 500 делова<br>у лето 2007.",
+		},
+		hr: {
+			back: "← Natrag", close: "✕ Zatvori",
+			title_trak: "Traktor",
+			title_moto: "Motocikl",
+			title_bako: "Dječja kolica",
+			p_trak: "Izrada je trajala više od pola godine,<br>dovršeno u srpnju 2009.<br>nakon najmanje 200 radnih sati",
+			p_moto: "Izrađeno u ljeto 2008.,<br>za sastavljanje je bilo potrebno<br>više od 100 radnih sati.",
+			p_bako: "Ova dječja kolica<br>izrađena su od najmanje 500 dijelova<br>u ljeto 2007.",
+		},
+		sl: {
+			back: "← Nazaj", close: "✕ Zapri",
+			title_trak: "Traktor",
+			title_moto: "Motocikel",
+			title_bako: "Otroški voziček",
+			p_trak: "Izdelava je trajala več kot pol leta,<br>zaključena julija 2009<br>po najmanj 200 delovnih urah",
+			p_moto: "Izdelano poleti 2008,<br>za sestavljanje je bilo potrebnih<br>več kot 100 delovnih ur.",
+			p_bako: "Ta otroški voziček<br>je bil izdelan iz najmanj 500 delov<br>poleti 2007.",
+		}
+	};	  
     let currentIndex = 0;
     const galleryData = [];
 
+    function changeLanguage(lang) {
+      if (!translations[lang]) lang = 'hu';
+      localStorage.setItem('preferredLang', lang);
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+      });
+      refreshGalleryData(lang);
+    }
+
+    function refreshGalleryData(lang) {
+      galleryData.length = 0;
+      const imgElements = document.querySelectorAll('.gallery-img');
+      imgElements.forEach((img) => {
+        const table = img.closest('table');
+        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const row = img.closest('tr');
+        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        
+        galleryData.push({
+          bigSrc: img.src,
+          title: translations[lang][captionKey] || "",
+          description: translations[lang][descKey] || ""
+        });
+      });
+    }
+
+    function openGallery(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const data = galleryData[currentIndex];
+      document.getElementById('lightbox-img').src = data.bigSrc;
+      document.getElementById('lb-title').innerText = data.title;
+      document.getElementById('lb-desc').innerText = data.description;
+    }
+
+    function changeImage(step, event) {
+      if (event) event.stopPropagation();
+      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+      updateLightbox();
+    }
+
+    function closeImage() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
     // Adatok begyűjtése az oldal betöltésekor
 	window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      changeLanguage(lang);
+
+      // Linkek frissítése a nyelv megtartásához
+      document.querySelectorAll('a').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.includes('lang=')) {
+          const sep = href.includes('?') ? '&' : '?';
+          a.setAttribute('href', `${href}${sep}lang=${lang}`);
+        }
+      });
+	  
 	  const imgElements = document.querySelectorAll('.gallery-img');
 	  imgElements.forEach((img) => {
 		const table = img.closest('table');
@@ -167,31 +533,6 @@
 	  });
 	};
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      document.getElementById('lightbox-img').src = data.bigSrc;
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
-
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
-
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
 	window.addEventListener('keydown', function (e) {
 	  const lightbox = document.getElementById('lightbox');
 	  const backBtn = document.querySelector('.back-button');
@@ -212,7 +553,7 @@
 		} else {
 		  // 3. Ha NINCS nyitva galéria, akkor visszalépünk a főoldalra
 		  setTimeout(() => {
-			window.location.href = "origami.htm";
+			window.location.href = "origami.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu');
 		  }, 200);
 		}
 	  }
