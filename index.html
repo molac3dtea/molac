@@ -72,17 +72,98 @@
       margin: 5px auto;
       perspective: 1000px;
       overflow: hidden;
-      background: rgba(0, 51, 102, 0.05);
-      border-radius: 1rem;
-      border: 1px solid rgba(0, 51, 102, 0.15);
+
+      /* ===== ULTIMATE "GYŰRT PAPÍR" ALAP ===== */
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,255,255,0.70), transparent 58%),
+        radial-gradient(circle at 72% 82%, rgba(0,0,0,0.22), transparent 62%),
+        linear-gradient(135deg,
+          rgba(255,255,255,0.65) 0%,
+          rgba(255,255,255,0.18) 30%,
+          rgba(0,0,0,0.22) 62%,
+          rgba(255,255,255,0.26) 78%,
+          rgba(0,0,0,0.18) 100%),
+        #e8e4dc;
+
+      border-radius: 1.2rem;
+      border: 1px solid rgba(0,0,0,0.28);
+
+      /* domborítás + mélyebb belső árnyék */
+      box-shadow:
+        inset 0 2px 6px rgba(255,255,255,0.65),
+        inset 0 -10px 18px rgba(0,0,0,0.30),
+        0 12px 28px rgba(0,0,0,0.22);
+
       mask-image: linear-gradient(to bottom, transparent, black 48%, black 52%, transparent);
       -webkit-mask-image: linear-gradient(to bottom, transparent, black 45%, black 55%, transparent);
-	  touch-action: none;
-	  -webkit-tap-highlight-color: transparent;
+
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+/* ===== ULTIMATE PAPER TEXTURE OVERLAY (noise + fibers) ===== */
+    .wheel-frame::before,
+    .wheel-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 80% at 25% 20%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(120% 80% at 75% 75%, rgba(0,0,0,0.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.22), rgba(0,0,0,0.18));
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      will-change: transform;
+      animation: paperDrift 18s ease-in-out infinite;
+    }
+
+    /* grain */
+    .wheel-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij4KPGZpbHRlciBpZD0ibiI+CiAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNSIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPgogIDxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIKICAgIDAgMCAwIDAgMC4zNQogICAgMCAwIDAgMCAwLjMzCiAgICAwIDAgMCAwIDAuMjgKICAgIDAgMCAwIDAuOTUgMCIvPgo8L2ZpbHRlcj4KPHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbHRlcj0idXJsKCNuKSIvPgo8L3N2Zz4=");
+      background-size: 240px 240px;
+      background-repeat: repeat;
+      background-position: center;
+      opacity: 0.42;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      will-change: transform;
+      filter: contrast(155%) brightness(120%);
+      transform: rotate(2deg);
+      animation: paperSpin 140s linear infinite;
+    }
+
+    /* fibers + extra crumple */
+    .wheel-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 80% at 25% 20%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(120% 80% at 75% 75%, rgba(0,0,0,0.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.22), rgba(0,0,0,0.18));
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      will-change: transform;
+      animation: paperDrift 18s ease-in-out infinite;
+    }
+
+    /* keep the 3D wheel above the texture */
+    .wheel-frame > * {
+      position: relative;
+      z-index: 1;
     }
 
     .wheel-list {
       position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
@@ -110,16 +191,29 @@
     /* AKTÍV NYELV: SÖTÉTKÉK */
     .lang-item.active {
       opacity: 1;
-      color: #002244; 
+      color: #002244;
       transform: scale(1.15) !important;
-      text-shadow: 0 0 2px rgba(255,255,255,0.8);
+
+      /* mikro “papír dombor” árnyék */
+      padding: 0.15rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.35);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.65),
+        inset 0 -1px 0 rgba(0,0,0,0.10),
+        0 2px 8px rgba(0,0,0,0.18);
+
+      text-shadow:
+        0 1px 0 rgba(255,255,255,0.65),
+        0 0 2px rgba(255,255,255,0.55);
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
     }
 
     /* ===== ORIGAMI HÁTTÉR ===== */
     .background-origami {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       overflow: hidden;
     }
 
@@ -139,7 +233,120 @@
       from { transform: rotate(0); }
       to { transform: rotate(360deg); }
     }
-  </style>
+
+    /* ===== PAPÍR TEXTÚRA – LASSÚ ÉLŐ MOZGÁS (GPU-barát) ===== */
+    @keyframes paperSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes paperDrift {
+      0%   { transform: rotate(0deg) translate3d(0,0,0) scale(1); }
+      50%  { transform: rotate(0.8deg) translate3d(6px,-4px,0) scale(1.02); }
+      100% { transform: rotate(0deg) translate3d(0,0,0) scale(1); }
+    }
+
+  
+    @media (prefers-reduced-motion: reduce) {
+      .wheel-frame::before, .wheel-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 80% at 25% 20%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(120% 80% at 75% 75%, rgba(0,0,0,0.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.22), rgba(0,0,0,0.18));
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      will-change: transform;
+      animation: paperDrift 18s ease-in-out infinite;
+    }
+    }
+  
+/* === ACTIVE LANGUAGE NARROW BACKPLATE FIX === */
+.lang-item.active {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.lang-item.active::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 76%;
+  max-width: 185px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    inset 0 -1px 0 rgba(0,0,0,0.10),
+    0 2px 8px rgba(0,0,0,0.18);
+  z-index: -1;
+}
+
+
+/* === ACTIVE BACKPLATE: subtle curved / barrel-like perspective === */
+.lang-item.active::before{
+  /* keep the existing sizing, but add a tiny 3D hint */
+  transform: translate(-50%, -50%) rotateX(24deg) scaleX(1.03);
+  transform-origin: center center;
+  /* a slightly stronger edge shading to feel curved */
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255,255,255,0.62) 0%,
+      rgba(255,255,255,0.32) 45%,
+      rgba(0,0,0,0.10) 78%,
+      rgba(0,0,0,0.14) 100%);
+}
+
+/* specular highlight stripe (very subtle) */
+.lang-item.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:72%;
+  max-width:175px;
+  height:10px;
+  transform: translate(-50%, -70%) rotateX(14deg) scaleX(1.03);
+  border-radius: 999px;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0.10));
+  opacity: .55;
+  pointer-events:none;
+  z-index: -1;
+  filter: blur(0.2px);
+}
+
+
+/* === CURVED BACKPLATE TUNING: taller light area === */
+.lang-item.active::before{
+  /* slightly taller plate */
+  height: 34px;
+  /* shift highlight upward inside gradient */
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255,255,255,0.70) 0%,
+      rgba(255,255,255,0.45) 55%,
+      rgba(0,0,0,0.08) 82%,
+      rgba(0,0,0,0.12) 100%);
+}
+
+.lang-item.active::after{
+  /* move specular highlight a bit lower and taller */
+  height: 12px;
+  transform: translate(-50%, -65%) rotateX(14deg) scaleX(1.03);
+  opacity: .6;
+}
+
+</style>
 </head>
 
 <body>
