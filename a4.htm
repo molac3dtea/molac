@@ -104,16 +104,16 @@
 <html>
 
 <body>
-    <a href="diagrams.htm" class="back-button">← Vissza</a>
+    <a href="diagrams.htm" class="back-button" data-lang-key="back">← Vissza</a>
     
     <table class="outer-table">
-        <caption>Kezdjük el a hajtogatást egy A4-es lappal</caption>
+        <caption data-lang-key="title_a4">Kezdjük el a hajtogatást egy A4-es lappal</caption>
         
         <tr>
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text">1.<br>Vágjunk le az aljából <br>kb. 4-5 cm-nyit.</td>
+                        <td class="step-text" data-lang-key="p_a4_1">1.<br>Vágjunk le az aljából <br>kb. 4-5 cm-nyit.</td>
                         <td><img src="pictures/diagrams/a4_1.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -124,7 +124,7 @@
             <td class="empty-spacer"></td> <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text">2.<br>Hosszában tépjük <br>vagy vágjuk félbe.</td>
+                        <td class="step-text" data-lang-key="p_a4_2">2.<br>Hosszában tépjük <br>vagy vágjuk félbe.</td>
                         <td><img src="pictures/diagrams/a4_2.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -135,7 +135,7 @@
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text">3.<br>Most keresztbe <br>vágjuk vagy tépjük félbe.</td>
+                        <td class="step-text" data-lang-key="p_a4_3">3.<br>Most keresztbe<br>vágjuk vagy tépjük félbe.</td>
                         <td><img src="pictures/diagrams/a4_4.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -148,14 +148,318 @@
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text">4.<br>Majd mind a 4 darabot <br>ismét keresztbe.</td>
+                        <td class="step-text" data-lang-key="p_a4_4">4.<br>Majd mind a 4 darabot <br>ismét keresztbe.</td>
                         <td><img src="pictures/diagrams/a4_8.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
+
+
+	<script>
+		const translations = {
+			hu: {
+				back: "← Vissza", close: "✕ Bezárás",
+				title_a4: "Kezdjük el a hajtogatást egy A4-es lappal", 
+				p_a4_1: "Vágjunk le az aljából <br>kb. 4-5 cm-nyit.",
+				p_a4_2: "Hosszában tépjük <br>vagy vágjuk félbe.",
+				p_a4_3: "Most keresztbe<br>vágjuk vagy tépjük félbe.",
+				p_a4_4: "Majd mind a 4 darabot <br>ismét keresztbe.",
+			},
+			en: {
+				back: "← Back", close: "✕ Close",
+				title_a4: "Let’s start folding with an A4 sheet",
+				p_a4_1: "Cut off about<br>4–5 cm from the bottom.",
+				p_a4_2: "Tear or cut it<br>in half lengthwise.",
+				p_a4_3: "Now tear or cut it<br>in half crosswise.",
+				p_a4_4: "Then cut or tear<br>all 4 pieces crosswise again.",
+			},
+			de: {
+				back: "← Zurück", close: "✕ Schließen",
+				title_a4: "Beginnen wir das Falten mit einem A4-Blatt",
+				p_a4_1: "Schneiden Sie unten<br>ca. 4–5 cm ab.",
+				p_a4_2: "Der Länge nach<br>reißen oder schneiden.",
+				p_a4_3: "Nun quer<br>reißen oder schneiden.",
+				p_a4_4: "Danach alle 4 Teile<br>nochmals quer reißen oder schneiden.",
+			},
+			es: {
+				back: "← Volver", close: "✕ Cerrar",
+				title_a4: "Empecemos a plegar con una hoja A4",
+				p_a4_1: "Corta de la parte inferior<br>unos 4–5 cm.",
+				p_a4_2: "Rómpela o córtala<br>por la mitad a lo largo.",
+				p_a4_3: "Ahora rómpela o córtala<br>por la mitad a lo ancho.",
+				p_a4_4: "Luego corta o rompe<br>las 4 piezas de nuevo a lo ancho.",
+			},
+			it: {
+				back: "← Indietro", close: "✕ Chiudi",
+				title_a4: "Iniziamo a piegare con un foglio A4",
+				p_a4_1: "Taglia dalla parte inferiore<br>circa 4–5 cm.",
+				p_a4_2: "Strappa o taglia<br>a metà nel senso della lunghezza.",
+				p_a4_3: "Ora strappa o taglia<br>a metà trasversalmente.",
+				p_a4_4: "Poi strappa o taglia<br>tutti e 4 i pezzi di nuovo trasversalmente.",
+			},
+			fr: {
+				back: "← Retour", close: "✕ Fermer",
+				title_a4: "Commençons à plier avec une feuille A4",
+				p_a4_1: "Coupez en bas<br>environ 4–5 cm.",
+				p_a4_2: "Déchirez ou coupez<br>en deux dans le sens de la longueur.",
+				p_a4_3: "Puis déchirez ou coupez<br>en deux transversalement.",
+				p_a4_4: "Ensuite, déchirez ou coupez<br>les 4 morceaux à nouveau transversalement.",
+			},
+			pt: {
+				back: "← Voltar", close: "✕ Fechar",
+				title_a4: "Vamos começar a dobrar com uma folha A4",
+				p_a4_1: "Corte da parte inferior<br>cerca de 4–5 cm.",
+				p_a4_2: "Rasgue ou corte<br>ao meio no sentido do comprimento.",
+				p_a4_3: "Agora rasgue ou corte<br>ao meio na largura.",
+				p_a4_4: "Depois rasgue ou corte<br>as 4 partes novamente na largura.",
+			},
+			nl: {
+				back: "← Terug", close: "✕ Sluiten",
+				title_a4: "Laten we beginnen met vouwen met een A4-vel",
+				p_a4_1: "Snijd onderaan<br>ongeveer 4–5 cm af.",
+				p_a4_2: "Scheur of snijd het<br>in de lengte doormidden.",
+				p_a4_3: "Snijd of scheur het nu<br>dwars doormidden.",
+				p_a4_4: "Snijd of scheur daarna<br>alle 4 stukken opnieuw dwars.",
+			},
+			sv: {
+				back: "← Tillbaka", close: "✕ Stäng",
+				title_a4: "Låt oss börja vika med ett A4-ark",
+				p_a4_1: "Klipp av längst ner<br>cirka 4–5 cm.",
+				p_a4_2: "Riv eller klipp det<br>på längden mitt itu.",
+				p_a4_3: "Riv eller klipp det nu<br>tvärs över mitt itu.",
+				p_a4_4: "Klipp eller riv sedan<br>alla 4 delarna tvärs över igen.",
+			},
+			fi: {
+				back: "← Takaisin", close: "✕ Sulje",
+				title_a4: "Aloitetaan taittelu A4-arkilla",
+				p_a4_1: "Leikkaa alareunasta<br>noin 4–5 cm.",
+				p_a4_2: "Revi tai leikkaa se<br>pituussuunnassa kahtia.",
+				p_a4_3: "Leikkaa tai revi se nyt<br>poikittain kahtia.",
+				p_a4_4: "Leikkaa tai revi sitten<br>kaikki 4 osaa uudelleen poikittain.",
+			},
+			no: {
+				back: "← Tilbake", close: "✕ Lukk",
+				title_a4: "La oss begynne å brette med et A4-ark",
+				p_a4_1: "Klipp av nederst<br>ca. 4–5 cm.",
+				p_a4_2: "Riv eller klipp det<br>i to på langs.",
+				p_a4_3: "Riv eller klipp det nå<br>i to på tvers.",
+				p_a4_4: "Deretter riv eller klipp<br>alle 4 delene på tvers igjen.",
+			},
+			da: {
+				back: "← Tilbage", close: "✕ Luk",
+				title_a4: "Lad os begynde at folde med et A4-ark",
+				p_a4_1: "Klip nederst<br>ca. 4–5 cm af.",
+				p_a4_2: "Riv eller klip det<br>over på langs.",
+				p_a4_3: "Riv eller klip det nu<br>over på tværs.",
+				p_a4_4: "Derefter riv eller klip<br>alle 4 stykker igen på tværs.",
+			},
+			is: {
+				back: "← Til baka", close: "✕ Loka",
+				title_a4: "Byrjum að brjóta með A4-blaði",
+				p_a4_1: "Klippið af neðst<br>um 4–5 cm.",
+				p_a4_2: "Rífið eða klippið það<br>í tvennt eftir endilöngu.",
+				p_a4_3: "Rífið eða klippið það nú<br>í tvennt þvert á.",
+				p_a4_4: "Síðan rífið eða klippið<br>alla 4 hlutana aftur þvert á.",
+			},
+			ca: {
+				back: "← Enrere", close: "✕ Tanca",
+				title_a4: "Comencem a plegar amb un full A4",
+				p_a4_1: "Talla de la part inferior<br>uns 4–5 cm.",
+				p_a4_2: "Estripa o talla’l<br>per la meitat longitudinalment.",
+				p_a4_3: "Ara estripa o talla’l<br>per la meitat transversalment.",
+				p_a4_4: "Després estripa o talla<br>les 4 peces de nou transversalment.",
+			},
+			ja: {
+				back: "← 戻る", close: "✕ 閉じる",
+				title_a4: "A4用紙から折り始めましょう",
+				p_a4_1: "下の部分を<br>約4～5cm切り取ります。",
+				p_a4_2: "縦方向に<br>半分に切るか破ります。",
+				p_a4_3: "次に横方向に<br>半分に切るか破ります。",
+				p_a4_4: "その後、4つの紙片を<br>もう一度横方向に切るか破ります。",
+			},
+			zh: {
+				back: "← 返回", close: "✕ 关闭",
+				title_a4: "让我们从一张 A4 纸开始折叠",
+				p_a4_1: "从底部剪掉<br>约 4–5 厘米。",
+				p_a4_2: "沿长度方向<br>撕开或剪成两半。",
+				p_a4_3: "现在沿横向<br>撕开或剪成两半。",
+				p_a4_4: "然后将这 4 片<br>再次横向撕开或剪开。",
+			},
+			ko: {
+				back: "← 뒤로", close: "✕ 닫기",
+				title_a4: "A4 용지로 접기를 시작해 봅시다",
+				p_a4_1: "아래쪽에서<br>약 4–5cm를 잘라냅니다.",
+				p_a4_2: "세로 방향으로<br>반으로 찢거나 자릅니다.",
+				p_a4_3: "이제 가로 방향으로<br>반으로 찢거나 자릅니다.",
+				p_a4_4: "그다음 4개의 조각을<br>다시 가로 방향으로 찢거나 자릅니다.",
+			},
+			eo: {
+				back: "← Reen", close: "✕ Fermi",
+				title_a4: "Ni komencu faldi per A4-folio",
+				p_a4_1: "Tranĉu de la malsupro<br>ĉirkaŭ 4–5 cm.",
+				p_a4_2: "Ŝiru aŭ tranĉu ĝin<br>laŭlonge duone.",
+				p_a4_3: "Nun ŝiru aŭ tranĉu ĝin<br>transverse duone.",
+				p_a4_4: "Poste ŝiru aŭ tranĉu<br>ĉiujn 4 pecojn denove transverse.",
+			},
+			lt: {
+				back: "← Atgal", close: "✕ Uždaryti",
+				title_a4: "Pradėkime lankstyti nuo A4 lapo",
+				p_a4_1: "Nukirpkite apačioje<br>apie 4–5 cm.",
+				p_a4_2: "Perplėškite arba perkirpkite<br>išilgai per pusę.",
+				p_a4_3: "Dabar perplėškite arba perkirpkite<br>skersai per pusę.",
+				p_a4_4: "Tada perplėškite arba perkirpkite<br>visas 4 dalis dar kartą skersai.",
+			},
+			lv: {
+				back: "← Atpakaļ", close: "✕ Aizvērt",
+				title_a4: "Sāksim locīt ar A4 lapu",
+				p_a4_1: "Nogriežam no apakšas<br>apmēram 4–5 cm.",
+				p_a4_2: "Pārplēšam vai pārgriežam<br>gareniski uz pusēm.",
+				p_a4_3: "Tagad pārplēšam vai pārgriežam<br>šķērsām uz pusēm.",
+				p_a4_4: "Pēc tam pārplēšam vai pārgriežam<br>visas 4 daļas vēlreiz šķērsām.",
+			},
+			et: {
+				back: "← Tagasi", close: "✕ Sulge",
+				title_a4: "Alustame voltimist A4-lehega",
+				p_a4_1: "Lõigake alt ära<br>umbes 4–5 cm.",
+				p_a4_2: "Rebige või lõigake see<br>pikisuunas pooleks.",
+				p_a4_3: "Nüüd rebige või lõigake see<br>ristisuunas pooleks.",
+				p_a4_4: "Seejärel rebige või lõigake<br>kõik 4 osa uuesti ristisuunas.",
+			},
+			tr: {
+				back: "← Geri", close: "✕ Kapat",
+				title_a4: "A4 kâğıdıyla katlamaya başlayalım",
+				p_a4_1: "Alt kısmından<br>yaklaşık 4–5 cm kesin.",
+				p_a4_2: "Uzunlamasına<br>ikiye yırtın veya kesin.",
+				p_a4_3: "Şimdi enlemesine<br>ikiye yırtın veya kesin.",
+				p_a4_4: "Daha sonra 4 parçanın<br>tamamını tekrar enlemesine yırtın veya kesin.",
+			},
+			el: {
+				back: "← Πίσω", close: "✕ Κλείσιμο",
+				title_a4: "Ας ξεκινήσουμε το δίπλωμα με ένα φύλλο A4",
+				p_a4_1: "Κόψτε από το κάτω μέρος<br>περίπου 4–5 εκ.",
+				p_a4_2: "Σκίστε ή κόψτε το<br>κατά μήκος στη μέση.",
+				p_a4_3: "Τώρα σκίστε ή κόψτε το<br>εγκάρσια στη μέση.",
+				p_a4_4: "Έπειτα σκίστε ή κόψτε<br>και τα 4 κομμάτια ξανά εγκάρσια.",
+			},
+			sq: {
+				back: "← Kthehu", close: "✕ Mbyll",
+				title_a4: "Le të fillojmë palosjen me një fletë A4",
+				p_a4_1: "Pritni nga pjesa e poshtme<br>rreth 4–5 cm.",
+				p_a4_2: "Shqyejeni ose priteni<br>për së gjati në gjysmë.",
+				p_a4_3: "Tani shqyejeni ose priteni<br>për së gjeri në gjysmë.",
+				p_a4_4: "Më pas shqyejeni ose priteni<br>të gjitha 4 pjesët përsëri për së gjeri.",
+			},
+			bg: {
+				back: "← Назад", close: "✕ Затвори",
+				title_a4: "Нека започнем сгъването с лист A4",
+				p_a4_1: "Отрежете отдолу<br>около 4–5 см.",
+				p_a4_2: "Скъсайте или разрежете го<br>по дължина наполовина.",
+				p_a4_3: "Сега скъсайте или разрежете го<br>напречно наполовина.",
+				p_a4_4: "След това скъсайте или разрежете<br>всичките 4 части отново напречно.",
+			},
+			pl: {
+				back: "← Wstecz", close: "✕ Zamknij",
+				title_a4: "Zacznijmy składanie od kartki A4",
+				p_a4_1: "Odetnij od dołu<br>około 4–5 cm.",
+				p_a4_2: "Podrzyj lub przetnij ją<br>wzdłuż na pół.",
+				p_a4_3: "Teraz podrzyj lub przetnij ją<br>w poprzek na pół.",
+				p_a4_4: "Następnie podrzyj lub przetnij<br>wszystkie 4 części ponownie w poprzek.",
+			},
+			cs: {
+				back: "← Zpět", close: "✕ Zavřít",
+				title_a4: "Začněme skládání s listem A4",
+				p_a4_1: "Odstřihněte dole<br>asi 4–5 cm.",
+				p_a4_2: "Roztrhněte nebo rozstřihněte ji<br>podélně napůl.",
+				p_a4_3: "Nyní ji roztrhněte nebo rozstřihněte<br>příčně napůl.",
+				p_a4_4: "Poté roztrhněte nebo rozstřihněte<br>všechny 4 části znovu příčně.",
+			},
+			sk: {
+				back: "← Späť", close: "✕ Zavrieť",
+				title_a4: "Začnime skladanie s papierom A4",
+				p_a4_1: "Odstrihnite zospodu<br>asi 4–5 cm.",
+				p_a4_2: "Roztrhnite alebo odstrihnite ho<br>pozdĺžne na polovicu.",
+				p_a4_3: "Teraz ho roztrhnite alebo odstrihnite<br>priečne na polovicu.",
+				p_a4_4: "Potom roztrhnite alebo odstrihnite<br>všetky 4 časti ešte raz priečne.",
+			},
+			uk: {
+				back: "← Назад", close: "✕ Закрити",
+				title_a4: "Почнімо складання з аркуша A4",
+				p_a4_1: "Відріжте знизу<br>приблизно 4–5 см.",
+				p_a4_2: "Розірвіть або розріжте його<br>вздовж навпіл.",
+				p_a4_3: "Тепер розірвіть або розріжте його<br>впоперек навпіл.",
+				p_a4_4: "Потім розірвіть або розріжте<br>усі 4 частини ще раз впоперек.",
+			},
+			ro: {
+				back: "← Înapoi", close: "✕ Închide",
+				title_a4: "Să începem plierea cu o coală A4",
+				p_a4_1: "Tăiați din partea de jos<br>aproximativ 4–5 cm.",
+				p_a4_2: "Rupeți sau tăiați-o<br>pe lungime în două.",
+				p_a4_3: "Acum rupeți sau tăiați-o<br>pe lățime în două.",
+				p_a4_4: "Apoi rupeți sau tăiați<br>toate cele 4 bucăți din nou pe lățime.",
+			},
+			sr: {
+				back: "← Назад", close: "✕ Затвори",
+				title_a4: "Почнимо савијање са A4 папиром",
+				p_a4_1: "Одрежите одоздо<br>око 4–5 cm.",
+				p_a4_2: "Поцепајте или исеците га<br>уздужно на пола.",
+				p_a4_3: "Сада поцепајте или исеците га<br>попречно на пола.",
+				p_a4_4: "Затим поцепајте или исеците<br>сва 4 дела поново попречно.",
+			},
+			hr: {
+				back: "← Natrag", close: "✕ Zatvori",
+				title_a4: "Započnimo savijanje s A4 papirom",
+				p_a4_1: "Odrežite s donje strane<br>oko 4–5 cm.",
+				p_a4_2: "Poderite ili prerežite ga<br>uzdužno na pola.",
+				p_a4_3: "Sada poderite ili prerežite ga<br>poprečno na pola.",
+				p_a4_4: "Zatim poderite ili prerežite<br>sva 4 dijela ponovno poprečno.",
+			},
+			sl: {
+				back: "← Nazaj", close: "✕ Zapri",
+				title_a4: "Začnimo z zgibanjem z listom A4",
+				p_a4_1: "Odrežite spodaj<br>približno 4–5 cm.",
+				p_a4_2: "Raztrgajte ali prerežite ga<br>vzdolžno na polovico.",
+				p_a4_3: "Zdaj raztrgajte ali prerežite ga<br>prečno na polovico.",
+				p_a4_4: "Nato raztrgajte ali prerežite<br>vse 4 dele ponovno prečno.",
+			}	
+		};
+
+		let galleryData = [];
+		let currentIndex = 0;
+		
+		function changeLanguage(lang) {
+			if (!translations[lang]) lang = 'hu';
+			localStorage.setItem('preferredLang', lang);
+			document.documentElement.lang = lang;
+
+			document.querySelectorAll('[data-lang-key]').forEach(el => {
+				const key = el.getAttribute('data-lang-key');
+				if (translations[lang][key]) {
+					el.innerHTML = translations[lang][key];
+				}
+			});
+		}
+
+		window.onload = function() {
+			const urlParams = new URLSearchParams(window.location.search);
+			const lang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+			changeLanguage(lang);
+		};		
+		
+		window.addEventListener('keydown', function (e) {
+			const backBtn = document.querySelector('.back-button');
+
+			if (e.key === "Escape") {
+				if (backBtn) {
+					backBtn.classList.add('back-button-active');
+				}
+				setTimeout(() => {
+					window.location.href = "diagrams.htm?lang=" + (localStorage.getItem('preferredLang') || 'hu'); 
+				}, 200);
+			}
+		});
+		
+	  </script>
 </body>
 </html>
-
-
