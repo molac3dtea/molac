@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Orders | molac</title>
+  <meta name="description" content="Fejlesztés alatt – térj vissza később." />
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#f6f6f6;
+      overflow:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url("pictures/background/windmill2plus_.jpg") center/cover no-repeat;
+      opacity:.15;
+      z-index:-2;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:linear-gradient(90deg,#f6f6f6 0%,transparent 20%,transparent 80%,#f6f6f6 100%);
+      z-index:-1;
+    }
+    .box{
+      width:min(520px,calc(100vw - 32px));
+      text-align:center;
+      background:rgba(255,255,255,.95);
+      border-radius:24px;
+      padding:22px 18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.14);
+      border:1px solid rgba(0,51,102,.12);
+    }
+    .box h1{
+      margin:0 0 10px 0;
+      font-size:1.6rem;
+      font-weight:800;
+      color:#003366;
+      letter-spacing:.2px;
+    }
+    .box p{
+      margin:0;
+      font-size:1.05rem;
+      color:#223;
+      line-height:1.35;
+    }
+    .back{
+      display:inline-block;
+      margin-top:14px;
+      font-size:.95rem;
+      color:#003366;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,51,102,.18);
+      background:rgba(0,51,102,.04);
+    }
+    .back:hover{ background:rgba(0,51,102,.07); }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h1 data-lang-key="title">Fejlesztés alatt</h1>
+    <p data-lang-key="msg">Készül az oldal. Kérlek, nézz vissza később!</p>
+    <a class="back" id="backLink" href="index.html" data-lang-key="back">← Vissza</a>
+  </div>
+
+<script>
+  const translations = {
+    hu:{ title:"Fejlesztés alatt", msg:"Készül az oldal. Kérlek, nézz vissza később!", back:"← Vissza" },
+    en:{ title:"Under development", msg:"This page is being built. Please check back later!", back:"← Back" },
+    de:{ title:"In Entwicklung", msg:"Diese Seite wird gerade erstellt. Bitte schauen Sie später wieder vorbei!", back:"← Zurück" },
+    es:{ title:"En desarrollo", msg:"Esta página está en construcción. ¡Vuelve más tarde, por favor!", back:"← Volver" },
+    it:{ title:"In sviluppo", msg:"Questa pagina è in fase di realizzazione. Per favore torna più tardi!", back:"← Indietro" },
+    fr:{ title:"En cours de développement", msg:"Cette page est en construction. Merci de revenir plus tard !", back:"← Retour" },
+    pt:{ title:"Em desenvolvimento", msg:"Esta página está a ser construída. Volte mais tarde, por favor!", back:"← Voltar" },
+    nl:{ title:"In ontwikkeling", msg:"Deze pagina wordt gebouwd. Kom later nog eens terug!", back:"← Terug" },
+    sv:{ title:"Under utveckling", msg:"Den här sidan byggs just nu. Kom tillbaka senare!", back:"← Tillbaka" },
+    fi:{ title:"Kehitteillä", msg:"Tämä sivu on rakenteilla. Tule myöhemmin uudelleen!", back:"← Takaisin" },
+    no:{ title:"Under utvikling", msg:"Denne siden er under bygging. Kom tilbake senere!", back:"← Tilbake" },
+    da:{ title:"Under udvikling", msg:"Denne side er under opbygning. Kom venligst tilbage senere!", back:"← Tilbage" },
+    is:{ title:"Í vinnslu", msg:"Þessi síða er í vinnslu. Komdu aftur síðar!", back:"← Til baka" },
+    ca:{ title:"En desenvolupament", msg:"Aquesta pàgina s’està construint. Torna més tard, si us plau!", back:"← Enrere" },
+    ja:{ title:"開発中", msg:"このページは現在作成中です。しばらくしてからもう一度お越しください。", back:"← 戻る" },
+    zh:{ title:"开发中", msg:"该页面正在建设中。请稍后再来！", back:"← 返回" },
+    ko:{ title:"개발 중", msg:"이 페이지는 현재 제작 중입니다. 나중에 다시 방문해 주세요!", back:"← 뒤로" },
+    eo:{ title:"Evoluanta", msg:"Ĉi tiu paĝo estas konstruata. Bonvolu reveni poste!", back:"← Reen" },
+    lt:{ title:"Kuriama", msg:"Šis puslapis kuriamas. Prašome užsukti vėliau!", back:"← Atgal" },
+    lv:{ title:"Izstrādē", msg:"Šī lapa tiek veidota. Lūdzu, iegriezieties vēlāk!", back:"← Atpakaļ" },
+    et:{ title:"Arendamisel", msg:"See leht on valmimisel. Palun tule hiljem tagasi!", back:"← Tagasi" },
+    tr:{ title:"Geliştirme aşamasında", msg:"Bu sayfa hazırlanıyor. Lütfen daha sonra tekrar uğrayın!", back:"← Geri" },
+    el:{ title:"Υπό ανάπτυξη", msg:"Η σελίδα είναι υπό κατασκευή. Παρακαλώ επιστρέψτε αργότερα!", back:"← Πίσω" },
+    sq:{ title:"Në zhvillim", msg:"Kjo faqe është duke u ndërtuar. Ju lutem, kthehuni më vonë!", back:"← Kthehu" },
+    bg:{ title:"В процес на разработка", msg:"Страницата се изгражда. Моля, върнете се по-късно!", back:"← Назад" },
+    pl:{ title:"W przygotowaniu", msg:"Ta strona jest w budowie. Wróć proszę później!", back:"← Wstecz" },
+    cs:{ title:"Ve vývoji", msg:"Tato stránka se připravuje. Vraťte se prosím později!", back:"← Zpět" },
+    sk:{ title:"Vo vývoji", msg:"Táto stránka sa pripravuje. Prosím, vráťte sa neskôr!", back:"← Späť" },
+    uk:{ title:"У розробці", msg:"Ця сторінка створюється. Будь ласка, поверніться пізніше!", back:"← Назад" },
+    ro:{ title:"În dezvoltare", msg:"Această pagină este în lucru. Te rugăm să revii mai târziu!", back:"← Înapoi" },
+    sr:{ title:"У изради", msg:"Ова страница је у припреми. Молимо вас да навратите касније!", back:"← Назад" },
+    hr:{ title:"U izradi", msg:"Ova stranica je u izradi. Molimo vas, vratite se kasnije!", back:"← Natrag" },
+    sl:{ title:"V izdelavi", msg:"Ta stran je v izdelavi. Prosimo, vrnite se pozneje!", back:"← Nazaj" }
+  };
+
+  function getLang(){
+    const p = new URLSearchParams(location.search);
+    const fromUrl = (p.get("lang")||"").toLowerCase();
+    const stored = (localStorage.getItem("preferredLang")||"").toLowerCase();
+    const cand = (fromUrl || stored || "hu");
+    if (translations[cand]) return cand;
+    return translations.en ? "en" : "hu";
+  }
+
+  function applyLang(lang){
+    localStorage.setItem("preferredLang", lang);
+    document.documentElement.lang = lang;
+
+    const dict = translations[lang] || translations.hu;
+    document.querySelectorAll("[data-lang-key]").forEach(el=>{
+      const key = el.getAttribute("data-lang-key");
+      if (dict[key] != null) el.innerHTML = dict[key];
+    });
+
+    // Back link: keep lang
+    const backLink = document.getElementById("backLink");
+    const base = backLink.getAttribute("href").split("?")[0];
+    backLink.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+  }
+
+  window.onload = ()=> applyLang(getLang());
+</script>
+</body>
+</html>
