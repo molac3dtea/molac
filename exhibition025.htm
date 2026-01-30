@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,101 +80,119 @@
 
   <div class="page-container">
     <table>
-		<caption>3. Internetes Bélyeggyűjtő Klub Találkozó, Dabas<br>2009. május 1.</caption>
+		<caption lang-key="cap">3. Internetes Bélyeggyűjtő Klub Találkozó, Dabas<br>2009. május 1.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"3. Internetes Bélyeggyűjtő Klub Találkozó, Dabas<br>2009. május 1."},
+		en:{back:"← Back",close:"✕ Close",cap:"3rd Online Stamp Collectors Club Meeting, Dabas<br>1 May 2009"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"3. Treffen des Internet-Briefmarkensammlerklubs, Dabas<br>1. Mai 2009"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"3.º Encuentro del Club de Coleccionistas de Sellos en Internet, Dabas<br>1 de mayo de 2009"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"3° Incontro del Club Internet dei Collezionisti di Francobolli, Dabas<br>1 maggio 2009"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"3e Rencontre du Club Internet des Collectionneurs de Timbres, Dabas<br>1 mai 2009"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"3º Encontro do Clube Online de Colecionadores de Selos, Dabas<br>1 de maio de 2009"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"3e bijeenkomst van de Online Postzegelverzamelaarsclub, Dabas<br>1 mei 2009"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"3:e mötet för Internetklubben för frimärkssamlare, Dabas<br>1 maj 2009"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"3. verkkopostimerkkikerhon tapaaminen, Dabas<br>1. toukokuuta 2009"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"3. møte i nettklubben for frimerkesamlere, Dabas<br>1. mai 2009"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"3. møde i internetklubben for frimærkesamlere, Dabas<br>1. maj 2009"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"3. fundur netklúbbs frímerkjasafnara, Dabas<br>1. maí 2009"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"3a Trobada del Club d’Internet de Col·leccionistes de Segells, Dabas<br>1 de maig de 2009"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第3回 インターネット切手収集クラブ会合（ダバシュ）<br>2009年5月1日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第三届网络集邮俱乐部聚会，达巴什<br>2009年5月1日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제3회 인터넷 우표 수집가 클럽 모임, 다바시<br>2009년 5월 1일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"3-a Renkontiĝo de la Interreta Filatelista Klubo, Dabas<br>1 majo 2009"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"3-asis internetinio pašto ženklų kolekcininkų klubo susitikimas, Dabas<br>2009 m. gegužės 1 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"3. interneta pastmarku kolekcionāru kluba tikšanās, Dabas<br>2009. gada 1. maijs"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"3. interneti margikogujate klubi kohtumine, Dabas<br>1. mai 2009"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"3. İnternet Pul Koleksiyoncuları Kulübü Toplantısı, Dabas<br>1 Mayıs 2009"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"3η Συνάντηση του Διαδικτυακού Συλλόγου Φιλοτελιστών, Dabas<br>1 Μαΐου 2009"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Takimi i 3-të i Klubut Online të Koleksionistëve të Pullave, Dabas<br>1 maj 2009"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"3-та среща на интернет клуба на филателистите, Дабаш<br>1 май 2009"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"3. spotkanie internetowego klubu filatelistów, Dabas<br>1 maja 2009"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"3. setkání internetového klubu filatelistů, Dabas<br>1. května 2009"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"3. stretnutie internetového klubu filatelistov, Dabas<br>1. mája 2009"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"3-тя зустріч інтернет-клубу філателістів, Дабаш<br>1 травня 2009"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"A 3-a întâlnire a clubului online al colecționarilor de timbre, Dabas<br>1 mai 2009"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"3. сусрет интернет клуба филателиста, Дабаш<br>1. мај 2009."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"3. susret internetskog kluba filatelista, Dabas<br>1. svibnja 2009."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"3. srečanje spletnega kluba filatelistov, Dabas<br>1. maj 2009"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

@@ -74,10 +74,10 @@
 
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -91,25 +91,25 @@
 
   <div class="page-container">
     <table>
-      <caption data-lang-key="tea_title">Teáskanna és társai</caption>
+      <caption lang-key="tea_title">Teáskanna és társai</caption>
       <tr>
-        <td data-lang-key="p_teapot1">Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá</td>
+        <td lang-key="p_teapot1">Ez volt az 1. teáskannám<br>900 db tasak kellett hozzá</td>
         <td><img src="pictures/tea&co/teapot.jpg" class="gallery-img" onclick="openGallery(0)"></td>
       </tr>
       <tr>
-        <td data-lang-key="p_cup1">Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült</td>
+        <td lang-key="p_cup1">Ez a csésze<br>Herbáriás kamillás<br>tasakokból készült</td>
         <td><img src="pictures/tea&co/herbcsesze.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>
       <tr>
-        <td data-lang-key="p_cup2">Ez meg Liptonból</td>
+        <td lang-key="p_cup2">Ez meg Liptonból</td>
         <td><img src="pictures/tea&co/liptoncsesze.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>    
       <tr>
-        <td data-lang-key="p_cup3">Ez pedig TESCO-sból</td>
+        <td lang-key="p_cup3">Ez pedig TESCO-sból</td>
         <td><img src="pictures/tea&co/tescocsesze.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>    	  
       <tr class="separator-dotted">
-        <td rowspan="3" data-lang-key="p_cup_pot">Csészék és kanna<br>együtt</td>
+        <td rowspan="3" lang-key="p_cup_pot">Csészék és kanna<br>együtt</td>
         <td><img src="pictures/tea&co/teaset1.jpg" class="gallery-img" onclick="openGallery(4)"></td>
       </tr>
       <tr>
@@ -119,7 +119,7 @@
         <td><img src="pictures/tea&co/cseszek.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>
       <tr class="separator-dotted">
-        <td rowspan="2" data-lang-key="p_pot_pick">Ez a kanna már a<br>Pickwicknél lakik</td>
+        <td rowspan="2" lang-key="p_pot_pick">Ez a kanna már a<br>Pickwicknél lakik</td>
         <td><img src="pictures/tea&co/pickwickteapot.jpg" class="gallery-img" onclick="openGallery(7)"></td>
       </tr>
       <tr>
@@ -128,21 +128,21 @@
 	</table>
 
 	<table>
-      <caption data-lang-key="tea_title2004">2004-es év termése</caption>
+      <caption lang-key="tea_title2004">2004-es év termése</caption>
       <tr>
-        <td data-lang-key="p_candy">Egy cukorkás kínáló tálka</td>
+        <td lang-key="p_candy">Egy cukorkás kínáló tálka</td>
         <td><img src="pictures/tea&co/kinalo.jpg" class="gallery-img" onclick="openGallery(9)"></td>
       </tr>
       <tr>
-        <td data-lang-key="p_teapot2">Egy újabb teáskanna</td>
+        <td lang-key="p_teapot2">Egy újabb teáskanna</td>
         <td><img src="pictures/tea&co/tea041222.jpg" class="gallery-img" onclick="openGallery(10)"></td>
       </tr>
 	</table>
 	
 	<table>
-      <caption data-lang-key="tea_title2007">2007-es év termése</caption>
+      <caption lang-key="tea_title2007">2007-es év termése</caption>
       <tr>
-        <td data-lang-key="p_teapot3">Egy teáskanna<br>egy fiú és egy lány<br>bögrével</td>
+        <td lang-key="p_teapot3">Egy teáskanna<br>egy fiú és egy lány<br>bögrével</td>
         <td><img src="pictures/tea&co/teaset3.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>
 	</table>
@@ -654,8 +654,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -666,9 +666,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

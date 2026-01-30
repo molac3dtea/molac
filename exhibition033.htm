@@ -60,7 +60,7 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -210,7 +210,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

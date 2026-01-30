@@ -66,10 +66,10 @@
 
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,40 +83,40 @@
 
   <div class="page-container">
     <table>
-      <caption data-lang-key="title_chain">Lánchíd</caption>
+      <caption lang-key="title_chain">Lánchíd</caption>
       <tr>
-        <td data-lang-key="p_chain">2010. nyarára<br>készült el és a<br>"Bridges Pécs2010"<br>Világkonferencián<br>volt kiállítva</td>
+        <td lang-key="p_chain">2010. nyarára<br>készült el és a<br>"Bridges Pécs2010"<br>Világkonferencián<br>volt kiállítva</td>
         <td><img src="pictures/buildings/lanchid1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/buildings/lanchid2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
 	</table>
 	
     <table>
-      <caption data-lang-key="title_shouse">Kisház</caption>
+      <caption lang-key="title_shouse">Kisház</caption>
       <tr>
-        <td data-lang-key="p_shouse">2009. nyarán<br>házavatóra készült</td>
+        <td lang-key="p_shouse">2009. nyarán<br>házavatóra készült</td>
         <td><img src="pictures/buildings/kishaz.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
 	</table>
 	
     <table>
-      <caption data-lang-key="title_windmill">Szélmalom</caption>
+      <caption lang-key="title_windmill">Szélmalom</caption>
       <tr>
-        <td data-lang-key="p_windmill1">A 2007-es<br>Origami Találkozóra<br>készült el</td>
+        <td lang-key="p_windmill1">A 2007-es<br>Origami Találkozóra<br>készült el</td>
         <td><img src="pictures/buildings/windmill.jpg" class="gallery-img" onclick="openGallery(3)"></td>
 		<td><img src="pictures/buildings/windmill2.jpg" class="gallery-img" onclick="openGallery(4)"></td>
 		<td><img src="pictures/buildings/windmill3.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>	  
       <tr>
-        <td colspan="2" data-lang-key="p_windmill2">2008 tavaszán megújult a<br>szélmalom vitorlája</td>
+        <td colspan="2" lang-key="p_windmill2">2008 tavaszán megújult a<br>szélmalom vitorlája</td>
         <td colspan="2"><img src="pictures/buildings/windmill4.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption data-lang-key="title_gth">Gárdonyi-Tea-Ház</caption>
+      <caption lang-key="title_gth">Gárdonyi-Tea-Ház</caption>
       <tr>
-        <td rowspan="2" data-lang-key="p_gth">A ház tégláit 900 db<br>Gárdonyi Teaházas tasakból<br>állítottam össze</td>
+        <td rowspan="2" lang-key="p_gth">A ház tégláit 900 db<br>Gárdonyi Teaházas tasakból<br>állítottam össze</td>
         <td><img src="pictures/buildings/teahaz1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/buildings/teahaz2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>	  
@@ -127,13 +127,13 @@
 	</table>
 	
     <table>
-      <caption data-lang-key="title_gyula">Gyulai vár</caption>
+      <caption lang-key="title_gyula">Gyulai vár</caption>
       <tr>
-        <td data-lang-key="p_gyula1">12500 db elemet használtam<br>a vár tégláihoz</td>
+        <td lang-key="p_gyula1">12500 db elemet használtam<br>a vár tégláihoz</td>
         <td><img src="pictures/buildings/gyula041121.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
       <tr>
-        <td data-lang-key="p_gyula2">Elkészültek az<br>udvari épületek is</td>
+        <td lang-key="p_gyula2">Elkészültek az<br>udvari épületek is</td>
         <td><img src="pictures/buildings/gyula041122.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
 	</table>	
@@ -647,8 +647,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -659,9 +659,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

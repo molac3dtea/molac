@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +80,9 @@
 
   <div class="page-container">
     <table>
-		<caption>2007. november - december<br>Százszorszép Gyermekház<br>Szeged</caption>
+		<caption lang-key="cap">2007. november - december<br>Százszorszép Gyermekház<br>Szeged</caption>
 		<tr>
-			<td rowspan="2">A kiállítás anyagát<br>Sági Judit<br>gyűjtötte össze</td>
+			<td rowspan="2" lang-key="kiall">A kiállítás anyagát<br>Sági Judit<br>gyűjtötte össze</td>
 			<td><img src="pictures/kiallitas/022/tyukos.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/022/malmos.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -90,7 +90,7 @@
 			<td colspan="2"><img src="pictures/kiallitas/022/lepkes.jpg" class="gallery-item gallery-img"></td>
 		</tr>		
 		<tr>
-			<td rowspan="2">Többféle stílus<br>gyűlt össze</td>
+			<td rowspan="2" lang-key="tobb">Többféle stílus<br>gyűlt össze</td>
 			<td><img src="pictures/kiallitas/022/sagi.jpg" class="gallery-item gallery-img"></td>
 			<td rowspan="2"><img src="pictures/kiallitas/022/somos.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -98,7 +98,7 @@
 			<td><img src="pictures/kiallitas/022/sebok.jpg" class="gallery-item gallery-img"></td>
 		</tr>
 		<tr>
-			<td>Néhány<br>kuszudama</td>
+			<td lang-key="kuszu">Néhány<br>kuszudama</td>
 			<td><img src="pictures/kiallitas/022/kuszu1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/022/kuszu2.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -110,93 +110,164 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"2007. november - december<br>Százszorszép Gyermekház<br>Szeged",kiall:"A kiállítás anyagát<br>Sági Judit<br>gyűjtötte össze",tobb:"Többféle stílus<br>gyűlt össze",kuszu:"Néhány<br>kuszudama is"},
+		en:{back:"← Back",close:"✕ Close",cap:"November–December 2007<br>Százszorszép Children’s House<br>Szeged",kiall:"The exhibition material was<br>collected by<br>Judit Sági",tobb:"Various styles<br>came together",kuszu:"Also a few<br>kusudamas"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"November–Dezember 2007<br>Százszorszép Kinderhaus<br>Szeged",kiall:"Das Ausstellungsmaterial wurde<br>von<br>Judit Sági gesammelt",tobb:"Mehrere Stilrichtungen<br>kamen zusammen",kuszu:"Auch einige<br>Kusudamas"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Noviembre–diciembre de 2007<br>Casa Infantil Százszorszép<br>Szeged",kiall:"El material de la exposición fue<br>recopilado por<br>Judit Sági",tobb:"Se reunieron<br>varios estilos",kuszu:"También algunos<br>kusudamas"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Novembre–dicembre 2007<br>Casa dei Bambini Százszorszép<br>Szeged",kiall:"Il materiale della mostra è stato<br>raccolto da<br>Judit Sági",tobb:"Si sono riuniti<br>diversi stili",kuszu:"Anche alcune<br>kusudama"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Novembre–décembre 2007<br>Maison d’enfants Százszorszép<br>Szeged",kiall:"Le matériel de l’exposition a été<br>rassemblé par<br>Judit Sági",tobb:"Plusieurs styles<br>se sont réunis",kuszu:"Aussi quelques<br>kusudamas"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Novembro–dezembro de 2007<br>Casa Infantil Százszorszép<br>Szeged",kiall:"O material da exposição foi<br>reunido por<br>Judit Sági",tobb:"Vários estilos<br>se reuniram",kuszu:"Também alguns<br>kusudamas"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"November–december 2007<br>Százszorszép Kinderhuis<br>Szeged",kiall:"Het tentoonstellingsmateriaal werd<br>verzameld door<br>Judit Sági",tobb:"Verschillende stijlen<br>kwamen samen",kuszu:"Ook enkele<br>kusudama’s"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"November–december 2007<br>Százszorszép barnhus<br>Szeged",kiall:"Utställningsmaterialet samlades<br>av<br>Judit Sági",tobb:"Flera stilar<br>samlades",kuszu:"Även några<br>kusudamas"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Marraskuu–joulukuu 2007<br>Százszorszép lasten talo<br>Szeged",kiall:"Näyttelyn materiaalin kokosi<br>Judit Sági",tobb:"Useita tyylejä<br>yhdistyi",kuszu:"Myös muutama<br>kusudama"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"November–desember 2007<br>Százszorszép barnehus<br>Szeged",kiall:"Utstillingsmaterialet ble samlet<br>av<br>Judit Sági",tobb:"Flere stiler<br>ble samlet",kuszu:"Også noen<br>kusudamaer"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"November–december 2007<br>Százszorszép børnehus<br>Szeged",kiall:"Udstillingsmaterialet blev samlet<br>af<br>Judit Sági",tobb:"Flere stilarter<br>samledes",kuszu:"Også nogle<br>kusudamaer"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Nóvember–desember 2007<br>Százszorszép barnahús<br>Szeged",kiall:"Sýningarefnið var safnað af<br>Judit Sági",tobb:"Ýmsir stílar<br>sameinuðust",kuszu:"Einnig nokkrar<br>kusudama"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Novembre–desembre de 2007<br>Casa Infantil Százszorszép<br>Szeged",kiall:"El material de l’exposició va ser<br>recollit per<br>Judit Sági",tobb:"Diversos estils<br>es van reunir",kuszu:"També alguns<br>kusudames"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"2007年11月～12月<br>サーザスゾルシェープ子供の家<br>セゲド",kiall:"展示資料は<br>シャーギ・ユディットが<br>収集しました",tobb:"さまざまなスタイルが<br>集まりました",kuszu:"いくつかの<br>くす玉も"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"2007年11月–12月<br>Százszorszép儿童之家<br>塞格德",kiall:"展览材料由<br>Sági Judit<br>收集整理",tobb:"汇集了多种<br>风格",kuszu:"还有一些<br>花球"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"2007년 11–12월<br>Százszorszép 어린이집<br>세게드",kiall:"전시 자료는<br>사가이 유디트가<br>수집했습니다",tobb:"여러 스타일이<br>모였습니다",kuszu:"몇 가지<br>쿠스다마도"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Novembro–decembro 2007<br>Infana Domo Százszorszép<br>Szeged",kiall:"La ekspozicia materialo estis<br>kolektita de<br>Judit Sági",tobb:"Pluraj stiloj<br>kunvenis",kuszu:"Ankaŭ kelkaj<br>kusudamoj"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"2007 m. lapkritis–gruodis<br>Százszorszép vaikų namai<br>Szegedas",kiall:"Parodos medžiagą surinko<br>Judit Sági",tobb:"Susibūrė įvairūs<br>stiliai",kuszu:"Taip pat keli<br>kusudama"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"2007. gada novembris–decembris<br>Százszorszép bērnu nams<br>Szegeda",kiall:"Izstādes materiālu savāca<br>Judit Sági",tobb:"Apvienojās dažādi<br>stili",kuszu:"Arī dažas<br>kusudamas"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"November–detsember 2007<br>Százszorszép laste maja<br>Szeged",kiall:"Näituse materjali kogus<br>Judit Sági",tobb:"Kokku said eri<br>stiilid",kuszu:"Ka mõned<br>kusudamad"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Kasım–Aralık 2007<br>Százszorszép Çocuk Evi<br>Szeged",kiall:"Sergi materyallerini<br>Judit Sági topladı",tobb:"Çeşitli tarzlar<br>bir araya geldi",kuszu:"Birkaç<br>kusudama da"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Νοέμβριος–Δεκέμβριος 2007<br>Παιδικό Σπίτι Százszorszép<br>Σέγκεντ",kiall:"Το υλικό της έκθεσης<br>συγκεντρώθηκε από τη<br>Judit Sági",tobb:"Συγκεντρώθηκαν διάφορα<br>στυλ",kuszu:"Και μερικά<br>κουσουδάμα"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Nëntor–dhjetor 2007<br>Shtëpia e Fëmijëve Százszorszép<br>Szeged",kiall:"Materiali i ekspozitës u<br>mbledh nga<br>Judit Sági",tobb:"U mblodhën stile të<br>ndryshme",kuszu:"Edhe disa<br>kusudama"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Ноември–декември 2007<br>Детски дом Százszorszép<br>Сегед",kiall:"Материалите за изложбата бяха<br>събрани от<br>Юдит Шаги",tobb:"Събраха се различни<br>стилове",kuszu:"И няколко<br>кусудама"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Listopad–grudzień 2007<br>Dom Dziecka Százszorszép<br>Szeged",kiall:"Materiały wystawy zebrała<br>Judit Sági",tobb:"Zebrały się różne<br>style",kuszu:"Także kilka<br>kusudam"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Listopad–prosinec 2007<br>Dětský dům Százszorszép<br>Szeged",kiall:"Materiál výstavy shromáždila<br>Judit Sági",tobb:"Sešlo se více<br>stylů",kuszu:"Také několik<br>kusudam"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"November–december 2007<br>Detský dom Százszorszép<br>Szeged",kiall:"Materiál výstavy zozbierala<br>Judit Sági",tobb:"Stretlo sa viacero<br>štýlov",kuszu:"Aj niekoľko<br>kusudám"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Листопад–грудень 2007<br>Дитячий будинок Százszorszép<br>Сегед",kiall:"Матеріали виставки зібрала<br>Юдіт Шагі",tobb:"Зібралися різні<br>стилі",kuszu:"Також кілька<br>кусудам"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Noiembrie–decembrie 2007<br>Casa Copiilor Százszorszép<br>Szeged",kiall:"Materialele expoziției au fost<br>adunate de<br>Judit Sági",tobb:"S-au adunat mai multe<br>stiluri",kuszu:"Și câteva<br>kusudama"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Новембар–децембар 2007<br>Дечја кућа Százszorszép<br>Сегедин",kiall:"Материјал изложбе је<br>прикупила<br>Јудит Шаги",tobb:"Окупило се више<br>стилова",kuszu:"И неколико<br>кусудама"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Studeni–prosinac 2007<br>Dječja kuća Százszorszép<br>Szeged",kiall:"Materijal izložbe prikupila je<br>Judit Sági",tobb:"Okupilo se više<br>stilova",kuszu:"I nekoliko<br>kusudama"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"November–december 2007<br>Otroška hiša Százszorszép<br>Szeged",kiall:"Gradivo razstave je zbrala<br>Judit Sági",tobb:"Zbralo se je več<br>slogov",kuszu:"Tudi nekaj<br>kusudam"}
+	};
+
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -204,6 +275,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

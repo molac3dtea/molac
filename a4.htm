@@ -104,16 +104,16 @@
 <html>
 
 <body>
-    <a href="diagrams.htm" class="back-button" data-lang-key="back">← Vissza</a>
+    <a href="diagrams.htm" class="back-button" lang-key="back">← Vissza</a>
     
     <table class="outer-table">
-        <caption data-lang-key="title_a4">Kezdjük el a hajtogatást egy A4-es lappal</caption>
+        <caption lang-key="title_a4">Kezdjük el a hajtogatást egy A4-es lappal</caption>
         
         <tr>
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text" data-lang-key="p_a4_1">1.<br>Vágjunk le az aljából <br>kb. 4-5 cm-nyit.</td>
+                        <td class="step-text" lang-key="p_a4_1">1.<br>Vágjunk le az aljából <br>kb. 4-5 cm-nyit.</td>
                         <td><img src="pictures/diagrams/a4_1.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -124,7 +124,7 @@
             <td class="empty-spacer"></td> <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text" data-lang-key="p_a4_2">2.<br>Hosszában tépjük <br>vagy vágjuk félbe.</td>
+                        <td class="step-text" lang-key="p_a4_2">2.<br>Hosszában tépjük <br>vagy vágjuk félbe.</td>
                         <td><img src="pictures/diagrams/a4_2.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -135,7 +135,7 @@
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text" data-lang-key="p_a4_3">3.<br>Most keresztbe<br>vágjuk vagy tépjük félbe.</td>
+                        <td class="step-text" lang-key="p_a4_3">3.<br>Most keresztbe<br>vágjuk vagy tépjük félbe.</td>
                         <td><img src="pictures/diagrams/a4_4.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -148,7 +148,7 @@
             <td>
                 <table class="step-card">
                     <tr>
-                        <td class="step-text" data-lang-key="p_a4_4">4.<br>Majd mind a 4 darabot <br>ismét keresztbe.</td>
+                        <td class="step-text" lang-key="p_a4_4">4.<br>Majd mind a 4 darabot <br>ismét keresztbe.</td>
                         <td><img src="pictures/diagrams/a4_8.jpg" class="gallery-img" style="width: 80px;"></td>
                     </tr>
                 </table>
@@ -433,8 +433,8 @@
 			localStorage.setItem('preferredLang', lang);
 			document.documentElement.lang = lang;
 
-			document.querySelectorAll('[data-lang-key]').forEach(el => {
-				const key = el.getAttribute('data-lang-key');
+			document.querySelectorAll('[lang-key]').forEach(el => {
+				const key = el.getAttribute('lang-key');
 				if (translations[lang][key]) {
 					el.innerHTML = translations[lang][key];
 				}

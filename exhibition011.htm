@@ -10,39 +10,24 @@
     body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(90deg, rgba(246,246,246,0.1) 0%, rgba(246,246,246,0.05) 20%, rgba(246,246,246,0) 40%, rgba(246,246,246,0) 60%, rgba(246,246,246,0.05) 80%, rgba(246,246,246,0.1) 100%), url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; filter: blur(15px); opacity: 0.12; z-index: -4; }
     body::after { content: ""; position: fixed; inset: 0; background: url("pictures/background/windmill2plus_.jpg") no-repeat center center; background-size: cover; opacity: 0.12; z-index: -3; mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask: linear-gradient(90deg, transparent 0%, black 20%, black 80%, transparent 100%); }
 
-    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; }
+    .back-button { position: fixed; top: 20px; right: 20px; padding: 5px 12px; background-color: #003366; color: white !important; text-decoration: none; font-size: 0.75rem; font-weight: bold; border-radius: 50px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 100; display: flex; align-items: center; transition: all 0.3s ease; cursor: pointer; }
     .back-button-active { background-color: #0055aa !important; transform: translateX(-10px) scale(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
     
     .page-container { max-width: 1100px; margin: 0 auto; padding: 5rem 1rem; }
     
-    /* Keskenyebb táblázatok asztali gépen */
-    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 70%; margin-left: auto; margin-right: auto; border-collapse: separate; border-spacing: 10px; }
+    table { background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(2px); border-radius: 15px; margin-bottom: 50px !important; width: 80%; margin-left: auto; margin-right: auto; border-collapse: separate; border-spacing: 10px; }
     caption { caption-side: top; text-align: center; font-size: 2rem; font-weight: bold; color: #0055aa; padding: 15px; }
-    th { background: #003366; color: white; padding: 12px; border-radius: 8px; font-size: 1.4rem; text-align: center; }
     td { padding: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; }
     
-    .gallery-img, .pdf-thumb { width: 220px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
-    .gallery-img:hover, .pdf-thumb:hover { transform: scale(1.05); }
+    .gallery-img { width: 220px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
+    .gallery-img:hover { transform: scale(1.05); }
 
-	/* Elválasztó vonal stílusa a táblázaton belül */
-    .separator-row td {
-      border-top: 2px solid #0055aa !important; /* Kék vonal */
-      padding-top: 25px !important;            /* Extra hely a vonal felett */
-      border-radius: 0 !important;             /* A vonalnál ne legyen kerekítés */
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.85); z-index: 2000;
-      flex-direction: column; justify-content: center; align-items: center;
-    }
-    .lightbox-header { background-color: #003366; color: #ffff00; padding: 10px 25px; border-radius: 10px; font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; }
+	.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 2000; flex-direction: column; justify-content: center; align-items: center; }
+    .lightbox-header { background-color: #003366; color: #ffff00; padding: 10px 25px; border-radius: 10px; font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); text-transform: uppercase; text-align: center; }
     .lightbox-img-container { position: relative; display: flex; justify-content: center; align-items: center; width: 90%; max-width: 1200px; }
-    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; display: none; }
-    .lightbox iframe { width: 80vw; height: 75vh; border: 3px solid white; background: white; display: none; }
-    .lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.2rem; margin-top: 15px; max-width: 80%; text-align: center; }
-    
+    .lightbox img { max-width: 100%; max-height: 70vh; border: 3px solid white; display: block; margin: 0 auto; }
+	.lightbox-footer { color: white; background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 5px; font-size: 1.2rem; margin-top: 15px; max-width: 80%; text-align: center; }
+	
     .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 4rem; padding: 20px; cursor: pointer; transition: 0.3s; user-select: none; z-index: 2100; }
     .nav-arrow:hover { color: #ffff00; }
     .prev { left: -80px; }
@@ -58,12 +43,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
-
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
+  
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +66,9 @@
 
   <div class="page-container">
     <table>
-		<caption>Origami Találkozó, Pécs<br>2005. augusztus 12–14.</caption>
+		<caption lang-key="cap">Origami Találkozó, Pécs<br>2005. augusztus 12–14.</caption>
 		<tr>
-			<td colspan="3">Volt egy teáspapíros pályázat, amire egy teáskannával neveztem.</td>
+			<td colspan="3" lang-key="teapa">Volt egy teáspapíros pályázat, amire egy teáskannával neveztem.</td>
 		</tr>
 		<tr>
 			<td><img src="pictures/kiallitas/011/palyazat1.jpg" class="gallery-item gallery-img"></td>
@@ -90,7 +76,7 @@
 			<td><img src="pictures/kiallitas/011/palyazat3.jpg" class="gallery-item gallery-img"></td>
 		</tr>
 		<tr>
-			<td rowspan="2">Az Árkádban is voltak origami alkotások</td>
+			<td rowspan="2" lang-key="arkad">Az Árkádban is voltak origami alkotások</td>
 			<td><img src="pictures/kiallitas/011/arkad1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/011/arkad0.jpg" class="gallery-item gallery-img"></td>
 		</tr>		
@@ -105,93 +91,164 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back: "← Vissza",close: "✕ Bezárás",cap: "Origami Találkozó, Pécs<br>2005. augusztus 12–14.", teapa: "Volt egy teáspapíros pályázat, amire egy teáskannával neveztem.", arkad: "Az Árkádban is voltak origami alkotások" },
+		en:{back:"← Back",close:"✕ Close",cap:"Origami Meeting, Pécs<br>12–14 August 2005",teapa:"There was a tea-paper competition, for which I entered with a teapot.",arkad:"Origami artworks were also exhibited in the Árkád shopping center"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Origami-Treffen, Pécs<br>12.–14. August 2005",teapa:"Es gab einen Teepapier-Wettbewerb, bei dem ich mit einer Teekanne teilnahm.",arkad:"Auch im Einkaufszentrum Árkád wurden Origami-Arbeiten ausgestellt"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Encuentro de Origami, Pécs<br>12–14 de agosto de 2005",teapa:"Hubo un concurso de papel de té, al que participé con una tetera.",arkad:"También hubo obras de origami expuestas en el centro comercial Árkád"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Incontro di Origami, Pécs<br>12–14 agosto 2005",teapa:"C’era un concorso di carta da tè, al quale ho partecipato con una teiera.",arkad:"Anche nel centro commerciale Árkád erano esposte opere di origami"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Rencontre d’origami, Pécs<br>12–14 août 2005",teapa:"Il y avait un concours de papier à thé, auquel j’ai participé avec une théière.",arkad:"Des œuvres d’origami étaient également exposées au centre commercial Árkád"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Encontro de Origami, Pécs<br>12–14 de agosto de 2005",teapa:"Houve um concurso de papel de chá, no qual participei com um bule.",arkad:"Também houve obras de origami expostas no centro comercial Árkád"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Origami-bijeenkomst, Pécs<br>12–14 augustus 2005",teapa:"Er was een theepapierwedstrijd, waaraan ik deelnam met een theepot.",arkad:"Ook in het winkelcentrum Árkád werden origamiwerken tentoongesteld"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Origamiträff, Pécs<br>12–14 augusti 2005",teapa:"Det fanns en tävling i tepapper, där jag deltog med en tekanna.",arkad:"Origamiverk ställdes också ut i köpcentret Árkád"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Origami-tapaaminen, Pécs<br>12.–14. elokuuta 2005",teapa:"Järjestettiin teepaperikilpailu, johon osallistuin teekannulla.",arkad:"Origamitöitä oli esillä myös Árkád-ostoskeskuksessa"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Origami-møte, Pécs<br>12.–14. august 2005",teapa:"Det var en konkurranse med tepapir, som jeg deltok i med en tekanne.",arkad:"Origamiarbeider ble også vist i kjøpesenteret Árkád"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Origami-møde, Pécs<br>12.–14. august 2005",teapa:"Der var en konkurrence med tepapir, hvor jeg deltog med en tekande.",arkad:"Origami-værker blev også udstillet i Árkád-indkøbscentret"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Origami-samkoma, Pécs<br>12.–14. ágúst 2005",teapa:"Það var keppni í tepappír, þar sem ég tók þátt með tekönnu.",arkad:"Origami-verk voru einnig sýnd í Árkád verslunarmiðstöðinni"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Trobada d’origami, Pécs<br>12–14 d’agost de 2005",teapa:"Hi va haver un concurs de paper de te, on vaig participar amb una tetera.",arkad:"També es van exposar obres d’origami al centre comercial Árkád"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"折り紙交流会（ペーチ）<br>2005年8月12～14日",teapa:"ティーペーパーのコンテストがあり、私はティーポットで参加しました。",arkad:"アルカド・ショッピングセンターでも折り紙作品が展示されました"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"折纸聚会，佩奇<br>2005年8月12–14日",teapa:"当时有一个茶纸比赛，我用一个茶壶参赛。",arkad:"Árkád 购物中心也展出了折纸作品"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"오리가미 모임, 페치<br>2005년 8월 12–14일",teapa:"찻종이 공모전이 있었고, 저는 찻주전자로 참가했습니다.",arkad:"아르카드 쇼핑센터에서도 오리가미 작품이 전시되었습니다"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Origami-renkontiĝo, Pécs<br>12–14 aŭgusto 2005",teapa:"Estis tepapera konkurso, al kiu mi partoprenis kun tekruĉo.",arkad:"Origamiaj verkoj estis ankaŭ ekspoziciitaj en la komerca centro Árkád"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Origami susitikimas, Pécs<br>2005 m. rugpjūčio 12–14 d.",teapa:"Buvo arbatos popieriaus konkursas, kuriame dalyvavau su arbatinuku.",arkad:"Origami darbai taip pat buvo eksponuojami prekybos centre „Árkád“"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Origami tikšanās, Pēča<br>2005. gada 12.–14. augusts",teapa:"Notika tējas papīra konkurss, kurā piedalījos ar tējkannu.",arkad:"Origami darbi tika izstādīti arī tirdzniecības centrā Árkád"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Origami kohtumine, Pécs<br>12.–14. august 2005",teapa:"Toimus teepaberi konkurss, kus osalesin teekannuga.",arkad:"Origamitöid eksponeeriti ka Árkád kaubanduskeskuses"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Origami Buluşması, Pécs<br>12–14 Ağustos 2005",teapa:"Bir çay kâğıdı yarışması vardı, ben de bir çaydanlıkla katıldım.",arkad:"Árkád alışveriş merkezinde de origami eserleri sergilendi"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Συνάντηση Οριγκάμι, Πετς<br>12–14 Αυγούστου 2005",teapa:"Υπήρχε διαγωνισμός χαρτιού τσαγιού, στον οποίο συμμετείχα με μια τσαγιέρα.",arkad:"Έργα οριγκάμι εκτέθηκαν επίσης στο εμπορικό κέντρο Árkád"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Takim Origami, Pécs<br>12–14 gusht 2005",teapa:"Pati një konkurs me letër çaji, ku mora pjesë me një ibrik çaji.",arkad:"Punime origami u ekspozuan edhe në qendrën tregtare Árkád"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Среща по оригами, Печ<br>12–14 август 2005",teapa:"Имаше конкурс с чаена хартия, в който участвах с чайник.",arkad:"Оригами творби бяха изложени и в търговския център Árkád"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Spotkanie Origami, Pécs<br>12–14 sierpnia 2005",teapa:"Odbył się konkurs z papieru herbacianego, w którym wziąłem udział z czajnikiem.",arkad:"Prace origami były również wystawiane w centrum handlowym Árkád"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Setkání origami, Pécs<br>12.–14. srpna 2005",teapa:"Proběhla soutěž z čajového papíru, které jsem se zúčastnil s konvicí.",arkad:"Origami díla byla vystavena také v nákupním centru Árkád"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Origami stretnutie, Pécs<br>12.–14. augusta 2005",teapa:"Konala sa súťaž z čajového papiera, do ktorej som sa zapojil s čajníkom.",arkad:"Origami diela boli vystavené aj v nákupnom centre Árkád"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Зустріч з оріґамі, Печ<br>12–14 серпня 2005",teapa:"Відбувся конкурс з чайного паперу, у якому я брав участь з чайником.",arkad:"Роботи з оріґамі також експонувалися в торговому центрі Árkád"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Întâlnire de origami, Pécs<br>12–14 august 2005",teapa:"A existat un concurs de hârtie de ceai, la care am participat cu un ceainic.",arkad:"Lucrări de origami au fost expuse și în centrul comercial Árkád"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Origami susret, Pečuj<br>12–14. avgust 2005",teapa:"Postojao je konkurs od čajnog papira, na kojem sam učestvovao sa čajnikom.",arkad:"Origami radovi su bili izloženi i u tržnom centru Árkád"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Origami susret, Pécs<br>12.–14. kolovoza 2005",teapa:"Postojalo je natjecanje od čajnog papira, na kojem sam sudjelovao s čajnikom.",arkad:"Origami radovi bili su izloženi i u trgovačkom centru Árkád"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Origami srečanje, Pécs<br>12.–14. avgust 2005",teapa:"Potekalo je tekmovanje iz čajnega papirja, na katerem sem sodeloval s čajnikom.",arkad:"Origami dela so bila razstavljena tudi v nakupovalnem središču Árkád"},
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -199,6 +256,8 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
+
 </body>
 </html>

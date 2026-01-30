@@ -60,10 +60,10 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Origami Találkozó, Kecskemét<br>2004. augusztus 14–15.</caption>
+		<caption lang-key="cap">Origami Találkozó, Kecskemét<br>2004. augusztus 14–15.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/007/gyulaivar.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/007/kosargyumi.jpg" class="gallery-item gallery-img"></td>
@@ -111,8 +111,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+    const translations = {
+      hu: { back: '← Vissza', close: '✕ Bezárás', cap: 'Origami Találkozó, Kecskemét<br>2004. augusztus 14–15.' },
+      en: { back: '← Back', close: '✕ Close', cap: 'Origami Meeting, Kecskemét<br>14–15 August 2004' },
+      de: { back: '← Zurück', close: '✕ Schließen', cap: 'Origami-Treffen, Kecskemét<br>14.–15. August 2004' },
+      es: { back: '← Volver', close: '✕ Cerrar', cap: 'Encuentro de origami, Kecskemét<br>14–15 de agosto de 2004' },
+      it: { back: '← Indietro', close: '✕ Chiudi', cap: 'Incontro di origami, Kecskemét<br>14–15 agosto 2004' },
+      fr: { back: '← Retour', close: '✕ Fermer', cap: 'Rencontre d’origami, Kecskemét<br>14–15 août 2004' },
+      pt: { back: '← Voltar', close: '✕ Fechar', cap: 'Encontro de origami, Kecskemét<br>14–15 de agosto de 2004' },
+      nl: { back: '← Terug', close: '✕ Sluiten', cap: 'Origami-bijeenkomst, Kecskemét<br>14–15 augustus 2004' },
+      sv: { back: '← Tillbaka', close: '✕ Stäng', cap: 'Origamiträff, Kecskemét<br>14–15 augusti 2004' },
+      fi: { back: '← Takaisin', close: '✕ Sulje', cap: 'Origami-tapaaminen, Kecskemét<br>14.–15. elokuuta 2004' },
+      no: { back: '← Tilbake', close: '✕ Lukk', cap: 'Origami-treff, Kecskemét<br>14.–15. august 2004' },
+      da: { back: '← Tilbage', close: '✕ Luk', cap: 'Origami-møde, Kecskemét<br>14.–15. august 2004' },
+      is: { back: '← Til baka', close: '✕ Loka', cap: 'Origami-fundur, Kecskemét<br>14.–15. ágúst 2004' },
+      ca: { back: '← Enrere', close: '✕ Tanca', cap: 'Trobada d’origami, Kecskemét<br>14–15 d’agost de 2004' },
+      ja: { back: '← 戻る', close: '✕ 閉じる', cap: '折り紙ミーティング（ケチケメート）<br>2004年8月14日–15日' },
+      zh: { back: '← 返回', close: '✕ 关闭', cap: '折纸聚会，凯奇凯梅特<br>2004年8月14–15日' },
+      ko: { back: '← 뒤로', close: '✕ 닫기', cap: '오리가미 모임, 케치케메트<br>2004년 8월 14–15일' },
+      eo: { back: '← Reen', close: '✕ Fermi', cap: 'Origami-renkontiĝo, Kecskemét<br>14–15 aŭgusto 2004' },
+      lt: { back: '← Atgal', close: '✕ Uždaryti', cap: 'Origami susitikimas, Kečkemetas<br>2004 m. rugpjūčio 14–15 d.' },
+      lv: { back: '← Atpakaļ', close: '✕ Aizvērt', cap: 'Origami tikšanās, Kečkemēta<br>2004. gada 14.–15. augusts' },
+      et: { back: '← Tagasi', close: '✕ Sulge', cap: 'Origami kohtumine, Kecskemét<br>14.–15. august 2004' },
+      tr: { back: '← Geri', close: '✕ Kapat', cap: 'Origami Buluşması, Kecskemét<br>14–15 Ağustos 2004' },
+      el: { back: '← Πίσω', close: '✕ Κλείσιμο', cap: 'Συνάντηση Origami, Kecskemét<br>14–15 Αυγούστου 2004' },
+      sq: { back: '← Kthehu', close: '✕ Mbyll', cap: 'Takim origami, Kecskemét<br>14–15 gusht 2004' },
+      bg: { back: '← Назад', close: '✕ Затвори', cap: 'Среща по оригами, Кечкемет<br>14–15 август 2004' },
+      pl: { back: '← Wstecz', close: '✕ Zamknij', cap: 'Spotkanie origami, Kecskemét<br>14–15 sierpnia 2004' },
+      cs: { back: '← Zpět', close: '✕ Zavřít', cap: 'Setkání origami, Kecskemét<br>14.–15. srpna 2004' },
+      sk: { back: '← Späť', close: '✕ Zavrieť', cap: 'Stretnutie origami, Kecskemét<br>14.–15. augusta 2004' },
+      uk: { back: '← Назад', close: '✕ Закрити', cap: 'Зустріч з орігамі, Кечкемет<br>14–15 серпня 2004' },
+      ro: { back: '← Înapoi', close: '✕ Închide', cap: 'Întâlnire de origami, Kecskemét<br>14–15 august 2004' },
+      sr: { back: '← Назад', close: '✕ Затвори', cap: 'Оригами сусрет, Кечкемет<br>14–15. август 2004' },
+      hr: { back: '← Natrag', close: '✕ Zatvori', cap: 'Origami susret, Kecskemét<br>14.–15. kolovoza 2004' },
+      sl: { back: '← Nazaj', close: '✕ Zapri', cap: 'Srečanje origamija, Kecskemét<br>14.–15. avgust 2004' },
+    };
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -198,7 +275,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -207,5 +284,6 @@
       }
     });
   </script>
+  
 </body>
 </html>

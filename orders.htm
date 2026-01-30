@@ -70,9 +70,9 @@
 
 <body>
   <div class="box">
-    <h1 data-lang-key="title">Fejlesztés alatt</h1>
-    <p data-lang-key="msg">Készül az oldal. Kérlek, nézz vissza később!</p>
-    <a class="back" id="backLink" href="index.html" data-lang-key="back">← Vissza</a>
+    <h1 lang-key="title">Fejlesztés alatt</h1>
+    <p lang-key="msg">Készül az oldal. Kérlek, nézz vissza később!</p>
+    <a class="back" id="backLink" href="index.html" lang-key="back">← Vissza</a>
   </div>
 
 <script>
@@ -126,8 +126,8 @@
     document.documentElement.lang = lang;
 
     const dict = translations[lang] || translations.hu;
-    document.querySelectorAll("[data-lang-key]").forEach(el=>{
-      const key = el.getAttribute("data-lang-key");
+    document.querySelectorAll("[lang-key]").forEach(el=>{
+      const key = el.getAttribute("lang-key");
       if (dict[key] != null) el.innerHTML = dict[key];
     });
 

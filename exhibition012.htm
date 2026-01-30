@@ -58,12 +58,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +81,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Szentes, Gyermekkönyvtár<br>2005. szeptember 5-től</caption>
+		<caption lang-key="cap">Szentes, Gyermekkönyvtár<br>2005. szeptember 5-től</caption>
 	</table>
   </div>
 
@@ -88,93 +89,111 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Szentes, Gyermekkönyvtár<br>2005. szeptember 5-től"},
+		en:{back:"← Back",close:"✕ Close",cap:"Szentes, Children’s Library<br>from 5 September 2005"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Szentes, Kinderbibliothek<br>ab 5. September 2005"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Szentes, Biblioteca Infantil<br>desde el 5 de septiembre de 2005"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Szentes, Biblioteca per bambini<br>dal 5 settembre 2005"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Szentes, Bibliothèque pour enfants<br>à partir du 5 septembre 2005"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Szentes, Biblioteca Infantil<br>a partir de 5 de setembro de 2005"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Szentes, Kinderbibliotheek<br>vanaf 5 september 2005"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Szentes, Barnbibliotek<br>från 5 september 2005"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Szentes, Lastenkirjasto<br>alkaen 5. syyskuuta 2005"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Szentes, Barnebibliotek<br>fra 5. september 2005"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Szentes, Børnebibliotek<br>fra 5. september 2005"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Szentes, Barnabókasafn<br>frá 5. september 2005"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Szentes, Biblioteca Infantil<br>a partir del 5 de setembre de 2005"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"センテシュ児童図書館<br>2005年9月5日より"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"森特什儿童图书馆<br>自2005年9月5日起"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"센테시 어린이 도서관<br>2005년 9월 5일부터"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Szentes, Infanbiblioteko<br>ekde la 5-a de septembro 2005"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Sentėšas, Vaikų biblioteka<br>nuo 2005 m. rugsėjo 5 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Sentēša, Bērnu bibliotēka<br>no 2005. gada 5. septembra"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Szentes, Lasteraamatukogu<br>alates 5. septembrist 2005"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Szentes, Çocuk Kütüphanesi<br>5 Eylül 2005’ten itibaren"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Szentes, Παιδική Βιβλιοθήκη<br>από 5 Σεπτεμβρίου 2005"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Szentes, Biblioteka e Fëmijëve<br>nga 5 shtatori 2005"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Сентеш, Детска библиотека<br>от 5 септември 2005"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Szentes, Biblioteka Dziecięca<br>od 5 września 2005"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Szentes, Dětská knihovna<br>od 5. září 2005"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Szentes, Detská knižnica<br>od 5. septembra 2005"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Сентеш, Дитяча бібліотека<br>з 5 вересня 2005 року"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Szentes, Biblioteca pentru copii<br>din 5 septembrie 2005"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Сентеш, Дечја библиотека<br>од 5. септембра 2005"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Szentes, Dječja knjižnica<br>od 5. rujna 2005"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Szentes, Otroška knjižnica<br>od 5. septembra 2005"},
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -183,5 +202,6 @@
       }
     });
   </script>
+
 </body>
 </html>

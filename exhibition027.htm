@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Bélyeg–Farsang, Budapest<br>2010. február 20.</caption>
+		<caption lang-key="cap">Bélyeg–Farsang, Budapest<br>2010. február 20.</caption>
 	</table>
   </div>
 
@@ -88,93 +88,111 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Bélyeg–Farsang, Budapest<br>2010. február 20."},
+		en:{back:"← Back",close:"✕ Close",cap:"Stamp Carnival, Budapest<br>20 February 2010"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Briefmarken-Karneval, Budapest<br>20. Februar 2010"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Carnaval del Sello, Budapest<br>20 de febrero de 2010"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Carnevale dei Francobolli, Budapest<br>20 febbraio 2010"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Carnaval du Timbre, Budapest<br>20 février 2010"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Carnaval do Selo, Budapeste<br>20 de fevereiro de 2010"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Postzegelcarnaval, Boedapest<br>20 februari 2010"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Frimärkeskarnaval, Budapest<br>20 februari 2010"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Postimerkkikarnevaali, Budapest<br>20. helmikuuta 2010"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Frimerke-karneval, Budapest<br>20. februar 2010"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Frimærkekarneval, Budapest<br>20. februar 2010"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Frímerkjakarnival, Búdapest<br>20. febrúar 2010"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Carnaval del Segell, Budapest<br>20 de febrer de 2010"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"切手カーニバル（ブダペスト）<br>2010年2月20日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"邮票嘉年华，布达佩斯<br>2010年2月20日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"우표 카니발, 부다페스트<br>2010년 2월 20일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Poŝtmarka Karnavalo, Budapeŝto<br>20 februaro 2010"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Pašto ženklų karnavalas, Budapeštas<br>2010 m. vasario 20 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Pastmarku karnevāls, Budapešta<br>2010. gada 20. februāris"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Margikarneval, Budapest<br>20. veebruar 2010"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Pul Karnavalı, Budapeşte<br>20 Şubat 2010"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Καρναβάλι Γραμματοσήμων, Βουδαπέστη<br>20 Φεβρουαρίου 2010"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Karnavali i Pullave Postare, Budapest<br>20 shkurt 2010"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Карнавал на пощенските марки, Будапеща<br>20 февруари 2010"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Karnawał Filatelistyczny, Budapeszt<br>20 lutego 2010"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Filatelistický karneval, Budapešť<br>20. února 2010"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Filatelistický karneval, Budapešť<br>20. februára 2010"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Карнавал поштових марок, Будапешт<br>20 лютого 2010"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Carnavalul Timbrelor, Budapesta<br>20 februarie 2010"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Карневал маркица, Будимпешта<br>20. фебруар 2010."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Karneval poštanskih maraka, Budimpešta<br>20. veljače 2010."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Karneval znamk, Budimpešta<br>20. februar 2010"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

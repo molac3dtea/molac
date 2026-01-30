@@ -60,10 +60,10 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Hévíz, Almárium<br>2004. július 7. – augusztus 9.</caption>
+		<caption lang-key="cap">Hévíz, Almárium<br>2004. július 7. – augusztus 9.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/006/boltbe.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/006/boltba.jpg" class="gallery-item gallery-img"></td>
@@ -103,8 +103,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+    const translations = {
+      hu: { back: '← Vissza', close: '✕ Bezárás', cap: 'Hévíz, Almárium<br>2004. július 7. – augusztus 9.' },
+      en: { back: '← Back', close: '✕ Close', cap: 'Hévíz, Almarium<br>7 July – 9 August 2004' },
+      de: { back: '← Zurück', close: '✕ Schließen', cap: 'Hévíz, Almarium<br>7. Juli – 9. August 2004' },
+      es: { back: '← Volver', close: '✕ Cerrar', cap: 'Hévíz, Almarium<br>7 de julio – 9 de agosto de 2004' },
+      it: { back: '← Indietro', close: '✕ Chiudi', cap: 'Hévíz, Almarium<br>7 luglio – 9 agosto 2004' },
+      fr: { back: '← Retour', close: '✕ Fermer', cap: 'Hévíz, Almarium<br>7 juillet – 9 août 2004' },
+      pt: { back: '← Voltar', close: '✕ Fechar', cap: 'Hévíz, Almarium<br>7 de julho – 9 de agosto de 2004' },
+      nl: { back: '← Terug', close: '✕ Sluiten', cap: 'Hévíz, Almarium<br>7 juli – 9 augustus 2004' },
+      sv: { back: '← Tillbaka', close: '✕ Stäng', cap: 'Hévíz, Almarium<br>7 juli – 9 augusti 2004' },
+      fi: { back: '← Takaisin', close: '✕ Sulje', cap: 'Hévíz, Almarium<br>7. heinäkuuta – 9. elokuuta 2004' },
+      no: { back: '← Tilbake', close: '✕ Lukk', cap: 'Hévíz, Almarium<br>7. juli – 9. august 2004' },
+      da: { back: '← Tilbage', close: '✕ Luk', cap: 'Hévíz, Almarium<br>7. juli – 9. august 2004' },
+      is: { back: '← Til baka', close: '✕ Loka', cap: 'Hévíz, Almarium<br>7. júlí – 9. ágúst 2004' },
+      ca: { back: '← Enrere', close: '✕ Tanca', cap: 'Hévíz, Almarium<br>7 de juliol – 9 d’agost de 2004' },
+      ja: { back: '← 戻る', close: '✕ 閉じる', cap: 'ヘーヴィーズ、アルマリウム<br>2004年7月7日–8月9日' },
+      zh: { back: '← 返回', close: '✕ 关闭', cap: '黑维兹，Almarium<br>2004年7月7日–8月9日' },
+      ko: { back: '← 뒤로', close: '✕ 닫기', cap: '헤비즈, 알마리움<br>2004년 7월 7일–8월 9일' },
+      eo: { back: '← Reen', close: '✕ Fermi', cap: 'Hévíz, Almarium<br>7 julio – 9 aŭgusto 2004' },
+      lt: { back: '← Atgal', close: '✕ Uždaryti', cap: 'Hėvizas, Almarium<br>2004 m. liepos 7 – rugpjūčio 9 d.' },
+      lv: { back: '← Atpakaļ', close: '✕ Aizvērt', cap: 'Hēvīza, Almarium<br>2004. gada 7. jūlijs – 9. augusts' },
+      et: { back: '← Tagasi', close: '✕ Sulge', cap: 'Hévíz, Almarium<br>7. juuli – 9. august 2004' },
+      tr: { back: '← Geri', close: '✕ Kapat', cap: 'Hévíz, Almarium<br>7 Temmuz – 9 Ağustos 2004' },
+      el: { back: '← Πίσω', close: '✕ Κλείσιμο', cap: 'Hévíz, Almarium<br>7 Ιουλίου – 9 Αυγούστου 2004' },
+      sq: { back: '← Kthehu', close: '✕ Mbyll', cap: 'Hévíz, Almarium<br>7 korrik – 9 gusht 2004' },
+      bg: { back: '← Назад', close: '✕ Затвори', cap: 'Хевиз, Алмариум<br>7 юли – 9 август 2004' },
+      pl: { back: '← Wstecz', close: '✕ Zamknij', cap: 'Hévíz, Almarium<br>7 lipca – 9 sierpnia 2004' },
+      cs: { back: '← Zpět', close: '✕ Zavřít', cap: 'Hévíz, Almarium<br>7. července – 9. srpna 2004' },
+      sk: { back: '← Späť', close: '✕ Zavrieť', cap: 'Hévíz, Almarium<br>7. júla – 9. augusta 2004' },
+      uk: { back: '← Назад', close: '✕ Закрити', cap: 'Гевіз, Almarium<br>7 липня – 9 серпня 2004' },
+      ro: { back: '← Înapoi', close: '✕ Închide', cap: 'Hévíz, Almarium<br>7 iulie – 9 august 2004' },
+      sr: { back: '← Назад', close: '✕ Затвори', cap: 'Хевиз, Алмариум<br>7. јул – 9. август 2004' },
+      hr: { back: '← Natrag', close: '✕ Zatvori', cap: 'Hévíz, Almarium<br>7. srpnja – 9. kolovoza 2004' },
+      sl: { back: '← Nazaj', close: '✕ Zapri', cap: 'Hévíz, Almarium<br>7. julij – 9. avgust 2004' },
+    };
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -190,7 +267,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

@@ -60,7 +60,7 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,101 +80,120 @@
 
   <div class="page-container">
     <table>
-		<caption>2. Papír Fesztivál, Gersekarát<br>2010. június 19.</caption>
+		<caption lang-key="cap">2. Papír Fesztivál, Gersekarát<br>2010. június 19.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"2. Papír Fesztivál, Gersekarát<br>2010. június 19."},
+		en:{back:"← Back",close:"✕ Close",cap:"2nd Paper Festival, Gersekarát<br>19 June 2010"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"2. Papierfestival, Gersekarát<br>19. Juni 2010"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"2.º Festival del Papel, Gersekarát<br>19 de junio de 2010"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"2° Festival della Carta, Gersekarát<br>19 giugno 2010"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"2e Festival du Papier, Gersekarát<br>19 juin 2010"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"2º Festival do Papel, Gersekarát<br>19 de junho de 2010"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"2e Papierfestival, Gersekarát<br>19 juni 2010"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"2:a Pappersfestivalen, Gersekarát<br>19 juni 2010"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"2. Paperifestivaali, Gersekarát<br>19. kesäkuuta 2010"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"2. Papirfestival, Gersekarát<br>19. juni 2010"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"2. Papirfestival, Gersekarát<br>19. juni 2010"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"2. Pappírs­hátíðin, Gersekarát<br>19. júní 2010"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"2n Festival del Paper, Gersekarát<br>19 de juny de 2010"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第2回 ペーパーフェスティバル（ゲルシェカラート）<br>2010年6月19日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第二届纸艺节，Gersekarát<br>2010年6月19日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제2회 종이 축제, 게르셰카라트<br>2010년 6월 19일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"2-a Papera Festivalo, Gersekarát<br>19 junio 2010"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"2-asis Popieriaus festivalis, Gersekarát<br>2010 m. birželio 19 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"2. Papīra festivāls, Gersekarát<br>2010. gada 19. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"2. Paberifestival, Gersekarát<br>19. juuni 2010"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"2. Kâğıt Festivali, Gersekarát<br>19 Haziran 2010"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"2ο Φεστιβάλ Χαρτιού, Gersekarát<br>19 Ιουνίου 2010"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Festivali i 2-të i Letrës, Gersekarát<br>19 qershor 2010"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"2-ри Фестивал на хартията, Гершекарат<br>19 юни 2010"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"2. Festiwal Papieru, Gersekarát<br>19 czerwca 2010"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"2. Festival papíru, Gersekarát<br>19. června 2010"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"2. Festival papiera, Gersekarát<br>19. júna 2010"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"2-й Фестиваль паперу, Гершекарат<br>19 червня 2010"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Al 2-lea Festival al Hârtiei, Gersekarát<br>19 iunie 2010"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"2. Фестивал папира, Гершекарат<br>19. јун 2010."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"2. Festival papira, Gersekarát<br>19. lipnja 2010."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"2. Festival papirja, Gersekarát<br>19. junij 2010"}
+	};
+	
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

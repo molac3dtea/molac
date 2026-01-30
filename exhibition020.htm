@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>XVIII. Nemzetközi Origami Találkozó<br>Pécs, 2007. augusztus 10–12.</caption>
+		<caption lang-key="cap">XVIII. Nemzetközi Origami Találkozó<br>Pécs, 2007. augusztus 10–12.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/020/kep1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/020/kep2.jpg" class="gallery-item gallery-img"></td>
@@ -93,93 +93,111 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"XVIII. Nemzetközi Origami Találkozó<br>Pécs, 2007. augusztus 10–12."},
+		en:{back:"← Back",close:"✕ Close",cap:"18th International Origami Meeting<br>Pécs, 10–12 August 2007"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"18. Internationales Origami-Treffen<br>Pécs, 10.–12. August 2007"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"XVIII Encuentro Internacional de Origami<br>Pécs, 10–12 de agosto de 2007"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"XVIII Incontro Internazionale di Origami<br>Pécs, 10–12 agosto 2007"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"XVIIIe Rencontre internationale d’origami<br>Pécs, 10–12 août 2007"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"XVIII Encontro Internacional de Origami<br>Pécs, 10–12 de agosto de 2007"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"18e Internationale Origami-bijeenkomst<br>Pécs, 10–12 augustus 2007"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"18:e internationella origamimötet<br>Pécs, 10–12 augusti 2007"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"18. kansainvälinen origamitapaaminen<br>Pécs, 10.–12. elokuuta 2007"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"18. internasjonale origamitreff<br>Pécs, 10.–12. august 2007"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"18. internationale origamimøde<br>Pécs, 10.–12. august 2007"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"18. alþjóðlega origami-samkoman<br>Pécs, 10.–12. ágúst 2007"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"XVIII Trobada Internacional d’Origami<br>Pécs, 10–12 d’agost de 2007"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第18回 国際折り紙大会<br>ペーチ、2007年8月10～12日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第18届国际折纸大会<br>佩奇，2007年8月10–12日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제18회 국제 오리가미 모임<br>페치, 2007년 8월 10–12일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"18-a Internacia Origami-Renkontiĝo<br>Pécs, 10–12 aŭgusto 2007"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"XVIII Tarptautinis origami susitikimas<br>Pėčas, 2007 m. rugpjūčio 10–12 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"XVIII Starptautiskā origami tikšanās<br>Pēča, 2007. gada 10.–12. augusts"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"XVIII rahvusvaheline origamikohtumine<br>Pécs, 10.–12. august 2007"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"18. Uluslararası Origami Buluşması<br>Pécs, 10–12 Ağustos 2007"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"18η Διεθνής Συνάντηση Οριγκάμι<br>Πετς, 10–12 Αυγούστου 2007"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Takimi i 18-të Ndërkombëtar i Origamit<br>Pécs, 10–12 gusht 2007"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"XVIII Международна среща по оригами<br>Печ, 10–12 август 2007"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"XVIII Międzynarodowe Spotkanie Origami<br>Pecz, 10–12 sierpnia 2007"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"18. mezinárodní setkání origami<br>Pécs, 10.–12. srpna 2007"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"18. medzinárodné stretnutie origami<br>Pécs, 10.–12. augusta 2007"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"XVIII Міжнародна зустріч з орігамі<br>Печ, 10–12 серпня 2007"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"A XVIII-a Întâlnire Internațională de Origami<br>Pécs, 10–12 august 2007"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"XVIII Међународни сусрет оригамија<br>Печ, 10–12. август 2007"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"XVIII. međunarodni susret origamija<br>Pécs, 10.–12. kolovoza 2007"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"18. mednarodno srečanje origamija<br>Pécs, 10.–12. avgust 2007"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -187,6 +205,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
-  </script>
+
+	</script>
 </body>
 </html>

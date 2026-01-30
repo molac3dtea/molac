@@ -58,12 +58,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +81,9 @@
 
   <div class="page-container">
     <table>
-		<caption>2006. július 29–30. Csolnok<br>Blumenfest - Virágfesztivál és Falunapok</caption>
+		<caption lang-key="cap">2006. július 29–30. Csolnok<br>Blumenfest - Virágfesztivál és Falunapok</caption>
 		<tr>
-			<td rowspan="2">Műveim a<br>Kultúrház közepén<br>voltak kiállítva,<br><br><br>az érdeklődökkel<br>hajtogattunk is</td>
+			<td rowspan="2" lang-key="kultur">Műveim a<br>Kultúrház közepén<br>voltak kiállítva,<br><br><br>az érdeklődökkel<br>hajtogattunk is</td>
 			<td><img src="pictures/kiallitas/017/kozepe1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/017/kozepe2.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -90,7 +91,7 @@
 			<td><img src="pictures/kiallitas/017/kozepe3.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/017/munkaban.jpg" class="gallery-item gallery-img"></td>
 		</tr>		<tr>
-			<td>Feleségem, Jutka<br>keresztszemes<br>hímzései is<br>ki lettek állítva</td>
+			<td lang-key="kereszt">Feleségem, Jutka<br>keresztszemes<br>hímzései is<br>ki lettek állítva</td>
 			<td><img src="pictures/kiallitas/017/jutka1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/017/jutka2.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -101,93 +102,163 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"2006. július 29–30. Csolnok<br>Blumenfest - Virágfesztivál és Falunapok",kultur:"Műveim a<br>Kultúrház közepén<br>voltak kiállítva,<br><br><br>az érdeklődökkel<br>hajtogattunk is",kereszt:"Feleségem, Jutka<br>keresztszemes<br>hímzései is<br>ki lettek állítva"},
+		en:{back:"← Back",close:"✕ Close",cap:"29–30 July 2006, Csolnok<br>Blumenfest – Flower Festival and Village Days",kultur:"My works were<br>exhibited in the<br>middle of the<br>community house,<br><br><br>and we also folded<br>origami with visitors",kereszt:"My wife Jutka’s<br>cross-stitch<br>embroideries were<br>also exhibited"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"29.–30. Juli 2006, Csolnok<br>Blumenfest – Blumenfest und Dorftage",kultur:"Meine Werke waren<br>in der Mitte des<br>Kulturhauses<br>ausgestellt,<br><br><br>und mit den Besuchern<br>falteten wir auch",kereszt:"Die Kreuzstich-<br>stickereien meiner<br>Frau Jutka wurden<br>ebenfalls ausgestellt"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"29–30 de julio de 2006, Csolnok<br>Blumenfest – Festival de las Flores y Días del Pueblo",kultur:"Mis obras estuvieron<br>expuestas en el centro<br>de la casa cultural,<br><br><br>y también plegamos<br>con los visitantes",kereszt:"También se expusieron<br>los bordados en<br>punto de cruz de<br>mi esposa Jutka"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"29–30 luglio 2006, Csolnok<br>Blumenfest – Festival dei Fiori e Giornate del Villaggio",kultur:"Le mie opere erano<br>esposte al centro<br>della casa della cultura,<br><br><br>e piegavamo anche<br>insieme ai visitatori",kereszt:"Erano esposti anche<br>i ricami a punto croce<br>di mia moglie Jutka"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"29–30 juillet 2006, Csolnok<br>Blumenfest – Festival des Fleurs et Journées du Village",kultur:"Mes œuvres étaient<br>exposées au centre<br>de la maison de la culture,<br><br><br>et nous pliions aussi<br>avec les visiteurs",kereszt:"Les broderies au<br>point de croix de<br>ma femme Jutka<br>étaient aussi exposées"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"29–30 de julho de 2006, Csolnok<br>Blumenfest – Festival das Flores e Dias da Aldeia",kultur:"As minhas obras<br>foram expostas no<br>centro da casa cultural,<br><br><br>e também dobrámos<br>com os visitantes",kereszt:"Os bordados em<br>ponto-cruz da minha<br>esposa Jutka também<br>foram exibidos"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"29–30 juli 2006, Csolnok<br>Blumenfest – Bloemenfestival en Dorpsdagen",kultur:"Mijn werken werden<br>midden in het<br>cultuurhuis getoond,<br><br><br>en we vouwden ook<br>samen met bezoekers",kereszt:"De kruissteek-<br>borduursels van mijn<br>vrouw Jutka werden<br>ook tentoongesteld"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"29–30 juli 2006, Csolnok<br>Blumenfest – Blomsterfestival och Bygdedagar",kultur:"Mina verk visades<br>mitt i kulturhuset,<br><br><br>och vi vek också<br>tillsammans med besökare",kereszt:"Min fru Jutkas<br>korsstygns-<br>broderier visades också"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"29.–30. heinäkuuta 2006, Csolnok<br>Blumenfest – Kukkafestivaali ja Kyläpäivät",kultur:"Teokseni olivat esillä<br>kulttuuritalon keskellä,<br><br><br>ja taittelimme myös<br>yhdessä kävijöiden kanssa",kereszt:"Vaimoni Jutkan<br>ristipistotyöt olivat<br>myös esillä"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"29.–30. juli 2006, Csolnok<br>Blumenfest – Blomsterfestival og Landsbydager",kultur:"Mine arbeider ble vist<br>midt i kulturhuset,<br><br><br>og vi brettet også<br>sammen med publikum",kereszt:"Min kone Jutkas<br>korssting-<br>broderier ble også vist"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"29.–30. juli 2006, Csolnok<br>Blumenfest – Blomsterfestival og Landsbydage",kultur:"Mine værker var<br>udstillet midt i<br>kulturhuset,<br><br><br>og vi foldede også<br>sammen med gæsterne",kereszt:"Min kone Jutkas<br>korsstings-<br>broderier blev også udstillet"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"29.–30. júlí 2006, Csolnok<br>Blumenfest – Blómahátíð og Þorpsdagar",kultur:"Verkin mín voru<br>sýnd í miðju<br>menningarhússins,<br><br><br>og við földuðum líka<br>með gestum",kereszt:"Krosssaums-<br>útsaumur eiginkonu<br>minnar Jutku var<br>einnig sýndur"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"29–30 de juliol de 2006, Csolnok<br>Blumenfest – Festival de les Flors i Dies del Poble",kultur:"Les meves obres<br>es van exposar al<br>centre de la casa cultural,<br><br><br>i també plegàvem<br>amb els visitants",kereszt:"També es van exposar<br>els brodats de punt de<br>creu de la meva dona Jutka"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"2006年7月29～30日 チョルノク<br>ブルーメンフェスト（花祭りと村の日）",kultur:"私の作品は<br>文化会館の中央に<br>展示され、<br><br><br>来場者と一緒に<br>折り紙もしました",kereszt:"妻ユトカの<br>クロスステッチ刺繍も<br>展示されました"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"2006年7月29–30日，乔尔诺克<br>花卉节与乡村节",kultur:"我的作品在<br>文化馆中央展出，<br><br><br>还与参观者一起<br>折纸",kereszt:"我妻子尤特卡的<br>十字绣作品<br>也被展出"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"2006년 7월 29–30일, 촐노크<br>꽃 축제 및 마을의 날",kultur:"제 작품은 문화회관<br>중앙에 전시되었고,<br><br><br>방문객들과 함께<br>접기도 했습니다",kereszt:"아내 유트카의<br>십자수 작품도<br>전시되었습니다"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"29–30 julio 2006, Csolnok<br>Florfesto kaj Vilaĝaj Tagoj",kultur:"Miaj verkoj estis<br>ekspoziciitaj meze de<br>la kulturdomo,<br><br><br>kaj ni ankaŭ faldadis<br>kun vizitantoj",kereszt:"La krucstikaj<br>brodaĵoj de mia<br>edzino Jutka ankaŭ<br>estis ekspoziciitaj"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"2006 m. liepos 29–30 d., Csolnok<br>Gėlių festivalis ir kaimo dienos",kultur:"Mano darbai buvo<br>eksponuojami kultūros<br>namų viduryje,<br><br><br>taip pat lankytojams<br>rodėme lankstymą",kereszt:"Mano žmonos Jutkos<br>kryžminio dygsnio<br>siuvinėjimai taip pat<br>buvo eksponuojami"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"2006. gada 29.–30. jūlijs, Csolnok<br>Ziedu festivāls un ciema dienas",kultur:"Mani darbi tika<br>izstādīti kultūras nama<br>centrā,<br><br><br>un mēs arī locījām<br>kopā ar apmeklētājiem",kereszt:"Manas sievas Jutkas<br>krustdūriena<br>izšuvumi arī tika izstādīti"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"29.–30. juuli 2006, Csolnok<br>Lillefestival ja külapäevad",kultur:"Minu tööd olid<br>välja pandud<br>kultuurimaja keskel,<br><br><br>ja voltisime koos<br>külastajatega",kereszt:"Minu abikaasa Jutka<br>ristpistes tikandid<br>olid samuti väljas"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"29–30 Temmuz 2006, Csolnok<br>Çiçek Festivali ve Köy Günleri",kultur:"Eserlerim kültür evinin<br>ortasında sergilendi,<br><br><br>ziyaretçilerle birlikte<br>katlama da yaptık",kereszt:"Eşim Jutka’nın<br>kanaviçe işleri de<br>sergilendi"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"29–30 Ιουλίου 2006, Τσόλνοκ<br>Γιορτή Λουλουδιών και Ημέρες Χωριού",kultur:"Τα έργα μου εκτέθηκαν<br>στο κέντρο του<br>πολιτιστικού κτιρίου,<br><br><br>και διπλώναμε μαζί<br>με τους επισκέπτες",kereszt:"Τα σταυροβελονιά<br>κεντήματα της<br>συζύγου μου Γιούτκα<br>εκτέθηκαν επίσης"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"29–30 korrik 2006, Csolnok<br>Festivali i Luleve dhe Ditët e Fshatit",kultur:"Punimet e mia u<br>ekspozuan në qendër të<br>shtëpisë së kulturës,<br><br><br>dhe palosëm edhe<br>me vizitorët",kereszt:"Punimet me kryq të<br>bashkëshortes sime<br>Jutka u ekspozuan<br>gjithashtu"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"29–30 юли 2006, Чолнок<br>Фестивал на цветята и дни на селото",kultur:"Моите творби бяха<br>изложени в центъра на<br>културния дом,<br><br><br>и сгъвахме заедно<br>с посетителите",kereszt:"Кръстатият бод на<br>съпругата ми Ютка<br>също беше изложен"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"29–30 lipca 2006, Csolnok<br>Festiwal Kwiatów i Dni Wsi",kultur:"Moje prace były<br>wystawione na środku<br>domu kultury,<br><br><br>i składaliśmy razem<br>z odwiedzającymi",kereszt:"Hafty krzyżykowe<br>mojej żony Jutki<br>również były wystawione"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"29.–30. července 2006, Csolnok<br>Květinový festival a Dny obce",kultur:"Má díla byla vystavena<br>uprostřed kulturního domu,<br><br><br>a skládali jsme také<br>s návštěvníky",kereszt:"Křížkové výšivky<br>mé ženy Jutky byly<br>také vystaveny"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"29.–30. júla 2006, Csolnok<br>Kvetinový festival a Dni obce",kultur:"Moje práce boli<br>vystavené uprostred<br>kultúrneho domu,<br><br><br>a skladali sme aj<br>s návštevníkmi",kereszt:"Krížikové výšivky<br>mojej manželky Jutky<br>boli tiež vystavené"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"29–30 липня 2006, Чолнок<br>Свято квітів і дні села",kultur:"Мої роботи були<br>виставлені в центрі<br>будинку культури,<br><br><br>ми також складали<br>разом з відвідувачами",kereszt:"Вишивки хрестиком<br>моєї дружини Ютки<br>також були виставлені"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"29–30 iulie 2006, Csolnok<br>Festivalul Florilor și Zilele Satului",kultur:"Lucrările mele au fost<br>expuse în centrul casei<br>de cultură,<br><br><br>și am pliat împreună<br>cu vizitatorii",kereszt:"Broderiile în punct<br>încrucișat ale soției<br>mele Jutka au fost<br>de asemenea expuse"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"29–30. јул 2006, Чолнок<br>Фестивал цвећа и дани села",kultur:"Моји радови су били<br>изложени у средини<br>дома културе,<br><br><br>и савијали смо и са<br>посетиоцима",kereszt:"Крстасти вез моје<br>супруге Јутке је такође<br>био изложен"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"29.–30. srpnja 2006, Csolnok<br>Festival cvijeća i Dani sela",kultur:"Moji radovi bili su<br>izloženi u sredini<br>doma kulture,<br><br><br>a savijali smo i s<br>posjetiteljima",kereszt:"Križni vez moje<br>supruge Jutke bio je<br>također izložen"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"29.–30. julij 2006, Csolnok<br>Cvetlični festival in dnevi vasi",kultur:"Moja dela so bila<br>razstavljena sredi<br>kulturnega doma,<br><br><br>in z obiskovalci smo<br>tudi zgibali",kereszt:"Križni vezenini moje<br>žene Jutke sta bili<br>prav tako razstavljeni"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -195,6 +266,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

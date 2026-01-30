@@ -75,6 +75,8 @@
     th { background: #003366; color: white; padding: 12px; border-radius: 8px; font-size: 1.4rem; text-align: center; }
     td { padding: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; }
     
+	tr { scroll-margin-top: 120px; }
+	
     .gallery-img, .pdf-thumb { width: 220px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: transform 0.3s ease; cursor: pointer; }
     .gallery-img:hover, .pdf-thumb:hover { transform: scale(1.05); }
 
@@ -110,250 +112,317 @@
       .next { right: 10px; background: rgba(0,0,0,0.3); border-radius: 50%; }
       .nav-arrow { font-size: 2.5rem; }
     }
+	
+	.nav-jump {
+	  font-size: 0.7rem;
+	  padding: 5px 14px;
+	  opacity: 0.9;
+	}
+
+	.nav-jump:hover {
+	  opacity: 1;
+	  transform: translateX(-8px);
+	}	
+
+	/* Mobil lebegő navigációs gombok */
+	.mobile-fab {
+	  position: fixed;
+	  right: 16px;
+	  bottom: 20px;
+	  display: none;
+	  flex-direction: column;
+	  gap: 12px;
+	  z-index: 1500;
+	}
+
+	/* Maga a gomb */
+	.fab-btn {
+	  width: 48px;
+	  height: 48px;
+	  border-radius: 50%;
+	  border: none;
+	  background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+	  color: white;
+	  font-size: 1.4rem;
+	  font-weight: bold;
+	  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+	  cursor: pointer;
+	  transition: transform 0.25s ease, opacity 0.25s ease;
+	  opacity: 0.85;
+	}
+
+	.fab-btn:active {
+	  transform: scale(0.92);
+	}
+
+	.fab-btn:hover {
+	  opacity: 1;
+	}
+
+	/* Csak mobilon jelenjen meg */
+	@media (max-width: 768px) {
+	  .mobile-fab {
+		display: flex;
+	  }
+	}
+
   </style>
 </head>
+
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+	<a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
+	<a href="#" class="back-button nav-jump" style="top: 55px;" onclick="scrollToTop(); return false;"  lang-key="top">
+	  ↑ Tetejére
+	</a>
 
-  <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
-    <div id="lb-title" class="lightbox-header"></div>
-    
-    <div class="lightbox-img-container" onclick="event.stopPropagation()">
-      <span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
-      
-      <img id="lightbox-img" src="">
-      <iframe id="lightbox-pdf" src=""></iframe>
-      
-      <span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
-    </div>
+	<a href="#" class="back-button nav-jump" style="top: 90px;" onclick="scrollToBottom(); return false;" lang-key="bottom">
+	  ↓ Aljára
+	</a>
 
-    <div id="lb-desc" class="lightbox-footer"></div>
-  </div>
-
-  <div class="page-container">
-	<table>
-		<div class="nav-button-container">
-			<a href="exhibition.htm" class="btn-nav btn-nav-active" data-lang-key="exhib">Kiállítások</a>
-			<a href="media.htm" class="btn-nav btn-nav-inactive" data-lang-key="media">Média</a>
-		</div>
+	<div id="lightbox" class="lightbox" onclick="closeImage()">
+		<div class="lightbox-close" lang-key="close">✕ Bezárás</div>
+		<div id="lb-title" class="lightbox-header"></div>
 		
-		<tr>
-			<td><a href="exhibition053.htm" data-lang-key="p_i053">(53.) 2025. december 20.</a></td>
-			<td><a href="exhibition053.htm" data-lang-key="p_h053">Yumeiho® Karácsony, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition052.htm" data-lang-key="p_i052">(52.) 2025. szeptember 7–12.</a></td>
-			<td><a href="exhibition052.htm" data-lang-key="p_h052">Mátyás utcai Olvasókör, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition051.htm" data-lang-key="p_i051">(51.) 2024. szeptember 27–29.</a></td>
-			<td><a href="exhibition051.htm" data-lang-key="p_h051">Kézműves Kiállítás, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition050.htm" data-lang-key="p_i050">(50.) 2023. június 3.</a></td>
-			<td><a href="exhibition050.htm" data-lang-key="p_h050">9. Mesefalu, Maglód</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition049.htm" data-lang-key="p_i049">(49.) 2022. július 14.</a></td>
-			<td><a href="exhibition049.htm" data-lang-key="p_h049">22. IMEK, Szeged</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition048.htm" data-lang-key="p_i048">(48.) 2019. május 20–24.</a></td>
-			<td><a href="exhibition048.htm" data-lang-key="p_h048">Mátyás utcai Olvasókör, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition047.htm" data-lang-key="p_i047">(47.) 2019. március 20.</a></td>
-			<td><a href="exhibition047.htm" data-lang-key="p_h047">ERASMUS+, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition046.htm" data-lang-key="p_i046">(46.) 2018. április 23.</a></td>
-			<td><a href="exhibition046.htm" data-lang-key="p_h046">Németh László Gimnázium, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition045.htm" data-lang-key="p_i045">(45.) 2017. november 22.</a></td>
-			<td><a href="exhibition045.htm" data-lang-key="p_h045">Pályaorientációs Nap, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition044.htm" data-lang-key="p_i044">(44.) 2017. október 5.</a></td>
-			<td><a href="exhibition044.htm" data-lang-key="p_h044">Őszi Kulturális Fesztivál, Szeged  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition043.htm" data-lang-key="p_i043">(43.) 2017. szeptember 16.</a></td>
-			<td><a href="exhibition043.htm" data-lang-key="p_h043">Kézműves Kiállítás, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition042.htm" data-lang-key="p_i042">(42.) 2017. június 12–15.</a></td>
-			<td><a href="exhibition042.htm" data-lang-key="p_h042">Csúcsi Olvasókör, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition041.htm" data-lang-key="p_i041">(41.) 2015. október 6.</a></td>
-			<td><a href="exhibition041.htm" data-lang-key="p_h041">Újvárosi Olvasókör, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition040.htm" data-lang-key="p_i040">(40.) 2015. február 13. – március 18.</a></td>
-			<td><a href="exhibition040.htm" data-lang-key="p_h040">Kultúrházak Éjjel-Nappal, Mezőberény  🌄</a></td>
-		</tr>		
-		<tr>
-			<td><a href="exhibition039.htm" data-lang-key="p_i039">(39.) 2014. október 11–13.</a></td>
-			<td><a href="exhibition039.htm" data-lang-key="p_h039">Hobbi Kiállítás, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition038.htm" data-lang-key="p_i038">(38.) 2012. július 7.</a></td>
-			<td><a href="exhibition038.htm" data-lang-key="p_h038">Újabb Porcelán Nap, Hódmezővásárhelyen  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition037.htm" data-lang-key="p_i037">(37.) 2012. június 9.</a></td>
-			<td><a href="exhibition037.htm" data-lang-key="p_h037">Ismét a szülőfalumban, Muronyban</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition036.htm" data-lang-key="p_i036">(36.) 2012. május 12.</a></td>
-			<td><a href="exhibition036.htm" data-lang-key="p_h036">MÁV-START Szakmai Nap, Budapest</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition035.htm" data-lang-key="p_i035">(35.) 2012. április 26–30.</a></td>
-			<td><a href="exhibition035.htm" data-lang-key="p_h035">Re-Likvia MEDIAWAVE, Komárom  🌄</a></td>
-		</tr>	
-		<tr>
-			<td><a href="exhibition034.htm" data-lang-key="p_i034">(34.) 2011. október 24. – november 11.</a></td>
-			<td><a href="exhibition034.htm" data-lang-key="p_h034">PAPÍRCSODÁK – Budapest  🌄</a></td>
-		</tr>		
-		<tr>
-			<td><a href="exhibition033.htm" data-lang-key="p_i033">(33.) 2011. október 1.</a></td>
-			<td><a href="exhibition033.htm" data-lang-key="p_h033">Belvárosi Olvasókör, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition032.htm" data-lang-key="p_i032">(32.) 2011. március 12 – április 8.</a></td>
-			<td><a href="exhibition032.htm" data-lang-key="p_h032">Pécsi Kulturális Központ  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition031.htm" data-lang-key="p_i031">(31.) 2010. december 3. – 2011. február 28.</a></td>
-			<td><a href="exhibition031.htm" data-lang-key="p_h031">Hotel Ginkgo Sas****, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition030.htm" data-lang-key="p_i030">(30.) 2010. szeptember 10–12.</a></td>
-			<td><a href="exhibition030.htm" data-lang-key="p_h030">XII. Madzagfalvi Napok, Békés  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition029.htm" data-lang-key="p_i029">(29.) 2010. augusztus 1–15.</a></td>
-			<td><a href="exhibition029.htm" data-lang-key="p_h029">Origami Fesztivál, Pécs  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition028.htm" data-lang-key="p_i028">(28.) 2010. június 19.</a></td>
-			<td><a href="exhibition028.htm" data-lang-key="p_h028">2. Papír Fesztivál, Gersekarát</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition027.htm" data-lang-key="p_i027">(27.) 2010. február 20.</a></td>
-			<td><a href="exhibition027.htm" data-lang-key="p_h027">Bélyeg–Farsang, Budapest</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition026.htm" data-lang-key="p_i026">(26.) 2009. június 20.</a></td>
-			<td><a href="exhibition026.htm" data-lang-key="p_h026">1. Papír Fesztivál, Gersekarát  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition025.htm" data-lang-key="p_i025">(25.) 2009. május 1.</a></td>
-			<td><a href="exhibition025.htm" data-lang-key="p_h025">3. Internetes Bélyeggyűjtő Klub Találkozó, Dabas</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition024.htm" data-lang-key="p_i024">(24.) 2008. november 15–17.</a></td>
-			<td><a href="exhibition024.htm" data-lang-key="p_h024">Csúcsi Olvasókör, Hódmezővásárhely</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition023.htm" data-lang-key="p_i023">(23.) 2008. június 7–8.</a></td>
-			<td><a href="exhibition023.htm" data-lang-key="p_h023">5. Papír-varázs Fesztivál, Budapest</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition022.htm" data-lang-key="p_i022">(22.) 2007. november – december</a></td>
-			<td><a href="exhibition022.htm" data-lang-key="p_h022">Százszorszép Gyermekház, Szeged  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition021.htm" data-lang-key="p_i021">(21.) 2007. október 28.</a></td>
-			<td><a href="exhibition021.htm" data-lang-key="p_h021">Papi-féle szélmalom, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition020.htm" data-lang-key="p_i020">(20.) 2007. augusztus 10–12.</a></td>
-			<td><a href="exhibition020.htm" data-lang-key="p_h020">XVIII. Nemzetközi Origami Találkozó, Pécs  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition019.htm" data-lang-key="p_i019">(19.) 2007. március 2.</a></td>
-			<td><a href="exhibition019.htm" data-lang-key="p_h019">Szigetszentmiklós</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition018.htm" data-lang-key="p_i018">(18.) 2006. szeptember 8–10.</a></td>
-			<td><a href="exhibition018.htm" data-lang-key="p_h018">Madzagfalvi Napok, Békés  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition017.htm" data-lang-key="p_i017">(17.) 2006. július 29–30.</a></td>
-			<td><a href="exhibition017.htm" data-lang-key="p_h017">Blumenfest, Csolnok  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition016.htm" data-lang-key="p_i016">(16.) 2006. július 8.</a></td>
-			<td><a href="exhibition016.htm" data-lang-key="p_h016">Máltai Játszóház, Szeged</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition015.htm" data-lang-key="p_i015">(15.) 2006. június 3.</a></td>
-			<td><a href="exhibition015.htm" data-lang-key="p_h015">IV. Vertán-telep és Kenderföld Nap, Makó</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition014.htm" data-lang-key="p_i014">(14.) 2006. május 26–28.</a></td>
-			<td><a href="exhibition014.htm" data-lang-key="p_h014">3. Papír-varázs Fesztivál, Budapest</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition013.htm" data-lang-key="p_i013">(13.) 2005. október 10–17.</a></td>
-			<td><a href="exhibition013.htm" data-lang-key="p_h013">Hobbi Kiállítás, Hódmezővásárhely  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition012.htm" data-lang-key="p_i012">(12.) 2005. szeptember 5-től</a></td>
-			<td><a href="exhibition012.htm" data-lang-key="p_h012">Gyermekkönyvtár, Szentes</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition011.htm" data-lang-key="p_i011">(11.) 2005. augusztus 12–14.</a></td>
-			<td><a href="exhibition011.htm" data-lang-key="p_h011">Origami Találkozó, Pécs  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition010.htm" data-lang-key="p_i010">(10.) 2005. május 29.</a></td>
-			<td><a href="exhibition010.htm" data-lang-key="p_h010">Gyermeknap, Medgyesegyháza  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition009.htm" data-lang-key="p_i009">(9.) 2005. május 20–27.</a></td>
-			<td><a href="exhibition009.htm" data-lang-key="p_h009">Gyermeknap, Békéscsaba  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition008.htm" data-lang-key="p_i008">(8.) 2005. május 6–8.</a></td>
-			<td><a href="exhibition008.htm" data-lang-key="p_h008">2. Papír-varázs Fesztivál, Budapest</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition007.htm" data-lang-key="p_i007">(7.) 2004. augusztus 14–15.</a></td>
-			<td><a href="exhibition007.htm" data-lang-key="p_h007">Origami Találkozó, Kecskemét  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition006.htm" data-lang-key="p_i006">(6.) 2004. július 7. – augusztus 9.</a></td>
-			<td><a href="exhibition006.htm" data-lang-key="p_h006">A hatodik Hévízen  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition005.htm" data-lang-key="p_i005">(5.) 2004. június 14.</a></td>
-			<td><a href="exhibition005.htm" data-lang-key="p_h005">Az ötödik is Vásárhelyen  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition004.htm" data-lang-key="p_i004">(4.) 2004. június 12.</a></td>
-			<td><a href="exhibition004.htm" data-lang-key="p_h004">A negyedik ismét Hódmezővásárhelyen  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition003.htm" data-lang-key="p_i003">(3.) 2004. június 7–11.</a></td>
-			<td><a href="exhibition003.htm" data-lang-key="p_h003">A harmadik szülőfalumban, Muronyban  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition002.htm" data-lang-key="p_i002">(2.) 2004. április 30. – május 2.</a></td>
-			<td><a href="exhibition002.htm" data-lang-key="p_h002">A második Budapesten  🌄</a></td>
-		</tr>
-		<tr>
-			<td><a href="exhibition001.htm" data-lang-key="p_i001">(1.) 2004. március 24–26.</a></td>
-			<td><a href="exhibition001.htm" data-lang-key="p_h001">Ilyen volt az első Hódmezővásárhelyen  🌄</a></td>
-		</tr>
-	</table>
-    
-  </div>
+		<div class="lightbox-img-container" onclick="event.stopPropagation()">
+		  <span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
+		  
+		  <img id="lightbox-img" src="">
+		  <iframe id="lightbox-pdf" src=""></iframe>
+		  
+		  <span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
+		</div>
+
+		<div id="lb-desc" class="lightbox-footer"></div>
+	</div>
+
+	<div class="page-container">
+		<table>
+			<div class="nav-button-container">
+				<a href="exhibition.htm" class="btn-nav btn-nav-active" lang-key="exhib">Kiállítások</a>
+				<a href="media.htm" class="btn-nav btn-nav-inactive" lang-key="media">Média</a>
+			</div>
+			
+			<tr id="ex053">
+				<td><a href="exhibition053.htm#ex053" lang-key="p_i053">(53.) 2025. december 20.</a></td>
+				<td><a href="exhibition053.htm#ex053" lang-key="p_h053">Yumeiho® Karácsony, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex052">
+				<td><a href="exhibition052.htm#ex052" lang-key="p_i052">(52.) 2025. szeptember 7–12.</a></td>
+				<td><a href="exhibition052.htm#ex052" lang-key="p_h052">Mátyás utcai Olvasókör, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex051">
+				<td><a href="exhibition051.htm#ex051" lang-key="p_i051">(51.) 2024. szeptember 27–29.</a></td>
+				<td><a href="exhibition051.htm#ex051" lang-key="p_h051">Kézműves Kiállítás, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex050">
+				<td><a href="exhibition050.htm#ex050" lang-key="p_i050">(50.) 2023. június 3.</a></td>
+				<td><a href="exhibition050.htm#ex050" lang-key="p_h050">9. Mesefalu, Maglód</a></td>
+			</tr>
+			<tr id="ex049">
+				<td><a href="exhibition049.htm#ex049" lang-key="p_i049">(49.) 2022. július 14.</a></td>
+				<td><a href="exhibition049.htm#ex049" lang-key="p_h049">22. IMEK, Szeged</a></td>
+			</tr>
+			<tr id="ex048">
+				<td><a href="exhibition048.htm#ex048" lang-key="p_i048">(48.) 2019. május 20–24.</a></td>
+				<td><a href="exhibition048.htm#ex048" lang-key="p_h048">Mátyás utcai Olvasókör, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex047">
+				<td><a href="exhibition047.htm#ex047" lang-key="p_i047">(47.) 2019. március 20.</a></td>
+				<td><a href="exhibition047.htm#ex047" lang-key="p_h047">ERASMUS+, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex046">
+				<td><a href="exhibition046.htm#ex046" lang-key="p_i046">(46.) 2018. április 23.</a></td>
+				<td><a href="exhibition046.htm#ex046" lang-key="p_h046">Németh László Gimnázium, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex045">
+				<td><a href="exhibition045.htm#ex045" lang-key="p_i045">(45.) 2017. november 22.</a></td>
+				<td><a href="exhibition045.htm#ex045" lang-key="p_h045">Pályaorientációs Nap, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex044">
+				<td><a href="exhibition044.htm#ex044" lang-key="p_i044">(44.) 2017. október 5.</a></td>
+				<td><a href="exhibition044.htm#ex044" lang-key="p_h044">Őszi Kulturális Fesztivál, Szeged  🌄</a></td>
+			</tr>
+			<tr id="ex043">
+				<td><a href="exhibition043.htm#ex043" lang-key="p_i043">(43.) 2017. szeptember 16.</a></td>
+				<td><a href="exhibition043.htm#ex043" lang-key="p_h043">Kézműves Kiállítás, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex042">
+				<td><a href="exhibition042.htm#ex042" lang-key="p_i042">(42.) 2017. június 12–15.</a></td>
+				<td><a href="exhibition042.htm#ex042" lang-key="p_h042">Csúcsi Olvasókör, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex041">
+				<td><a href="exhibition041.htm#ex041" lang-key="p_i041">(41.) 2015. október 6.</a></td>
+				<td><a href="exhibition041.htm#ex041" lang-key="p_h041">Újvárosi Olvasókör, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex040">
+				<td><a href="exhibition040.htm#ex040" lang-key="p_i040">(40.) 2015. február 13. – március 18.</a></td>
+				<td><a href="exhibition040.htm#ex040" lang-key="p_h040">Kultúrházak Éjjel-Nappal, Mezőberény  🌄</a></td>
+			</tr>		
+			<tr id="ex039">
+				<td><a href="exhibition039.htm#ex039" lang-key="p_i039">(39.) 2014. október 11–13.</a></td>
+				<td><a href="exhibition039.htm#ex039" lang-key="p_h039">Hobbi Kiállítás, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex038">
+				<td><a href="exhibition038.htm#ex038" lang-key="p_i038">(38.) 2012. július 7.</a></td>
+				<td><a href="exhibition038.htm#ex038" lang-key="p_h038">Újabb Porcelán Nap, Hódmezővásárhelyen  🌄</a></td>
+			</tr>
+			<tr id="ex037">
+				<td><a href="exhibition037.htm#ex037" lang-key="p_i037">(37.) 2012. június 9.</a></td>
+				<td><a href="exhibition037.htm#ex037" lang-key="p_h037">Ismét a szülőfalumban, Muronyban</a></td>
+			</tr>
+			<tr id="ex036">
+				<td><a href="exhibition036.htm#ex036" lang-key="p_i036">(36.) 2012. május 12.</a></td>
+				<td><a href="exhibition036.htm#ex036" lang-key="p_h036">MÁV-START Szakmai Nap, Budapest</a></td>
+			</tr>
+			<tr id="ex035">
+				<td><a href="exhibition035.htm#ex035" lang-key="p_i035">(35.) 2012. április 26–30.</a></td>
+				<td><a href="exhibition035.htm#ex035" lang-key="p_h035">Re-Likvia MEDIAWAVE, Komárom  🌄</a></td>
+			</tr>	
+			<tr id="ex034">
+				<td><a href="exhibition034.htm#ex034" lang-key="p_i034">(34.) 2011. október 24. – november 11.</a></td>
+				<td><a href="exhibition034.htm#ex034" lang-key="p_h034">PAPÍRCSODÁK – Budapest  🌄</a></td>
+			</tr>		
+			<tr id="ex033">
+				<td><a href="exhibition033.htm#ex033" lang-key="p_i033">(33.) 2011. október 1.</a></td>
+				<td><a href="exhibition033.htm#ex033" lang-key="p_h033">Belvárosi Olvasókör, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex032">
+				<td><a href="exhibition032.htm#ex032" lang-key="p_i032">(32.) 2011. március 12 – április 8.</a></td>
+				<td><a href="exhibition032.htm#ex032" lang-key="p_h032">Pécsi Kulturális Központ  🌄</a></td>
+			</tr>
+			<tr id="ex031">
+				<td><a href="exhibition031.htm#ex031" lang-key="p_i031">(31.) 2010. december 3. – 2011. február 28.</a></td>
+				<td><a href="exhibition031.htm#ex031" lang-key="p_h031">Hotel Ginkgo Sas****, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex030">
+				<td><a href="exhibition030.htm#ex030" lang-key="p_i030">(30.) 2010. szeptember 10–12.</a></td>
+				<td><a href="exhibition030.htm#ex030" lang-key="p_h030">XII. Madzagfalvi Napok, Békés  🌄</a></td>
+			</tr>
+			<tr id="ex029">
+				<td><a href="exhibition029.htm#ex029" lang-key="p_i029">(29.) 2010. augusztus 1–15.</a></td>
+				<td><a href="exhibition029.htm#ex029" lang-key="p_h029">Origami Fesztivál, Pécs  🌄</a></td>
+			</tr>
+			<tr id="ex028">
+				<td><a href="exhibition028.htm#ex028" lang-key="p_i028">(28.) 2010. június 19.</a></td>
+				<td><a href="exhibition028.htm#ex028" lang-key="p_h028">2. Papír Fesztivál, Gersekarát</a></td>
+			</tr>
+			<tr id="ex027">
+				<td><a href="exhibition027.htm#ex027" lang-key="p_i027">(27.) 2010. február 20.</a></td>
+				<td><a href="exhibition027.htm#ex027" lang-key="p_h027">Bélyeg–Farsang, Budapest</a></td>
+			</tr>
+			<tr id="ex026">
+				<td><a href="exhibition026.htm#ex026" lang-key="p_i026">(26.) 2009. június 20.</a></td>
+				<td><a href="exhibition026.htm#ex026" lang-key="p_h026">1. Papír Fesztivál, Gersekarát  🌄</a></td>
+			</tr>
+			<tr id="ex025">
+				<td><a href="exhibition025.htm#ex025" lang-key="p_i025">(25.) 2009. május 1.</a></td>
+				<td><a href="exhibition025.htm#ex025" lang-key="p_h025">3. Internetes Bélyeggyűjtő Klub Találkozó, Dabas</a></td>
+			</tr>
+			<tr id="ex024">
+				<td><a href="exhibition024.htm#ex024" lang-key="p_i024">(24.) 2008. november 15–17.</a></td>
+				<td><a href="exhibition024.htm#ex024" lang-key="p_h024">Csúcsi Olvasókör, Hódmezővásárhely</a></td>
+			</tr>
+			<tr id="ex023">
+				<td><a href="exhibition023.htm#ex023" lang-key="p_i023">(23.) 2008. június 7–8.</a></td>
+				<td><a href="exhibition023.htm#ex023" lang-key="p_h023">5. Papír-varázs Fesztivál, Budapest</a></td>
+			</tr>
+			<tr id="ex022">
+				<td><a href="exhibition022.htm#ex022" lang-key="p_i022">(22.) 2007. november – december</a></td>
+				<td><a href="exhibition022.htm#ex022" lang-key="p_h022">Százszorszép Gyermekház, Szeged  🌄</a></td>
+			</tr>
+			<tr id="ex021">
+				<td><a href="exhibition021.htm#ex021" lang-key="p_i021">(21.) 2007. október 28.</a></td>
+				<td><a href="exhibition021.htm#ex021" lang-key="p_h021">Papi-féle szélmalom, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex020">
+				<td><a href="exhibition020.htm#ex020" lang-key="p_i020">(20.) 2007. augusztus 10–12.</a></td>
+				<td><a href="exhibition020.htm#ex020" lang-key="p_h020">XVIII. Nemzetközi Origami Találkozó, Pécs  🌄</a></td>
+			</tr>
+			<tr id="ex019">
+				<td><a href="exhibition019.htm#ex019" lang-key="p_i019">(19.) 2007. március 2.</a></td>
+				<td><a href="exhibition019.htm#ex019" lang-key="p_h019">Szigetszentmiklós</a></td>
+			</tr>
+			<tr id="ex018">
+				<td><a href="exhibition018.htm#ex018" lang-key="p_i018">(18.) 2006. szeptember 8–10.</a></td>
+				<td><a href="exhibition018.htm#ex018" lang-key="p_h018">Madzagfalvi Napok, Békés  🌄</a></td>
+			</tr>
+			<tr id="ex017">
+				<td><a href="exhibition017.htm#ex017" lang-key="p_i017">(17.) 2006. július 29–30.</a></td>
+				<td><a href="exhibition017.htm#ex017" lang-key="p_h017">Blumenfest, Csolnok  🌄</a></td>
+			</tr>
+			<tr id="ex016">
+				<td><a href="exhibition016.htm#ex016" lang-key="p_i016">(16.) 2006. július 8.</a></td>
+				<td><a href="exhibition016.htm#ex016" lang-key="p_h016">Máltai Játszóház, Szeged</a></td>
+			</tr>
+			<tr id="ex015">
+				<td><a href="exhibition015.htm#ex015" lang-key="p_i015">(15.) 2006. június 3.</a></td>
+				<td><a href="exhibition015.htm#ex015" lang-key="p_h015">IV. Vertán-telep és Kenderföld Nap, Makó</a></td>
+			</tr>
+			<tr id="ex014">
+				<td><a href="exhibition014.htm#ex014" lang-key="p_i014">(14.) 2006. május 26–28.</a></td>
+				<td><a href="exhibition014.htm#ex014" lang-key="p_h014">3. Papír-varázs Fesztivál, Budapest</a></td>
+			</tr>
+			<tr id="ex013">
+				<td><a href="exhibition013.htm#ex013" lang-key="p_i013">(13.) 2005. október 10–17.</a></td>
+				<td><a href="exhibition013.htm#ex013" lang-key="p_h013">Hobbi Kiállítás, Hódmezővásárhely  🌄</a></td>
+			</tr>
+			<tr id="ex012">
+				<td><a href="exhibition012.htm#ex012" lang-key="p_i012">(12.) 2005. szeptember 5-től</a></td>
+				<td><a href="exhibition012.htm#ex012" lang-key="p_h012">Gyermekkönyvtár, Szentes</a></td>
+			</tr>
+			<tr id="ex011">
+				<td><a href="exhibition011.htm#ex011" lang-key="p_i011">(11.) 2005. augusztus 12–14.</a></td>
+				<td><a href="exhibition011.htm#ex011" lang-key="p_h011">Origami Találkozó, Pécs  🌄</a></td>
+			</tr>
+			<tr id="ex010">
+				<td><a href="exhibition010.htm#ex010" lang-key="p_i010">(10.) 2005. május 29.</a></td>
+				<td><a href="exhibition010.htm#ex010" lang-key="p_h010">Gyermeknap, Medgyesegyháza  🌄</a></td>
+			</tr>
+			<tr id="ex009">
+				<td><a href="exhibition009.htm#ex009" lang-key="p_i009">(9.) 2005. május 20–27.</a></td>
+				<td><a href="exhibition009.htm#ex009" lang-key="p_h009">Gyermeknap, Békéscsaba  🌄</a></td>
+			</tr>
+			<tr id="ex008">
+				<td><a href="exhibition008.htm#ex008" lang-key="p_i008">(8.) 2005. május 6–8.</a></td>
+				<td><a href="exhibition008.htm#ex008" lang-key="p_h008">2. Papír-varázs Fesztivál, Budapest</a></td>
+			</tr>
+			<tr id="ex007">
+				<td><a href="exhibition007.htm#ex007" lang-key="p_i007">(7.) 2004. augusztus 14–15.</a></td>
+				<td><a href="exhibition007.htm#ex007" lang-key="p_h007">Origami Találkozó, Kecskemét  🌄</a></td>
+			</tr>
+			<tr id="ex006">
+				<td><a href="exhibition006.htm#ex006" lang-key="p_i006">(6.) 2004. július 7. – augusztus 9.</a></td>
+				<td><a href="exhibition006.htm#ex006" lang-key="p_h006">A hatodik Hévízen  🌄</a></td>
+			</tr>
+			<tr id="ex005">
+				<td><a href="exhibition005.htm#ex005" lang-key="p_i005">(5.) 2004. június 14.</a></td>
+				<td><a href="exhibition005.htm#ex005" lang-key="p_h005">Az ötödik is Vásárhelyen  🌄</a></td>
+			</tr>
+			<tr id="ex004">
+				<td><a href="exhibition004.htm#ex004" lang-key="p_i004">(4.) 2004. június 12.</a></td>
+				<td><a href="exhibition004.htm#ex004" lang-key="p_h004">A negyedik ismét Hódmezővásárhelyen  🌄</a></td>
+			</tr>
+			<tr id="ex003">
+				<td><a href="exhibition003.htm#ex003" lang-key="p_i003">(3.) 2004. június 7–11.</a></td>
+				<td><a href="exhibition003.htm#ex003" lang-key="p_h003">A harmadik szülőfalumban, Muronyban  🌄</a></td>
+			</tr>
+			<tr id="ex002">
+				<td><a href="exhibition002.htm#ex002" lang-key="p_i002">(2.) 2004. április 30. – május 2.</a></td>
+				<td><a href="exhibition002.htm#ex002" lang-key="p_h002">A második Budapesten  🌄</a></td>
+			</tr>
+			<tr id="ex001">
+				<td><a href="exhibition001.htm#ex001" lang-key="p_i001">(1.) 2004. március 24–26.</a></td>
+				<td><a href="exhibition001.htm#ex001" lang-key="p_h001">Ilyen volt az első Hódmezővásárhelyen  🌄</a></td>
+			</tr>
+		</table>
+		
+	</div>
+
+	<div class="mobile-fab">
+	  <button class="fab-btn fab-top" onclick="scrollToTop()" lang-key="top">↑</button>
+	  <button class="fab-btn fab-bottom" onclick="scrollToBottom()" lang-key="bottom">↓</button>
+	</div>
 
   <script>
   
@@ -364,6 +433,76 @@
 			fi: "← Takaisin", no: "← Tilbake", da: "← Tilbage", is: "← Til baka", ca: "← Enrere", ja: "← 戻る", zh: "← 返回", ko: "← 뒤로",
 			eo: "← Reen", lt: "← Atgal", lv: "← Atpakaļ", et: "← Tagasi", tr: "← Geri", el: "← Πίσω", sq: "← Kthehu", bg: "← Назад", 
 			pl: "← Wstecz", cs: "← Zpět", sk: "← Späť", uk: "← Назад", ro: "← Înapoi", sr: "← Назад", hr: "← Natrag", sl: "← Nazaj" 
+		},
+		top: {
+			hu: "↑ Tetejére",
+			en: "↑ Top",
+			de: "↑ Nach oben",
+			es: "↑ Arriba",
+			it: "↑ In alto",
+			fr: "↑ Haut",
+			pt: "↑ Topo",
+			nl: "↑ Bovenaan",
+			sv: "↑ Upp",
+			fi: "↑ Ylös",
+			no: "↑ Til toppen",
+			da: "↑ Til toppen",
+			is: "↑ Efst",
+			ca: "↑ A dalt",
+			ja: "↑ 上へ",
+			zh: "↑ 顶部",
+			ko: "↑ 맨 위로",
+			eo: "↑ Supren",
+			lt: "↑ Į viršų",
+			lv: "↑ Uz augšu",
+			et: "↑ Üles",
+			tr: "↑ Yukarı",
+			el: "↑ Πάνω",
+			sq: "↑ Lart",
+			bg: "↑ Най-горе",
+			pl: "↑ Do góry",
+			cs: "↑ Nahoru",
+			sk: "↑ Hore",
+			uk: "↑ Вгору",
+			ro: "↑ Sus",
+			sr: "↑ На врх",
+			hr: "↑ Na vrh",
+			sl: "↑ Na vrh"
+		},
+		bottom: {
+			hu: "↓ Aljára",
+			en: "↓ Bottom",
+			de: "↓ Nach unten",
+			es: "↓ Abajo",
+			it: "↓ In basso",
+			fr: "↓ Bas",
+			pt: "↓ Fundo",
+			nl: "↓ Onderaan",
+			sv: "↓ Ned",
+			fi: "↓ Alas",
+			no: "↓ Til bunnen",
+			da: "↓ Til bunden",
+			is: "↓ Neðst",
+			ca: "↓ A baix",
+			ja: "↓ 下へ",
+			zh: "↓ 底部",
+			ko: "↓ 맨 아래로",
+			eo: "↓ Malsupren",
+			lt: "↓ Į apačią",
+			lv: "↓ Uz leju",
+			et: "↓ Alla",
+			tr: "↓ Aşağı",
+			el: "↓ Κάτω",
+			sq: "↓ Poshtë",
+			bg: "↓ Най-долу",
+			pl: "↓ Na dół",
+			cs: "↓ Dolů",
+			sk: "↓ Dole",
+			uk: "↓ Вниз",
+			ro: "↓ Jos",
+			sr: "↓ На дно",
+			hr: "↓ Na dno",
+			sl: "↓ Na dno"
 		},
 		close: {
 			hu: "← Vissza",
@@ -3487,7 +3626,7 @@
 			ko: "(9.) 2005년 5월 20일~27일",
 			eo: "(9.) 20–27-a de majo 2005",
 			lt: "(1.) 2005 m. gegužės 20–27 d.",
-			lv: "(1.) 2005. gada 20.–27. maijs",
+			lv: "(9.) 2005. gada 20.–27. maijs",
 			et: "(9.) 20.–27. mai 2005",
 			tr: "(9.) 20–27 Mayıs 2005",
 			el: "(9.) 20–27 Μαΐου 2005",
@@ -4129,8 +4268,8 @@
 		localStorage.setItem('preferredLang', lang);
 		document.documentElement.lang = lang;
 
-		document.querySelectorAll('[data-lang-key]').forEach(el => {
-			const key = el.getAttribute('data-lang-key');
+		document.querySelectorAll('[lang-key]').forEach(el => {
+			const key = el.getAttribute('lang-key');
 			let text = "";
 
 			// 1. ÚJ STRUKTÚRA ELLENŐRZÉSE (Kulcs alapú: translations['back']['en'])
@@ -4153,6 +4292,14 @@
 			}
 		});
 	}	
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}
+
+	function scrollToBottom() {
+		window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+	}
 	
   </script>
 </body>

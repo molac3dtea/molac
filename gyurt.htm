@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,19 +83,19 @@
   <div class="page-container">
 
     <table>
-      <caption data-lang-key="title_gyurt">Gyűrt technikájú modellek</caption>
+      <caption lang-key="title_gyurt">Gyűrt technikájú modellek</caption>
       <tr>
-        <td data-lang-key="p_gyurt1">Ezek általában<br>absztrakt formák</td>
+        <td lang-key="p_gyurt1">Ezek általában<br>absztrakt formák</td>
         <td><img src="pictures/gyurt/gyurt1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/gyurt/gyurt2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
 		<td><img src="pictures/gyurt/gyurt12.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
-        <td colspan="2" data-lang-key="p_gyurt2">Készültek gombák is ezzel a technikával<br>selyem és csomagolópapírból, szalvétából</td>
+        <td colspan="2" lang-key="p_gyurt2">Készültek gombák is ezzel a technikával<br>selyem és csomagolópapírból, szalvétából</td>
         <td colspan="2"><img src="pictures/gyurt/gomba.jpg" class="gallery-img" onclick="openGallery(3)"></td>
       </tr>	  
       <tr>
-        <td colspan="2" data-lang-key="p_gyurt3">A fenyőfák szalvétából készültek</td>
+        <td colspan="2" lang-key="p_gyurt3">A fenyőfák szalvétából készültek</td>
         <td colspan="2"><img src="pictures/gyurt/fenyok.jpg" class="gallery-img" onclick="openGallery(4)"></td>
       </tr>	  
 	</table>
@@ -343,8 +343,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -355,9 +355,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

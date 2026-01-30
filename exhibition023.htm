@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,101 +80,120 @@
 
   <div class="page-container">
     <table>
-		<caption>5. Papír-varázs Fesztivál<br>Budapest, Ráday utca<br>2008. június 7–8.</caption>
+		<caption lang-key="cap">5. Papír-varázs Fesztivál<br>Budapest, Ráday utca<br>2008. június 7–8.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"5. Papír-varázs Fesztivál<br>Budapest, Ráday utca<br>2008. június 7–8."},
+		en:{back:"← Back",close:"✕ Close",cap:"5th Paper Magic Festival<br>Budapest, Ráday Street<br>7–8 June 2008"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"5. Papierzauber-Festival<br>Budapest, Ráday-Straße<br>7.–8. Juni 2008"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"5º Festival Magia del Papel<br>Budapest, calle Ráday<br>7–8 de junio de 2008"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"5º Festival della Magia della Carta<br>Budapest, via Ráday<br>7–8 giugno 2008"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"5e Festival Magie du Papier<br>Budapest, rue Ráday<br>7–8 juin 2008"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"5º Festival Magia do Papel<br>Budapeste, rua Ráday<br>7–8 de junho de 2008"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"5e Papiermagie Festival<br>Boedapest, Rádaystraat<br>7–8 juni 2008"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"5:e Pappersmagi-festivalen<br>Budapest, Rádaygatan<br>7–8 juni 2008"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"5. Paperitaian festivaali<br>Budapest, Ráday-katu<br>7.–8. kesäkuuta 2008"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"5. Papirmagifestival<br>Budapest, Rádaygata<br>7.–8. juni 2008"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"5. Papirmagi-festival<br>Budapest, Rádaygade<br>7.–8. juni 2008"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"5. Pappíratöfra-hátíðin<br>Búdapest, Rádaygata<br>7.–8. júní 2008"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"5è Festival de Màgia del Paper<br>Budapest, carrer Ráday<br>7–8 de juny de 2008"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第5回 ペーパーマジック・フェスティバル<br>ブダペスト、ラーダイ通り<br>2008年6月7–8日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第5届纸艺魔法节<br>布达佩斯，拉代街<br>2008年6月7–8日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제5회 종이 마법 축제<br>부다페스트 라다이 거리<br>2008년 6월 7–8일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"5-a Papera Magia Festivalo<br>Budapeŝto, Ráday-strato<br>7–8 junio 2008"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"5-asis Popieriaus magijos festivalis<br>Budapeštas, Ráday gatvė<br>2008 m. birželio 7–8 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"5. Papīra maģijas festivāls<br>Budapešta, Ráday iela<br>2008. gada 7.–8. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"5. Paberimaagia festival<br>Budapest, Ráday tänav<br>7.–8. juuni 2008"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"5. Kâğıt Büyüsü Festivali<br>Budapeşte, Ráday Caddesi<br>7–8 Haziran 2008"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"5ο Φεστιβάλ Μαγείας Χαρτιού<br>Βουδαπέστη, οδός Ráday<br>7–8 Ιουνίου 2008"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Festivali i 5-të i Magjisë së Letrës<br>Budapest, rruga Ráday<br>7–8 qershor 2008"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"5-и Фестивал на хартиената магия<br>Будапеща, улица Ráday<br>7–8 юни 2008"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"V Festiwal Magii Papieru<br>Budapeszt, ulica Ráday<br>7–8 czerwca 2008"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"5. Festival papírové magie<br>Budapešť, ulice Ráday<br>7.–8. června 2008"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"5. Festival papierovej mágie<br>Budapešť, ulica Ráday<br>7.–8. júna 2008"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"5-й Фестиваль паперової магії<br>Будапешт, вулиця Ráday<br>7–8 червня 2008"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Al 5-lea Festival al Magiei Hârtiei<br>Budapesta, strada Ráday<br>7–8 iunie 2008"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"5. Фестивал папирне магије<br>Будимпешта, улица Ráday<br>7–8. јун 2008."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"5. Festival čarolije papira<br>Budimpešta, ulica Ráday<br>7.–8. lipnja 2008."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"5. Festival papirnate čarovnije<br>Budimpešta, ulica Ráday<br>7.–8. junij 2008"}
+	};
+
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

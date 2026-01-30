@@ -60,10 +60,10 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>KÉZJEGY A PAPÍRON, PAPÍRBÓL<br>tematikus kiállítás Hódmezővásárhelyen<br>2004. március 24–26.</caption>
+		<caption lang-key="cap">KÉZJEGY A PAPÍRON, PAPÍRBÓL<br>tematikus kiállítás Hódmezővásárhelyen<br>2004. március 24–26.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/001/belbecs.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/001/msz&ml.jpg" class="gallery-item gallery-img"></td>
@@ -112,8 +112,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+    const translations = {
+      hu: { back: '← Vissza', close: '✕ Bezárás', cap: 'KÉZJEGY A PAPÍRON, PAPÍRBÓL<br>tematikus kiállítás Hódmezővásárhelyen<br>2004. március 24–26.' },
+      en: { back: '← Back', close: '✕ Close', cap: 'SIGNATURE ON PAPER, MADE OF PAPER<br>thematic exhibition in Hódmezővásárhely<br>24–26 March 2004' },
+      de: { back: '← Zurück', close: '✕ Schließen', cap: 'HANDSCHRIFT AUF PAPIER, AUS PAPIER<br>thematische Ausstellung in Hódmezővásárhely<br>24.–26. März 2004' },
+      es: { back: '← Volver', close: '✕ Cerrar', cap: 'FIRMA EN PAPEL, HECHA DE PAPEL<br>exposición temática en Hódmezővásárhely<br>24–26 de marzo de 2004' },
+      it: { back: '← Indietro', close: '✕ Chiudi', cap: 'FIRMA SU CARTA, DI CARTA<br>mostra tematica a Hódmezővásárhely<br>24–26 marzo 2004' },
+      fr: { back: '← Retour', close: '✕ Fermer', cap: 'SIGNATURE SUR PAPIER, EN PAPIER<br>exposition thématique à Hódmezővásárhely<br>24–26 mars 2004' },
+      pt: { back: '← Voltar', close: '✕ Fechar', cap: 'ASSINATURA NO PAPEL, FEITA DE PAPEL<br>exposição temática em Hódmezővásárhely<br>24–26 de março de 2004' },
+      nl: { back: '← Terug', close: '✕ Sluiten', cap: 'HANDTEKENING OP PAPIER, VAN PAPIER<br>thematische tentoonstelling in Hódmezővásárhely<br>24–26 maart 2004' },
+      sv: { back: '← Tillbaka', close: '✕ Stäng', cap: 'SIGNATUR PÅ PAPPER, AV PAPPER<br>temautställning i Hódmezővásárhely<br>24–26 mars 2004' },
+      fi: { back: '← Takaisin', close: '✕ Sulje', cap: 'ALLEKIRJOITUS PAPERILLA, PAPERISTA<br>teemanäyttely Hódmezővásárhelyissä<br>24.–26. maaliskuuta 2004' },
+      no: { back: '← Tilbake', close: '✕ Lukk', cap: 'SIGNATUR PÅ PAPIR, AV PAPIR<br>temautstilling i Hódmezővásárhely<br>24.–26. mars 2004' },
+      da: { back: '← Tilbage', close: '✕ Luk', cap: 'SIGNATUR PÅ PAPIR, AF PAPIR<br>tematisk udstilling i Hódmezővásárhely<br>24.–26. marts 2004' },
+      is: { back: '← Til baka', close: '✕ Loka', cap: 'UNDIRSKRIFT Á PAPPÍR, ÚR PAPPÍR<br>þemassýning í Hódmezővásárhely<br>24.–26. mars 2004' },
+      ca: { back: '← Enrere', close: '✕ Tanca', cap: 'SIGNATURA EN PAPER, FETA DE PAPER<br>exposició temàtica a Hódmezővásárhely<br>24–26 de març de 2004' },
+      ja: { back: '← 戻る', close: '✕ 閉じる', cap: '紙の上のサイン、紙で作る<br>ホードメゼーヴァーシャールヘイでのテーマ展<br>2004年3月24日–26日' },
+      zh: { back: '← 返回', close: '✕ 关闭', cap: '纸上的签名，用纸制作<br>霍德梅泽瓦沙尔海伊主题展<br>2004年3月24–26日' },
+      ko: { back: '← 뒤로', close: '✕ 닫기', cap: '종이 위의 서명, 종이로 만든 작품<br>호드메죄바샤르헤이 테마 전시<br>2004년 3월 24–26일' },
+      eo: { back: '← Reen', close: '✕ Fermi', cap: 'SUBSKRIBO SUR PAPERO, EL PAPERO<br>tema ekspozicio en Hódmezővásárhely<br>24–26 marto 2004' },
+      lt: { back: '← Atgal', close: '✕ Uždaryti', cap: 'PARAŠAS ANT POPIERIAUS, IŠ POPIERIAUS<br>teminė paroda Hódmezővásárhelyyje<br>2004 m. kovo 24–26 d.' },
+      lv: { back: '← Atpakaļ', close: '✕ Aizvērt', cap: 'PARAKSTS UZ PAPĪRA, NO PAPĪRA<br>tematiska izstāde Hódmezővásárhely<br>2004. gada 24.–26. marts' },
+      et: { back: '← Tagasi', close: '✕ Sulge', cap: 'ALLKIRI PABERIL, PABERIST<br>temaatiline näitus Hódmezővásárhelyis<br>24.–26. märts 2004' },
+      tr: { back: '← Geri', close: '✕ Kapat', cap: 'KÂĞIT ÜZERİNDE İMZA, KÂĞITTAN<br>Hódmezővásárhely’de tematik sergi<br>24–26 Mart 2004' },
+      el: { back: '← Πίσω', close: '✕ Κλείσιμο', cap: 'ΥΠΟΓΡΑΦΗ ΣΤΟ ΧΑΡΤΙ, ΑΠΟ ΧΑΡΤΙ<br>θεματική έκθεση στο Hódmezővásárhely<br>24–26 Μαρτίου 2004' },
+      sq: { back: '← Kthehu', close: '✕ Mbyll', cap: 'NËNSHKRIM NË LETËR, PREJ LETRE<br>ekspozitë tematike në Hódmezővásárhely<br>24–26 mars 2004' },
+      bg: { back: '← Назад', close: '✕ Затвори', cap: 'ПОДПИС НА ХАРТИЯ, ОТ ХАРТИЯ<br>тематична изложба в Hódmezővásárhely<br>24–26 март 2004' },
+      pl: { back: '← Wstecz', close: '✕ Zamknij', cap: 'PODPIS NA PAPIERZE, Z PAPIERU<br>wystawa tematyczna w Hódmezővásárhely<br>24–26 marca 2004' },
+      cs: { back: '← Zpět', close: '✕ Zavřít', cap: 'PODPIS NA PAPÍŘE, Z PAPÍRU<br>tematická výstava v Hódmezővásárhely<br>24.–26. března 2004' },
+      sk: { back: '← Späť', close: '✕ Zavrieť', cap: 'PODPIS NA PAPIERI, Z PAPIERA<br>tematická výstava v Hódmezővásárhely<br>24.–26. marca 2004' },
+      uk: { back: '← Назад', close: '✕ Закрити', cap: 'ПІДПИС НА ПАПЕРІ, З ПАПЕРУ<br>тематична виставка в Hódmezővásárhely<br>24–26 березня 2004' },
+      ro: { back: '← Înapoi', close: '✕ Închide', cap: 'SEMNĂTURĂ PE HÂRTIE, DIN HÂRTIE<br>expoziție tematică la Hódmezővásárhely<br>24–26 martie 2004' },
+      sr: { back: '← Назад', close: '✕ Затвори', cap: 'ПОТПИС НА ПАПИРУ, ОД ПАПИРА<br>тематска изложба у Hódmezővásárhely<br>24–26. март 2004' },
+      hr: { back: '← Natrag', close: '✕ Zatvori', cap: 'POTPIS NA PAPIRU, OD PAPIRA<br>tematska izložba u Hódmezővásárhelyu<br>24.–26. ožujka 2004' },
+      sl: { back: '← Nazaj', close: '✕ Zapri', cap: 'PODPIS NA PAPIRJU, IZ PAPIRJA<br>tematska razstava v Hódmezővásárhelyu<br>24.–26. marec 2004' },
+    };
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      // keep lang on back link
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -199,7 +276,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

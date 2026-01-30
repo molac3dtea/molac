@@ -58,12 +58,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,13 +81,13 @@
 
   <div class="page-container">
     <table>
-		<caption>HOBBI KIÁLLÍTÁS<br>Hódmezővásárhely, Szabadság Olvasókör<br>2005. október 10–17.</caption>
+		<caption lang-key="cap">HOBBI KIÁLLÍTÁS<br>Hódmezővásárhely, Szabadság Olvasókör<br>2005. október 10–17.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/013/asztal.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/013/asztal1.jpg" class="gallery-item gallery-img"></td>
 		</tr>
 		<tr>
-			<td>Feleségem, Jutka<br>keresztszemes hímzései<br>is ki lettek állítva</td>
+			<td lang-key="kereszt">Feleségem, Jutka<br>keresztszemes hímzései<br>is ki lettek állítva</td>
 			<td><img src="pictures/kiallitas/013/asztal2.jpg" class="gallery-item gallery-img"></td>
 		</tr>
 	</table>
@@ -96,93 +97,163 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"HOBBI KIÁLLÍTÁS<br>Hódmezővásárhely, Szabadság Olvasókör<br>2005. október 10–17.", kereszt: "Feleségem, Jutka<br>keresztszemes hímzései<br>is ki lettek állítva"},
+		en:{back:"← Back",close:"✕ Close",cap:"HOBBY EXHIBITION<br>Hódmezővásárhely, Szabadság Reading Circle<br>10–17 October 2005",kereszt:"My wife, Jutka’s<br>cross-stitch embroideries<br>were also exhibited"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"HOBBY-AUSSTELLUNG<br>Hódmezővásárhely, Szabadság Leseverein<br>10.–17. Oktober 2005",kereszt:"Auch die Kreuzsticharbeiten<br>meiner Frau Jutka<br>wurden ausgestellt"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"EXPOSICIÓN DE HOBBIES<br>Hódmezővásárhely, Círculo de Lectura Szabadság<br>10–17 de octubre de 2005",kereszt:"También se expusieron<br>los bordados en punto de cruz<br>de mi esposa Jutka"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"MOSTRA DI HOBBY<br>Hódmezővásárhely, Circolo di Lettura Szabadság<br>10–17 ottobre 2005",kereszt:"Sono stati esposti anche<br>i ricami a punto croce<br>di mia moglie Jutka"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"EXPOSITION DE LOISIRS<br>Hódmezővásárhely, Cercle de Lecture Szabadság<br>10–17 octobre 2005",kereszt:"Les broderies au point de croix<br>de mon épouse Jutka<br>étaient également exposées"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"EXPOSIÇÃO DE HOBBIES<br>Hódmezővásárhely, Círculo de Leitura Szabadság<br>10–17 de outubro de 2005",kereszt:"Os bordados em ponto cruz<br>da minha esposa Jutka<br>também foram exibidos"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"HOBBYTENTOONSTELLING<br>Hódmezővásárhely, Szabadság Leeskring<br>10–17 oktober 2005",kereszt:"Ook het kruissteekborduurwerk<br>van mijn vrouw Jutka<br>werd tentoongesteld"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"HOBBYUTSTÄLLNING<br>Hódmezővásárhely, Szabadság Läsesällskap<br>10–17 oktober 2005",kereszt:"Min fru Jutkas<br>korsstygnsbroderier<br>ställdes också ut"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"HARRASTENÄYTTELY<br>Hódmezővásárhely, Szabadság Lukupiiri<br>10.–17. lokakuuta 2005",kereszt:"Myös vaimoni Jutkan<br>ristipistotyöt<br>olivat esillä"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"HOBBYUTSTILLING<br>Hódmezővásárhely, Szabadság Leseforening<br>10.–17. oktober 2005",kereszt:"Min kone Jutkas<br>korsstingsbroderier<br>ble også stilt ut"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"HOBBYUDSTILLING<br>Hódmezővásárhely, Szabadság Læsekreds<br>10.–17. oktober 2005",kereszt:"Min hustru Jutkas<br>korsstingsbroderier<br>blev også udstillet"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"ÁHUGAMANNASÝNING<br>Hódmezővásárhely, Szabadság Leshringur<br>10.–17. október 2005",kereszt:"Krosssaumsútsaumur<br>eiginkonu minnar, Jutku,<br>var einnig sýndur"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"EXPOSICIÓ D’AFICIONS<br>Hódmezővásárhely, Cercle de Lectura Szabadság<br>10–17 d’octubre de 2005",kereszt:"També es van exposar<br>els brodats en punt de creu<br>de la meva esposa Jutka"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ホビー展示会<br>ホードメゼーヴァーシャールヘイ、サバドシャーグ読書会<br>2005年10月10～17日",kereszt:"妻ユトカの<br>クロスステッチ刺繍も<br>展示されました"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"兴趣展览<br>霍德梅泽瓦沙尔海伊，萨巴德沙格读书会<br>2005年10月10–17日",kereszt:"我妻子尤特卡的<br>十字绣作品<br>也一同展出"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"취미 전시회<br>호드메죄바샤르헤이, 사바드샤그 독서회<br>2005년 10월 10–17일",kereszt:"아내 유트카의<br>십자수 자수 작품도<br>전시되었습니다"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"HOBIA EKSPozicio<br>Hódmezővásárhely, Szabadság Legocirklo<br>10–17 oktobro 2005",kereszt:"Ankaŭ la krucpunktaj brodaĵoj<br>de mia edzino Jutka<br>estis ekspoziciitaj"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"HOBIŲ PARODA<br>Hódmezővásárhely, „Szabadság“ skaitytojų ratas<br>2005 m. spalio 10–17 d.",kereszt:"Taip pat buvo eksponuojami<br>mano žmonos Jutkos<br>kryželiu siuvinėti darbai"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"HOBIJU IZSTĀDE<br>Hódmezővásárhely, Szabadság Lasītāju pulciņš<br>2005. gada 10.–17. oktobris",kereszt:"Tika izstādīti arī<br>manas sievas Jutkas<br>krustdūriena izšuvumi"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"HOBINÄITUS<br>Hódmezővásárhely, Szabadság Lugemisring<br>10.–17. oktoober 2005",kereszt:"Väljas olid ka minu abikaasa<br>Jutka ristpistes tikandid"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"HOBİ SERGİSİ<br>Hódmezővásárhely, Szabadság Okuma Kulübü<br>10–17 Ekim 2005",kereszt:"Eşim Jutka’nın<br>kanaviçe işlemeleri<br>de sergilendi"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"ΕΚΘΕΣΗ ΧΟΜΠΙ<br>Hódmezővásárhely, Λέσχη Ανάγνωσης Szabadság<br>10–17 Οκτωβρίου 2005",kereszt:"Εκτέθηκαν επίσης<br>τα κεντήματα σταυροβελονιάς<br>της συζύγου μου Γιούτκα"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"EKSPOZITË HOBI<br>Hódmezővásárhely, Rrethi i Leximit Szabadság<br>10–17 tetor 2005",kereszt:"U ekspozuan gjithashtu<br>punimet me qëndisje kryqi<br>të bashkëshortes sime Jutka"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"ИЗЛОЖБА НА ХОБИ<br>Ходмезьовашархей, Читалище „Сабадшаг“<br>10–17 октомври 2005",kereszt:"Бяха изложени и<br>кръстатите бодове<br>на съпругата ми Ютка"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"WYSTAWA HOBBYSTYCZNA<br>Hódmezővásárhely, Klub Czytelniczy Szabadság<br>10–17 października 2005",kereszt:"Zaprezentowano również<br>hafty krzyżykowe<br>mojej żony Jutki"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"VÝSTAVA KONÍČKŮ<br>Hódmezővásárhely, Čtenářský kroužek Szabadság<br>10.–17. října 2005",kereszt:"Vystaveny byly také<br>křížkové výšivky<br>mé manželky Jutky"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"VÝSTAVA ZÁĽUB<br>Hódmezővásárhely, Čitateľský krúžok Szabadság<br>10.–17. októbra 2005",kereszt:"Vystavené boli aj<br>krížikové výšivky<br>mojej manželky Jutky"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"ВИСТАВКА ХОБІ<br>Ходмезьовашархей, Читальний клуб Szabadság<br>10–17 жовтня 2005",kereszt:"Також були представлені<br>вишивки хрестиком<br>моєї дружини Ютки"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"EXPOZIȚIE DE HOBBY<br>Hódmezővásárhely, Cercul de Lectură Szabadság<br>10–17 octombrie 2005",kereszt:"Au fost expuse și<br>broderiile în punct de cruce<br>ale soției mele Jutka"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"ИЗЛОЖБА ХОБИЈА<br>Ходмезевашархеј, Читалачки круг Szabadság<br>10–17. октобар 2005",kereszt:"Изложени су и<br>радови крстачким бодом<br>моје супруге Јутке"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"HOBI IZLOŽBA<br>Hódmezővásárhely, Čitateljski krug Szabadság<br>10.–17. listopada 2005",kereszt:"Izloženi su i<br>križić-vezovi<br>moje supruge Jutke"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"HOBI RAZSTAVA<br>Hódmezővásárhely, Bralni krožek Szabadság<br>10.–17. oktober 2005",kereszt:"Razstavljeni so bili tudi<br>križci moje žene Jutke"},
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -190,6 +261,8 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
+
 </body>
 </html>

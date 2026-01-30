@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,9 +83,9 @@
   <div class="page-container">
 
     <table>
-      <caption data-lang-key="title_trak">Traktor</caption>
+      <caption lang-key="title_trak">Traktor</caption>
       <tr>
-        <td rowspan="2" data-lang-key="p_trak">Több mint fél évig készült,<br>2009. júliusában lett kész<br>legalább 200 munkaóra után.</td>
+        <td rowspan="2" lang-key="p_trak">Több mint fél évig készült,<br>2009. júliusában lett kész<br>legalább 200 munkaóra után.</td>
         <td><img src="pictures/vehicles/traktorb.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/vehicles/traktorj.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
@@ -96,9 +96,9 @@
 	</table>
 	
     <table>
-      <caption data-lang-key="title_moto">Motor</caption>
+      <caption lang-key="title_moto">Motor</caption>
       <tr>
-        <td rowspan="2" data-lang-key="p_moto">2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz.</td>
+        <td rowspan="2" lang-key="p_moto">2008. nyarán készült,<br>több mint 100 munkaóra<br>kellett az összeállítotáshoz.</td>
         <td><img src="pictures/vehicles/motor1.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/vehicles/motor2.jpg" class="gallery-img" onclick="openGallery(8)"></td>
       </tr>	  
@@ -109,9 +109,9 @@
 	</table>
 
     <table>
-      <caption data-lang-key="title_bako">Babakocsi</caption>
+      <caption lang-key="title_bako">Babakocsi</caption>
       <tr>
-        <td data-lang-key="p_bako">Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán.</td>
+        <td lang-key="p_bako">Ez a babakocsi<br>legalább 500 darabból<br>készült 2007 nyarán.</td>
         <td><img src="pictures/vehicles/babakocsi.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
 	</table>	
@@ -426,8 +426,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -438,9 +438,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

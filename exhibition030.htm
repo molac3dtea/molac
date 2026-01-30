@@ -58,12 +58,13 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
+
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -92,7 +93,84 @@
     let currentIndex = 0;
     const galleryData = [];
 
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"XII. Madzagfalvi Napok, Békés<br>2010. szeptember 10–12."},
+		en:{back:"← Back",close:"✕ Close",cap:"12th Madzagfalva Days, Békés<br>10–12 September 2010"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"XII. Madzagfalva-Tage, Békés<br>10.–12. September 2010"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"XII Jornadas de Madzagfalva, Békés<br>10–12 de septiembre de 2010"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"XII Giornate di Madzagfalva, Békés<br>10–12 settembre 2010"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"XIIe Journées de Madzagfalva, Békés<br>10–12 septembre 2010"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"XII Dias de Madzagfalva, Békés<br>10–12 de setembro de 2010"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"12e Madzagfalva-dagen, Békés<br>10–12 september 2010"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"12:e Madzagfalva-dagarna, Békés<br>10–12 september 2010"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"12. Madzagfalva-päivät, Békés<br>10.–12. syyskuuta 2010"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"12. Madzagfalva-dagene, Békés<br>10.–12. september 2010"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"12. Madzagfalva-dagene, Békés<br>10.–12. september 2010"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"12. Madzagfalva-dagarnir, Békés<br>10.–12. september 2010"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"XII Jornades de Madzagfalva, Békés<br>10–12 de setembre de 2010"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第12回マッザグファルヴァの日々（ベーケーシュ）<br>2010年9月10–12日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第十二届Madzagfalva日，贝凯什<br>2010年9月10–12日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제12회 마드자그팔바 데이즈, 베케시<br>2010년 9월 10–12일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"XII-aj Madzagfalva-tagoj, Békés<br>10–12 septembro 2010"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"XII Madzagfalva dienos, Bėkešas<br>2010 m. rugsėjo 10–12 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"XII Madzagfalva dienas, Bēkeša<br>2010. gada 10.–12. septembris"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"XII Madzagfalva päevad, Békés<br>10.–12. september 2010"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"12. Madzagfalva Günleri, Békés<br>10–12 Eylül 2010"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"12ες Ημέρες Madzagfalva, Békés<br>10–12 Σεπτεμβρίου 2010"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Ditët e XII të Madzagfalva, Békés<br>10–12 shtator 2010"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"XII Дни на Мадзагфалва, Бекеш<br>10–12 септември 2010"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"XII Dni Madzagfalva, Békés<br>10–12 września 2010"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"XII Dny Madzagfalva, Békés<br>10.–12. září 2010"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"XII Dni Madzagfalva, Békés<br>10.–12. septembra 2010"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"XII Дні Мадзагфалва, Бекеш<br>10–12 вересня 2010"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Zilele XII Madzagfalva, Békés<br>10–12 septembrie 2010"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"XII Дани Мадзагфалва, Бекеш<br>10–12. септембар 2010."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"XII Dani Madzagfalva, Békés<br>10.–12. rujna 2010."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"XII Dnevi Madzagfalva, Békés<br>10.–12. september 2010"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
+
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -178,7 +256,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

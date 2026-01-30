@@ -65,10 +65,10 @@
 </head>
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -83,39 +83,39 @@
   <div class="page-container">
 
     <table>
-      <caption data-lang-key="title_fa">Fából készített használati tárgyak, játékok</caption>
+      <caption lang-key="title_fa">Fából készített használati tárgyak, játékok</caption>
       <tr>
-        <td colspan="2" data-lang-key="p_fa1">1 polcos szekrények készültek az<br>előszoba szekrény tetejére</td>
+        <td colspan="2" lang-key="p_fa1">1 polcos szekrények készültek az<br>előszoba szekrény tetejére</td>
         <td><img src="pictures/famunka/szekreny1.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/famunka/szekreny2.jpg" class="gallery-img" onclick="openGallery(1)"></td>
       </tr>	  
       <tr>
-        <td data-lang-key="p_fa0">Elkészült az összes:<br>3 db 2 ajtós és<br>1 db 1 ajtós</td>
+        <td lang-key="p_fa0">Elkészült az összes:<br>3 db 2 ajtós és<br>1 db 1 ajtós</td>
         <td colspan="3"><img src="pictures/famunka/szekrenyegyutt.jpg" class="gallery-img" onclick="openGallery(2)"></td>
       </tr>	  
       <tr>
-        <td data-lang-key="p_fa2">Udvari játékok is készültek:<br>csúszda és a lépcsője alatti kuckó<br>egybeépítve egy hintával</td>
+        <td lang-key="p_fa2">Udvari játékok is készültek:<br>csúszda és a lépcsője alatti kuckó<br>egybeépítve egy hintával</td>
         <td><img src="pictures/famunka/csuszda.jpg" class="gallery-img" onclick="openGallery(3)"></td>
 		<td><img src="pictures/famunka/kucko.jpg" class="gallery-img" onclick="openGallery(4)"></td>
 		<td><img src="pictures/famunka/hinta.jpg" class="gallery-img" onclick="openGallery(5)"></td>
       </tr>
       <tr>
-        <td colspan="2" data-lang-key="p_fa3">Készítettem magamnak egy borpolcot</td>
+        <td colspan="2" lang-key="p_fa3">Készítettem magamnak egy borpolcot</td>
         <td colspan="2"><img src="pictures/famunka/borarium.jpg" class="gallery-img" onclick="openGallery(6)"></td>
       </tr>	  
       <tr>
-        <td data-lang-key="p_fa4">Készült a lányaimnak<br>egy babaház bútorokkal<br>lépcsőkkel</td>
+        <td lang-key="p_fa4">Készült a lányaimnak<br>egy babaház bútorokkal<br>lépcsőkkel</td>
         <td><img src="pictures/famunka/babahaz5.jpg" class="gallery-img" onclick="openGallery(7)"></td>
 		<td><img src="pictures/famunka/babahaz6.jpg" class="gallery-img" onclick="openGallery(8)"></td>
 		<td><img src="pictures/famunka/babahaz7.jpg" class="gallery-img" onclick="openGallery(9)"></td>
       </tr>
       <tr>
-        <td colspan="2" data-lang-key="p_fa5">Egy kisasztal székkel</td>
+        <td colspan="2" lang-key="p_fa5">Egy kisasztal székkel</td>
         <td><img src="pictures/famunka/szek.jpg" class="gallery-img" onclick="openGallery(10)"></td>
 		<td><img src="pictures/famunka/asztalszek.jpg" class="gallery-img" onclick="openGallery(11)"></td>
       </tr>	  
       <tr>
-        <td colspan="2" data-lang-key="p_fa6">Favonathoz készültek fák és állatok<br>Gurulós tároló dobozok az ágy alá</td>
+        <td colspan="2" lang-key="p_fa6">Favonathoz készültek fák és állatok<br>Gurulós tároló dobozok az ágy alá</td>
         <td colspan="2"><img src="pictures/famunka/faallatfiok.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>		  
 	  
@@ -496,8 +496,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -508,9 +508,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

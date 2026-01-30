@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Origami – 3. kiállítás</title>
+  <title>Origami – Exhibition 3</title>
   <link rel="stylesheet" href="bootstrap.css">
   <style>
     body { position: relative; min-height: 100vh; margin: 0; font-family: sans-serif; background-color: #f6f6f6; overflow-x: hidden; }
@@ -60,132 +60,209 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+	<div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
-  <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
-    <div id="lb-title" class="lightbox-header"></div>
-    
-    <div class="lightbox-img-container" onclick="event.stopPropagation()">
-      <span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
-      
-      <img id="lightbox-img" src="">
-      <iframe id="lightbox-pdf" src=""></iframe>
-      
-      <span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
-    </div>
+	<div id="lightbox" class="lightbox" onclick="closeImage()">
+		<div class="lightbox-close" lang-key="close">✕ Bezárás</div>
+		<div id="lb-title" class="lightbox-header"></div>
 
-    <div id="lb-desc" class="lightbox-footer"></div>
-  </div>
+		<div class="lightbox-img-container" onclick="event.stopPropagation()">
+			<span class="nav-arrow prev" onclick="changeImage(-1, event)">❮</span>
 
-  <div class="page-container">
-    <table>
-		<caption>Deák Ferenc Általános Iskola és Ódoda<br>Murony, 2004. június 7–11.</caption>
-		<tr>
-			<td><img src="pictures/kiallitas/003/gyula.jpg" class="gallery-item gallery-img"></td>
-			<td><img src="pictures/kiallitas/003/munkaban.jpg" class="gallery-item gallery-img"></td>
-		</tr>
-    </table>
-  </div>
+			<img id="lightbox-img" src="">
+			<iframe id="lightbox-pdf" src=""></iframe>
 
-  <script>
-    let currentIndex = 0;
-    const galleryData = [];
+			<span class="nav-arrow next" onclick="changeImage(1, event)">❯</span>
+		</div>
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
-      
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
+		<div id="lb-desc" class="lightbox-footer"></div>
+	</div>
 
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
+	<div class="page-container">
+		<table>
+			<caption data-key="cap">Deák Ferenc Általános Iskola és Óvoda<br>Murony, 2004. június 7–11.</caption>
+			<tr>
+				<td><img src="pictures/kiallitas/003/gyula.jpg" class="gallery-item gallery-img"></td>
+				<td><img src="pictures/kiallitas/003/munkaban.jpg" class="gallery-item gallery-img"></td>
+			</tr>
+		</table>
+	</div>
 
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
+	<script>
+		let currentIndex = 0;
+		const galleryData = [];
+	
+		const translations = {
+		  hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Deák Ferenc Általános Iskola és Óvoda<br>Murony, 2004. június 7–11."},
+		  en:{back:"← Back",close:"✕ Close",cap:"Deák Ferenc Primary School and Kindergarten<br>Murony, June 7–11, 2004"},
+		  de:{back:"← Zurück",close:"✕ Schließen",cap:"Grundschule und Kindergarten Deák Ferenc<br>Murony, 7.–11. Juni 2004"},
+		  fr:{back:"← Retour",close:"✕ Fermer",cap:"École primaire et maternelle Deák Ferenc<br>Murony, 7–11 juin 2004"},
+		  it:{back:"← Indietro",close:"✕ Chiudi",cap:"Scuola primaria e dell’infanzia Deák Ferenc<br>Murony, 7–11 giugno 2004"},
+		  es:{back:"← Volver",close:"✕ Cerrar",cap:"Escuela primaria y jardín de infancia Deák Ferenc<br>Murony, 7–11 de junio de 2004"},
+		  pt:{back:"← Voltar",close:"✕ Fechar",cap:"Escola Primária e Jardim<br>de Infância Deák Ferenc<br>Murony, 7–11 de junho de 2004"},
+		  nl:{back:"← Terug",close:"✕ Sluiten",cap:"Basisschool en kleuterschool Deák Ferenc<br>Murony, 7–11 juni 2004"},
+		  sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Deák Ferenc grundskola och förskola<br>Murony, 7–11 juni 2004"},
+		  fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Deák Ferenc peruskoulu ja päiväkoti<br>Murony, 7.–11.6.2004"},
+		  no:{back:"← Tilbake",close:"✕ Lukk",cap:"Deák Ferenc barneskole og barnehage<br>Murony, 7.–11. juni 2004"},
+		  da:{back:"← Tilbage",close:"✕ Luk",cap:"Deák Ferenc folkeskole og børnehave<br>Murony, 7.–11. juni 2004"},
+		  is:{back:"← Til baka",close:"✕ Loka",cap:"Deák Ferenc grunnskóli og leikskóli<br>Murony, 7.–11. júní 2004"},
+		  ca:{back:"← Enrere",close:"✕ Tanca",cap:"Escola primària i llar d’infants Deák Ferenc<br>Murony, 7–11 de juny de 2004"},
+		  ja:{back:"← 戻る",close:"✕ 閉じる",cap:"デアーク・フェレンツ小学校・幼稚園<br>ムロニ、2004年6月7日〜11日"},
+		  zh:{back:"← 返回",close:"✕ 关闭",cap:"德阿克·费伦茨小学和幼儿园<br>穆罗尼，2004年6月7日至11日"},
+		  ko:{back:"← 뒤로",close:"✕ 닫기",cap:"데아크 페렌츠 초등학교 및 유치원<br>무로니, 2004년 6월 7–11일"},
+		  eo:{back:"← Reen",close:"✕ Fermi",cap:"Elementa lernejo kaj infanĝardeno Deák Ferenc<br>Murony, 7–11 junio 2004"},
+		  lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Deák Ferenc pradinė mokykla ir darželis<br>Murony, 2004 m. birželio 7–11 d."},
+		  lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Deák Ferenc pamatskola un bērnudārzs<br>Murony, 2004. gada 7.–11. jūnijs"},
+		  et:{back:"← Tagasi",close:"✕ Sulge",cap:"Deák Ferenci algkool ja lasteaed<br>Murony, 7.–11. juuni 2004"},
+		  tr:{back:"← Geri",close:"✕ Kapat",cap:"Deák Ferenc İlkokulu ve Anaokulu<br>Murony, 7–11 Haziran 2004"},
+		  el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Δημοτικό σχολείο και νηπιαγωγείο Deák Ferenc<br>Murony, 7–11 Ιουνίου 2004"},
+		  sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Shkolla fillore dhe kopshti Deák Ferenc<br>Murony, 7–11 qershor 2004"},
+		  bg:{back:"← Назад",close:"✕ Затвори",cap:"Основно училище и детска градина Deák Ferenc<br>Murony, 7–11 юни 2004"},
+		  pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Szkoła podstawowa i przedszkole Deák Ferenc<br>Murony, 7–11 czerwca 2004"},
+		  cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Základní škola a mateřská škola Deák Ferenc<br>Murony, 7.–11. června 2004"},
+		  sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Základná škola a materská škola Deák Ferenc<br>Murony, 7.–11. júna 2004"},
+		  uk:{back:"← Назад",close:"✕ Закрити",cap:"Початкова школа та дитячий садок Deák Ferenc<br>Murony, 7–11 червня 2004"},
+		  ro:{back:"← Înapoi",close:"✕ Închide",cap:"Școala primară și grădinița Deák Ferenc<br>Murony, 7–11 iunie 2004"},
+		  sr:{back:"← Назад",close:"✕ Затвори",cap:"Основна школа и вртић Deák Ferenc<br>Murony, 7–11. јун 2004"},
+		  hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Osnovna škola i vrtić Deák Ferenc<br>Murony, 7.–11. lipnja 2004"},
+		  sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Osnovna šola in vrtec Deák Ferenc<br>Murony, 7.–11. junij 2004"}
+		};
+		
+		function goBack() {
+		  const lang = localStorage.getItem('preferredLang') || 'hu';
+		  const hash = window.location.hash; 
+		  const backBtn = document.querySelector('.back-button');
+		  
+		  if (backBtn) backBtn.classList.add('back-button-active');
+		  
+		  setTimeout(() => {
+			window.location.href = 'exhibition.htm?lang=' + lang + hash;
+		  }, 150);
+		}
 
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
+		function getLang() {
+		  const p = new URLSearchParams(window.location.search);
+		  const fromUrl = (p.get('lang') || '').toLowerCase();
+		  const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+		  const cand = fromUrl || stored || 'hu';
+		  return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+		}
 
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
+		function applyLang(lang) {
+		  localStorage.setItem('preferredLang', lang);
+		  document.documentElement.lang = lang;
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+		  const dict = translations[lang] || translations.hu;
+		  document.querySelectorAll('[lang-key]').forEach(el => {
+			const key = el.getAttribute('lang-key');
+			if (dict[key] != null) el.innerHTML = dict[key];
+		  });
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+		  const backA = document.querySelector('.back-button');
+		  if (backA) {
+			const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+			backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+		  }
+		  return lang;
+		}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
-    }
 
-    function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		window.onload = function() {
+		  const __lang = applyLang(getLang());
 
-    function closeImage() {
-      document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
-      document.body.style.overflow = 'auto';
-    }
+		  // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+		  const items = document.querySelectorAll('.gallery-item');
+		  
+		  items.forEach((item, index) => {
+			const table = item.closest('table');
+			const caption = table ? table.querySelector('caption').innerText : "";
+			const row = item.closest('tr');
+			
+			let descCell = row ? row.querySelector('td') : null;
+			// Rowspan kezelése
+			if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
+				let prevRow = row.previousElementSibling;
+				while (prevRow) {
+					let potentialDesc = prevRow.querySelector('td[rowspan]');
+					if (potentialDesc) { descCell = potentialDesc; break; }
+					prevRow = prevRow.previousElementSibling;
+				}
+			}
 
-    window.addEventListener('keydown', function (e) {
-      const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
-      const isOpen = lightbox.style.display === 'flex';
+			let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
+			let type = item.tagName === 'A' ? 'pdf' : 'img';
+			let source = type === 'pdf' ? item.href : item.src.replace('_', '');
 
-      if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
-        if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
-        } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
-        }
-      }
-      if (isOpen) {
-        if (e.key === "ArrowRight") changeImage(1);
-        if (e.key === "ArrowLeft") changeImage(-1);
-      }
-    });
+			// Ha PDF link, akadályozzuk meg a gyári megnyitást
+			if(type === 'pdf') {
+				item.onclick = function(e) { e.preventDefault(); openGallery(index); };
+			} else {
+				item.onclick = function() { openGallery(index); };
+			}
+
+			galleryData.push({ src: source, title: caption, description: description, type: type });
+		  });
+		};
+
+		function openGallery(index) {
+		  currentIndex = index;
+		  updateLightbox();
+		  document.getElementById('lightbox').style.display = 'flex';
+		  document.body.style.overflow = 'hidden';
+		}
+
+		function updateLightbox() {
+		  const data = galleryData[currentIndex];
+		  const imgContainer = document.getElementById('lightbox-img');
+		  const pdfContainer = document.getElementById('lightbox-pdf');
+
+		  if (data.type === 'pdf') {
+			imgContainer.style.display = 'none';
+			pdfContainer.style.display = 'block';
+			pdfContainer.src = data.src;
+		  } else {
+			pdfContainer.style.display = 'none';
+			imgContainer.style.display = 'block';
+			imgContainer.src = data.src;
+		  }
+
+		  document.getElementById('lb-title').innerText = data.title;
+		  document.getElementById('lb-desc').innerText = data.description;
+		}
+
+		function changeImage(step, event) {
+		  if (event) event.stopPropagation();
+		  currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		  updateLightbox();
+		}
+
+		function closeImage() {
+		  document.getElementById('lightbox').style.display = 'none';
+		  document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
+		  document.body.style.overflow = 'auto';
+		}
+
+		window.addEventListener('keydown', function (e) {
+		  const lightbox = document.getElementById('lightbox');
+		  const backBtn = document.querySelector('.back-button');
+		  const isOpen = lightbox.style.display === 'flex';
+
+		  if (e.key === "Escape") {
+			if (backBtn) backBtn.classList.add('back-button-active');
+			if (isOpen) {
+			  setTimeout(() => { 
+				if (backBtn) backBtn.classList.remove('back-button-active');
+				closeImage(); 
+			  }, 200);
+			} else {
+			  goBack();
+			}
+		  }
+		  if (isOpen) {
+			if (e.key === "ArrowRight") changeImage(1);
+			if (e.key === "ArrowLeft") changeImage(-1);
+		  }
+		});
   </script>
 </body>
 </html>

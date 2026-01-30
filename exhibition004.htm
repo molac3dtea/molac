@@ -60,10 +60,10 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Porcelán Nap<br>Hódmezővásárhely<br>2004. június 12.</caption>
+		<caption lang-key="cap">Porcelán Nap<br>Hódmezővásárhely<br>2004. június 12.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/004/papir.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/004/asztal.jpg" class="gallery-item gallery-img"></td>
@@ -91,8 +91,84 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+    const translations = {
+      hu: { back: '← Vissza', close: '✕ Bezárás', cap: 'Porcelán Nap<br>Hódmezővásárhely<br>2004. június 12.' },
+      en: { back: '← Back', close: '✕ Close', cap: 'Porcelain Day<br>Hódmezővásárhely<br>12 June 2004' },
+      de: { back: '← Zurück', close: '✕ Schließen', cap: 'Porzellantag<br>Hódmezővásárhely<br>12. Juni 2004' },
+      es: { back: '← Volver', close: '✕ Cerrar', cap: 'Día de la porcelana<br>Hódmezővásárhely<br>12 de junio de 2004' },
+      it: { back: '← Indietro', close: '✕ Chiudi', cap: 'Giornata della porcellana<br>Hódmezővásárhely<br>12 giugno 2004' },
+      fr: { back: '← Retour', close: '✕ Fermer', cap: 'Journée de la porcelaine<br>Hódmezővásárhely<br>12 juin 2004' },
+      pt: { back: '← Voltar', close: '✕ Fechar', cap: 'Dia da porcelana<br>Hódmezővásárhely<br>12 de junho de 2004' },
+      nl: { back: '← Terug', close: '✕ Sluiten', cap: 'Porseleindag<br>Hódmezővásárhely<br>12 juni 2004' },
+      sv: { back: '← Tillbaka', close: '✕ Stäng', cap: 'Porslinsdagen<br>Hódmezővásárhely<br>12 juni 2004' },
+      fi: { back: '← Takaisin', close: '✕ Sulje', cap: 'Posliinipäivä<br>Hódmezővásárhely<br>12. kesäkuuta 2004' },
+      no: { back: '← Tilbake', close: '✕ Lukk', cap: 'Porselensdag<br>Hódmezővásárhely<br>12. juni 2004' },
+      da: { back: '← Tilbage', close: '✕ Luk', cap: 'Porcelænsdag<br>Hódmezővásárhely<br>12. juni 2004' },
+      is: { back: '← Til baka', close: '✕ Loka', cap: 'Postulínsdagur<br>Hódmezővásárhely<br>12. júní 2004' },
+      ca: { back: '← Enrere', close: '✕ Tanca', cap: 'Dia de la porcellana<br>Hódmezővásárhely<br>12 de juny de 2004' },
+      ja: { back: '← 戻る', close: '✕ 閉じる', cap: 'ポーセリン・デー<br>ホードメゼーヴァーシャールヘイ<br>2004年6月12日' },
+      zh: { back: '← 返回', close: '✕ 关闭', cap: '瓷器日<br>霍德梅泽瓦沙尔海伊<br>2004年6月12日' },
+      ko: { back: '← 뒤로', close: '✕ 닫기', cap: '도자기 날<br>호드메죄바샤르헤이<br>2004년 6월 12일' },
+      eo: { back: '← Reen', close: '✕ Fermi', cap: 'Tago de porcelano<br>Hódmezővásárhely<br>12 junio 2004' },
+      lt: { back: '← Atgal', close: '✕ Uždaryti', cap: 'Porceliano diena<br>Hódmezővásárhely<br>2004 m. birželio 12 d.' },
+      lv: { back: '← Atpakaļ', close: '✕ Aizvērt', cap: 'Porcelāna diena<br>Hódmezővásárhely<br>2004. gada 12. jūnijs' },
+      et: { back: '← Tagasi', close: '✕ Sulge', cap: 'Portselanipäev<br>Hódmezővásárhely<br>12. juuni 2004' },
+      tr: { back: '← Geri', close: '✕ Kapat', cap: 'Porselen Günü<br>Hódmezővásárhely<br>12 Haziran 2004' },
+      el: { back: '← Πίσω', close: '✕ Κλείσιμο', cap: 'Ημέρα Πορσελάνης<br>Hódmezővásárhely<br>12 Ιουνίου 2004' },
+      sq: { back: '← Kthehu', close: '✕ Mbyll', cap: 'Dita e porcelanit<br>Hódmezővásárhely<br>12 qershor 2004' },
+      bg: { back: '← Назад', close: '✕ Затвори', cap: 'Ден на порцелана<br>Hódmezővásárhely<br>12 юни 2004' },
+      pl: { back: '← Wstecz', close: '✕ Zamknij', cap: 'Dzień porcelany<br>Hódmezővásárhely<br>12 czerwca 2004' },
+      cs: { back: '← Zpět', close: '✕ Zavřít', cap: 'Den porcelánu<br>Hódmezővásárhely<br>12. června 2004' },
+      sk: { back: '← Späť', close: '✕ Zavrieť', cap: 'Deň porcelánu<br>Hódmezővásárhely<br>12. júna 2004' },
+      uk: { back: '← Назад', close: '✕ Закрити', cap: 'День порцеляни<br>Hódmezővásárhely<br>12 червня 2004' },
+      ro: { back: '← Înapoi', close: '✕ Închide', cap: 'Ziua porțelanului<br>Hódmezővásárhely<br>12 iunie 2004' },
+      sr: { back: '← Назад', close: '✕ Затвори', cap: 'Дан порцелана<br>Hódmezővásárhely<br>12. јун 2004' },
+      hr: { back: '← Natrag', close: '✕ Zatvori', cap: 'Dan porculana<br>Hódmezővásárhely<br>12. lipnja 2004' },
+      sl: { back: '← Nazaj', close: '✕ Zapri', cap: 'Dan porcelana<br>Hódmezővásárhely<br>12. junij 2004' },
+    };
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -178,7 +254,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

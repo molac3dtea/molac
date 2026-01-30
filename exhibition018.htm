@@ -58,12 +58,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+     <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +81,9 @@
 
   <div class="page-container">
     <table>
-		<caption>Madzagfalvi Napok, Békés<br>2006. szeptember 8–10.</caption>
+		<caption lang-key="cap">Madzagfalvi Napok, Békés<br>2006. szeptember 8–10.</caption>
 		<tr>
-			<td>Először mutathattam meg<br>munkáimat Békésen</td>
+			<td lang-key="bekes">Először mutathattam meg<br>munkáimat Békésen</td>
 			<td><img src="pictures/kiallitas/018/bekes1.jpg" class="gallery-item gallery-img"></td>
 		</tr>		
 	</table>
@@ -92,93 +93,163 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Madzagfalvi Napok, Békés<br>2006. szeptember 8–10.",bekes:"Először mutathattam meg<br>munkáimat Békésen"},
+		en:{back:"← Back",close:"✕ Close",cap:"Madzagfalva Days, Békés<br>8–10 September 2006",bekes:"For the first time I could<br>present my works in Békés"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Madzagfalva-Tage, Békés<br>8.–10. September 2006",bekes:"Zum ersten Mal konnte ich<br>meine Werke in Békés zeigen"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Días de Madzagfalva, Békés<br>8–10 de septiembre de 2006",bekes:"Por primera vez pude<br>mostrar mis obras en Békés"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Giornate di Madzagfalva, Békés<br>8–10 settembre 2006",bekes:"Per la prima volta ho potuto<br>presentare le mie opere a Békés"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Journées de Madzagfalva, Békés<br>8–10 septembre 2006",bekes:"Pour la première fois j’ai pu<br>présenter mes œuvres à Békés"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Dias de Madzagfalva, Békés<br>8–10 de setembro de 2006",bekes:"Pela primeira vez pude<br>mostrar os meus trabalhos em Békés"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Madzagfalva-dagen, Békés<br>8–10 september 2006",bekes:"Voor het eerst kon ik<br>mijn werken in Békés tonen"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Madzagfalvadagarna, Békés<br>8–10 september 2006",bekes:"För första gången kunde jag<br>visa mina verk i Békés"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Madzagfalva-päivät, Békés<br>8.–10. syyskuuta 2006",bekes:"Ensimmäistä kertaa sain<br>esitellä töitäni Békésissä"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Madzagfalva-dagene, Békés<br>8.–10. september 2006",bekes:"For første gang kunne jeg<br>vise arbeidene mine i Békés"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Madzagfalva-dagene, Békés<br>8.–10. september 2006",bekes:"For første gang kunne jeg<br>vise mine værker i Békés"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Madzagfalva-dagarnir, Békés<br>8.–10. september 2006",bekes:"Í fyrsta sinn gat ég<br>sýnt verk mín í Békés"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Dies de Madzagfalva, Békés<br>8–10 de setembre de 2006",bekes:"Per primera vegada vaig poder<br>mostrar les meves obres a Békés"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"マジャグファルヴァの日、ベーケーシュ<br>2006年9月8～10日",bekes:"初めてベーケーシュで<br>作品を展示できました"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"马扎格法尔瓦节，贝凯什<br>2006年9月8–10日",bekes:"我第一次在贝凯什<br>展示了我的作品"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"마자그팔바 축제, 베케시<br>2006년 9월 8–10일",bekes:"처음으로 베케시에서<br>제 작품을 선보였습니다"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Tagoj de Madzagfalva, Békés<br>8–10 septembro 2006",bekes:"Unuafoje mi povis<br>montri miajn verkojn en Békés"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Madzagfalvos dienos, Bėkešas<br>2006 m. rugsėjo 8–10 d.",bekes:"Pirmą kartą galėjau<br>pristatyti savo darbus Bėkeše"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Madzagfalvas dienas, Bēkeša<br>2006. gada 8.–10. septembris",bekes:"Pirmo reizi varēju<br>parādīt savus darbus Bēkešā"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Madzagfalva päevad, Békés<br>8.–10. september 2006",bekes:"Esimest korda sain<br>oma töid Békéses näidata"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Madzagfalva Günleri, Békés<br>8–10 Eylül 2006",bekes:"İlk kez eserlerimi<br>Békés’te sergileyebildim"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Ημέρες Madzagfalva, Μπέκες<br>8–10 Σεπτεμβρίου 2006",bekes:"Για πρώτη φορά μπόρεσα να<br>παρουσιάσω τα έργα μου στο Μπέκες"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Ditët e Madzagfalva, Békés<br>8–10 shtator 2006",bekes:"Për herë të parë munda<br>të paraqes punimet e mia në Békés"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Дни на Мадзагфалва, Бекеш<br>8–10 септември 2006",bekes:"За първи път можах да<br>покажа творбите си в Бекеш"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Dni Madzagfalva, Békés<br>8–10 września 2006",bekes:"Po raz pierwszy mogłem<br>pokazać swoje prace w Békés"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Dny Madzagfalva, Békés<br>8.–10. září 2006",bekes:"Poprvé jsem mohl<br>představit své práce v Békés"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Dni Madzagfalva, Békés<br>8.–10. septembra 2006",bekes:"Prvýkrát som mohol<br>ukázať svoje práce v Békés"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Дні Мадзагфалва, Бекеш<br>8–10 вересня 2006",bekes:"Уперше я зміг<br>представити свої роботи в Бекеші"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Zilele Madzagfalva, Békés<br>8–10 septembrie 2006",bekes:"Pentru prima dată am putut<br>să-mi prezint lucrările în Békés"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Дани Маџагфалве, Бекеш<br>8–10. септембар 2006",bekes:"Први пут сам могао да<br>прикажем своје радове у Бекешу"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Dani Madzagfalve, Békés<br>8.–10. rujna 2006",bekes:"Prvi put sam mogao<br>predstaviti svoje radove u Békésu"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Dnevi Madzagfalva, Békés<br>8.–10. september 2006",bekes:"Prvič sem lahko<br>predstavil svoja dela v Békésu"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -186,6 +257,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

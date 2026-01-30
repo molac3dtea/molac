@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,13 +80,17 @@
 
   <div class="page-container">
     <table>
-		<caption>Csúcsi Olvasókör, Hódmezővásárhely<br>2008. november 15–17.</caption>
+		<caption lang-key="cap">Csúcsi Olvasókör, Hódmezővásárhely<br>2008. november 15–17.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Csúcsi Olvasókör, Hódmezővásárhely<br>2008. november 15–17."},
+
 
     window.onload = function() {
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
@@ -174,7 +178,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Papi-féle szélmalom<br>Hódmezővásárhely<br>2007. október 28.</caption>
+		<caption lang-key="cap">Papi-féle szélmalom<br>Hódmezővásárhely<br>2007. október 28.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/021/malom1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/021/malom2.jpg" class="gallery-item gallery-img"></td>
@@ -92,93 +92,112 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Papi-féle szélmalom<br>Hódmezővásárhely<br>2007. október 28."},
+		en:{back:"← Back",close:"✕ Close",cap:"Papi Windmill<br>Hódmezővásárhely<br>28 October 2007"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Papi-Windmühle<br>Hódmezővásárhely<br>28. Oktober 2007"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Molino de viento Papi<br>Hódmezővásárhely<br>28 de octubre de 2007"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Mulino a vento Papi<br>Hódmezővásárhely<br>28 ottobre 2007"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Moulin à vent Papi<br>Hódmezővásárhely<br>28 octobre 2007"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Moinho de vento Papi<br>Hódmezővásárhely<br>28 de outubro de 2007"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Papi-windmolen<br>Hódmezővásárhely<br>28 oktober 2007"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Papi-väderkvarn<br>Hódmezővásárhely<br>28 oktober 2007"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Papi-tuulimylly<br>Hódmezővásárhely<br>28. lokakuuta 2007"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Papi vindmølle<br>Hódmezővásárhely<br>28. oktober 2007"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Papi vindmølle<br>Hódmezővásárhely<br>28. oktober 2007"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Papi vindmylla<br>Hódmezővásárhely<br>28. október 2007"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Molí de vent Papi<br>Hódmezővásárhely<br>28 d’octubre de 2007"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"パピ風車<br>ホードメゼーヴァーシャールヘイ<br>2007年10月28日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"帕皮风车<br>霍德迈泽瓦沙海伊<br>2007年10月28日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"파피 풍차<br>호드메제바샤르헤이<br>2007년 10월 28일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Papi-ventmuelejo<br>Hódmezővásárhely<br>28 oktobro 2007"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Papi vėjo malūnas<br>Hódmezővásárhely<br>2007 m. spalio 28 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Papi vējdzirnavas<br>Hódmezővásárhely<br>2007. gada 28. oktobris"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Papi tuuleveski<br>Hódmezővásárhely<br>28. oktoober 2007"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Papi yel değirmeni<br>Hódmezővásárhely<br>28 Ekim 2007"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Ανεμόμυλος Papi<br>Hódmezővásárhely<br>28 Οκτωβρίου 2007"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Mulliri me erë Papi<br>Hódmezővásárhely<br>28 tetor 2007"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Вятърна мелница Папи<br>Ходмезьовашархей<br>28 октомври 2007"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Wiatrak Papi<br>Hódmezővásárhely<br>28 października 2007"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Větrný mlýn Papi<br>Hódmezővásárhely<br>28. října 2007"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Veterný mlyn Papi<br>Hódmezővásárhely<br>28. októbra 2007"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Вітряк Папі<br>Ходмезьовашархей<br>28 жовтня 2007"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Moara de vânt Papi<br>Hódmezővásárhely<br>28 octombrie 2007"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Папи ветрењача<br>Ходмезевашархељ<br>28. октобар 2007"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Papi vjetrenjača<br>Hódmezővásárhely<br>28. listopada 2007"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Papi vetrnica<br>Hódmezővásárhely<br>28. oktober 2007"}
+	};
+
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -186,6 +205,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
-  </script>
+
+	</script>
 </body>
 </html>

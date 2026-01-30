@@ -58,12 +58,13 @@
     }
   </style>
 </head>
+
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +81,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Batthyány Kázmér Gimnázium, Szigetszentmiklós<br>2007. március 2.</caption>
+		<caption lang-key="cap">Batthyány Kázmér Gimnázium, Szigetszentmiklós<br>2007. március 2.</caption>
 	</table>
   </div>
 
@@ -88,93 +89,112 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Batthyány Kázmér Gimnázium, Szigetszentmiklós<br>2007. március 2."},
+		en:{back:"← Back",close:"✕ Close",cap:"Kázmér Batthyány High School, Szigetszentmiklós<br>2 March 2007"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Batthyány-Kázmér-Gymnasium, Szigetszentmiklós<br>2. März 2007"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Instituto Kázmér Batthyány, Szigetszentmiklós<br>2 de marzo de 2007"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Liceo Kázmér Batthyány, Szigetszentmiklós<br>2 marzo 2007"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Lycée Kázmér Batthyány, Szigetszentmiklós<br>2 mars 2007"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Escola Secundária Kázmér Batthyány, Szigetszentmiklós<br>2 de março de 2007"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Kázmér Batthyány Gymnasium, Szigetszentmiklós<br>2 maart 2007"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Kázmér Batthyány-gymnasiet, Szigetszentmiklós<br>2 mars 2007"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Kázmér Batthyány -lukio, Szigetszentmiklós<br>2. maaliskuuta 2007"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Kázmér Batthyány videregående skole, Szigetszentmiklós<br>2. mars 2007"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Kázmér Batthyány gymnasium, Szigetszentmiklós<br>2. marts 2007"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Kázmér Batthyány framhaldsskólinn, Szigetszentmiklós<br>2. mars 2007"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Institut Kázmér Batthyány, Szigetszentmiklós<br>2 de març de 2007"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"バッチャーニ・カーズメール高校（シゲツェントミクローシュ）<br>2007年3月2日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"巴奇亚尼·卡兹梅尔中学，西盖特森特米克洛什<br>2007年3月2日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"바차니 카즈메르 고등학교, 시게트센트미클로시<br>2007년 3월 2일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Kázmér Batthyány Gimnazio, Szigetszentmiklós<br>2 marto 2007"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Kázmér Batthyány gimnazija, Szigetszentmiklós<br>2007 m. kovo 2 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Kázmér Batthyány ģimnāzija, Szigetszentmiklós<br>2007. gada 2. marts"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Kázmér Batthyány gümnaasium, Szigetszentmiklós<br>2. märts 2007"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Kázmér Batthyány Lisesi, Szigetszentmiklós<br>2 Mart 2007"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Λύκειο Kázmér Batthyány, Szigetszentmiklós<br>2 Μαρτίου 2007"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Gjimnazi Kázmér Batthyány, Szigetszentmiklós<br>2 mars 2007"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Гимназия „Казмер Баттяни“, Сигетсентмиклош<br>2 март 2007"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Gimnazjum im. Kázméra Batthyányego, Szigetszentmiklós<br>2 marca 2007"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Gymnázium Kázméra Batthyányho, Szigetszentmiklós<br>2. března 2007"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Gymnázium Kázméra Batthyányho, Szigetszentmiklós<br>2. marca 2007"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Гімназія Казмера Баттяні, Сигетсентміклош<br>2 березня 2007"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Liceul Kázmér Batthyány, Szigetszentmiklós<br>2 martie 2007"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Гимназија Казмер Батјањи, Сигетсентмиклош<br>2. март 2007"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Gimnazija Kázmér Batthyány, Szigetszentmiklós<br>2. ožujka 2007"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Gimnazija Kázmér Batthyány, Szigetszentmiklós<br>2. marec 2007"}
+	};
+
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

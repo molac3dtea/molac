@@ -60,10 +60,10 @@
 </head>
 <body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close"><span lang-key="close">✕ Bezárás</span></div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>IV. Vertán-telep és Kenderföld Nap, Makó<br>2006. június 3.</caption>
+		<caption lang-key="cap">IV. Vertán-telep és Kenderföld Nap, Makó<br>2006. június 3.</caption>
 	</table>
   </div>
 
@@ -88,93 +88,111 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"IV. Vertán-telep és Kenderföld Nap<br>Makó<br>2006. június 3."},
+		en:{back:"← Back",close:"✕ Close",cap:"4th Vertán-telep and Kenderföld Day<br>Makó<br>3 June 2006"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"IV. Vertán-telep- und Kenderföld-Tag<br>Makó<br>3. Juni 2006"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"IV Día de Vertán-telep y Kenderföld<br>Makó<br>3 de junio de 2006"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"IV Giornata di Vertán-telep e Kenderföld<br>Makó<br>3 giugno 2006"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"IVe Journée de Vertán-telep et Kenderföld<br>Makó<br>3 juin 2006"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"IV Dia de Vertán-telep e Kenderföld<br>Makó<br>3 de junho de 2006"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"IV Vertán-telep- en Kenderföld-dag<br>Makó<br>3 juni 2006"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"IV Vertán-telep- och Kenderföld-dagen<br>Makó<br>3 juni 2006"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"IV Vertán-telep- ja Kenderföld-päivä<br>Makó<br>3. kesäkuuta 2006"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"IV Vertán-telep- og Kenderföld-dagen<br>Makó<br>3. juni 2006"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"IV Vertán-telep- og Kenderföld-dag<br>Makó<br>3. juni 2006"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"IV Vertán-telep og Kenderföld-dagurinn<br>Makó<br>3. júní 2006"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"IV Dia de Vertán-telep i Kenderföld<br>Makó<br>3 de juny de 2006"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第4回 ヴェルターンテレプ＆ケンデルフェルドの日<br>マコー<br>2006年6月3日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第四届 韦尔坦社区与肯德尔费尔德日<br>马科<br>2006年6月3日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제4회 베르탄 지역 및 켄데르푈드의 날<br>머코<br>2006년 6월 3일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"IV Vertán-telep kaj Kenderföld Tago<br>Makó<br>3-a de junio 2006"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"IV Vertán-telep ir Kenderföld diena<br>Makó<br>2006 m. birželio 3 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"IV Vertán-telep un Kenderföld diena<br>Makó<br>2006. gada 3. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"IV Vertán-telep ja Kenderföldi päev<br>Makó<br>3. juuni 2006"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"IV Vertán-telep ve Kenderföld Günü<br>Makó<br>3 Haziran 2006"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"IV Ημέρα Vertán-telep και Kenderföld<br>Makó<br>3 Ιουνίου 2006"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Dita e IV e Vertán-telep dhe Kenderföld<br>Makó<br>3 qershor 2006"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"IV Ден на Вертaн-телеп и Кендерфьолд<br>Мако<br>3 юни 2006"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"IV Dzień Vertán-telep i Kenderföld<br>Makó<br>3 czerwca 2006"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"IV Den Vertán-telep a Kenderföld<br>Makó<br>3. června 2006"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"IV Deň Vertán-telep a Kenderföld<br>Makó<br>3. júna 2006"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"IV День Вертaн-телеп і Кендерфьольд<br>Мако<br>3 червня 2006"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"A IV-a Zi Vertán-telep și Kenderföld<br>Makó<br>3 iunie 2006"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"IV Дан Вертaн-телепа и Кендерфьолда<br>Мако<br>3. јун 2006"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"IV Dan Vertán-telepa i Kenderfölda<br>Makó<br>3. lipnja 2006"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"IV Dan Vertán-telepa in Kenderfölda<br>Makó<br>3. junij 2006"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

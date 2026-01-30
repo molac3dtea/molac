@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>1. Papír Fesztivál, Gersekarát<br>2009. június 20.</caption>
+		<caption lang-key="cap">1. Papír Fesztivál, Gersekarát<br>2009. június 20.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/026/kep03.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/026/kep02.jpg" class="gallery-item gallery-img"></td>
@@ -103,8 +103,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"1. Papír Fesztivál, Gersekarát<br>2009. június 20."},
+		en:{back:"← Back",close:"✕ Close",cap:"1st Paper Festival, Gersekarát<br>20 June 2009"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"1. Papierfestival, Gersekarát<br>20. Juni 2009"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"1.er Festival del Papel, Gersekarát<br>20 de junio de 2009"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"1° Festival della Carta, Gersekarát<br>20 giugno 2009"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"1er Festival du Papier, Gersekarát<br>20 juin 2009"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"1º Festival do Papel, Gersekarát<br>20 de junho de 2009"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"1e Papierfestival, Gersekarát<br>20 juni 2009"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"1:a Pappersfestivalen, Gersekarát<br>20 juni 2009"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"1. Paperifestivaali, Gersekarát<br>20. kesäkuuta 2009"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"1. Papirfestival, Gersekarát<br>20. juni 2009"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"1. Papirfestival, Gersekarát<br>20. juni 2009"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"1. Pappírs­hátíðin, Gersekarát<br>20. júní 2009"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"1r Festival del Paper, Gersekarát<br>20 de juny de 2009"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第1回 ペーパーフェスティバル（ゲルシェカラート）<br>2009年6月20日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第一届纸艺节，Gersekarát<br>2009年6月20日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제1회 종이 축제, 게르셰카라트<br>2009년 6월 20일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"1-a Papera Festivalo, Gersekarát<br>20 junio 2009"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"1-asis Popieriaus festivalis, Gersekarát<br>2009 m. birželio 20 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"1. Papīra festivāls, Gersekarát<br>2009. gada 20. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"1. Paberifestival, Gersekarát<br>20. juuni 2009"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"1. Kâğıt Festivali, Gersekarát<br>20 Haziran 2009"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"1ο Φεστιβάλ Χαρτιού, Gersekarát<br>20 Ιουνίου 2009"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Festivali i 1-rë i Letrës, Gersekarát<br>20 qershor 2009"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"1-ви Фестивал на хартията, Гершекарат<br>20 юни 2009"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"1. Festiwal Papieru, Gersekarát<br>20 czerwca 2009"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"1. Festival papíru, Gersekarát<br>20. června 2009"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"1. Festival papiera, Gersekarát<br>20. júna 2009"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"1-й Фестиваль паперу, Гершекарат<br>20 червня 2009"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Primul Festival al Hârtiei, Gersekarát<br>20 iunie 2009"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"1. Фестивал папира, Гершекарат<br>20. јун 2009."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"1. Festival papira, Gersekarát<br>20. lipnja 2009."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"1. Festival papirja, Gersekarát<br>20. junij 2009"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -190,7 +267,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {

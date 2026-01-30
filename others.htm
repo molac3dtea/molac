@@ -66,10 +66,10 @@
 
 <body>
 
-  <a href="origami.htm" class="back-button" data-lang-key="back">← Vissza</a>
+  <a href="origami.htm" class="back-button" lang-key="back">← Vissza</a>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close" data-lang-key="close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -84,7 +84,7 @@
   <div class="page-container">
 
     <table>
-      <caption data-lang-key="title_rubik">Az én Rubik kockám</caption>
+      <caption lang-key="title_rubik">Az én Rubik kockám</caption>
       <tr>
         <td><img src="pictures/others/rubik01.jpg" class="gallery-img" onclick="openGallery(0)"></td>
 		<td><img src="pictures/others/rubik02.jpg" class="gallery-img" onclick="openGallery(1)"></td>
@@ -107,21 +107,21 @@
 	</table>
 	
     <table>
-      <caption data-lang-key="title_unicum">Unicumos üvegek</caption>
+      <caption lang-key="title_unicum">Unicumos üvegek</caption>
       <tr>
-        <td data-lang-key="p_unicum1">450 kisméretű elemből áll</td>
+        <td lang-key="p_unicum1">450 kisméretű elemből áll</td>
         <td><img src="pictures/others/unicum.jpg" class="gallery-img" onclick="openGallery(12)"></td>
       </tr>	  
       <tr>
-		<td data-lang-key="p_unicum2">Az újabb üveg már<br>650 elemből áll</td>
+		<td lang-key="p_unicum2">Az újabb üveg már<br>650 elemből áll</td>
         <td><img src="pictures/others/unicum2.jpg" class="gallery-img" onclick="openGallery(13)"></td>
       </tr>	  
 	</table>
 
     <table>
-      <caption data-lang-key="title_zaszlo">EU zászló</caption>
+      <caption lang-key="title_zaszlo">EU zászló</caption>
       <tr>
-        <td data-lang-key="p_zaszlo">2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével</td>
+        <td lang-key="p_zaszlo">2004. április 30-án készült<br>a Papír-varázs Fesztiválon<br>az érdeklődők segítségével</td>
         <td><img src="pictures/others/euflag.jpg" class="gallery-img" onclick="openGallery(14)"></td>
       </tr>	  
 	</table>	
@@ -436,8 +436,8 @@
     function changeLanguage(lang) {
       if (!translations[lang]) lang = 'hu';
       localStorage.setItem('preferredLang', lang);
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
       });
       refreshGalleryData(lang);
@@ -448,9 +448,9 @@
       const imgElements = document.querySelectorAll('.gallery-img');
       imgElements.forEach((img) => {
         const table = img.closest('table');
-        const captionKey = table.querySelector('caption').getAttribute('data-lang-key');
+        const captionKey = table.querySelector('caption').getAttribute('lang-key');
         const row = img.closest('tr');
-        const descKey = row.querySelector('td').getAttribute('data-lang-key');
+        const descKey = row.querySelector('td').getAttribute('lang-key');
         
         galleryData.push({
           bigSrc: img.src,

@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +80,9 @@
 
   <div class="page-container">
     <table>
-		<caption>2010. augusztus 1–15.<br>Origami Fesztivál 2010<br>Remekek Háza, Pécs</caption>
+		<caption lang-key="cap">2010. augusztus 1–15.<br>Origami Fesztivál 2010<br>Remekek Háza, Pécs</caption>
 		<tr>
-			<td colspan="2">2010-ben Pécs volt<br>Európa Kulturális Fővárosa.<br>Ezen a rendezvénysorozaton<br>volt látható először<br>az óriás dínóm.</td>
+			<td colspan="2" lang-key="pecs">2010-ben Pécs volt<br>Európa Kulturális Fővárosa.<br>Ezen a rendezvénysorozaton<br>volt látható először<br>az óriás dínóm.</td>
 			<td><img src="pictures/kiallitas/029/stego3.jpg" class="gallery-item gallery-img"></td>
 		</tr>		
 		<tr>
@@ -121,94 +121,164 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"2010. augusztus 1–15.<br>Origami Fesztivál 2010<br>Remekek Háza, Pécs",pecs:"2010-ben Pécs volt<br>Európa Kulturális Fővárosa.<br>Ezen a rendezvénysorozaton<br>volt látható először<br>az óriás dínóm."},
+		en:{back:"← Back",close:"✕ Close",cap:"1–15 August 2010<br>Origami Festival 2010<br>House of Masterpieces, Pécs",pecs:"In 2010 Pécs was<br>the European Capital of Culture.<br>At this series of events<br>my giant dinosaur<br>was shown for the first time."},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"1.–15. August 2010<br>Origami-Festival 2010<br>Haus der Meisterwerke, Pécs",pecs:"2010 war Pécs<br>Europäische Kulturhauptstadt.<br>Bei dieser Veranstaltungsreihe<br>war mein Riesendinosaurier<br>erstmals zu sehen."},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"1–15 de agosto de 2010<br>Festival de Origami 2010<br>Casa de las Obras Maestras, Pécs",pecs:"En 2010 Pécs fue<br>Capital Europea de la Cultura.<br>En esta serie de eventos<br>se pudo ver por primera vez<br>mi dinosaurio gigante."},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"1–15 agosto 2010<br>Festival di Origami 2010<br>Casa dei Capolavori, Pécs",pecs:"Nel 2010 Pécs è stata<br>Capitale Europea della Cultura.<br>In questa rassegna di eventi<br>è stato esposto per la prima volta<br>il mio dinosauro gigante."},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"1–15 août 2010<br>Festival d’Origami 2010<br>Maison des Chefs-d’œuvre, Pécs",pecs:"En 2010, Pécs était<br>Capitale européenne de la culture.<br>Lors de cette série d’événements,<br>mon dinosaure géant<br>a été présenté pour la première fois."},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"1–15 de agosto de 2010<br>Festival de Origami 2010<br>Casa das Obras-Primas, Pécs",pecs:"Em 2010, Pécs foi<br>Capital Europeia da Cultura.<br>Nesta série de eventos,<br>o meu dinossauro gigante<br>foi exibido pela primeira vez."},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"1–15 augustus 2010<br>Origamifestival 2010<br>Huis van Meesterwerken, Pécs",pecs:"In 2010 was Pécs<br>Europese Culturele Hoofdstad.<br>Tijdens deze evenementenreeks<br>was mijn reuzendinosaurus<br>voor het eerst te zien."},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"1–15 augusti 2010<br>Origamifestivalen 2010<br>De mästerliga verkens hus, Pécs",pecs:"År 2010 var Pécs<br>Europeisk kulturhuvudstad.<br>Vid denna evenemangsserie<br>visades min jättedinosaurie<br>för första gången."},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"1.–15. elokuuta 2010<br>Origamifestivaali 2010<br>Mestariteosten talo, Pécs",pecs:"Vuonna 2010 Pécs oli<br>Euroopan kulttuuripääkaupunki.<br>Tässä tapahtumasarjassa<br>jättiläisdinosaurukseni<br>oli esillä ensimmäistä kertaa."},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"1.–15. august 2010<br>Origamifestivalen 2010<br>Mesterverkenes hus, Pécs",pecs:"I 2010 var Pécs<br>Europeisk kulturhovedstad.<br>I denne arrangementsrekken<br>ble min gigantiske dinosaur<br>vist for første gang."},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"1.–15. august 2010<br>Origamifestival 2010<br>Mesterværkernes Hus, Pécs",pecs:"I 2010 var Pécs<br>Europæisk Kulturhovedstad.<br>Ved denne arrangementsrække<br>ble min kæmpedinosaur<br>vist for første gang."},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"1.–15. ágúst 2010<br>Origami-hátíð 2010<br>Hús meistaraverka, Pécs",pecs:"Árið 2010 var Pécs<br>Evrópsk menningarhöfuðborg.<br>Á þessari viðburðaröð<br>var risadínósinn minn<br>sýndur í fyrsta sinn."},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"1–15 d’agost de 2010<br>Festival d’Origami 2010<br>Casa de les Obres Mestres, Pécs",pecs:"L’any 2010 Pécs va ser<br>Capital Europea de la Cultura.<br>En aquesta sèrie d’esdeveniments<br>es va mostrar per primera vegada<br>el meu dinosaure gegant."},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"2010年8月1日–15日<br>オリガミ・フェスティバル2010<br>ペーチュ・名作の館",pecs:"2010年、ペーチュは<br>ヨーロッパ文化首都でした。<br>このイベントシリーズで<br>私の巨大な恐竜が<br>初めて展示されました。"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"2010年8月1–15日<br>2010折纸节<br>佩奇·杰作之家",pecs:"2010年佩奇是<br>欧洲文化之都。<br>在这一系列活动中，<br>我的巨型恐龙<br>首次展出。"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"2010년 8월 1–15일<br>오리가미 페스티벌 2010<br>페치, 명작의 집",pecs:"2010년 페치는<br>유럽 문화 수도였습니다.<br>이 행사 시리즈에서<br>저의 거대한 공룡이<br>처음으로 전시되었습니다."},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"1–15 aŭgusto 2010<br>Origami-Festivalo 2010<br>Domo de Ĉefverkoj, Pécs",pecs:"En 2010 Pécs estis<br>Eŭropa Kulturĉefurbo.<br>Dum ĉi tiu eventoserio<br>mia giganta dinosaŭro<br>estis montrita unuafoje."},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"2010 m. rugpjūčio 1–15 d.<br>Origami festivalis 2010<br>Šedevrų namai, Pėčas",pecs:"2010 m. Pėčas buvo<br>Europos kultūros sostinė.<br>Šio renginių ciklo metu<br>mano milžiniškas dinozauras<br>buvo parodytas pirmą kartą."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"2010. gada 1.–15. augusts<br>Origami festivāls 2010<br>Meistardarbu nams, Pēča",pecs:"2010. gadā Pēča bija<br>Eiropas kultūras galvaspilsēta.<br>Šajā pasākumu ciklā<br>mans milzu dinozaurs<br>tika parādīts pirmo reizi."},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"1.–15. august 2010<br>Origamifestival 2010<br>Meistriteoste maja, Pécs",pecs:"2010. aastal oli Pécs<br>Euroopa kultuuripealinn.<br>Selle sündmustesarja raames<br>oli minu hiiglaslik dinosaurus<br>esmakordselt väljas."},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"1–15 Ağustos 2010<br>Origami Festivali 2010<br>Başyapıtlar Evi, Pécs",pecs:"2010 yılında Pécs<br>Avrupa Kültür Başkenti idi.<br>Bu etkinlikler dizisinde<br>dev dinozorum<br>ilk kez sergilendi."},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"1–15 Αυγούστου 2010<br>Φεστιβάλ Οριγκάμι 2010<br>Οίκος Αριστουργημάτων, Pécs",pecs:"Το 2010 η Pécs ήταν<br>Πολιτιστική Πρωτεύουσα της Ευρώπης.<br>Σε αυτή τη σειρά εκδηλώσεων<br>παρουσιάστηκε για πρώτη φορά<br>ο γιγάντιος δεινόσαυρός μου."},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"1–15 gusht 2010<br>Festivali i Origamit 2010<br>Shtëpia e Kryeveprave, Pécs",pecs:"Në vitin 2010 Pécs ishte<br>Kryeqyteti Evropian i Kulturës.<br>Në këtë seri aktivitetesh<br>u shfaq për herë të parë<br>dinozauri im gjigant."},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"1–15 август 2010<br>Фестивал на оригами 2010<br>Дом на шедьоврите, Печ",pecs:"През 2010 г. Печ беше<br>Европейска столица на културата.<br>В тази поредица от събития<br>моят гигантски динозавър<br>бе показан за първи път."},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"1–15 sierpnia 2010<br>Festiwal Origami 2010<br>Dom Arcydzieł, Pecz",pecs:"W 2010 roku Pecz była<br>Europejską Stolicą Kultury.<br>Podczas tej serii wydarzeń<br>po raz pierwszy pokazano<br>mojego gigantycznego dinozaura."},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"1.–15. srpna 2010<br>Origami festival 2010<br>Dům mistrovských děl, Pécs",pecs:"V roce 2010 byla Pécs<br>Evropským hlavním městem kultury.<br>Během této série akcí<br>byl poprvé vystaven<br>můj obří dinosaurus."},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"1.–15. augusta 2010<br>Origami festival 2010<br>Dom majstrovských diel, Pécs",pecs:"V roku 2010 bola Pécs<br>Európskym hlavným mestom kultúry.<br>V rámci tejto série podujatí<br>bol môj obrovský dinosaurus<br>prvýkrát vystavený."},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"1–15 серпня 2010<br>Фестиваль орігамі 2010<br>Дім шедеврів, Печ",pecs:"У 2010 році Печ був<br>Культурною столицею Європи.<br>Під час цієї серії подій<br>мій гігантський динозавр<br>був показаний уперше."},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"1–15 august 2010<br>Festivalul Origami 2010<br>Casa Capodoperelor, Pécs",pecs:"În 2010, Pécs a fost<br>Capitală Culturală Europeană.<br>În cadrul acestei serii de evenimente,<br>dinozaurul meu uriaș<br>a fost prezentat pentru prima dată."},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"1–15. август 2010<br>Оригами фестивал 2010<br>Дом ремек-дела, Печуј",pecs:"Године 2010. Печуј је био<br>Европска престоница културе.<br>У овој серији догађаја<br>мој џиновски диносаурус<br>је први пут приказан."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"1.–15. kolovoza 2010<br>Origami festival 2010<br>Kuća remek-djela, Pécs",pecs:"Godine 2010. Pécs je bio<br>Europska prijestolnica kulture.<br>U ovom nizu događanja<br>moj golemi dinosaur<br>prvi je put izložen."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"1.–15. avgust 2010<br>Festival origamija 2010<br>Hiša mojstrovin, Pécs",pecs:"Leta 2010 je bil Pécs<br>Evropska prestolnica kulture.<br>Na tej seriji dogodkov<br>je bil moj orjaški dinozaver<br>prvič razstavljen."}
+	};
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
@@ -216,6 +286,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

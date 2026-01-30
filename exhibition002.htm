@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <a href="exhibition.htm" class="back-button">← Vissza</a>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Papírvarázs Fesztivál<br>Budapest, Ráday utca<br>2004. április 30. – május 2.</caption>
+		<caption lang-key="cap">Papírvarázs Fesztivál<br>Budapest, Ráday utca<br>2004. április 30. – május 2.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/002/fesztival.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/002/enyem1.jpg" class="gallery-item gallery-img"></td>
@@ -92,8 +92,84 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+    const translations = {
+		hu: { back: '← Vissza', close: '✕ Bezárás', cap: 'Papírvarázs Fesztivál<br>Budapest, Ráday utca<br>2004. április 30. – május 2.' },
+		en: { back: '← Back', close: '✕ Close', cap: 'Paper Magic Festival<br>Budapest, Ráday Street<br>30 April – 2 May 2004' },
+		de: { back: '← Zurück', close: '✕ Schließen', cap: 'Papierzauber-Festival<br>Budapest, Ráday-Straße<br>30. April – 2. Mai 2004' },
+		es: { back: '← Volver', close: '✕ Cerrar', cap: 'Festival de Magia de Papel<br>Budapest, calle Ráday<br>30 de abril – 2 de mayo de 2004' },
+		it: { back: '← Indietro', close: '✕ Chiudi', cap: 'Festival della Magia della Carta<br>Budapest, via Ráday<br>30 aprile – 2 maggio 2004' },
+		fr: { back: '← Retour', close: '✕ Fermer', cap: 'Festival de la magie du papier<br>Budapest, rue Ráday<br>30 avril – 2 mai 2004' },
+		pt: { back: '← Voltar', close: '✕ Fechar', cap: 'Festival de Magia do Papel<br>Budapeste, Rua Ráday<br>30 de abril – 2 de maio de 2004' },
+		nl: { back: '← Terug', close: '✕ Sluiten', cap: 'Papiermagie Festival<br>Boedapest, Rádaystraat<br>30 april – 2 mei 2004' },
+		sv: { back: '← Tillbaka', close: '✕ Stäng', cap: 'Pappersmagi-festivalen<br>Budapest, Rádaygatan<br>30 april – 2 maj 2004' },
+		fi: { back: '← Takaisin', close: '✕ Sulje', cap: 'Paperitaikuus-festivaali<br>Budapest, Ráday-katu<br>30. huhtikuuta – 2. toukokuuta 2004' },
+		no: { back: '← Tilbake', close: '✕ Lukk', cap: 'Papirmagi-festival<br>Budapest, Ráday-gaten<br>30. april – 2. mai 2004' },
+		da: { back: '← Tilbage', close: '✕ Luk', cap: 'Papirmagi-festival<br>Budapest, Ráday-gade<br>30. april – 2. maj 2004' },
+		is: { back: '← Til baka', close: '✕ Loka', cap: 'Pappírstökka-hátíð<br>Budapest, Ráday-gata<br>30. apríl – 2. maí 2004' },
+		ca: { back: '← Enrere', close: '✕ Tanca', cap: 'Festival de màgia del paper<br>Budapest, carrer Ráday<br>30 d’abril – 2 de maig de 2004' },
+		ja: { back: '← 戻る', close: '✕ 閉じる', cap: 'ペーパー・マジック・フェスティバル<br>ブダペスト、ラーダイ通り<br>2004年4月30日–5月2日' },
+		zh: { back: '← 返回', close: '✕ 关闭', cap: '纸艺魔法节<br>布达佩斯，拉达伊街<br>2004年4月30日–5月2日' },
+		ko: { back: '← 뒤로', close: '✕ 닫기', cap: '종이 마술 페스티벌<br>부다페스트, 라다이 거리<br>2004년 4월 30일–5월 2일' },
+		eo: { back: '← Reen', close: '✕ Fermi', cap: 'Papera Magio-Festivalo<br>Budapest, strato Ráday<br>30 aprilo – 2 majo 2004' },
+		lt: { back: '← Atgal', close: '✕ Uždaryti', cap: 'Popieriaus magijos festivalis<br>Budapeštas, Ráday gatvė<br>2004 m. balandžio 30 d. – gegužės 2 d.' },
+		lv: { back: '← Atpakaļ', close: '✕ Aizvērt', cap: 'Papīra burvju festivāls<br>Budapešta, Ráday iela<br>2004. gada 30. aprīlis – 2. maijs' },
+		et: { back: '← Tagasi', close: '✕ Sulge', cap: 'Paberimaagia festival<br>Budapest, Ráday tänav<br>30. aprill – 2. mai 2004' },
+		tr: { back: '← Geri', close: '✕ Kapat', cap: 'Kâğıt Büyüsü Festivali<br>Budapeşte, Ráday Caddesi<br>30 Nisan – 2 Mayıs 2004' },
+		el: { back: '← Πίσω', close: '✕ Κλείσιμο', cap: "Φεστιβάλ «Μαγεία του Χαρτιού»<br>Βουδαπέστη, οδός Ráday<br>30 Απριλίου' – 2 Μαΐου 2004" },
+		sq: { back: '← Kthehu', close: '✕ Mbyll', cap: 'Festivali i Magjisë së Letrës<br>Budapest, Rruga Ráday<br>30 prill – 2 maj 2004' },
+		bg: { back: '← Назад', close: '✕ Затвори', cap: 'Фестивал „Магия от хартия“<br>Будапеща, улица Ráday<br>30 април – 2 май 2004' },
+		pl: { back: '← Wstecz', close: '✕ Zamknij', cap: 'Festiwal Magii Papieru<br>Budapeszt, ulica Ráday<br>30 kwietnia – 2 maja 2004' },
+		cs: { back: '← Zpět', close: '✕ Zavřít', cap: 'Festival papírové magie<br>Budapešť, ulice Ráday<br>30. dubna – 2. května 2004' },
+		sk: { back: '← Späť', close: '✕ Zavrieť', cap: 'Festival papierovej mágie<br>Budapešť, ulica Ráday<br>30. apríla – 2. mája 2004' },
+		uk: { back: '← Назад', close: '✕ Закрити', cap: 'Фестиваль «Паперова магія»<br>Будапешт, вулиця Ráday<br>30 квітня – 2 травня 2004' },
+		ro: { back: '← Înapoi', close: '✕ Închide', cap: 'Festivalul Magiei Hârtiei<br>Budapesta, strada Ráday<br>30 aprilie – 2 mai 2004' },
+		sr: { back: '← Назад', close: '✕ Затвори', cap: 'Фестивал магије папира<br>Будимпешта, улица Ráday<br>30. април – 2. мај 2004' },
+		hr: { back: '← Natrag', close: '✕ Zatvori', cap: 'Festival papirnate čarolije<br>Budimpešta, ulica Ráday<br>30. travnja – 2. svibnja 2004' },
+		sl: { back: '← Nazaj', close: '✕ Zapri', cap: 'Festival papirne čarovnije<br>Budimpešta, ulica Ráday<br>30. april – 2. maj 2004' },
+    };
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
@@ -179,7 +255,7 @@
             closeImage(); 
           }, 200);
         } else {
-          setTimeout(() => { window.location.href = "exhibition.htm"; }, 200);
+          goBack();
         }
       }
       if (isOpen) {
