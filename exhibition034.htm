@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>PAPÍRCSODÁK<br>a magyar origami világa<br>Budapest<br>2011. október 24. – november 11.</caption>
+		<caption lang-key="cap">PAPÍRCSODÁK<br>a magyar origami világa<br>Budapest<br>2011. október 24. – november 11.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/034/kep02.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/034/kep01.jpg" class="gallery-item gallery-img"></td>
@@ -113,7 +113,84 @@
     let currentIndex = 0;
     const galleryData = [];
 
+	const translations = {
+		hu: { back: "← Vissza", close: "✕ Bezárás", cap: "PAPÍRCSODÁK<br>a magyar origami világa<br>Budapest<br>2011. október 24. – november 11." },
+		en: { back: "← Back", close: "✕ Close", cap: "PAPER WONDERS<br>the world of Hungarian origami<br>Budapest<br>24 October 2011 – 11 November 2011" },
+		de: { back: "← Zurück", close: "✕ Schließen", cap: "PAPIERWUNDER<br>die Welt des ungarischen Origami<br>Budapest<br>24. Oktober 2011 – 11. November 2011" },
+		es: { back: "← Volver", close: "✕ Cerrar", cap: "MARAVILLAS DE PAPEL<br>el mundo del origami húngaro<br>Budapest<br>24 de octubre de 2011 – 11 de noviembre de 2011" },
+		it: { back: "← Indietro", close: "✕ Chiudi", cap: "MERAVIGLIE DI CARTA<br>il mondo dell’origami ungherese<br>Budapest<br>24 ottobre 2011 – 11 novembre 2011" },
+		fr: { back: "← Retour", close: "✕ Fermer", cap: "MERVEILLES DE PAPIER<br>le monde de l’origami hongrois<br>Budapest<br>24 octobre 2011 – 11 novembre 2011" },
+		pt: { back: "← Voltar", close: "✕ Fechar", cap: "MARAVILHAS DE PAPEL<br>o mundo do origami húngaro<br>Budapeste<br>24 de outubro de 2011 – 11 de novembro de 2011" },
+		nl: { back: "← Terug", close: "✕ Sluiten", cap: "PAPIERWONDEREN<br>de wereld van de Hongaarse origami<br>Boedapest<br>24 oktober 2011 – 11 november 2011" },
+		sv: { back: "← Tillbaka", close: "✕ Stäng", cap: "PAPPERSUNDER<br>den ungerska origamins värld<br>Budapest<br>24 oktober 2011 – 11 november 2011" },
+		fi: { back: "← Takaisin", close: "✕ Sulje", cap: "PAPERIN IHMEITÄ<br>unkarilaisen origamin maailma<br>Budapest<br>24. lokakuuta 2011 – 11. marraskuuta 2011" },
+		no: { back: "← Tilbake", close: "✕ Lukk", cap: "PAPIRUNDER<br>den ungarske origamiverdenen<br>Budapest<br>24. oktober 2011 – 11. november 2011" },
+		da: { back: "← Tilbage", close: "✕ Luk", cap: "PAPIRVIDUNDERE<br>den ungarske origamiverden<br>Budapest<br>24. oktober 2011 – 11. november 2011" },
+		is: { back: "← Til baka", close: "✕ Loka", cap: "PAPPÍRSUNDUR<br>heimur ungversks origami<br>Búdapest<br>24. október 2011 – 11. nóvember 2011" },
+		ca: { back: "← Enrere", close: "✕ Tanca", cap: "MERAVELLES DE PAPER<br>el món de l’origami hongarès<br>Budapest<br>24 d’octubre de 2011 – 11 de novembre de 2011" },
+		ja: { back: "← 戻る", close: "✕ 閉じる", cap: "紙の驚異<br>ハンガリー折り紙の世界<br>ブダペスト<br>2011年10月24日～11月11日" },
+		zh: { back: "← 返回", close: "✕ 关闭", cap: "纸的奇迹<br>匈牙利折纸的世界<br>布达佩斯<br>2011年10月24日－11月11日" },
+		ko: { back: "← 뒤로", close: "✕ 닫기", cap: "종이의 기적<br>헝가리 오리가미의 세계<br>부다페스트<br>2011년 10월 24일 – 11월 11일" },
+		eo: { back: "← Reen", close: "✕ Fermi", cap: "PAPER-MIRINDAĴOJ<br>la mondo de hungara origamio<br>Budapeŝto<br>24 oktobro 2011 – 11 novembro 2011" },
+		lt: { back: "← Atgal", close: "✕ Uždaryti", cap: "POPIERIAUS STEBUKLAI<br>Vengrijos origamio pasaulis<br>Budapeštas<br>2011 m. spalio 24 d. – lapkričio 11 d." },
+		lv: { back: "← Atpakaļ", close: "✕ Aizvērt", cap: "PAPĪRA BRĪNUMI<br>ungāru origami pasaule<br>Budapešta<br>2011. gada 24. oktobris – 11. novembris" },
+		et: { back: "← Tagasi", close: "✕ Sule", cap: "PABERI IMED<br>Ungari origami maailm<br>Budapest<br>24. oktoober 2011 – 11. november 2011" },
+		tr: { back: "← Geri", close: "✕ Kapat", cap: "KAĞIT HARİKALARI<br>Macar origamisinin dünyası<br>Budapeşte<br>24 Ekim 2011 – 11 Kasım 2011" },
+		el: { back: "← Πίσω", close: "✕ Κλείσιμο", cap: "ΧΑΡΤΙΝΑ ΘΑΥΜΑΤΑ<br>ο κόσμος του ουγγρικού οριγκάμι<br>Βουδαπέστη<br>24 Οκτωβρίου 2011 – 11 Νοεμβρίου 2011" },
+		sq: { back: "← Mbrapa", close: "✕ Mbyll", cap: "MREKULLI LETRE<br>bota e origamit hungarez<br>Budapest<br>24 tetor 2011 – 11 nëntor 2011" },
+		bg: { back: "← Назад", close: "✕ Затвори", cap: "ХАРТИЕНИ ЧУДЕСА<br>светът на унгарското оригами<br>Будапеща<br>24 октомври 2011 – 11 ноември 2011" },
+		pl: { back: "← Wstecz", close: "✕ Zamknij", cap: "PAPIEROWE CUDA<br>świat węgierskiego origami<br>Budapeszt<br>24 października 2011 – 11 listopada 2011" },
+		cs: { back: "← Zpět", close: "✕ Zavřít", cap: "PAPÍROVÉ ZÁZRAKY<br>svět maďarského origami<br>Budapešť<br>24. října 2011 – 11. listopadu 2011" },
+		sk: { back: "← Späť", close: "✕ Zavrieť", cap: "PAPIEROVÉ ZÁZRAKY<br>svet maďarského origami<br>Budapešť<br>24. októbra 2011 – 11. novembra 2011" },
+		uk: { back: "← Назад", close: "✕ Закрити", cap: "ПАПЕРОВІ ДИВА<br>світ угорського оріґамі<br>Будапешт<br>24 жовтня 2011 – 11 листопада 2011" },
+		ro: { back: "← Înapoi", close: "✕ Închide", cap: "MINUNI DIN HÂRTIE<br>lumea origamiului maghiar<br>Budapesta<br>24 octombrie 2011 – 11 noiembrie 2011" },
+		sr: { back: "← Назад", close: "✕ Затвори", cap: "ПАПИРНА ЧУДА<br>свет мађарског оригамија<br>Будимпешта<br>24. октобар 2011 – 11. новембар 2011" },
+		hr: { back: "← Natrag", close: "✕ Zatvori", cap: "PAPIRNATA ČUDA<br>svijet mađarskog origamija<br>Budimpešta<br>24. listopada 2011. – 11. studenoga 2011." },
+		sl: { back: "← Nazaj", close: "✕ Zapri", cap: "PAPIRNATI ČUDEŽI<br>svet madžarskega origamija<br>Budimpešta<br>24. oktober 2011 – 11. november 2011" }
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
+
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       

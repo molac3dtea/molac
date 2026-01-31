@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,99 +80,117 @@
 
   <div class="page-container">
     <table>
-		<caption>Hobbi Kiállítás<br>Szabadság Olvasókör, Hódmezővásárhely<br>2014. október 11–13.</caption>
+		<caption lang-key="cap">Hobbi Kiállítás<br>Szabadság Olvasókör, Hódmezővásárhely<br>2014. október 11–13.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Hobbi Kiállítás<br>Szabadság Olvasókör, Hódmezővásárhely<br>2014. október 11–13."},
+		en:{back:"← Back",close:"✕ Close",cap:"Hobby Exhibition<br>Szabadság Reading Circle, Hódmezővásárhely<br>11–13 October 2014"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Hobby-Ausstellung<br>Szabadság-Lesekreis, Hódmezővásárhely<br>11.–13. Oktober 2014"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Exposición de Aficiones<br>Círculo de Lectura Szabadság, Hódmezővásárhely<br>11–13 de octubre de 2014"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Mostra di Hobby<br>Circolo di Lettura Szabadság, Hódmezővásárhely<br>11–13 ottobre 2014"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Exposition de Loisirs<br>Cercle de Lecture Szabadság, Hódmezővásárhely<br>11–13 octobre 2014"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Exposição de Hobbies<br>Círculo de Leitura Szabadság, Hódmezővásárhely<br>11–13 de outubro de 2014"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Hobbytentoonstelling<br>Szabadság Leeskring, Hódmezővásárhely<br>11–13 oktober 2014"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Hobbyutställning<br>Szabadság läsecirkel, Hódmezővásárhely<br>11–13 oktober 2014"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Harrastenäyttely<br>Szabadság-lukupiiri, Hódmezővásárhely<br>11.–13. lokakuuta 2014"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Hobbyutstilling<br>Szabadság lesesirkel, Hódmezővásárhely<br>11.–13. oktober 2014"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Hobbyudstilling<br>Szabadság læsekreds, Hódmezővásárhely<br>11.–13. oktober 2014"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Áhugamálasýning<br>Szabadság leshringur, Hódmezővásárhely<br>11.–13. október 2014"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Exposició d’Aficions<br>Cercle de Lectura Szabadság, Hódmezővásárhely<br>11–13 d’octubre de 2014"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ホビー展示会<br>サバドシャーグ読書会、ホードメゼーヴァーシャールヘイ<br>2014年10月11～13日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"爱好展览<br>自由读书会，霍德梅泽瓦沙尔海伊<br>2014年10月11–13日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"취미 전시회<br>서버드샤그 독서 모임, 호드메죄바샤르헤이<br>2014년 10월 11–13일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Hobia Ekspozicio<br>Legoklubo Szabadság, Hódmezővásárhely<br>11–13 oktobro 2014"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Pomėgių paroda<br>„Szabadság“ skaitytojų ratas, Hódmezővásárhely<br>2014 m. spalio 11–13 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Hobiju izstāde<br>„Szabadság” lasītāju pulciņš, Hódmezővásárhely<br>2014. gada 11.–13. oktobris"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Hobinäitus<br>Szabadsági lugemisklubi, Hódmezővásárhely<br>11.–13. oktoober 2014"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Hobi Sergisi<br>Szabadság Okuma Kulübü, Hódmezővásárhely<br>11–13 Ekim 2014"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Έκθεση Χόμπι<br>Λέσχη Ανάγνωσης Szabadság, Hódmezővásárhely<br>11–13 Οκτωβρίου 2014"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Ekspozitë Hobi<br>Rrethi i Leximit Szabadság, Hódmezővásárhely<br>11–13 tetor 2014"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Хоби изложба<br>Читателски кръг „Сабадшаг“, Ходмезьовашархей<br>11–13 октомври 2014"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Wystawa Hobby<br>Koło Czytelnicze Szabadság, Hódmezővásárhely<br>11–13 października 2014"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Výstava koníčků<br>Čtenářský kroužek Szabadság, Hódmezővásárhely<br>11.–13. října 2014"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Výstava koníčkov<br>Čitateľský krúžok Szabadság, Hódmezővásárhely<br>11.–13. októbra 2014"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Виставка хобі<br>Читацький гурток «Сабадшаг», Годмезевашархей<br>11–13 жовтня 2014"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Expoziție de hobby-uri<br>Cercul de lectură Szabadság, Hódmezővásárhely<br>11–13 octombrie 2014"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Хоби изложба<br>Читалачки круг „Сабадшаг“, Ходмезевашархељ<br>11–13. октобар 2014"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Izložba hobija<br>Čitateljski krug Szabadság, Hódmezővásárhely<br>11.–13. listopada 2014."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Razstava hobijev<br>Bralni krožek Szabadság, Hódmezővásárhely<br>11.–13. oktober 2014"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

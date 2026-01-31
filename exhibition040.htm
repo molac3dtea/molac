@@ -58,12 +58,13 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
+
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +81,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Kultúrházak Éjjel-Nappal, Mezőberény<br>2015. február 13. – március 18.</caption>
+		<caption lang-key="cap">Kultúrházak Éjjel-Nappal, Mezőberény<br>2015. február 13. – március 18.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/040/meghivo.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -91,7 +92,84 @@
     let currentIndex = 0;
     const galleryData = [];
 
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Kultúrházak Éjjel-Nappal, Mezőberény<br>2015. február 13. – március 18."},
+		en:{back:"← Back",close:"✕ Close",cap:"Culture Houses Day and Night, Mezőberény<br>13 February – 18 March 2015"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Kulturhäuser Tag und Nacht, Mezőberény<br>13. Februar – 18. März 2015"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Casas de Cultura Día y Noche, Mezőberény<br>13 de febrero – 18 de marzo de 2015"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Case della Cultura giorno e notte, Mezőberény<br>13 febbraio – 18 marzo 2015"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Maisons de la culture jour et nuit, Mezőberény<br>13 février – 18 mars 2015"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Casas da Cultura dia e noite, Mezőberény<br>13 de fevereiro – 18 de março de 2015"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Cultuurhuizen dag en nacht, Mezőberény<br>13 februari – 18 maart 2015"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Kulturhus dag och natt, Mezőberény<br>13 februari – 18 mars 2015"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Kulttuuritalot päivin ja öin, Mezőberény<br>13. helmikuuta – 18. maaliskuuta 2015"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Kulturhus dag og natt, Mezőberény<br>13. februar – 18. mars 2015"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Kulturhuse dag og nat, Mezőberény<br>13. februar – 18. marts 2015"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Menningarhús dag og nótt, Mezőberény<br>13. febrúar – 18. mars 2015"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Cases de cultura dia i nit, Mezőberény<br>13 de febrer – 18 de març de 2015"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"文化会館デー＆ナイト、メゼーベレーニ<br>2015年2月13日～3月18日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"文化之家昼夜活动，梅泽贝雷尼<br>2015年2月13日－3月18日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"문화회관 낮과 밤, 메죄베레니<br>2015년 2월 13일 – 3월 18일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Kulturdomoj tage kaj nokte, Mezőberény<br>13 februaro – 18 marto 2015"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Kultūros namai dieną ir naktį, Mezőberény<br>2015 m. vasario 13 d. – kovo 18 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Kultūras nami dienu un nakti, Mezőberény<br>2015. gada 13. februāris – 18. marts"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Kultuurimajad päeval ja ööl, Mezőberény<br>13. veebruar – 18. märts 2015"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Kültür Evleri Gece Gündüz, Mezőberény<br>13 Şubat – 18 Mart 2015"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Σπίτια Πολιτισμού μέρα και νύχτα, Mezőberény<br>13 Φεβρουαρίου – 18 Μαρτίου 2015"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Shtëpitë e kulturës ditë e natë, Mezőberény<br>13 shkurt – 18 mars 2015"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Домове на културата ден и нощ, Мезьоберень<br>13 февруари – 18 март 2015"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Domy kultury dzień i noc, Mezőberény<br>13 lutego – 18 marca 2015"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Domy kultury ve dne i v noci, Mezőberény<br>13. února – 18. března 2015"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Domy kultúry vo dne i v noci, Mezőberény<br>13. februára – 18. marca 2015"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Будинки культури день і ніч, Мезьоберень<br>13 лютого – 18 березня 2015"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Casele de cultură zi și noapte, Mezőberény<br>13 februarie – 18 martie 2015"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Домови културе дан и ноћ, Мезеберењ<br>13. фебруар – 18. март 2015"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Domovi kulture dan i noć, Mezőberény<br>13. veljače – 18. ožujka 2015."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Kulturni domovi dan in noč, Mezőberény<br>13. februar – 18. marec 2015"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
+
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       

@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Belvárosi Olvasókör, Hódmezővásárhely<br>2011. október 1.</caption>
+		<caption lang-key="cap">Belvárosi Olvasókör, Hódmezővásárhely<br>2011. október 1.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/033/p1030711.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/033/p1030718.jpg" class="gallery-item gallery-img"></td>
@@ -123,8 +123,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Belvárosi Olvasókör, Hódmezővásárhely<br>2011. október 1."},
+		en:{back:"← Back",close:"✕ Close",cap:"Downtown Reading Circle, Hódmezővásárhely<br>1 October 2011"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Innenstädtischer Lesekreis, Hódmezővásárhely<br>1. Oktober 2011"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Círculo de Lectura del Centro, Hódmezővásárhely<br>1 de octubre de 2011"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Circolo di Lettura del Centro, Hódmezővásárhely<br>1 ottobre 2011"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Cercle de lecture du centre-ville, Hódmezővásárhely<br>1 octobre 2011"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Círculo de Leitura do Centro, Hódmezővásárhely<br>1 de outubro de 2011"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Stedelijke Leeskring, Hódmezővásárhely<br>1 oktober 2011"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Centrala läsecirkeln, Hódmezővásárhely<br>1 oktober 2011"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Keskustan lukupiiri, Hódmezővásárhely<br>1. lokakuuta 2011"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Lesesirkelen i sentrum, Hódmezővásárhely<br>1. oktober 2011"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Byens læsekreds, Hódmezővásárhely<br>1. oktober 2011"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Miðbæjar leshringur, Hódmezővásárhely<br>1. október 2011"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Cercle de Lectura del Centre, Hódmezővásárhely<br>1 d’octubre de 2011"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"中心部読書会、ホードメゼーヴァーシャールヘイ<br>2011年10月1日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"市中心读书会，霍德梅泽瓦沙尔海伊<br>2011年10月1日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"도심 독서 모임, 호드메죄바샤르헤이<br>2011년 10월 1일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Urbocentra legorondo, Hódmezővásárhely<br>1 oktobro 2011"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Miesto centro skaitytojų ratas, Hódmezővásárhely<br>2011 m. spalio 1 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Pilsētas centra lasītāju pulciņš, Hódmezővásárhely<br>2011. gada 1. oktobris"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Kesklinna lugemisring, Hódmezővásárhely<br>1. oktoober 2011"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Şehir Merkezi Okuma Kulübü, Hódmezővásárhely<br>1 Ekim 2011"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Αναγνωστικός Κύκλος Κέντρου Πόλης, Hódmezővásárhely<br>1 Οκτωβρίου 2011"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Rrethi i Leximit i Qendrës së Qytetit, Hódmezővásárhely<br>1 tetor 2011"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Централен читателски клуб, Ходмезьовашархей<br>1 октомври 2011"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Śródmiejski Klub Czytelniczy, Hódmezővásárhely<br>1 października 2011"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Městský čtenářský kroužek, Hódmezővásárhely<br>1. října 2011"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Mestský čitateľský krúžok, Hódmezővásárhely<br>1. októbra 2011"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Міський читацький гурток, Годмезьовашархей<br>1 жовтня 2011"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Cercul de lectură din centrul orașului, Hódmezővásárhely<br>1 octombrie 2011"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Градски читалачки круг, Ходмезевошархељ<br>1. октобар 2011."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Gradski čitateljski krug, Hódmezővásárhely<br>1. listopada 2011."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Mestni bralni krožek, Hódmezővásárhely<br>1. oktober 2011"}
+	};
+	
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       

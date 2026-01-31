@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +80,9 @@
 
   <div class="page-container">
     <table>
-		<caption>Hotel Ginkgo Sas****, Hódmezővásárhely<br>2010. december 3. – 2011. február 28.</caption>
+		<caption lang-key="cap">Hotel Ginkgo Sas****, Hódmezővásárhely<br>2010. december 3. – 2011. február 28.</caption>
 		<tr>
-			<td colspan="2">2010-ben megnyílt szálloda éttermében<br>voltak kiállítva az alkotásaim.</td>
+			<td colspan="2" lang-key="szall">2010-ben megnyílt szálloda éttermében<br>voltak kiállítva az alkotásaim.</td>
 			<td><img src="pictures/kiallitas/031/meghivo.jpg" class="gallery-item gallery-img"></td>
 		</tr>		
 		<tr>
@@ -137,92 +137,162 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>2010. december 3. – 2011. február 28.",szall:"2010-ben megnyílt szálloda éttermében<br>voltak kiállítva az alkotásaim."},
+		en:{back:"← Back",close:"✕ Close",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 December 2010 – 28 February 2011",szall:"My works were exhibited in the restaurant<br>of the hotel opened in 2010."},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. Dezember 2010 – 28. Februar 2011",szall:"Meine Werke wurden im Restaurant<br>des 2010 eröffneten Hotels ausgestellt."},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 de diciembre de 2010 – 28 de febrero de 2011",szall:"Mis obras se exhibieron en el restaurante<br>del hotel inaugurado en 2010."},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 dicembre 2010 – 28 febbraio 2011",szall:"Le mie opere sono state esposte nel ristorante<br>dell’hotel aperto nel 2010."},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Hôtel Ginkgo Sas****, Hódmezővásárhely<br>3 décembre 2010 – 28 février 2011",szall:"Mes œuvres ont été exposées dans le restaurant<br>de l’hôtel ouvert en 2010."},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 de dezembro de 2010 – 28 de fevereiro de 2011",szall:"As minhas obras foram expostas no restaurante<br>do hotel inaugurado em 2010."},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 december 2010 – 28 februari 2011",szall:"Mijn werken werden tentoongesteld in het restaurant<br>van het in 2010 geopende hotel."},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 december 2010 – 28 februari 2011",szall:"Mina verk ställdes ut i restaurangen<br>på hotellet som öppnade 2010."},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. joulukuuta 2010 – 28. helmikuuta 2011",szall:"Teokseni olivat esillä vuonna 2010 avatun hotellin<br>ravintolassa."},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. desember 2010 – 28. februar 2011",szall:"Mine verk ble stilt ut i restauranten<br>på hotellet som åpnet i 2010."},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. december 2010 – 28. februar 2011",szall:"Mine værker blev udstillet i restauranten<br>på hotellet, der åbnede i 2010."},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Hótel Ginkgo Sas****, Hódmezővásárhely<br>3. desember 2010 – 28. febrúar 2011",szall:"Verkin mín voru sýnd á veitingastað<br>hótelsins sem opnaði árið 2010."},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 de desembre de 2010 – 28 de febrer de 2011",szall:"Les meves obres es van exposar al restaurant<br>de l’hotel inaugurat el 2010."},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ホテル ギンコー サス****（ホードメゼーヴァーシャールヘイ）<br>2010年12月3日～2011年2月28日",szall:"2010年に開業したホテルのレストランで<br>作品が展示されました。"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"银杏萨斯酒店****，霍德梅泽瓦沙尔海伊<br>2010年12月3日 – 2011年2月28日",szall:"我的作品在2010年开业的酒店餐厅中展出。"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"긴코 사스 호텔****, 호드메죄바샤르헤이<br>2010년 12월 3일 – 2011년 2월 28일",szall:"2010년에 개장한 호텔의 레스토랑에<br>제 작품이 전시되었습니다."},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Hotelo Ginkgo Sas****, Hódmezővásárhely<br>3 decembro 2010 – 28 februaro 2011",szall:"Miaj verkoj estis ekspoziciitaj en la restoracio<br>de la hotelo malfermita en 2010."},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Viešbutis „Ginkgo Sas“****, Hódmezővásárhely<br>2010 m. gruodžio 3 d. – 2011 m. vasario 28 d.",szall:"Mano darbai buvo eksponuojami 2010 m. atidaryto<br>viešbučio restorane."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Viesnīca Ginkgo Sas****, Hódmezővásárhely<br>2010. gada 3. decembris – 2011. gada 28. februāris",szall:"Mani darbi tika izstādīti 2010. gadā atvērtās<br>viesnīcas restorānā."},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Hotell Ginkgo Sas****, Hódmezővásárhely<br>3. detsember 2010 – 28. veebruar 2011",szall:"Minu teosed olid väljas 2010. aastal avatud<br>hotelli restoranis."},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Ginkgo Sas Oteli****, Hódmezővásárhely<br>3 Aralık 2010 – 28 Şubat 2011",szall:"Eserlerim 2010’da açılan otelin restoranında<br>sergilendi."},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Ξενοδοχείο Ginkgo Sas****, Hódmezővásárhely<br>3 Δεκεμβρίου 2010 – 28 Φεβρουαρίου 2011",szall:"Τα έργα μου εκτέθηκαν στο εστιατόριο<br>του ξενοδοχείου που άνοιξε το 2010."},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 dhjetor 2010 – 28 shkurt 2011",szall:"Punimet e mia u ekspozuan në restorantin<br>e hotelit të hapur në vitin 2010."},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Хотел Ginkgo Sas****, Ходмезьовашархей<br>3 декември 2010 – 28 февруари 2011",szall:"Моите творби бяха изложени в ресторанта<br>на хотела, открит през 2010 г."},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 grudnia 2010 – 28 lutego 2011",szall:"Moje prace były wystawione w restauracji<br>hotelu otwartego w 2010 roku."},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. prosince 2010 – 28. února 2011",szall:"Moje práce byly vystaveny v restauraci<br>hotelu otevřeného v roce 2010."},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. decembra 2010 – 28. februára 2011",szall:"Moje diela boli vystavené v reštaurácii<br>hotela otvoreného v roku 2010."},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Готель Ginkgo Sas****, Годмезьовашархей<br>3 грудня 2010 – 28 лютого 2011",szall:"Мої роботи були представлені в ресторані<br>готелю, відкритого у 2010 році."},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3 decembrie 2010 – 28 februarie 2011",szall:"Lucrările mele au fost expuse în restaurantul<br>hotelului deschis în 2010."},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Хотел Ginkgo Sas****, Ходмезевошархељ<br>3. децембар 2010 – 28. фебруар 2011.",szall:"Моји радови су били изложени у ресторану<br>хотела отвореног 2010. године."},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. prosinca 2010. – 28. veljače 2011.",szall:"Moji radovi bili su izloženi u restoranu<br>hotela otvorenog 2010. godine."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Hotel Ginkgo Sas****, Hódmezővásárhely<br>3. december 2010 – 28. februar 2011",szall:"Moja dela so bila razstavljena v restavraciji<br>hotela, odprtega leta 2010."}
+	};
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }
@@ -232,6 +302,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Ismét a szülőfalumban,<br>az Általános Iskolában<br>mutattam meg hajtogatmányaimat<br>Murony, 2012. június 9.</caption>
+		<caption lang-key="cap">Ismét a szülőfalumban,<br>az Általános Iskolában<br>mutattam meg hajtogatmányaimat<br>Murony, 2012. június 9.</caption>
 	</table>
   </div>
 
@@ -88,91 +88,109 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Ismét a szülőfalumban,<br>az Általános Iskolában<br>mutattam meg hajtogatmányaimat<br>Murony, 2012. június 9."},
+		en:{back:"← Back",close:"✕ Close",cap:"Again in my home village,<br>at the Primary School<br>I presented my folded creations<br>Murony, 9 June 2012"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Wieder in meinem Heimatdorf,<br>in der Grundschule<br>zeigte ich meine Faltarbeiten<br>Murony, 9. Juni 2012"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"De nuevo en mi pueblo natal,<br>en la escuela primaria<br>mostré mis figuras plegadas<br>Murony, 9 de junio de 2012"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Di nuovo nel mio paese natale,<br>alla scuola elementare<br>ho mostrato le mie piegature<br>Murony, 9 giugno 2012"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"De nouveau dans mon village natal,<br>à l’école primaire<br>j’ai présenté mes pliages<br>Murony, 9 juin 2012"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Novamente na minha aldeia natal,<br>na escola primária<br>apresentei as minhas dobragens<br>Murony, 9 de junho de 2012"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Opnieuw in mijn geboortedorp,<br>op de basisschool<br>toonde ik mijn vouwcreaties<br>Murony, 9 juni 2012"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Åter i min hemby,<br>i grundskolan<br>visade jag mina vikta skapelser<br>Murony, 9 juni 2012"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Jälleen kotikylässäni,<br>alakoulussa<br>esittelin taittelutyöni<br>Murony, 9. kesäkuuta 2012"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Igjen i hjembygda mi,<br>på barneskolen<br>viste jeg frem mine brettearbeider<br>Murony, 9. juni 2012"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Igen i min fødeby,<br>på folkeskolen<br>viste jeg mine foldede værker<br>Murony, 9. juni 2012"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Aftur í heimabænum mínum,<br>í grunnskólanum<br>sýndi ég brjótfellingarnar mínar<br>Murony, 9. júní 2012"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"De nou al meu poble natal,<br>a l’escola primària<br>vaig mostrar els meus plecs<br>Murony, 9 de juny de 2012"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"再び故郷の村で、<br>小学校にて<br>私の折り作品を披露しました<br>ムロニ、2012年6月9日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"再次回到我的家乡，<br>在小学里<br>展示了我的折纸作品<br>穆罗尼，2012年6月9日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"다시 고향 마을에서,<br>초등학교에서<br>나의 접기 작품을 선보였습니다<br>무로니, 2012년 6월 9일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Denove en mia naskiĝvilaĝo,<br>en la elementa lernejo<br>mi prezentis miajn faldaĵojn<br>Murony, 9 junio 2012"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Vėl savo gimtajame kaime,<br>pradinėje mokykloje<br>pristačiau savo lankstinius<br>Murony, 2012 m. birželio 9 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Atkal savā dzimtajā ciemā,<br>sākumskolā<br>parādīju savus locījumus<br>Murony, 2012. gada 9. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Jälle oma sünnikülas,<br>algkoolis<br>näitasin oma voltimistöid<br>Murony, 9. juuni 2012"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Yine doğduğum köyde,<br>ilkokulda<br>katlama çalışmalarımı gösterdim<br>Murony, 9 Haziran 2012"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Ξανά στο χωριό που γεννήθηκα,<br>στο δημοτικό σχολείο<br>παρουσίασα τις διπλώσεις μου<br>Murony, 9 Ιουνίου 2012"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Përsëri në fshatin tim të lindjes,<br>në shkollën fillore<br>prezantova palosjet e mia<br>Murony, 9 qershor 2012"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Отново в родното ми село,<br>в началното училище<br>показах моите сгъвки<br>Муронь, 9 юни 2012"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Ponownie w mojej rodzinnej wsi,<br>w szkole podstawowej<br>zaprezentowałem swoje składanki<br>Murony, 9 czerwca 2012"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Opět v mé rodné vesnici,<br>na základní škole<br>jsem představil své skládanky<br>Murony, 9. června 2012"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Opäť v rodnej obci,<br>na základnej škole<br>som ukázal svoje skladačky<br>Murony, 9. júna 2012"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Знову у моєму рідному селі,<br>в початковій школі<br>я показав свої роботи зі складання<br>Муронь, 9 червня 2012"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Din nou în satul meu natal,<br>la școala generală<br>mi-am prezentat lucrările pliate<br>Murony, 9 iunie 2012"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Поново у мом родном селу,<br>у основној школи<br>показао сам своје радове од пресавијања<br>Муроњ, 9. јун 2012"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Ponovno u svom rodnom selu,<br>u osnovnoj školi<br>predstavio sam svoje preklopne radove<br>Murony, 9. lipnja 2012."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Spet v svoji rojstni vasi,<br>na osnovni šoli<br>sem predstavil svoje zgibanke<br>Murony, 9. junij 2012"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

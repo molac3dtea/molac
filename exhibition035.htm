@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +80,9 @@
 
   <div class="page-container">
     <table>
-		<caption>Komárom, Monostori Erőd<br>2012. április 26–30.</caption>
+		<caption lang-key="cap">Komárom, Monostori Erőd<br>2012. április 26–30.</caption>
 		<tr>
-			<td colspan="3">Re-Likvia - MEDIWAVE újrahasznosítási pályázat<br>Teástasak hajtogatásaimmal vettem részt</td>
+			<td colspan="3" lang-key="reli">Re-Likvia - MEDIWAVE újrahasznosítási pályázat<br>Teástasak hajtogatásaimmal vettem részt</td>
 		</tr>
 		<tr>
 			<td><img src="pictures/kiallitas/035/kep5.jpg" class="gallery-item gallery-img"></td>
@@ -96,91 +96,161 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Komárom, Monostori Erőd<br>2012. április 26–30.",reli:"Re-Likvia - MEDIWAVE újrahasznosítási pályázat<br>Teástasak hajtogatásaimmal vettem részt"},
+		en:{back:"← Back",close:"✕ Close",cap:"Komárom, Monostor Fortress<br>26–30 April 2012",reli:"Re-Likvia – MEDIWAVE recycling competition<br>I participated with my folded tea bag creations"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Komárom, Festung Monostor<br>26.–30. April 2012",reli:"Re-Likvia – MEDIWAVE Recycling-Wettbewerb<br>Ich nahm mit meinen Teebeutel-Faltungen teil"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Komárom, Fortaleza Monostor<br>26–30 de abril de 2012",reli:"Re-Likvia – concurso de reciclaje MEDIWAVE<br>Participé con mis plegados de bolsitas de té"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Komárom, Fortezza Monostor<br>26–30 aprile 2012",reli:"Re-Likvia – concorso di riciclaggio MEDIWAVE<br>Ho partecipato con le mie piegature di bustine da tè"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Komárom, Fort Monostor<br>26–30 avril 2012",reli:"Re-Likvia – concours de recyclage MEDIWAVE<br>Participation avec mes pliages de sachets de thé"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Komárom, Fortaleza Monostor<br>26–30 de abril de 2012",reli:"Re-Likvia – concurso de reciclagem MEDIWAVE<br>Participei com dobragens de saquinhos de chá"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Komárom, Fort Monostor<br>26–30 april 2012",reli:"Re-Likvia – MEDIWAVE recyclingwedstrijd<br>Ik deed mee met mijn gevouwen theezakjes"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Komárom, Monostorfästningen<br>26–30 april 2012",reli:"Re-Likvia – MEDIWAVE återvinningstävling<br>Jag deltog med mina vikta tepåsar"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Komárom, Monostorin linnoitus<br>26.–30. huhtikuuta 2012",reli:"Re-Likvia – MEDIWAVE-kierrätyskilpailu<br>Osallistuin teepussitaitoksillani"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Komárom, Monostor festning<br>26.–30. april 2012",reli:"Re-Likvia – MEDIWAVE resirkuleringskonkurranse<br>Jeg deltok med mine brettede teposer"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Komárom, Monostor-fæstningen<br>26.–30. april 2012",reli:"Re-Likvia – MEDIWAVE genbrugskonkurrence<br>Jeg deltog med mine foldede teposer"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Komárom, Monostor-virkið<br>26.–30. apríl 2012",reli:"Re-Likvia – MEDIWAVE endurvinnslukeppni<br>Ég tók þátt með te-pokabrotunum mínum"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Komárom, Fortalesa Monostor<br>26–30 d’abril de 2012",reli:"Re-Likvia – concurs de reciclatge MEDIWAVE<br>Hi vaig participar amb plecs de bosses de te"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"コマーロム、モノシュトル要塞<br>2012年4月26日～30日",reli:"Re-Likvia – MEDIWAVEリサイクルコンテスト<br>ティーバッグ折り紙で参加"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"科马罗姆，莫诺什托尔要塞<br>2012年4月26日–30日",reli:"Re-Likvia – MEDIWAVE回收利用比赛<br>以茶包折纸作品参赛"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"코마롬, 모노슈토르 요새<br>2012년 4월 26–30일",reli:"Re-Likvia – MEDIWAVE 재활용 공모전<br>티백 접기 작품으로 참가"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Komárom, Monostora Fortikaĵo<br>26–30 aprilo 2012",reli:"Re-Likvia – MEDIWAVE recikliga konkurso<br>Mi partoprenis per miaj te-sakaj faldaĵoj"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Komaromas, Monostoro tvirtovė<br>2012 m. balandžio 26–30 d.",reli:"Re-Likvia – MEDIWAVE perdirbimo konkursas<br>Dalyvavau su arbatos pakelių lankstiniais"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Komāroma, Monostoras cietoksnis<br>2012. gada 26.–30. aprīlis",reli:"Re-Likvia – MEDIWAVE otrreizējās pārstrādes konkurss<br>Piedalījos ar tējas maisiņu locījumiem"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Komárom, Monostori kindlus<br>26.–30. aprill 2012",reli:"Re-Likvia – MEDIWAVE taaskasutusvõistlus<br>Osalesin teekotikeste voltimistöödega"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Komárom, Monostor Kalesi<br>26–30 Nisan 2012",reli:"Re-Likvia – MEDIWAVE geri dönüşüm yarışması<br>Çay poşeti katlamalarımla katıldım"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Κομάρομ, Φρούριο Μόνοστορ<br>26–30 Απριλίου 2012",reli:"Re-Likvia – διαγωνισμός ανακύκλωσης MEDIWAVE<br>Συμμετείχα με διπλώματα από φακελάκια τσαγιού"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Komárom, Kalaja Monostor<br>26–30 prill 2012",reli:"Re-Likvia – konkurs riciklimi MEDIWAVE<br>Mora pjesë me palosje qesesh çaji"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Комаром, крепост Монустор<br>26–30 април 2012",reli:"Re-Likvia – конкурс за рециклиране MEDIWAVE<br>Участвах със сгъвки от пакетчета чай"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Komárom, Twierdza Monostor<br>26–30 kwietnia 2012",reli:"Re-Likvia – konkurs recyklingowy MEDIWAVE<br>Udział z moimi składaniami z torebek herbaty"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Komárom, pevnost Monostor<br>26.–30. dubna 2012",reli:"Re-Likvia – recyklační soutěž MEDIWAVE<br>Zúčastnil jsem se skládáním z čajových sáčků"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Komárom, pevnosť Monostor<br>26.–30. apríla 2012",reli:"Re-Likvia – recyklačná súťaž MEDIWAVE<br>Zúčastnil som sa skladaním z čajových vrecúšok"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Комаром, фортеця Моноштор<br>26–30 квітня 2012",reli:"Re-Likvia – конкурс переробки MEDIWAVE<br>Участь із роботами з чайних пакетиків"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Komárom, Fortăreața Monostor<br>26–30 aprilie 2012",reli:"Re-Likvia – concurs de reciclare MEDIWAVE<br>Am participat cu plieri din pliculețe de ceai"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Комаром, тврђава Моноштор<br>26–30 април 2012",reli:"Re-Likvia – MEDIWAVE такмичење у рециклажи<br>Учествовао сам са радовима од кесica чаја"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Komárom, tvrđava Monostor<br>26.–30. travnja 2012.",reli:"Re-Likvia – MEDIWAVE natječaj za recikliranje<br>Sudjelovao sam s preklapanjima vrećica čaja"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Komárom, trdnjava Monostor<br>26.–30. april 2012",reli:"Re-Likvia – MEDIWAVE natečaj za recikliranje<br>Sodeloval sem z zgibi iz čajnih vrečk"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }
@@ -190,6 +260,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>

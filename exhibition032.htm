@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,9 +80,9 @@
 
   <div class="page-container">
     <table>
-		<caption>Pécsi Kulturális Központ<br>2011. március 12. – április 8.</caption>
+		<caption lang-key="cap">Pécsi Kulturális Központ<br>2011. március 12. – április 8.</caption>
 		<tr>
-			<td colspan="2">Origa-mi-csodák<br>kiállítás a<br>Szivárvány Gyermekházban</td>
+			<td colspan="2" lang-key="kiall">Origa-mi-csodák<br>kiállítás a<br>Szivárvány Gyermekházban</td>
 			<td><img src="pictures/kiallitas/032/origamicsodak.jpg" class="gallery-item gallery-img"></td>
 		</tr>	
 		<tr>
@@ -121,92 +121,163 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations={
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Pécsi Kulturális Központ<br>2011. március 12. – április 8.",kiall:"Origa-mi-csodák<br>kiállítás a<br>Szivárvány Gyermekházban"},
+		en:{back:"← Back",close:"✕ Close",cap:"Pécs Cultural Centre<br>12 March – 8 April 2011",kiall:"Origa-mi Wonders<br>exhibition at the<br>Rainbow Children’s House"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Kulturzentrum Pécs<br>12. März – 8. April 2011",kiall:"Origa-mi-Wunder<br>Ausstellung im<br>Regenbogen-Kinderhaus"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Centro Cultural de Pécs<br>12 de marzo – 8 de abril de 2011",kiall:"Maravillas de Origa-mi<br>exposición en la<br>Casa Infantil Arcoíris"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Centro Culturale di Pécs<br>12 marzo – 8 aprile 2011",kiall:"Meraviglie Origa-mi<br>mostra presso la<br>Casa dei Bambini Arcobaleno"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Centre Culturel de Pécs<br>12 mars – 8 avril 2011",kiall:"Merveilles d’Origa-mi<br>exposition à la<br>Maison d’Enfants Arc-en-ciel"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Centro Cultural de Pécs<br>12 de março – 8 de abril de 2011",kiall:"Maravilhas de Origa-mi<br>exposição na<br>Casa Infantil Arco-Íris"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Cultureel Centrum Pécs<br>12 maart – 8 april 2011",kiall:"Origa-mi Wonderen<br>tentoonstelling in het<br>Regenboog Kinderhuis"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Pécs kulturcenter<br>12 mars – 8 april 2011",kiall:"Origa-mi underverk<br>utställning i<br>Regnbågens barnhus"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Pécsin kulttuurikeskus<br>12. maaliskuuta – 8. huhtikuuta 2011",kiall:"Origa-mi-ihmeet<br>näyttely<br>Sateenkaaren lastentalossa"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Kultursenteret i Pécs<br>12. mars – 8. april 2011",kiall:"Origa-mi-undre<br>utstilling i<br>Regnbuens barnehus"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Kulturcenter Pécs<br>12. marts – 8. april 2011",kiall:"Origa-mi-vidundere<br>udstilling i<br>Regnbuens Børnehus"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Menningarmiðstöðin í Pécs<br>12. mars – 8. apríl 2011",kiall:"Origa-mi undur<br>sýning í<br>Regnbogabarnahúsinu"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Centre Cultural de Pécs<br>12 de març – 8 d’abril de 2011",kiall:"Meravelles d’Origa-mi<br>exposició a la<br>Casa Infantil Arc de Sant Martí"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ペーチ文化センター<br>2011年3月12日～4月8日",kiall:"オリガミの不思議展<br>レインボー子ども館"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"佩奇文化中心<br>2011年3月12日–4月8日",kiall:"折纸奇迹展<br>彩虹儿童之家"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"페치 문화 센터<br>2011년 3월 12일 – 4월 8일",kiall:"오리가미의 기적 전시<br>무지개 어린이의 집"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Kultura Centro de Pécs<br>12 marto – 8 aprilo 2011",kiall:"Origa-mi-mirindaĵoj<br>ekspozicio en la<br>Ĉielarka Infandomo"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Pėčo kultūros centras<br>2011 m. kovo 12 d. – balandžio 8 d.",kiall:"Origa-mi stebuklai<br>paroda Vaivorykštės vaikų namuose"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Pēčas kultūras centrs<br>2011. gada 12. marts – 8. aprīlis",kiall:"Origa-mi brīnumi<br>izstāde Varavīksnes bērnu namā"},
+		et:{back:"← Tagasi",close:"✕ Sulge",cap:"Pécsi kultuurikeskus<br>12. märts – 8. aprill 2011",kiall:"Origa-mi imed<br>näitus Vikerkaare Lastekodus"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Pécs Kültür Merkezi<br>12 Mart – 8 Nisan 2011",kiall:"Origa-mi Harikaları<br>Gökkuşağı Çocuk Evinde sergi"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Πολιτιστικό Κέντρο Πέτς<br>12 Μαρτίου – 8 Απριλίου 2011",kiall:"Θαύματα Origa-mi<br>έκθεση στο<br>Παιδικό Σπίτι Ουράνιο Τόξο"},
+		sq:{back:"← Kthehu",close:"✕ Mbyll",cap:"Qendra Kulturore e Pécs<br>12 mars – 8 prill 2011",kiall:"Mrekullitë e Origa-mi<br>ekspozitë në<br>Shtëpinë e Fëmijëve Ylber"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Културен център Печ<br>12 март – 8 април 2011",kiall:"Чудеса на Origa-mi<br>изложба в<br>Детски дом „Дъга“"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Centrum Kultury w Pécsu<br>12 marca – 8 kwietnia 2011",kiall:"Cuda Origa-mi<br>wystawa w<br>Tęczowym Domu Dziecka"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Kulturní centrum Pécs<br>12. března – 8. dubna 2011",kiall:"Origa-mi zázraky<br>výstava v<br>Duhovém dětském domě"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Kultúrne centrum Pécs<br>12. marca – 8. apríla 2011",kiall:"Origa-mi zázraky<br>výstava v<br>Dúhovom detskom dome"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Культурний центр Печа<br>12 березня – 8 квітня 2011",kiall:"Дива Origa-mi<br>виставка у<br>Дитячому будинку «Веселка»"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Centrul Cultural Pécs<br>12 martie – 8 aprilie 2011",kiall:"Minuni Origa-mi<br>expoziție la<br>Casa Copiilor Curcubeu"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Културни центар Печуј<br>12. март – 8. април 2011.",kiall:"Орига-ми чуда<br>изложба у<br>Дечјој кући „Дуга“"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Kulturni centar Pécs<br>12. ožujka – 8. travnja 2011.",kiall:"Origa-mi čuda<br>izložba u<br>Dječjoj kući Duga"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Kulturni center Pécs<br>12. marec – 8. april 2011",kiall:"Čudeži Origa-mi<br>razstava v<br>Mavrični otroški hiši"}
+	};
+	
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
-      items.forEach((item, index) => {
-        const table = item.closest('table');
-        const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
-      });
-    };
-
-    function openGallery(index) {
-      currentIndex = index;
-      updateLightbox();
-      document.getElementById('lightbox').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
     }
 
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
+	function cleanText(html) {
+	  const tmp = document.createElement("div");
+	  tmp.innerHTML = (html || "").replace(/<br\s*\/?>/gi, " ");
+	  return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, " ").trim();
+	}
 
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
+	function findDescCellForImage(img) {
+	  const row = img.closest("tr");
+	  if (!row) return null;
+
+	  // 1) alap: a sor első td-je (ahogy animals.htm-ben)
+	  let descCell = row.querySelector("td");
+
+	  // ha ez is kép (pl. rowspan alatti sor), akkor keresünk feljebb
+	  if (descCell && descCell.querySelector("img")) {
+		let prev = row.previousElementSibling;
+
+		while (prev) {
+		  // 2) animals-féle: rowspan-os leírás (pl. "Az Árkádban...")
+		  const rs = prev.querySelector("td[rowspan]");
+		  if (rs && !rs.querySelector("img")) return rs;
+
+		  // 3) 011-specifikus: lehet colspan-os leírás a képsor fölött (pl. teáspapíros pályázat)
+		  const tds = Array.from(prev.querySelectorAll("td"));
+		  const firstTextTd = tds.find(td => !td.querySelector("img") && cleanText(td.innerHTML));
+		  if (firstTextTd) return firstTextTd;
+
+		  prev = prev.previousElementSibling;
+		}
+	  }
+
+	  // ha első td nem kép és van benne szöveg, jó
+	  if (descCell && !descCell.querySelector("img") && cleanText(descCell.innerHTML)) return descCell;
+
+	  return null;
+	}
+
+	window.onload = function() {
+	  applyLang(getLang());
+
+	  const items = document.querySelectorAll(".gallery-item");
+	  galleryData.length = 0;
+
+	  items.forEach((item, index) => {
+		const table = item.closest("table");
+		const caption = table ? table.querySelector("caption")?.innerText : "";
+
+		const descCell = findDescCellForImage(item);
+		const desc = descCell ? cleanText(descCell.innerHTML) : "";
+
+		galleryData.push({
+		  src: item.src.replace("_", ""),
+		  title: caption || "",
+		  description: desc || ""
+		});
+
+		item.onclick = function() { openGallery(index); };
+	  });
+	};
+	
+    function openGallery(index) {
+		currentIndex = index;
+		document.getElementById('lightbox-img').style.display = 'block';
+		document.getElementById('lightbox-pdf').style.display = 'none';
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";
+		document.getElementById('lightbox').style.display = 'flex';
+		document.body.style.overflow = 'hidden';
     }
 
     function changeImage(step, event) {
-      if (event) event.stopPropagation();
-      currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
-    }
+		if (event) event.stopPropagation();
+		currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
+		document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+		document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
+		document.getElementById('lb-desc').innerText = galleryData[currentIndex].description || "";    
+	}
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }
@@ -216,6 +287,7 @@
         if (e.key === "ArrowLeft") changeImage(-1);
       }
     });
+
   </script>
 </body>
 </html>
