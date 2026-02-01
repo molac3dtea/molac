@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Yumeiho® Karácsony, Hódmezővásárhely<br>2025. december 20.</caption>
+		<caption lang-key="cap">Yumeiho® Karácsony, Hódmezővásárhely<br>2025. december 20.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/053/kar5.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/053/kar6.jpg" class="gallery-item gallery-img"></td>
@@ -104,7 +104,84 @@
     let currentIndex = 0;
     const galleryData = [];
 
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Yumeiho® Karácsony, Hódmezővásárhely<br>2025. december 20."},
+		en:{back:"← Back",close:"✕ Close",cap:"Yumeiho® Christmas, Hódmezővásárhely<br>20 December 2025"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Yumeiho® Weihnachten, Hódmezővásárhely<br>20. Dezember 2025"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Navidad Yumeiho®, Hódmezővásárhely<br>20 de diciembre de 2025"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Natale Yumeiho®, Hódmezővásárhely<br>20 dicembre 2025"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Noël Yumeiho®, Hódmezővásárhely<br>20 décembre 2025"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Natal Yumeiho®, Hódmezővásárhely<br>20 de dezembro de 2025"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Yumeiho® Kerstmis, Hódmezővásárhely<br>20 december 2025"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Yumeiho® Jul, Hódmezővásárhely<br>20 december 2025"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Yumeiho® Joulu, Hódmezővásárhely<br>20. joulukuuta 2025"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Yumeiho® Jul, Hódmezővásárhely<br>20. desember 2025"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Yumeiho® Jul, Hódmezővásárhely<br>20. december 2025"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Yumeiho® Jól, Hódmezővásárhely<br>20. desember 2025"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Nadal Yumeiho®, Hódmezővásárhely<br>20 de desembre de 2025"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ユメイホー® クリスマス、ホードメゼーヴァーシャールヘイ<br>2025年12月20日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"Yumeiho® 圣诞节，霍德梅泽瓦沙尔海伊<br>2025年12月20日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"유메이호® 크리스마스, 호드메죄바샤르헤이<br>2025년 12월 20일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Yumeiho® Kristnasko, Hódmezővásárhely<br>20 decembro 2025"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Yumeiho® Kalėdos, Hódmezővásárhely<br>2025 m. gruodžio 20 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Yumeiho® Ziemassvētki, Hódmezővásárhely<br>2025. gada 20. decembris"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Yumeiho® Jõulud, Hódmezővásárhely<br>20. detsember 2025"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Yumeiho® Noel, Hódmezővásárhely<br>20 Aralık 2025"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Yumeiho® Χριστούγεννα, Hódmezővásárhely<br>20 Δεκεμβρίου 2025"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Krishtlindje Yumeiho®, Hódmezővásárhely<br>20 dhjetor 2025"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Yumeiho® Коледа, Ходмезьовашархей<br>20 декември 2025"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Święta Bożego Narodzenia Yumeiho®, Hódmezővásárhely<br>20 grudnia 2025"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Yumeiho® Vánoce, Hódmezővásárhely<br>20. prosince 2025"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Yumeiho® Vianoce, Hódmezővásárhely<br>20. decembra 2025"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Різдво Yumeiho®, Годмезевашархей<br>20 грудня 2025"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Crăciun Yumeiho®, Hódmezővásárhely<br>20 decembrie 2025"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Yumeiho® Божић, Ходмезевашархељ<br>20. децембар 2025"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Yumeiho® Božić, Hódmezővásárhely<br>20. prosinca 2025"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Yumeiho® Božič, Hódmezővásárhely<br>20. december 2025"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
+
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       

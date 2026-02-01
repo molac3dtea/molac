@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Németh László Gimnázium és Általános Iskola<br>Hódmezővásárhely<br>2018. április 23.</caption>
+		<caption lang-key="cap">Németh László Gimnázium és Általános Iskola<br>Hódmezővásárhely<br>2018. április 23.</caption>
     </table>
   </div>
 
@@ -88,91 +88,109 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Németh László Gimnázium és Általános Iskola<br>Hódmezővásárhely<br>2018. április 23."},
+		en:{back:"← Back",close:"✕ Close",cap:"Németh László Secondary and Primary School<br>Hódmezővásárhely<br>23 April 2018"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Németh-László-Gymnasium und Grundschule<br>Hódmezővásárhely<br>23. April 2018"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Instituto y Escuela Primaria Németh László<br>Hódmezővásárhely<br>23 de abril de 2018"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Liceo e Scuola Primaria Németh László<br>Hódmezővásárhely<br>23 aprile 2018"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Lycée et École primaire Németh László<br>Hódmezővásárhely<br>23 avril 2018"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Ginásio e Escola Primária Németh László<br>Hódmezővásárhely<br>23 de abril de 2018"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Németh László Gymnasium en Basisschool<br>Hódmezővásárhely<br>23 april 2018"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Németh László gymnasium och grundskola<br>Hódmezővásárhely<br>23 april 2018"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Németh László -lukio ja peruskoulu<br>Hódmezővásárhely<br>23. huhtikuuta 2018"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Németh László videregående skole og barneskole<br>Hódmezővásárhely<br>23. april 2018"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Németh László gymnasium og folkeskole<br>Hódmezővásárhely<br>23. april 2018"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Németh László framhaldsskóli og grunnskóli<br>Hódmezővásárhely<br>23. apríl 2018"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Institut i Escola Primària Németh László<br>Hódmezővásárhely<br>23 d’abril de 2018"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ネーメト・ラースロー中等・初等学校<br>ホードメゼーヴァーシャールヘイ<br>2018年4月23日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"内梅特·拉斯洛中学与小学<br>霍德梅泽瓦沙尔海伊<br>2018年4月23日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"네메트 라슬로 중등·초등학교<br>호드메죄바샤르헤이<br>2018년 4월 23일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Németh László Mezlernejo kaj Bazlernejo<br>Hódmezővásárhely<br>23 aprilo 2018"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Németh László gimnazija ir pradinė mokykla<br>Hódmezővásárhely<br>2018 m. balandžio 23 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Németh László ģimnāzija un pamatskola<br>Hódmezővásárhely<br>2018. gada 23. aprīlis"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Németh László gümnaasium ja algkool<br>Hódmezővásárhely<br>23. aprill 2018"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Németh László Lisesi ve İlkokulu<br>Hódmezővásárhely<br>23 Nisan 2018"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Γυμνάσιο και Δημοτικό Σχολείο Németh László<br>Hódmezővásárhely<br>23 Απριλίου 2018"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Gjimnazi dhe Shkollë Fillore Németh László<br>Hódmezővásárhely<br>23 prill 2018"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Гимназия и начално училище „Немет Ласло“<br>Ходмезьовашархей<br>23 април 2018"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Liceum i Szkoła Podstawowa im. László Németha<br>Hódmezővásárhely<br>23 kwietnia 2018"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Gymnázium a základní škola Németh László<br>Hódmezővásárhely<br>23. dubna 2018"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Gymnázium a základná škola Németh László<br>Hódmezővásárhely<br>23. apríla 2018"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Гімназія та початкова школа імені Немета Ласло<br>Годмезевашархей<br>23 квітня 2018"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Liceul și Școala Primară Németh László<br>Hódmezővásárhely<br>23 aprilie 2018"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Гимназија и основна школа Немет Ласло<br>Ходмезевашархељ<br>23. април 2018"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Gimnazija i osnovna škola Németh László<br>Hódmezővásárhely<br>23. travnja 2018"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Gimnazija in osnovna šola Németh László<br>Hódmezővásárhely<br>23. april 2018"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

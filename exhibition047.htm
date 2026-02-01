@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,99 +80,117 @@
 
   <div class="page-container">
     <table>
-		<caption>ERASMUS+<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely<br>2019. március 20.</caption>
+		<caption lang-key="cap">ERASMUS+<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely<br>2019. március 20.</caption>
     </table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"ERASMUS+<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely"},
+		en:{back:"← Back",close:"✕ Close",cap:"ERASMUS+<br>Liszt Ferenc Music Primary School<br>Hódmezővásárhely"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"ERASMUS+<br>Liszt-Ferenc-Musikgrundschule<br>Hódmezővásárhely"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"ERASMUS+<br>Escuela Primaria Musical Liszt Ferenc<br>Hódmezővásárhely"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"ERASMUS+<br>Scuola Primaria Musicale Liszt Ferenc<br>Hódmezővásárhely"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"ERASMUS+<br>École primaire musicale Liszt Ferenc<br>Hódmezővásárhely"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"ERASMUS+<br>Escola Primária Musical Liszt Ferenc<br>Hódmezővásárhely"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"ERASMUS+<br>Liszt Ferenc Muziekbasisschool<br>Hódmezővásárhely"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"ERASMUS+<br>Liszt Ferenc musikgrundskola<br>Hódmezővásárhely"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"ERASMUS+<br>Liszt Ferenc -musiikkiperuskoulu<br>Hódmezővásárhely"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"ERASMUS+<br>Liszt Ferenc musikkskole (barneskole)<br>Hódmezővásárhely"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"ERASMUS+<br>Liszt Ferenc Musikfolkeskole<br>Hódmezővásárhely"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"ERASMUS+<br>Liszt Ferenc tónlistargrunnskóli<br>Hódmezővásárhely"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"ERASMUS+<br>Escola Primària Musical Liszt Ferenc<br>Hódmezővásárhely"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ERASMUS+<br>リスト・フェレンツ音楽小学校<br>ホードメゼーヴァーシャールヘイ"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"ERASMUS+<br>李斯特·费伦茨音乐小学<br>霍德梅泽瓦沙尔海伊"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"ERASMUS+<br>리스트 페렌츠 음악 초등학교<br>호드메죄바샤르헤이"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"ERASMUS+<br>Liszt Ferenc Muzika Bazlernejo<br>Hódmezővásárhely"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"ERASMUS+<br>Liszt Ferenc muzikos pradinė mokykla<br>Hódmezővásárhely"},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"ERASMUS+<br>Liszt Ferenc mūzikas pamatskola<br>Hódmezővásárhely"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"ERASMUS+<br>Liszt Ferenci muusikaalgkool<br>Hódmezővásárhely"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"ERASMUS+<br>Liszt Ferenc Müzik İlkokulu<br>Hódmezővásárhely"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"ERASMUS+<br>Μουσικό Δημοτικό Σχολείο Liszt Ferenc<br>Hódmezővásárhely"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"ERASMUS+<br>Shkolla Fillore Muzikore Liszt Ferenc<br>Hódmezővásárhely"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"ERASMUS+<br>Начално музикално училище „Лист Ференц“<br>Ходмезьовашархей"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"ERASMUS+<br>Muzyczna Szkoła Podstawowa im. Ferenca Liszta<br>Hódmezővásárhely"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"ERASMUS+<br>Hudební základní škola Liszta Ference<br>Hódmezővásárhely"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"ERASMUS+<br>Hudobná základná škola Liszta Ferenca<br>Hódmezővásárhely"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"ERASMUS+<br>Музична початкова школа імені Ференца Ліста<br>Годмезевашархей"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"ERASMUS+<br>Școala Primară Muzicală Liszt Ferenc<br>Hódmezővásárhely"},
+		sr:{back:"← Назад",close:"✕ Затвori",cap:"ERASMUS+<br>Музичка основна школа Лист Ференц<br>Ходмезевашархељ"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"ERASMUS+<br>Glazbena osnovna škola Liszt Ferenc<br>Hódmezővásárhely"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"ERASMUS+<br>Glasbena osnovna šola Liszt Ferenc<br>Hódmezővásárhely"}
+	};
+	
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

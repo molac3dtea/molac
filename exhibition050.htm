@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>9. Mesefalu<br>Maglód<br>2023. június 3.</caption>
+		<caption lang-key="cap">9. Mesefalu<br>Maglód<br>2023. június 3.</caption>
     </table>
   </div>
 
@@ -88,91 +88,109 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"9. Mesefalu<br>Maglód<br>2023. június 3."},
+		en:{back:"← Back",close:"✕ Close",cap:"9th Fairy Tale Village<br>Maglód<br>3 June 2023"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"9. Märchendorf<br>Maglód<br>3. Juni 2023"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"9.º Pueblo de los Cuentos<br>Maglód<br>3 de junio de 2023"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"9° Villaggio delle Fiabe<br>Maglód<br>3 giugno 2023"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"9e Village des Contes<br>Maglód<br>3 juin 2023"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"9.º Vila dos Contos de Fadas<br>Maglód<br>3 de junho de 2023"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"9e Sprookjesdorp<br>Maglód<br>3 juni 2023"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"9:e Sagobyn<br>Maglód<br>3 juni 2023"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"9. Satukylä<br>Maglód<br>3. kesäkuuta 2023"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"9. Eventyrlandsby<br>Maglód<br>3. juni 2023"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"9. Eventyrlandsby<br>Maglód<br>3. juni 2023"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"9. Ævintýraþorp<br>Maglód<br>3. júní 2023"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"9è Poble de Contes<br>Maglód<br>3 de juny de 2023"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第9回 メルヘン村<br>マグロード<br>2023年6月3日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第9届 童话村<br>马格洛德<br>2023年6月3日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제9회 동화 마을<br>마글로드<br>2023년 6월 3일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"9-a Fabelvilaĝo<br>Maglód<br>3 junio 2023"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"9-asis Pasakų kaimelis<br>Maglód<br>2023 m. birželio 3 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"9. Pasaku ciemats<br>Maglód<br>2023. gada 3. jūnijs"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"9. Muinasjutuküla<br>Maglód<br>3. juuni 2023"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"9. Masal Köyü<br>Maglód<br>3 Haziran 2023"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"9ο Χωριό Παραμυθιών<br>Maglód<br>3 Ιουνίου 2023"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Fshati i 9-të i Përrallave<br>Maglód<br>3 qershor 2023"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"9-то Село на приказките<br>Маглод<br>3 юни 2023"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"9. Wioska Bajek<br>Maglód<br>3 czerwca 2023"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"9. Pohádková vesnice<br>Maglód<br>3. června 2023"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"9. Rozprávková dedina<br>Maglód<br>3. júna 2023"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"9-те Казкове село<br>Маглод<br>3 червня 2023"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Al 9-lea Sat al Poveștilor<br>Maglód<br>3 iunie 2023"},
+		sr:{back:"← Назад",close:"✕ Затвori",cap:"9. Село бајки<br>Маглод<br>3. јун 2023"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"9. Bajkovito selo<br>Maglód<br>3. lipnja 2023"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"9. Pravljična vas<br>Maglód<br>3. junij 2023"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

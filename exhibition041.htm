@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,99 +80,117 @@
 
   <div class="page-container">
     <table>
-		<caption>Újvárosi Olvasókör, Hódmezővásárhely<br>2015. október 6.</caption>
+		<caption lang-key="cap">Újvárosi Olvasókör, Hódmezővásárhely<br>2015. október 6.</caption>
 	</table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Újvárosi Olvasókör, Hódmezővásárhely<br>2015. október 6."},
+		en:{back:"← Back",close:"✕ Close",cap:"Újváros Reading Circle, Hódmezővásárhely<br>6 October 2015"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Újváros-Lesekreis, Hódmezővásárhely<br>6. Oktober 2015"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Círculo de Lectura Újváros, Hódmezővásárhely<br>6 de octubre de 2015"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Circolo di Lettura Újváros, Hódmezővásárhely<br>6 ottobre 2015"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Cercle de Lecture Újváros, Hódmezővásárhely<br>6 octobre 2015"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Círculo de Leitura Újváros, Hódmezővásárhely<br>6 de outubro de 2015"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Újváros Leeskring, Hódmezővásárhely<br>6 oktober 2015"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Újváros läsecirkel, Hódmezővásárhely<br>6 oktober 2015"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Újváros-lukupiiri, Hódmezővásárhely<br>6. lokakuuta 2015"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Újváros lesesirkel, Hódmezővásárhely<br>6. oktober 2015"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Újváros læsekreds, Hódmezővásárhely<br>6. oktober 2015"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Újváros leshringur, Hódmezővásárhely<br>6. október 2015"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Cercle de Lectura Újváros, Hódmezővásárhely<br>6 d’octubre de 2015"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ウーイヴァーロシュ読書会、ホードメゼーヴァーシャールヘイ<br>2015年10月6日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"新城读书会，霍德梅泽瓦沙尔海伊<br>2015年10月6日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"우이바로시 독서회, 호드메죄바샤르헤이<br>2015년 10월 6일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Legoklubo Újváros, Hódmezővásárhely<br>6 oktobro 2015"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"„Újváros“ skaitytojų ratas, Hódmezővásárhely<br>2015 m. spalio 6 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"„Újváros” lasītāju pulciņš, Hódmezővásárhely<br>2015. gada 6. oktobris"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Újvárosi lugemisklubi, Hódmezővásárhely<br>6. oktoober 2015"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Újváros Okuma Kulübü, Hódmezővásárhely<br>6 Ekim 2015"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Λέσχη Ανάγνωσης Újváros, Hódmezővásárhely<br>6 Οκτωβρίου 2015"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Rrethi i Leximit Újváros, Hódmezővásárhely<br>6 tetor 2015"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Читателски кръг „Уйварош“, Ходмезьовашархей<br>6 октомври 2015"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Koło Czytelnicze Újváros, Hódmezővásárhely<br>6 października 2015"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Čtenářský kroužek Újváros, Hódmezővásárhely<br>6. října 2015"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Čitateľský krúžok Újváros, Hódmezővásárhely<br>6. októbra 2015"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Читацький гурток «Уйварош», Годмезевашархей<br>6 жовтня 2015"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Cercul de lectură Újváros, Hódmezővásárhely<br>6 octombrie 2015"},
+		sr:{back:"← Назад",close:"✕ Затвori",cap:"Читалачки круг Ујварош, Ходмезевашархељ<br>6. октобар 2015"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Čitateljski krug Újváros, Hódmezővásárhely<br>6. listopada 2015."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Bralni krožek Újváros, Hódmezővásárhely<br>6. oktober 2015"}
+	};
+	
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

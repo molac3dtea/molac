@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>22a IMEK<br>22. Nemzetközi Egészségügyi<br>Eszperantó Kongresszus<br>Somogy Könyvtár, Szeged<br>2022. július 14.</caption>
+		<caption lang-key="cap">22. Nemzetközi Egészségügyi<br>Eszperantó Kongresszus (IMEK)<br>Somogy Könyvtár, Szeged<br>2022. július 14.</caption>
     </table>
   </div>
 
@@ -88,91 +88,109 @@
     let currentIndex = 0;
     const galleryData = [];
 
-    window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
-      const items = document.querySelectorAll('.gallery-item');
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"22. Nemzetközi Egészségügyi<br>Eszperantó Kongresszus (IMEK)<br>Somogy Könyvtár, Szeged<br>2022. július 14."},
+		en:{back:"← Back",close:"✕ Close",cap:"22nd International Medical<br>Esperanto Congress (IMEK)<br>Somogyi Library, Szeged<br>14 July 2022"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"22. Internationaler Medizinischer<br>Esperanto-Kongress (IMEK)<br>Somogyi-Bibliothek, Szeged<br>14. Juli 2022"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"22.º Congreso Internacional Médico<br>de Esperanto (IMEK)<br>Biblioteca Somogyi, Szeged<br>14 de julio de 2022"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"22° Congresso Medico Internazionale<br>di Esperanto (IMEK)<br>Biblioteca Somogyi, Szeged<br>14 luglio 2022"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"22e Congrès médical international<br>d’Espéranto (IMEK)<br>Bibliothèque Somogyi, Szeged<br>14 juillet 2022"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"22.º Congresso Médico Internacional<br>de Esperanto (IMEK)<br>Biblioteca Somogyi, Szeged<br>14 de julho de 2022"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"22e Internationale Medische<br>Esperanto-congres (IMEK)<br>Somogyi-bibliotheek, Szeged<br>14 juli 2022"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"22:a internationella medicinska<br>Esperantokongressen (IMEK)<br>Somogyi-biblioteket, Szeged<br>14 juli 2022"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"22. Kansainvälinen lääketieteellinen<br>Esperantokongressi (IMEK)<br>Somogyi-kirjasto, Szeged<br>14. heinäkuuta 2022"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"22. internasjonale medisinske<br>Esperantokongress (IMEK)<br>Somogyi-biblioteket, Szeged<br>14. juli 2022"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"22. Internationale Medicinske<br>Esperanto-kongres (IMEK)<br>Somogyi-biblioteket, Szeged<br>14. juli 2022"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"22. alþjóðlega læknisfræðilega<br>Esperantóþingið (IMEK)<br>Somogyi bókasafnið, Szeged<br>14. júlí 2022"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"22è Congrés Internacional Mèdic<br>d’Esperanto (IMEK)<br>Biblioteca Somogyi, Szeged<br>14 de juliol de 2022"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"第22回 国際医療<br>エスペラント会議（IMEK）<br>ショモジ図書館（セゲド）<br>2022年7月14日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"第22届国际医学<br>世界语大会（IMEK）<br>绍莫吉图书馆，塞格德<br>2022年7月14日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"제22회 국제 의료<br>에스페란토 회의(IMEK)<br>쇼모지 도서관, 세게드<br>2022년 7월 14일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"22-a Internacia Medicina<br>Esperanto-Kongreso (IMEK)<br>Somogyi Biblioteko, Szeged<br>14 julio 2022"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"22-asis tarptautinis medicinos<br>esperanto kongresas (IMEK)<br>Somogyi biblioteka, Szeged<br>2022 m. liepos 14 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"22. Starptautiskais medicīnas<br>esperanto kongress (IMEK)<br>Somogyi bibliotēka, Szeged<br>2022. gada 14. jūlijs"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"22. rahvusvaheline meditsiini<br>esperanto kongress (IMEK)<br>Somogyi raamatukogu, Szeged<br>14. juuli 2022"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"22. Uluslararası Tıbbi<br>Esperanto Kongresi (IMEK)<br>Somogyi Kütüphanesi, Szeged<br>14 Temmuz 2022"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"22ο Διεθνές Ιατρικό<br>Συνέδριο Εσπεράντο (IMEK)<br>Βιβλιοθήκη Somogyi, Σέγκεντ<br>14 Ιουλίου 2022"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Kongresi i 22-të Ndërkombëtar Mjekësor<br>i Esperantos (IMEK)<br>Biblioteka Somogyi, Szeged<br>14 korrik 2022"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"22-ри Международен медицински<br>Есперанто конгрес (IMEK)<br>Библиотека „Шомоджи“, Сегед<br>14 юли 2022"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"22. Międzynarodowy Medyczny<br>Kongres Esperanta (IMEK)<br>Biblioteka Somogyi, Szeged<br>14 lipca 2022"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"22. mezinárodní lékařský<br>esperantský kongres (IMEK)<br>Knihovna Somogyi, Szeged<br>14. července 2022"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"22. medzinárodný lekársky<br>esperantský kongres (IMEK)<br>Knižnica Somogyi, Szeged<br>14. júla 2022"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"22-й Міжнародний медичний<br>Есперанто конгрес (IMEK)<br>Бібліотека Шомодьї, Сегед<br>14 липня 2022"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Al 22-lea Congres Medical Internațional<br>de Esperanto (IMEK)<br>Biblioteca Somogyi, Szeged<br>14 iulie 2022"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"22. Међународни медицински<br>Есперанто конгрес (IMEK)<br>Библиотека Шомођи, Сегедин<br>14. јул 2022"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"22. Međunarodni medicinski<br>Esperanto kongres (IMEK)<br>Knjižnica Somogyi, Szeged<br>14. srpnja 2022"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"22. Mednarodni medicinski<br>Esperantski kongres (IMEK)<br>Knjižnica Somogyi, Szeged<br>14. julij 2022"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
       
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
+
+    window.onload = function() {
+      applyLang(getLang());
+      const items = document.querySelectorAll('.gallery-item');
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

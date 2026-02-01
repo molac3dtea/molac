@@ -58,9 +58,9 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
     <div class="lightbox-close">✕ Bezárás</div>
@@ -80,99 +80,117 @@
 
   <div class="page-container">
     <table>
-		<caption>Kézműves Kiállítás<br>Csúcsi Olvasókör<br>Hódmezővásárhely<br>2024. szeptember 27–29.</caption>
+		<caption lang-key="cap">Kézműves Kiállítás<br>Csúcsi Olvasókör<br>Hódmezővásárhely<br>2024. szeptember 27–29.</caption>
     </table>
   </div>
 
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Kézműves Kiállítás<br>Csúcsi Olvasókör<br>Hódmezővásárhely<br>2024. szeptember 27–29."},
+		en:{back:"← Back",close:"✕ Close",cap:"Handicraft Exhibition<br>Csúcsi Reading Circle<br>Hódmezővásárhely<br>27–29 September 2024"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Handwerksausstellung<br>Csúcsi-Lesekreis<br>Hódmezővásárhely<br>27.–29. September 2024"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Exposición de Artesanía<br>Círculo de Lectura Csúcsi<br>Hódmezővásárhely<br>27–29 de septiembre de 2024"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Mostra di Artigianato<br>Circolo di Lettura Csúcsi<br>Hódmezővásárhely<br>27–29 settembre 2024"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Exposition d’artisanat<br>Cercle de lecture Csúcsi<br>Hódmezővásárhely<br>27–29 septembre 2024"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Exposição de Artesanato<br>Círculo de Leitura Csúcsi<br>Hódmezővásárhely<br>27–29 de setembro de 2024"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Ambachtelijke Tentoonstelling<br>Csúcsi Leeskring<br>Hódmezővásárhely<br>27–29 september 2024"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Hantverksutställning<br>Csúcsi läsecirkel<br>Hódmezővásárhely<br>27–29 september 2024"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Käsityönäyttely<br>Csúcsi-lukupiiri<br>Hódmezővásárhely<br>27.–29. syyskuuta 2024"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Håndverksutstilling<br>Csúcsi lesesirkel<br>Hódmezővásárhely<br>27.–29. september 2024"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Håndværksudstilling<br>Csúcsi læsekreds<br>Hódmezővásárhely<br>27.–29. september 2024"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Handverkssýning<br>Csúcsi leshringur<br>Hódmezővásárhely<br>27.–29. september 2024"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Exposició d’Artesania<br>Cercle de Lectura Csúcsi<br>Hódmezővásárhely<br>27–29 de setembre de 2024"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"手工芸展<br>チューチ読書会<br>ホードメゼーヴァーシャールヘイ<br>2024年9月27～29日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"手工艺展览<br>丘奇读书会<br>霍德梅泽瓦沙尔海伊<br>2024年9月27–29日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"수공예 전시회<br>추치 독서회<br>호드메죄바샤르헤이<br>2024년 9월 27–29일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Metiarta Ekspozicio<br>Legoklubo Csúcsi<br>Hódmezővásárhely<br>27–29 septembro 2024"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Rankdarbių paroda<br>„Csúcsi“ skaitytojų ratas<br>Hódmezővásárhely<br>2024 m. rugsėjo 27–29 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Rokdarbu izstāde<br>„Csúcsi” lasītāju pulciņš<br>Hódmezővásárhely<br>2024. gada 27.–29. septembris"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Käsitöönäitus<br>Csúcsi lugemisklubi<br>Hódmezővásárhely<br>27.–29. september 2024"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"El Sanatları Sergisi<br>Csúcsi Okuma Kulübü<br>Hódmezővásárhely<br>27–29 Eylül 2024"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Έκθεση Χειροτεχνίας<br>Λέσχη Ανάγνωσης Csúcsi<br>Hódmezővásárhely<br>27–29 Σεπτεμβρίου 2024"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Ekspozitë artizanale<br>Rrethi i Leximit Csúcsi<br>Hódmezővásárhely<br>27–29 shtator 2024"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Занаятчийска изложба<br>Читателски кръг „Чуч“<br>Ходмезьовашархей<br>27–29 септември 2024"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Wystawa Rękodzieła<br>Koło Czytelnicze Csúcsi<br>Hódmezővásárhely<br>27–29 września 2024"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Řemeslná výstava<br>Čtenářský kroužek Csúcsi<br>Hódmezővásárhely<br>27.–29. září 2024"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Remeselná výstava<br>Čitateľský krúžok Csúcsi<br>Hódmezővásárhely<br>27.–29. septembra 2024"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"Виставка ремесел<br>Читацький гурток «Чучі»<br>Годмезевашархей<br>27–29 вересня 2024"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Expoziție de artizanat<br>Cercul de lectură Csúcsi<br>Hódmezővásárhely<br>27–29 septembrie 2024"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Занатска изложба<br>Читалачки круг Чучи<br>Ходмезевашархељ<br>27–29. септембар 2024"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Izložba rukotvorina<br>Čitateljski krug Csúcsi<br>Hódmezővásárhely<br>27.–29. rujna 2024"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Razstava rokodelstva<br>Bralni krožek Csúcsi<br>Hódmezővásárhely<br>27.–29. september 2024"}
+	};
+	
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const cand = p.get('lang') || localStorage.getItem('preferredLang') || 'hu';
+      return translations[cand] ? cand : 'hu';
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+    }
 
     window.onload = function() {
-      // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
+      applyLang(getLang());
       const items = document.querySelectorAll('.gallery-item');
-      
       items.forEach((item, index) => {
         const table = item.closest('table');
         const caption = table ? table.querySelector('caption').innerText : "";
-        const row = item.closest('tr');
-        
-        let descCell = row ? row.querySelector('td') : null;
-        // Rowspan kezelése
-        if (descCell && (descCell.querySelector('img') || descCell.querySelector('a'))) {
-            let prevRow = row.previousElementSibling;
-            while (prevRow) {
-                let potentialDesc = prevRow.querySelector('td[rowspan]');
-                if (potentialDesc) { descCell = potentialDesc; break; }
-                prevRow = prevRow.previousElementSibling;
-            }
-        }
-
-        let description = descCell ? descCell.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : "";
-        let type = item.tagName === 'A' ? 'pdf' : 'img';
-        let source = type === 'pdf' ? item.href : item.src.replace('_', '');
-
-        // Ha PDF link, akadályozzuk meg a gyári megnyitást
-        if(type === 'pdf') {
-            item.onclick = function(e) { e.preventDefault(); openGallery(index); };
-        } else {
-            item.onclick = function() { openGallery(index); };
-        }
-
-        galleryData.push({ src: source, title: caption, description: description, type: type });
+        galleryData.push({ src: item.src.replace('_', ''), title: caption, description: "" });
+        item.onclick = function() { openGallery(index); };
       });
     };
 
     function openGallery(index) {
       currentIndex = index;
-      updateLightbox();
+      document.getElementById('lightbox-img').style.display = 'block';
+      document.getElementById('lightbox-pdf').style.display = 'none';
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
+      document.getElementById('lb-title').innerText = galleryData[currentIndex].title;
       document.getElementById('lightbox').style.display = 'flex';
       document.body.style.overflow = 'hidden';
-    }
-
-    function updateLightbox() {
-      const data = galleryData[currentIndex];
-      const imgContainer = document.getElementById('lightbox-img');
-      const pdfContainer = document.getElementById('lightbox-pdf');
-
-      if (data.type === 'pdf') {
-        imgContainer.style.display = 'none';
-        pdfContainer.style.display = 'block';
-        pdfContainer.src = data.src;
-      } else {
-        pdfContainer.style.display = 'none';
-        imgContainer.style.display = 'block';
-        imgContainer.src = data.src;
-      }
-
-      document.getElementById('lb-title').innerText = data.title;
-      document.getElementById('lb-desc').innerText = data.description;
     }
 
     function changeImage(step, event) {
       if (event) event.stopPropagation();
       currentIndex = (currentIndex + step + galleryData.length) % galleryData.length;
-      updateLightbox();
+      document.getElementById('lightbox-img').src = galleryData[currentIndex].src;
     }
 
     function closeImage() {
       document.getElementById('lightbox').style.display = 'none';
-      document.getElementById('lightbox-pdf').src = ""; // PDF leállítása
       document.body.style.overflow = 'auto';
     }
 
     window.addEventListener('keydown', function (e) {
       const lightbox = document.getElementById('lightbox');
-      const backBtn = document.querySelector('.back-button');
       const isOpen = lightbox.style.display === 'flex';
 
       if (e.key === "Escape") {
-        if (backBtn) backBtn.classList.add('back-button-active');
         if (isOpen) {
-          setTimeout(() => { 
-            if (backBtn) backBtn.classList.remove('back-button-active');
-            closeImage(); 
-          }, 200);
+          closeImage(); 
         } else {
           goBack();
         }

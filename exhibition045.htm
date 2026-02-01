@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>Pályaorientációs Nap Nap<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely<br>2012. július 7.</caption>
+		<caption lang-key="cap">Pályaorientációs Nap<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely<br>2012. július 7.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/045/kep1.jpg" class="gallery-item gallery-img"></td>
 			<td><img src="pictures/kiallitas/045/kep2.jpg" class="gallery-item gallery-img"></td>
@@ -93,7 +93,84 @@
     let currentIndex = 0;
     const galleryData = [];
 
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"Pályaorientációs Nap<br>Liszt Ferenc Ének-zenei Általános Iskola<br>Hódmezővásárhely<br>2012. július 7."},
+		en:{back:"← Back",close:"✕ Close",cap:"Career Orientation Day<br>Liszt Ferenc Music Primary School<br>Hódmezővásárhely<br>7 July 2012"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"Berufsorientierungstag<br>Liszt-Ferenc-Musikgrundschule<br>Hódmezővásárhely<br>7. Juli 2012"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"Día de Orientación Profesional<br>Escuela Primaria Musical Liszt Ferenc<br>Hódmezővásárhely<br>7 de julio de 2012"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"Giornata di Orientamento Professionale<br>Scuola Primaria Musicale Liszt Ferenc<br>Hódmezővásárhely<br>7 luglio 2012"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"Journée d’orientation professionnelle<br>École primaire musicale Liszt Ferenc<br>Hódmezővásárhely<br>7 juillet 2012"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"Dia de Orientação Profissional<br>Escola Primária Musical Liszt Ferenc<br>Hódmezővásárhely<br>7 de julho de 2012"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"Loopbaanoriëntatiedag<br>Liszt Ferenc Muziekbasisschool<br>Hódmezővásárhely<br>7 juli 2012"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"Yrkesorienteringsdag<br>Liszt Ferenc musikgrundskola<br>Hódmezővásárhely<br>7 juli 2012"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"Uraohjauspäivä<br>Liszt Ferenc -musiikkiperuskoulu<br>Hódmezővásárhely<br>7. heinäkuuta 2012"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"Karriereorienteringsdag<br>Liszt Ferenc musikkskole (barneskole)<br>Hódmezővásárhely<br>7. juli 2012"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"Karriereorienteringsdag<br>Liszt Ferenc Musikfolkeskole<br>Hódmezővásárhely<br>7. juli 2012"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"Starfsfræðsludagur<br>Liszt Ferenc tónlistargrunnskóli<br>Hódmezővásárhely<br>7. júlí 2012"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"Jornada d’Orientació Professional<br>Escola Primària Musical Liszt Ferenc<br>Hódmezővásárhely<br>7 de juliol de 2012"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"進路指導の日<br>リスト・フェレンツ音楽小学校<br>ホードメゼーヴァーシャールヘイ<br>2012年7月7日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"职业导向日<br>李斯特·费伦茨音乐小学<br>霍德梅泽瓦沙尔海伊<br>2012年7月7日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"진로 탐색의 날<br>리스트 페렌츠 음악 초등학교<br>호드메죄바샤르헤이<br>2012년 7월 7일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"Kariera Orientiĝa Tago<br>Liszt Ferenc Muzika Bazlernejo<br>Hódmezővásárhely<br>7 julio 2012"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"Karjeros orientavimo diena<br>Liszt Ferenc muzikos pradinė mokykla<br>Hódmezővásárhely<br>2012 m. liepos 7 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"Karjeras orientācijas diena<br>Liszt Ferenc mūzikas pamatskola<br>Hódmezővásárhely<br>2012. gada 7. jūlijs"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"Karjääriorientatsiooni päev<br>Liszt Ferenci muusikaalgkool<br>Hódmezővásárhely<br>7. juuli 2012"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"Kariyer Yönlendirme Günü<br>Liszt Ferenc Müzik İlkokulu<br>Hódmezővásárhely<br>7 Temmuz 2012"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"Ημέρα Επαγγελματικού Προσανατολισμού<br>Μουσικό Δημοτικό Σχολείο Liszt Ferenc<br>Hódmezővásárhely<br>7 Ιουλίου 2012"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"Dita e Orientimit në Karrierë<br>Shkolla Fillore Muzikore Liszt Ferenc<br>Hódmezővásárhely<br>7 korrik 2012"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"Ден на кариерното ориентиране<br>Начално музикално училище „Лист Ференц“<br>Ходмезьовашархей<br>7 юли 2012"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"Dzień Orientacji Zawodowej<br>Muzyczna Szkoła Podstawowa im. Ferenca Liszta<br>Hódmezővásárhely<br>7 lipca 2012"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"Den kariérové orientace<br>Hudební základní škola Liszta Ference<br>Hódmezővásárhely<br>7. července 2012"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"Deň kariérového poradenstva<br>Hudobná základná škola Liszta Ferenca<br>Hódmezővásárhely<br>7. júla 2012"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"День профорієнтації<br>Музична початкова школа імені Ференца Ліста<br>Годмезевашархей<br>7 липня 2012"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"Ziua orientării în carieră<br>Școala Primară Muzicală Liszt Ferenc<br>Hódmezővásárhely<br>7 iulie 2012"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"Дан професионалне оријентације<br>Музичка основна школа Лист Ференц<br>Ходмезевашархељ<br>7. јул 2012"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"Dan profesionalne orijentacije<br>Glazbena osnovna škola Liszt Ferenc<br>Hódmezővásárhely<br>7. srpnja 2012"},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"Dan poklicne orientacije<br>Glasbena osnovna šola Liszt Ferenc<br>Hódmezővásárhely<br>7. julij 2012"}
+	};
+
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
+
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       

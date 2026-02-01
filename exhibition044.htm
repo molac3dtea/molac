@@ -58,12 +58,12 @@
     }
   </style>
 </head>
-<body>
 
-  <div class="back-button" onclick="goBack()" data-key="back">← Vissza</div>
+<body>
+  <div class="back-button" onclick="goBack()" lang-key="back">← Vissza</div>
 
   <div id="lightbox" class="lightbox" onclick="closeImage()">
-    <div class="lightbox-close">✕ Bezárás</div>
+    <div class="lightbox-close" lang-key="close">✕ Bezárás</div>
     <div id="lb-title" class="lightbox-header"></div>
     
     <div class="lightbox-img-container" onclick="event.stopPropagation()">
@@ -80,7 +80,7 @@
 
   <div class="page-container">
     <table>
-		<caption>CSODÁK TEALFILTER-TASAKOKBÓL<br>Őszi Kulturális Fesztivál, Szeged<br>2017. október 5.</caption>
+		<caption lang-key="cap">CSODÁK TEALFILTER-TASAKOKBÓL<br>Őszi Kulturális Fesztivál, Szeged<br>2017. október 5.</caption>
 		<tr>
 			<td><img src="pictures/kiallitas/044/meghivo.jpg" class="gallery-item gallery-img"></td>
 		</tr>
@@ -90,8 +90,85 @@
   <script>
     let currentIndex = 0;
     const galleryData = [];
+	
+	const translations = {
+		hu:{back:"← Vissza",close:"✕ Bezárás",cap:"CSODÁK TEALFILTER-TASAKOKBÓL<br>Őszi Kulturális Fesztivál, Szeged<br>2017. október 5."},
+		en:{back:"← Back",close:"✕ Close",cap:"WONDERS FROM TEA FILTER BAGS<br>Autumn Cultural Festival, Szeged<br>5 October 2017"},
+		de:{back:"← Zurück",close:"✕ Schließen",cap:"WUNDER AUS TEEFILTERBEUTELN<br>Herbstliches Kulturfestival, Szeged<br>5. Oktober 2017"},
+		es:{back:"← Volver",close:"✕ Cerrar",cap:"MARAVILLAS DE BOLSAS DE FILTRO DE TÉ<br>Festival Cultural de Otoño, Szeged<br>5 de octubre de 2017"},
+		it:{back:"← Indietro",close:"✕ Chiudi",cap:"MERAVIGLIE DA FILTRI DI TÈ<br>Festival Culturale Autunnale, Szeged<br>5 ottobre 2017"},
+		fr:{back:"← Retour",close:"✕ Fermer",cap:"MERVEILLES DE SACHETS FILTRANTS DE THÉ<br>Festival culturel d’automne, Szeged<br>5 octobre 2017"},
+		pt:{back:"← Voltar",close:"✕ Fechar",cap:"MARAVILHAS DE FILTROS DE CHÁ<br>Festival Cultural de Outono, Szeged<br>5 de outubro de 2017"},
+		nl:{back:"← Terug",close:"✕ Sluiten",cap:"WONDEREN VAN THEEFILTERZAKJES<br>Herfstcultureel Festival, Szeged<br>5 oktober 2017"},
+		sv:{back:"← Tillbaka",close:"✕ Stäng",cap:"UNDER AV TEFILTERPÅSAR<br>Höstkulturfestivalen, Szeged<br>5 oktober 2017"},
+		fi:{back:"← Takaisin",close:"✕ Sulje",cap:"IHMEITÄ TEESUODATINPUSSEISTA<br>Syksyinen kulttuurifestivaali, Szeged<br>5. lokakuuta 2017"},
+		no:{back:"← Tilbake",close:"✕ Lukk",cap:"UNDER FRA TEFILTERPOSER<br>Høstlig kulturfestival, Szeged<br>5. oktober 2017"},
+		da:{back:"← Tilbage",close:"✕ Luk",cap:"VIDUNDERE AF TEFILTERPOSER<br>Efterårskulturfestival, Szeged<br>5. oktober 2017"},
+		is:{back:"← Til baka",close:"✕ Loka",cap:"UNDUR ÚR TESÍUPOKUM<br>Haustmenningarhátíð, Szeged<br>5. október 2017"},
+		ca:{back:"← Enrere",close:"✕ Tanca",cap:"MERAVELLES DE BOSSES FILTRE DE TE<br>Festival Cultural de Tardor, Szeged<br>5 d’octubre de 2017"},
+		ja:{back:"← 戻る",close:"✕ 閉じる",cap:"ティーフィルターバッグの奇跡<br>秋の文化フェスティバル（セゲド）<br>2017年10月5日"},
+		zh:{back:"← 返回",close:"✕ 关闭",cap:"茶滤袋的奇迹<br>秋季文化节，塞格德<br>2017年10月5日"},
+		ko:{back:"← 뒤로",close:"✕ 닫기",cap:"티 필터 백의 기적<br>가을 문화 축제, 세게드<br>2017년 10월 5일"},
+		eo:{back:"← Reen",close:"✕ Fermi",cap:"MIRINDAĴOJ EL TEAJ FILTRSAKETOJ<br>Aŭtuna Kultura Festivalo, Szeged<br>5 oktobro 2017"},
+		lt:{back:"← Atgal",close:"✕ Uždaryti",cap:"STEBUKLAI IŠ ARBATOS FILTRŲ MAIŠELIŲ<br>Rudens kultūros festivalis, Szeged<br>2017 m. spalio 5 d."},
+		lv:{back:"← Atpakaļ",close:"✕ Aizvērt",cap:"BRĪNUMI NO TĒJAS FILTRA MAISIŅIEM<br>Rudens kultūras festivāls, Szeged<br>2017. gada 5. oktobris"},
+		et:{back:"← Tagasi",close:"✕ Sule",cap:"IMED TEEFILTRIKOTIKEST<br>Sügisene kultuurifestival, Szeged<br>5. oktoober 2017"},
+		tr:{back:"← Geri",close:"✕ Kapat",cap:"ÇAY FİLTRE POŞETLERİNDEN HARİKALAR<br>Sonbahar Kültür Festivali, Szeged<br>5 Ekim 2017"},
+		el:{back:"← Πίσω",close:"✕ Κλείσιμο",cap:"ΘΑΥΜΑΤΑ ΑΠΟ ΦΙΛΤΡΑ ΤΣΑΓΙΟΥ<br>Φθινοπωρινό Πολιτιστικό Φεστιβάλ, Σέγκεντ<br>5 Οκτωβρίου 2017"},
+		sq:{back:"← Mbrapa",close:"✕ Mbyll",cap:"MREKULLI NGA QESKA FILTRI ÇAJI<br>Festivali Kulturor i Vjeshtës, Szeged<br>5 tetor 2017"},
+		bg:{back:"← Назад",close:"✕ Затвори",cap:"ЧУДЕСА ОТ ФИЛТЪРНИ ТОРБИЧКИ ЗА ЧАЙ<br>Есенен културен фестивал, Сегед<br>5 октомври 2017"},
+		pl:{back:"← Wstecz",close:"✕ Zamknij",cap:"CUDA Z TOREBEK FILTRÓW DO HERBATY<br>Jesienny Festiwal Kultury, Szeged<br>5 października 2017"},
+		cs:{back:"← Zpět",close:"✕ Zavřít",cap:"ZÁZRAKY Z ČAJOVÝCH FILTRAČNÍCH SÁČKŮ<br>Podzimní kulturní festival, Szeged<br>5. října 2017"},
+		sk:{back:"← Späť",close:"✕ Zavrieť",cap:"ZÁZRAKY Z ČAJOVÝCH FILTRAČNÝCH VRECIEK<br>Jesenný kultúrny festival, Szeged<br>5. októbra 2017"},
+		uk:{back:"← Назад",close:"✕ Закрити",cap:"ДИВА З ЧАЙНИХ ФІЛЬТР-ПАКЕТІВ<br>Осінній культурний фестиваль, Сегед<br>5 жовтня 2017"},
+		ro:{back:"← Înapoi",close:"✕ Închide",cap:"MINUNI DIN PLICURI FILTRU DE CEAI<br>Festival Cultural de Toamnă, Szeged<br>5 octombrie 2017"},
+		sr:{back:"← Назад",close:"✕ Затвори",cap:"ЧУДА ОД ЧАЈНИХ ФИЛТЕР КЕСИЦА<br>Јесењи културни фестивал, Сегедин<br>5. октобар 2017"},
+		hr:{back:"← Natrag",close:"✕ Zatvori",cap:"ČUDA OD FILTER VREĆICA ZA ČAJ<br>Jesenski kulturni festival, Szeged<br>5. listopada 2017."},
+		sl:{back:"← Nazaj",close:"✕ Zapri",cap:"ČUDEŽI IZ ČAJNIH FILTRSKIH VREČK<br>Jesenski kulturni festival, Szeged<br>5. oktober 2017"}
+	};
+	
+    function goBack() {
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const hash = window.location.hash; 
+      const backBtn = document.querySelector('.back-button');
+      
+      if (backBtn) backBtn.classList.add('back-button-active');
+      
+      setTimeout(() => {
+        window.location.href = 'exhibition.htm?lang=' + lang + hash;
+      }, 150);
+    }
+	
+    function getLang() {
+      const p = new URLSearchParams(window.location.search);
+      const fromUrl = (p.get('lang') || '').toLowerCase();
+      const stored = (localStorage.getItem('preferredLang') || '').toLowerCase();
+      const cand = fromUrl || stored || 'hu';
+      return translations[cand] ? cand : (translations.en ? 'en' : 'hu');
+    }
+
+    function applyLang(lang) {
+      localStorage.setItem('preferredLang', lang);
+      document.documentElement.lang = lang;
+
+      const dict = translations[lang] || translations.hu;
+      document.querySelectorAll('[lang-key]').forEach(el => {
+        const key = el.getAttribute('lang-key');
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      const backA = document.querySelector('.back-button');
+      if (backA) {
+        const base = (backA.getAttribute('href') || 'exhibition.htm').split('?')[0];
+        backA.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+      }
+      return lang;
+    }
+
 
     window.onload = function() {
+      const __lang = applyLang(getLang());
+
       // Minden olyan elemet keresünk, ami a galéria része (kép vagy PDF link)
       const items = document.querySelectorAll('.gallery-item');
       
