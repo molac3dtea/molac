@@ -35,6 +35,7 @@
       z-index: -2;
     }
 
+    /* ===== WELCOME BOX (Keskenyebb és dinamikus) ===== */
 	.welcome-box {
 	  text-align: center;
 	  background: rgba(255, 255, 255, .95);
@@ -49,7 +50,6 @@
 	  z-index: 10;
 	  border: 1px solid rgba(0,51,102,0.1);
 	}
-
 	
     .welcome-box h1 {
       font-size: 1.8rem;
@@ -246,6 +246,24 @@
     }
 
   
+	@media (prefers-reduced-motion: reduce) {
+      .wheel-frame::before, .wheel-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 80% at 25% 20%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(120% 80% at 75% 75%, rgba(0,0,0,0.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.22), rgba(0,0,0,0.18));
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      will-change: transform;
+      animation: paperDrift 18s ease-in-out infinite;
+    }
+    }
+  
 /* === ACTIVE LANGUAGE NARROW BACKPLATE FIX === */
 .lang-item.active {
   background: none !important;
@@ -328,18 +346,48 @@
   opacity: .6;
 }
 
-@media (max-width: 768px){
-  .welcome-box{
-    width: 90vw;       /* kb 80–90% képernyő */
-    max-height: 85vh;
-    padding: 18px;
-  }
+    @media (max-width: 768px) {
+      .welcome-box {
+        width: 90% !important; /* Szélesebb box mobilon */
+        padding: 40px 20px !important;
+        margin-top: 10% !important;
+      }
 
-  .welcome-box h1{ font-size: 1.4rem; }
-  .welcome-box p,
-  .welcome-box .instruction{ font-size: 1.05rem; }
-}
+      .welcome-box h1 {
+        font-size: 3.5rem !important; /* Dupla körüli címsor */
+      }
 
+      .welcome-box p {
+        font-size: 1.8rem !important; /* Nagyobb kísérőszöveg */
+      }
+
+      /* Nyelvválasztó henger (picker) méretezése */
+      .picker-container {
+        height: 120px !important; /* Magasabb konténer */
+        margin: 30px 0 !important;
+      }
+
+      .picker-item {
+        font-size: 2rem !important; /* Nagyobb betűk a hengerben */
+        height: 40px !important;
+        line-height: 40px !important;
+      }
+
+      /* A választó keret (középső sáv) vastagítása */
+      .picker-selection {
+        height: 45px !important;
+        top: 38px !important;
+        border-top: 3px solid #003366 !important;
+        border-bottom: 3px solid #003366 !important;
+      }
+
+      /* Belépés gomb */
+      .btn-enter {
+        font-size: 2rem !important;
+        padding: 20px 50px !important;
+        margin-top: 20px !important;
+      }
+    }
 </style>
 </head>
 
