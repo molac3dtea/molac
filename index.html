@@ -244,139 +244,150 @@
       50%  { transform: rotate(0.8deg) translate3d(6px,-4px,0) scale(1.02); }
       100% { transform: rotate(0deg) translate3d(0,0,0) scale(1); }
     }
- 
-	/* === ACTIVE LANGUAGE NARROW BACKPLATE FIX === */
-	.lang-item.active {
-	  background: none !important;
-	  padding: 0 !important;
-	  border-radius: 0 !important;
-	  box-shadow: none !important;
-	}
 
-	.lang-item.active::before {
-	  content: "";
-	  position: absolute;
-	  left: 50%;
-	  top: 50%;
-	  transform: translate(-50%, -50%);
-	  width: 76%;
-	  max-width: 185px;
-	  height: 30px;
-	  border-radius: 999px;
-	  background: rgba(255,255,255,0.35);
-	  box-shadow:
-		inset 0 1px 0 rgba(255,255,255,0.65),
-		inset 0 -1px 0 rgba(0,0,0,0.10),
-		0 2px 8px rgba(0,0,0,0.18);
-	  z-index: -1;
-	}
+  
+	@media (prefers-reduced-motion: reduce) {
+      .wheel-frame::before, .wheel-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 80% at 25% 20%, rgba(255,255,255,0.55), transparent 55%),
+        radial-gradient(120% 80% at 75% 75%, rgba(0,0,0,0.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.22), rgba(0,0,0,0.18));
+      opacity: 0.35;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      will-change: transform;
+      animation: paperDrift 18s ease-in-out infinite;
+    }
+    }
+  
+/* === ACTIVE LANGUAGE NARROW BACKPLATE FIX === */
+.lang-item.active {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
 
-
-	/* === ACTIVE BACKPLATE: subtle curved / barrel-like perspective === */
-	.lang-item.active::before{
-	  /* keep the existing sizing, but add a tiny 3D hint */
-	  transform: translate(-50%, -50%) rotateX(24deg) scaleX(1.03);
-	  transform-origin: center center;
-	  /* a slightly stronger edge shading to feel curved */
-	  background:
-		radial-gradient(ellipse at center,
-		  rgba(255,255,255,0.62) 0%,
-		  rgba(255,255,255,0.32) 45%,
-		  rgba(0,0,0,0.10) 78%,
-		  rgba(0,0,0,0.14) 100%);
-	}
-
-	/* specular highlight stripe (very subtle) */
-	.lang-item.active::after{
-	  content:"";
-	  position:absolute;
-	  left:50%;
-	  top:50%;
-	  width:72%;
-	  max-width:175px;
-	  height:10px;
-	  transform: translate(-50%, -70%) rotateX(14deg) scaleX(1.03);
-	  border-radius: 999px;
-	  background: linear-gradient(to bottom,
-		rgba(255,255,255,0.55),
-		rgba(255,255,255,0.10));
-	  opacity: .55;
-	  pointer-events:none;
-	  z-index: -1;
-	  filter: blur(0.2px);
-	}
+.lang-item.active::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 76%;
+  max-width: 185px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    inset 0 -1px 0 rgba(0,0,0,0.10),
+    0 2px 8px rgba(0,0,0,0.18);
+  z-index: -1;
+}
 
 
-	/* === CURVED BACKPLATE TUNING: taller light area === */
-	.lang-item.active::before{
-	  /* slightly taller plate */
-	  height: 34px;
-	  /* shift highlight upward inside gradient */
-	  background:
-		radial-gradient(ellipse at center,
-		  rgba(255,255,255,0.70) 0%,
-		  rgba(255,255,255,0.45) 55%,
-		  rgba(0,0,0,0.08) 82%,
-		  rgba(0,0,0,0.12) 100%);
-	}
+/* === ACTIVE BACKPLATE: subtle curved / barrel-like perspective === */
+.lang-item.active::before{
+  /* keep the existing sizing, but add a tiny 3D hint */
+  transform: translate(-50%, -50%) rotateX(24deg) scaleX(1.03);
+  transform-origin: center center;
+  /* a slightly stronger edge shading to feel curved */
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255,255,255,0.62) 0%,
+      rgba(255,255,255,0.32) 45%,
+      rgba(0,0,0,0.10) 78%,
+      rgba(0,0,0,0.14) 100%);
+}
 
-	.lang-item.active::after{
-	  /* move specular highlight a bit lower and taller */
-	  height: 12px;
-	  transform: translate(-50%, -65%) rotateX(14deg) scaleX(1.03);
-	  opacity: .6;
-	}
+/* specular highlight stripe (very subtle) */
+.lang-item.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:72%;
+  max-width:175px;
+  height:10px;
+  transform: translate(-50%, -70%) rotateX(14deg) scaleX(1.03);
+  border-radius: 999px;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0.10));
+  opacity: .55;
+  pointer-events:none;
+  z-index: -1;
+  filter: blur(0.2px);
+}
 
-/* ===== MOBIL STÍLUSOK (768px alatt) ===== */
+
+/* === CURVED BACKPLATE TUNING: taller light area === */
+.lang-item.active::before{
+  /* slightly taller plate */
+  height: 34px;
+  /* shift highlight upward inside gradient */
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255,255,255,0.70) 0%,
+      rgba(255,255,255,0.45) 55%,
+      rgba(0,0,0,0.08) 82%,
+      rgba(0,0,0,0.12) 100%);
+}
+
+.lang-item.active::after{
+  /* move specular highlight a bit lower and taller */
+  height: 12px;
+  transform: translate(-50%, -65%) rotateX(14deg) scaleX(1.03);
+  opacity: .6;
+}
+
     @media (max-width: 768px) {
       .welcome-box {
-        width: 92% !important;        /* Majdnem teljes szélesség */
-        max-width: none !important;
-        padding: 50px 20px !important;
-        top: 50% !important;          /* Középre húzzuk vissza */
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important; /* Pontos középre igazítás */
-        margin: 0 !important;
+        width: 90% !important; /* Szélesebb box mobilon */
+        padding: 40px 20px !important;
+        margin-top: 10% !important;
       }
 
       .welcome-box h1 {
-        font-size: 3.8rem !important; /* Hatalmas "Üdvözöllek!" */
-        margin-bottom: 20px !important;
+        font-size: 3.5rem !important; /* Dupla körüli címsor */
       }
 
       .welcome-box p {
-        font-size: 1.8rem !important; /* Nagyobb alcím */
+        font-size: 1.8rem !important; /* Nagyobb kísérőszöveg */
       }
 
-      /* Nyelvválasztó henger (picker) */
+      /* Nyelvválasztó henger (picker) méretezése */
       .picker-container {
-        height: 140px !important;      /* Magasabb görgető sáv */
-        margin: 40px 0 !important;
+        height: 120px !important; /* Magasabb konténer */
+        margin: 30px 0 !important;
       }
 
       .picker-item {
-        font-size: 2.2rem !important;  /* Jól olvasható nyelvek */
-        height: 45px !important;
-        line-height: 45px !important;
+        font-size: 2rem !important; /* Nagyobb betűk a hengerben */
+        height: 40px !important;
+        line-height: 40px !important;
       }
 
-      /* Kijelölő keret a hengeren belül */
+      /* A választó keret (középső sáv) vastagítása */
       .picker-selection {
-        height: 50px !important;
-        top: 45px !important;          /* Hozzáigazítva a nagyobb magassághoz */
-        border-top: 4px solid #003366 !important;
-        border-bottom: 4px solid #003366 !important;
+        height: 45px !important;
+        top: 38px !important;
+        border-top: 3px solid #003366 !important;
+        border-bottom: 3px solid #003366 !important;
       }
 
       /* Belépés gomb */
       .btn-enter {
-        font-size: 2.2rem !important;
-        padding: 25px 60px !important;
-        width: 80% !important;         /* Szélesebb gomb a könnyebb kattintáshoz */
-        border-radius: 15px !important;
+        font-size: 2rem !important;
+        padding: 20px 50px !important;
+        margin-top: 20px !important;
       }
     }
-	
 </style>
 </head>
 
